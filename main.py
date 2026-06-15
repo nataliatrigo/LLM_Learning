@@ -40,7 +40,7 @@ class ModelParams:
     c2: float = 0.65
     revenue: float = 1.0
     gamma: float = 0.95
-    max_observations: int = 60
+    max_observations: int = 100
     max_iter: int = 2_500
     tol: float = 1e-9
     demand_floor: float = 1e-12
@@ -496,28 +496,33 @@ def plot_policy_heatmaps(
     state_space: StateSpace,
     outputs_dir: Path,
 ) -> None:
-    selected_count = min(5, len(solutions))
+    selected_count = min(6, len(solutions))
     selected_indices = sorted(
         set(np.linspace(0, len(solutions) - 1, selected_count).round().astype(int))
     )
     selected_solutions = [solutions[idx] for idx in selected_indices]
 
-    cmap = ListedColormap(["#f8fafc", "#0f766e"])
+    cmap = ListedColormap(["#f2c94c", "#0f766e"])
     cmap.set_bad("#e5e7eb")
     norm = BoundaryNorm([-0.5, 0.5, 1.5], cmap.N)
 
+    n_panels = len(selected_solutions)
+    ncols = 3 if n_panels > 3 else n_panels
+    nrows = int(np.ceil(n_panels / ncols))
+
     fig, axes = plt.subplots(
-        1,
-        len(selected_solutions),
-        figsize=(4.3 * len(selected_solutions), 4.2),
+        nrows,
+        ncols,
+        figsize=(4.9 * ncols, 4.5 * nrows),
         sharex=True,
         sharey=True,
         constrained_layout=True,
     )
-    axes = np.atleast_1d(axes)
+    axes = np.atleast_1d(axes).ravel()
 
     max_obs = state_space.state_index.shape[0] - 1
-    for ax, solution in zip(axes, selected_solutions, strict=True):
+    image = None
+    for ax, solution in zip(axes, selected_solutions, strict=False):
         matrix = np.full((max_obs + 1, max_obs + 1), np.nan)
         uses_product2 = (solution["policy_product"] == 2).astype(float)
         matrix[state_space.F, state_space.S] = uses_product2
@@ -537,8 +542,11 @@ def plot_policy_heatmaps(
         ax.plot([0], [0], marker="o", color="#111827", markersize=3)
         prettify_axes(ax, grid_axis="both")
 
-    cbar = fig.colorbar(image, ax=axes, ticks=[0, 1], shrink=0.82)
-    cbar.ax.set_yticklabels(["Product 1", "Product 2"])
+    for ax in axes[n_panels:]:
+        ax.set_visible(False)
+
+    cbar = fig.colorbar(image, ax=axes[:n_panels], ticks=[0, 1], shrink=0.82)
+    cbar.ax.set_yticklabels(["Product 1: cheap", "Product 2: quality"])
     fig.suptitle("Seller A best-response policy over belief states", x=0.01, ha="left")
     save_figure(fig, outputs_dir / "best_response_policy_heatmaps.png")
 
@@ -620,7 +628,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--c2", type=float, default=0.65)
     parser.add_argument("--revenue", "-R", type=float, default=1.0)
     parser.add_argument("--gamma", type=float, default=0.95)
-    parser.add_argument("--max-observations", type=int, default=60)
+    parser.add_argument("--max-observations", type=int, default=100)
     parser.add_argument("--max-iter", type=int, default=2_500)
     parser.add_argument("--tol", type=float, default=1e-9)
     parser.add_argument("--T", "--horizon", dest="horizon", type=int, default=250)
