@@ -5,11 +5,8 @@
 \usepackage{graphicx} % Required for inserting images
 
 \usepackage{bbm}
-\usepackage{amsthm}
-\usepackage{thmtools}
-\usepackage{thm-restate}
 \usepackage{endnotes}
-\usepackage{amsmath, amssymb, amsthm, mathrsfs}
+\usepackage{amsmath, amssymb, mathrsfs}
 \usepackage{geometry}
 \usepackage{bbm}
 %\let\footnote=\endnote
@@ -271,18 +268,25 @@ Seller A seeks a stationary policy $\pi_A : \mathbb{N}_0 \times \mathbb{N}_0 \to
 \end{equation}
 \end{problem}
 
-Let $V(S, F)$ denote the optimal value function for Seller A at state $(S, F)$. The state transitions occur only when the user selects Seller A. If $y_t = B$, the state remains $(S, F)$ and no profit is accrued, though time advances. The Bellman optimality equation is therefore given by:
+Let $V(S, F)$ denote the optimal value function for Seller A at state $(S, F)$. The state transitions occur only when the user selects Seller A. If $y_t = B$, the state remains $(S, F)$ and no profit is accrued, though time advances. For each product $x \in \{1,2\}$, define the product-specific action value
+\begin{equation}
+    Q_x(S,F)
+    \triangleq
+    (R-c_x)
+    + \gamma \big[ p_x V(S+1,F) + (1-p_x)V(S,F+1) \big].
+\end{equation}
+This quantity is Seller A's expected payoff from using product $x$, conditional on the user choosing Seller A in the current period. The Bellman optimality equation is therefore given by:
 \begin{equation}
 \begin{aligned}
-    V(S, F) =& \big[1 - \rho(S, F)\big] \gamma V(S, F) \\
-    &+ \rho(S, F) \max_{x \in \{1, 2\}} \Big\{ (R - c_x) + \gamma \big[ p_x V(S+1, F) + (1 - p_x) V(S, F+1) \big] \Big\}.
+    V(S, F) =& \big[1 - \rho(S, F)\big] \gamma V(S, F) + \rho(S, F) \max_{x \in \{1, 2\}} Q_x(S,F).
 \end{aligned}
 \end{equation}
 
 By algebraic manipulation, we can isolate $V(S, F)$ to yield a computationally tractable form that resolves the self-referential term arising from periods where Seller A is not chosen:
 \begin{equation}
-    V(S, F) = \frac{\rho(S, F)}{1 - \gamma + \gamma \rho(S, F)} \max_{x \in \{1, 2\}} \Big\{ (R - c_x) + \gamma \big[ p_x V(S+1, F) + (1 - p_x) V(S, F+1) \big] \Big\}.
+    V(S, F) = \frac{\rho(S, F)}{1 - \gamma + \gamma \rho(S, F)} \max_{x \in \{1, 2\}} Q_x(S,F).
 \end{equation}
+Seller A's best response at state $(S,F)$ is any product attaining this maximum. In particular, product 2 is optimal whenever $Q_2(S,F) \geq Q_1(S,F)$.
 
 %\end{document}
 % \section{Model}
