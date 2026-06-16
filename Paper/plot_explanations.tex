@@ -6,7 +6,7 @@
 \usepackage{graphicx}
 \usepackage{hyperref}
 
-\graphicspath{{../outputs/}}
+\graphicspath{{../outputs/plots/}}
 
 \title{Guide to the Seller A Best-Response Plots}
 \author{}
@@ -188,64 +188,6 @@ baseline value iteration solves the grid up to $N=100$. This removes the top
 boundary band and helps check whether the visible policy pattern is driven by
 the artificial truncation.
 
-\section{One-Step Lookahead Heuristic}
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\textwidth]{one_step_heuristic_comparison_by_p0.png}
-    \caption{Comparison between the full dynamic-programming policy and the
-    one-step lookahead heuristic.}
-    \label{fig:one-step-comparison}
-\end{figure}
-
-The one-step lookahead heuristic avoids solving the full dynamic program.
-Instead, it approximates the value of an additional success by the immediate
-change in the user's future demand probability:
-\[
-    \rho(S+1,F)-\rho(S,F+1).
-\]
-The heuristic uses product 2 when
-\[
-    c_2-c_1
-    \le
-    \gamma(p_2-p_1)\kappa
-    \left[
-        \rho(S+1,F)-\rho(S,F+1)
-    \right],
-\]
-where $\kappa$ converts one unit of extra demand into dollars. In the default
-simulation, $\kappa=(R-c_1)/(1-\gamma)$, the discounted value of a stream of
-cheap-product margins. This can be changed from the command line with
-\texttt{--lookahead-demand-value}.
-
-Figure~\ref{fig:one-step-comparison} compares this heuristic with the solved
-best response. The agreement plot shows how often the heuristic picks the same
-product as the dynamic program. The product-2-use plot compares how much
-reputation investment each rule recommends after weighting states by demand.
-The disagreement plot separates two types of mistakes: states where the
-heuristic uses product 2 but the DP does not, and states where the DP uses
-product 2 but the heuristic does not.
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\textwidth]{one_step_heuristic_agreement_heatmaps_interior.png}
-    \caption{Interior state-space comparison between the one-step heuristic and
-    the full dynamic-programming policy.}
-    \label{fig:one-step-agreement}
-\end{figure}
-
-Figure~\ref{fig:one-step-agreement} shows where the heuristic matches or misses
-the DP policy. Yellow and green are agreement regions. Red indicates states
-where the heuristic recommends product 2 but the DP recommends product 1. Blue
-indicates states where the DP recommends product 2 but the heuristic recommends
-product 1.
-
-The current default heuristic captures much of the policy geometry, but it is
-more aggressive than the dynamic program when $p_0$ is very high. This makes
-sense: the heuristic only sees the immediate demand jump from one success, while
-the full DP also accounts for how hard it is to maintain reputation against a
-strong outside option.
-
 \section{Truncation Robustness}
 
 The infinite state space is approximated by solving states with $S+F \le N$.
@@ -289,9 +231,30 @@ best-response policy. The top panel tracks Seller A's market share over time.
 The bottom panel tracks the probability that Seller A uses product 2 conditional
 on being chosen.
 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{simulation_user_belief_paths_by_p0.png}
+    \caption{Simulated user belief paths for selected values of $p_0$.}
+    \label{fig:user-belief-paths}
+\end{figure}
+
+Figure~\ref{fig:user-belief-paths} shows the user's side of the same simulated
+histories. The posterior mean and posterior standard deviation summarize what
+the user believes about Seller A before each choice. The demand-probability
+panel plots $\rho(S,F)$, the probability that the Thompson-sampling user chooses
+Seller A at that period. The observations panel plots the average number of
+Seller A outcomes the user has seen.
+
 As $p_0$ increases, Seller A is chosen less often. Conditional on being chosen,
 product 2 use tends to rise over the intermediate range because reputation
 investment becomes more important. At very high $p_0$, demand is so low that
 investment is often not worthwhile.
+
+A fast decline in product 2 use usually means Seller A has already pushed the
+user's belief into a safer region. Once the user has many observations of Seller
+A, posterior uncertainty falls, and one additional success has a smaller effect
+on $\rho(S,F)$. At that point, the costly product 2 has less continuation value,
+so the best response can switch back toward product 1 even if demand remains
+high.
 
 \end{document}

@@ -9,11 +9,9 @@ model with two competing LLM providers.
 uv run python main.py
 ```
 
-The default run uses `T = 300` periods and `n_rep = 500` Monte Carlo
-replications. It saves plots and the summary table in `outputs/`.
-
-The learning-check plots compare posterior beliefs against the true delivered
-utility and the true probability that the realized signal is above zero.
+The default run solves Seller A's dynamic-programming best response across
+values of `p_0` and simulates histories under that policy. It saves CSV data in
+`outputs/data/` and plots in `outputs/plots/`.
 
 For a quick smoke test:
 
@@ -21,18 +19,32 @@ For a quick smoke test:
 uv run python main.py --T 30 --n-rep 20 --outputs-dir /tmp/llm_learning_smoke
 ```
 
+To choose the focused path diagnostic value:
+
+```bash
+uv run python main.py --diagnostic-p0 0.70
+```
+
 ## Outputs
 
-- `outputs/summary_table.csv`
-- `outputs/product2_usage_heuristic.png`
-- `outputs/product2_usage_onestep.png`
-- `outputs/market_share_A_heuristic.png`
-- `outputs/market_share_A_onestep.png`
-- `outputs/posterior_means_heuristic.png`
-- `outputs/posterior_means_onestep.png`
-- `outputs/success_probability_heuristic.png`
-- `outputs/success_probability_onestep.png`
-- `outputs/user_welfare_heuristic.png`
-- `outputs/user_welfare_onestep.png`
-- `outputs/cumulative_profits_heuristic.png`
-- `outputs/cumulative_profits_onestep.png`
+Data files are written to `outputs/data/`:
+
+- `best_response_summary.csv`
+- `best_response_policy_by_state.csv`
+- `value_iteration_convergence.csv`
+- `simulation_replications.csv`
+- `simulation_timeseries.csv`
+- `path_diagnostics.csv`
+- `truncation_robustness.csv`
+
+Plots are written to `outputs/plots/`:
+
+- `best_response_by_p0.png`
+- `best_response_policy_heatmaps.png`
+- `best_response_policy_posterior_state_space.png`
+- `best_response_policy_posterior_state_space_interior.png`
+- `best_response_value_difference_posterior_state_space.png`
+- `best_response_value_difference_posterior_state_space_interior.png`
+- `simulation_paths_by_p0.png`
+- `simulation_user_belief_paths_by_p0.png`
+- `path_diagnostic_p0_<value>.png`
