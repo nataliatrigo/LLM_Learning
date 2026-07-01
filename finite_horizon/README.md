@@ -8,7 +8,6 @@ reputation model, focused on the beginning of a long horizon.
 - `main.py`: exact dynamic program and simulation.
 - `paper/`: INFORMS-style model formulation and fluid approximation.
 - `outputs/plots/`: main finite-horizon figures.
-- `outputs/plots_forgetting/`: figures from the optional forgetting experiment.
 
 Generated CSV files are written locally to `outputs/data/` and excluded from
 Git because they are large and fully reproducible.
@@ -63,18 +62,6 @@ Posterior-mean outputs are written to
 `finite_horizon/outputs_posterior_mean/` by default. This user chooses A when
 `(S+1)/(S+F+2) >= p0`.
 
-To also run the forgetting or limited-memory experiment:
-
-```bash
-uv run python finite_horizon/main.py --run-forgetting-experiment --forgetting-decays 0.95 --forgetting-grid-step 0.5
-```
-
-The forgetting experiment uses discounted pseudo-counts
-`S' = lambda S + y` and `F' = lambda F + (1-y)` when Seller A is chosen.
-When A is not chosen, both pseudo-counts decay by `lambda`. Because these
-states are continuous, this is an approximate dynamic program on a pseudo-count
-grid rather than the exact integer-count solver used by the baseline model.
-
 Outputs are written to `finite_horizon/outputs/` by default.
 The summary plot includes the product-2 continuation threshold
 `(c2-c1)/(p2-p1)`. A separate product-2 path plot overlays the clipped
@@ -88,10 +75,6 @@ Data files:
 - `finite_horizon/outputs/data/finite_horizon_policy_snapshots.csv`
 - `finite_horizon/outputs/data/simulation_paths_early.csv`
 - `finite_horizon/outputs/data/simulation_timeseries_early.csv`
-- `finite_horizon/outputs/data/forgetting_experiment_summary.csv`
-- `finite_horizon/outputs/data/forgetting_experiment_policy_by_time.csv`
-- `finite_horizon/outputs/data/forgetting_experiment_paths.csv`
-- `finite_horizon/outputs/data/forgetting_experiment_timeseries.csv`
 
 Plots:
 
@@ -103,10 +86,6 @@ Plots:
 - `finite_horizon/outputs/plots/finite_horizon_product2_paths_with_asymptotic.png`
 - `finite_horizon/outputs/plots/finite_horizon_reputation_diagnostic_paths.png`
 - `finite_horizon/outputs/plots/finite_horizon_posterior_density_evolution.png`
-- `finite_horizon/outputs/plots_forgetting/finite_horizon_forgetting_simulation_by_period.png`
-- `finite_horizon/outputs/plots_forgetting/finite_horizon_forgetting_effective_observations.png`
-- `finite_horizon/outputs/plots_forgetting/finite_horizon_forgetting_representative_path.png`
-- `finite_horizon/outputs/plots_forgetting/finite_horizon_forgetting_posterior_density_evolution.png`
 
 The script does not export the full `T x state` policy table. For `T=1000`, that
 object is too large and not needed for early-period diagnostics.

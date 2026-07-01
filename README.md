@@ -12,7 +12,7 @@ demand.
 - [Paper source](finite_horizon/paper/main.tex)
 - [Compiled paper](finite_horizon/paper/main.pdf)
 - [Main simulation plots](finite_horizon/outputs/plots/)
-- [Forgetting-experiment plots](finite_horizon/outputs/plots_forgetting/)
+- [Discounted large-horizon study](discounted/)
 
 The main long-horizon experiment uses \(T=2000\), retains policy summaries
 through period 500, and simulates the first 1000 periods. Exact commands and a
@@ -26,15 +26,20 @@ finite_horizon/
 ├── README.md
 ├── paper/
 └── outputs/
-    ├── plots/
-    └── plots_forgetting/
+    └── plots/
+
+discounted/
+├── main.py
+├── README.md
+├── Paper/
+└── outputs/
 
 other_experiments/
 ├── average_cost/
-├── discounted/
 └── finite_memory/
 ```
 
-The secondary experiments are retained for completeness but are not required
-to read or reproduce the main finite-horizon study. Large generated CSV files
-and local archives are intentionally excluded from Git.
+The discounted formulation is again a top-level study so its figures can be
+compared directly with the finite-horizon results. The remaining secondary
+experiments are retained for completeness. Large generated CSV files and local
+archives are intentionally excluded from Git.

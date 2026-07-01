@@ -5,7 +5,6 @@ finite-horizon model:
 
 - [`average_cost/`](average_cost/): finite-state approximations to the
   average-reward problem.
-- [`discounted/`](discounted/): discounted infinite-horizon formulation.
 - [`finite_memory/`](finite_memory/): finite-horizon learning with bounded
   memory.
 

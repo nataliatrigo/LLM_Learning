@@ -1,7 +1,7 @@
 # Average-Cost Reputation Study
 
 This folder is a separate project for the average per-stage version of the
-dynamic reputation model. It does not write to the `other_experiments/discounted/outputs/`
+dynamic reputation model. It does not write to the `discounted/outputs/`
 folder used by the discounted-cost study.
 
 ## Run
