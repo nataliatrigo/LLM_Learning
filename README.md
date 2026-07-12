@@ -2,44 +2,49 @@
 
 This repository studies a seller who privately chooses between a low-cost
 product and a high-quality product while a user learns from binary outcomes.
-The main analysis is the exact finite-horizon model with Thompson-sampling
-demand.
+The active work is organized by model family. Generated outputs stay inside
+each study folder so code, paper files, and figures do not get mixed together.
 
-## Main study: finite horizon
+## Start Here
 
-- [Model and simulation code](finite_horizon/main.py)
-- [Reproduction instructions](finite_horizon/README.md)
-- [Paper source](finite_horizon/paper/main.tex)
-- [Compiled paper](finite_horizon/paper/main.pdf)
-- [Main simulation plots](finite_horizon/outputs/plots/)
-- [Discounted large-horizon study](discounted/)
+The two current analysis tracks are:
 
-The main long-horizon experiment uses \(T=2000\), retains policy summaries
-through period 500, and simulates the first 1000 periods. Exact commands and a
-smaller smoke test are provided in the finite-horizon README.
+- [Finite-horizon study](finite_horizon/): original exact DP, simulations, and
+  paper.
+- [Discounted study](discounted/): discounted exact DP, fluid approximation,
+  and discounted paper.
+
+Secondary or older experiments are collected under
+[other_experiments/](other_experiments/) or documented as such in their own
+folder.
 
 ## Repository structure
 
 ```text
 finite_horizon/
-├── main.py
-├── README.md
-├── paper/
-└── outputs/
-    └── plots/
+  main.py                  finite-horizon exact DP and simulations
+  README.md                exact reproduction commands
+  paper/                   manuscript source and compiled PDF
+  outputs/                 generated figures and local data
 
 discounted/
-├── main.py
-├── README.md
-├── Paper/
-└── outputs/
+  README.md                map of the discounted study
+  Paper/                   discounted manuscript
+  DP/                      exact discounted finite-horizon DP
+  Fluid/                   deterministic fluid solver and reparameterization
+  BinaryBelief-Logit/      one-dimensional logit-demand experiment
+  BinaryBelief/            older binary-belief diagnostics
 
 other_experiments/
-├── average_cost/
-└── finite_memory/
+  README.md
+  average_cost/
+  finite_memory/
+  finite_horizon_archives/
 ```
 
-The discounted formulation is again a top-level study so its figures can be
-compared directly with the finite-horizon results. The remaining secondary
-experiments are retained for completeness. Large generated CSV files and local
-archives are intentionally excluded from Git.
+## Generated Files
+
+Output folders are reproducible by running the commands in each study README.
+Large data tables, caches, and local archives are ignored by Git. Curated
+figures and compiled PDFs may be kept when they are useful for writing or
+sharing.

@@ -2,8 +2,12 @@
 .venv/
 .agents/
 .codex/
+.claude/
 __pycache__/
 *.py[cod]
+*.csv
+*.csv.gz
+.mplconfig/
 
 # Generated LaTeX build files (PDFs remain available for sharing)
 *.aux
@@ -23,7 +27,21 @@ other_experiments/finite_horizon_archives/
 other_experiments/average_cost/outputs/
 other_experiments/finite_memory/outputs/
 # Discounted runs: keep curated plots and Markdown reports, not raw data tables
-discounted/outputs*/data/
-discounted/outputs*/**/*.csv
-discounted/outputs*/**/*.pkl
-discounted/outputs/plots/details/
+discounted/DP/outputs*/data/
+discounted/DP/outputs*/**/*.csv
+discounted/DP/outputs*/**/*.pkl
+discounted/DP/outputs/plots/details/
+discounted/Fluid/outputs*/data/
+discounted/Fluid/outputs*/**/*.csv
+discounted/Fluid/outputs*/**/*.pkl
+
+# Local generated outputs from older discounted diagnostics
+discounted/BinaryBelief/outputs*/
+discounted/BinaryBelief/figures_hidden_type/
+discounted/BinaryBelief/hidden_type_*.aux
+discounted/BinaryBelief/hidden_type_*.log
+discounted/BinaryBelief/hidden_type_*.out
+discounted/BinaryBelief-Logit/outputs/
+
+# Independent paper repository synchronized with GitHub/Overleaf
+discounted/OverleafPaper/

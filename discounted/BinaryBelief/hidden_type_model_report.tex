@@ -1,0 +1,340 @@
+\documentclass[11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[hidelinks]{hyperref}
+
+\geometry{margin=1in}
+
+\title{Modelo simplificado de reputación con tipo oculto}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Objetivo}
+
+Este documento resume el modelo simplificado de reputación con producto oculto
+implementado en \texttt{simulate\_hidden\_type\_model.py}. El objetivo es
+reemplazar el estado Beta posterior del modelo original por un estado escalar
+más transparente:
+\[
+\mu_t
+= \mathbb{P}\{\text{Seller A es tipo alto / producto 2}\mid \mathcal{H}_t\}.
+\]
+El usuario conoce las probabilidades de éxito de los dos productos, pero no
+observa qué producto usa el vendedor. Por lo tanto, la reputación relevante del
+vendedor es la creencia \(\mu_t\), y el objeto central es la función de valor
+\(V_{p_0}(\mu)\), que depende de la opción externa \(p_0\).
+
+\section{Primitivas}
+
+Seller A puede elegir un producto \(x\in\{1,2\}\). El producto 1 tiene menor
+probabilidad de éxito y menor costo, mientras que el producto 2 tiene mayor
+probabilidad de éxito y mayor costo:
+\[
+0<p_1<p_2<1,
+\qquad
+c_1<c_2.
+\]
+Si el usuario elige a Seller A, el vendedor recibe ingreso \(R\), paga el costo
+\(c_x\), y se observa un resultado binario \(Y_t\in\{0,1\}\) con
+\[
+\mathbb{P}(Y_t=1\mid x)=p_x.
+\]
+La opción externa tiene probabilidad conocida de éxito \(p_0\). Los parámetros
+base usados en los numéricos son:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lc}
+\toprule
+Parámetro & Valor \\
+\midrule
+\(p_1\) & \(0.35\) \\
+\(p_2\) & \(0.80\) \\
+\(c_1\) & \(0.05\) \\
+\(c_2\) & \(0.65\) \\
+\(R\) & \(1.00\) \\
+\(\gamma\) & \(0.98\) \\
+\(\mu_{\mathrm{init}}\) & \(0.50\) \\
+\texttt{grid\_size} & \(1000\) \\
+\texttt{epsilon} & \(10^{-5}\) \\
+\texttt{tol} & \(10^{-9}\) \\
+\bottomrule
+\end{tabular}
+\caption{Parámetros base.}
+\label{tab:parameters}
+\end{table}
+
+La probabilidad de éxito percibida de Seller A es
+\[
+\bar p(\mu)=p_1+\mu(p_2-p_1).
+\]
+El umbral de indiferencia del usuario en el modo de demanda determinista es
+\[
+\mu_0(p_0)=\frac{p_0-p_1}{p_2-p_1}.
+\]
+Con los parámetros base, \(p_2-p_1=0.45\). Por ejemplo,
+\(\mu_0(0.50)=1/3\) y \(\mu_0(0.65)=2/3\).
+
+\section{Demanda del usuario}
+
+Se implementan dos modos de demanda.
+
+\subsection{Demanda por umbral de media}
+
+En el modo \texttt{mean\_threshold}, el usuario compara la calidad percibida
+\(\bar p(\mu)\) con la opción externa \(p_0\). La demanda es
+\[
+D(\mu;p_0)=
+\begin{cases}
+1, & p_0\le p_1,\\
+\mathbf{1}\{\mu\ge \mu_0(p_0)\}, & p_1<p_0\le p_2,\\
+0, & p_0>p_2.
+\end{cases}
+\]
+Este modo genera un corte duro. Si la creencia inicial queda por debajo del
+umbral, no hay demanda, no se observan resultados y la creencia permanece fija.
+Por eso, por ejemplo, con \(p_0=0.65\) y \(\mu_{\mathrm{init}}=0.5\), el usuario
+no elige al vendedor: \(\bar p(0.5)=0.575<0.65\).
+
+\subsection{Thompson sampling sobre el tipo oculto}
+
+En el modo \texttt{ts\_type}, el usuario samplea un tipo
+\(\tilde \omega\sim\mathrm{Bernoulli}(\mu)\). Si samplea el tipo alto, compara
+\(p_2\) con \(p_0\); si samplea el tipo bajo, compara \(p_1\) con \(p_0\). La
+demanda esperada es
+\[
+D(\mu;p_0)=
+\begin{cases}
+1, & p_0\le p_1,\\
+\mu, & p_1<p_0\le p_2,\\
+0, & p_0>p_2.
+\end{cases}
+\]
+Dentro de la región intermedia \(p_1<p_0\le p_2\), \(p_0\) ya no entra en la
+ecuación de Bellman: la demanda esperada es simplemente \(\mu\). Por eso las
+políticas de \texttt{ts\_type} son casi invariantes en \(p_0\) dentro de esa
+región; las diferencias en simulación vienen principalmente de ruido Monte
+Carlo.
+
+\section{Actualización bayesiana}
+
+Si el usuario elige a Seller A y observa un éxito, la creencia se actualiza a
+\[
+\mu^S
+=
+\frac{\mu p_2}
+{\mu p_2+(1-\mu)p_1}.
+\]
+Si observa un fracaso, la creencia se actualiza a
+\[
+\mu^F
+=
+\frac{\mu(1-p_2)}
+{\mu(1-p_2)+(1-\mu)(1-p_1)}.
+\]
+Si el usuario no elige a Seller A, no hay nueva información y la creencia queda
+igual.
+
+\section{Problema del vendedor}
+
+El vendedor observa \(\mu\) y elige \(x\in\{1,2\}\). La ecuación de Bellman para
+un \(p_0\) fijo es
+\[
+\begin{aligned}
+V_{p_0}(\mu)
+&=
+\gamma[1-D(\mu;p_0)]V_{p_0}(\mu) \\
+&\quad
++D(\mu;p_0)\max_{x\in\{1,2\}}
+\left\{
+R-c_x
++\gamma\left[
+p_xV_{p_0}(\mu^S)
++(1-p_x)V_{p_0}(\mu^F)
+\right]
+\right\}.
+\end{aligned}
+\]
+El producto 2 es óptimo si el valor reputacional de mover la creencia hacia
+\(\mu^S\) en vez de \(\mu^F\) compensa el costo adicional:
+\[
+\gamma\left[V_{p_0}(\mu^S)-V_{p_0}(\mu^F)\right]
+\ge
+\frac{\Delta c}{\Delta p},
+\qquad
+\Delta c=c_2-c_1,
+\quad
+\Delta p=p_2-p_1.
+\]
+Con los parámetros base,
+\[
+\frac{\Delta c}{\Delta p}
+=\frac{0.65-0.05}{0.80-0.35}
+=1.333\overline{3}.
+\]
+
+\section{Método numérico}
+
+La ecuación de Bellman se resuelve por value iteration en una grilla uniforme
+\(\mu\in[\varepsilon,1-\varepsilon]\), con \(\varepsilon=10^{-5}\) y 1000 puntos.
+Las evaluaciones fuera de la grilla exacta, como \(V(\mu^S)\) y \(V(\mu^F)\), se
+hacen por interpolación lineal. Para cada \(p_0\) y cada modo de demanda se
+guardan:
+\[
+V_{p_0}(\mu), \quad
+x^*_{p_0}(\mu), \quad
+G_{p_0}(\mu)
+=
+\gamma[V_{p_0}(\mu^S)-V_{p_0}(\mu^F)],
+\quad
+D(\mu;p_0).
+\]
+También se simulan trayectorias desde \(\mu_{\mathrm{init}}=0.5\). En cada
+periodo se registra la creencia, la demanda, si el usuario elige al vendedor, el
+producto elegido, el resultado binario y la ganancia descontada.
+
+\section{Resultados principales}
+
+\subsection{\texorpdfstring{Regímenes de \(p_0\)}{Regimenes de p0}}
+
+Los resultados se organizan en tres regímenes:
+\[
+\texttt{below\_p1}:p_0<p_1,
+\qquad
+\texttt{between\_p1\_p2}:p_1\le p_0\le p_2,
+\qquad
+\texttt{above\_p2}:p_0>p_2.
+\]
+En los numéricos, todos los casos no triviales convergen con residual Bellman de
+orden \(10^{-9}\). Cuando \(p_0>p_2\), la demanda es cero, la función de valor es
+cero y el vendedor no usa el producto 2.
+
+\subsection{Demanda por umbral de media}
+
+En \texttt{mean\_threshold}, la política muestra una banda interior para varios
+valores intermedios de \(p_0\). A medida que \(p_0\) aumenta, el umbral de demanda
+sube y la banda donde el producto 2 es óptimo se desplaza hacia creencias más
+altas. La fracción de la grilla donde se usa producto 2 cae de \(0.947\) en
+\(p_0=0.40\) a \(0.221\) en \(p_0=0.75\).
+
+Un punto importante es que la política óptima puede recomendar producto 2 para
+creencias altas, aunque la simulación desde \(\mu_{\mathrm{init}}=0.5\) no llegue
+a esas regiones. Por ejemplo, con \(p_0=0.65\), la región de producto 2 empieza
+aproximadamente en \(\mu=0.467\), pero la demanda del usuario empieza recién en
+\(\mu_0(0.65)=0.667\). Como la trayectoria empieza en \(0.5\), no hay demanda,
+no se aprende y la ganancia simulada es cero.
+
+\subsection{Thompson sampling sobre tipo}
+
+En \texttt{ts\_type}, dentro del régimen intermedio \(p_1<p_0\le p_2\), la
+demanda esperada es \(D(\mu;p_0)=\mu\). Por lo tanto, la política y la función de
+valor son esencialmente constantes en \(p_0\) dentro de ese régimen. En los
+resultados, para \(p_0=0.40,\ldots,0.80\), la banda de producto 2 es
+aproximadamente
+\[
+[0.005,\;0.999],
+\]
+con fracción de grilla \(0.994\) y \(V(\mu_{\mathrm{init}})\approx 32.704\).
+Esta regla conserva demanda positiva aun cuando \(\bar p(\mu_{\mathrm{init}})\)
+está por debajo de \(p_0\), porque la exploración viene del muestreo del tipo.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{llrrrrr}
+\toprule
+\(p_0\) & Modo & \(V(\mu_{\mathrm{init}})\) & Frac. \(x=2\) &
+Demanda sim. & Uso \(x=2\) sim. & Profit desc. sim. \\
+\midrule
+0.30 & mean & 47.500 & 0.000 & 1.000 & 0.000 & 47.498 \\
+0.50 & mean & 26.440 & 0.820 & 0.735 & 0.402 & 21.164 \\
+0.65 & mean & 0.000 & 0.532 & 0.000 & 0.000 & 0.000 \\
+0.90 & mean & 0.000 & 0.000 & 0.000 & 0.000 & 0.000 \\
+\midrule
+0.30 & TS & 47.500 & 0.000 & 1.000 & 0.000 & 47.498 \\
+0.50 & TS & 32.704 & 0.994 & 0.978 & 0.534 & 24.755 \\
+0.65 & TS & 32.704 & 0.994 & 0.960 & 0.529 & 24.721 \\
+0.90 & TS & 0.000 & 0.000 & 0.000 & 0.000 & 0.000 \\
+\bottomrule
+\end{tabular}
+\caption{Resultados seleccionados desde \(\mu_{\mathrm{init}}=0.5\). ``mean''
+corresponde a \texttt{mean\_threshold}; ``TS'' corresponde a
+\texttt{ts\_type}.}
+\label{tab:selected-results}
+\end{table}
+
+\section{Figuras}
+
+La Figura~\ref{fig:comparative-statics} resume los estáticos comparativos. Las
+líneas verticales punteadas marcan \(p_1=0.35\) y \(p_2=0.80\).
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures_hidden_type/comparative_statics.png}
+\caption{Estáticos comparativos en \(p_0\), para ambos modos de demanda.}
+\label{fig:comparative-statics}
+\end{figure}
+
+La Figura~\ref{fig:mean-p050} muestra un caso interior en el modo de umbral de
+media. La demanda salta en \(\mu_0(0.50)=1/3\), mientras que la banda óptima de
+producto 2 empieza cerca de \(\mu=0.179\).
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures_hidden_type/solution_mean_threshold_p0_0p50.png}
+\caption{Solución para \texttt{mean\_threshold} con \(p_0=0.50\).}
+\label{fig:mean-p050}
+\end{figure}
+
+La Figura~\ref{fig:mean-path-p065} ilustra el caso \(p_0=0.65\). Aunque existe
+una región de creencias altas donde el producto 2 sería óptimo, la trayectoria
+desde \(\mu_{\mathrm{init}}=0.5\) no genera demanda porque el umbral del usuario
+es \(\mu_0=2/3\).
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures_hidden_type/sample_path_mean_threshold_p0_0p65.png}
+\caption{Trayectoria simulada para \texttt{mean\_threshold} con \(p_0=0.65\).}
+\label{fig:mean-path-p065}
+\end{figure}
+
+La Figura~\ref{fig:ts-p065} contrasta el mismo \(p_0=0.65\) bajo
+\texttt{ts\_type}. Como la demanda esperada es \(\mu\), la trayectoria mantiene
+posibilidad de observaciones y aprendizaje desde \(\mu_{\mathrm{init}}=0.5\).
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures_hidden_type/solution_ts_type_p0_0p65.png}
+\caption{Solución para \texttt{ts\_type} con \(p_0=0.65\).}
+\label{fig:ts-p065}
+\end{figure}
+
+\section{Conclusiones}
+
+El modelo escalar produce una estructura más limpia que el estado Beta
+\((S,F)\). En particular:
+\begin{enumerate}
+    \item El estado relevante es una sola creencia \(\mu\), lo que permite ver
+    directamente cómo \(p_0\) desplaza la demanda y la política.
+    \item Bajo \texttt{mean\_threshold}, \(p_0\) afecta fuertemente tanto la
+    demanda como el valor: si \(\mu_{\mathrm{init}}\) queda por debajo del
+    umbral de demanda, la economía se queda sin aprendizaje.
+    \item Bajo \texttt{ts\_type}, \(p_0\) sólo determina el régimen. Dentro de
+    \(p_1<p_0\le p_2\), la Bellman no cambia con \(p_0\), por lo que las
+    políticas son casi planas en los estáticos comparativos.
+    \item La variable clave para la elección del producto es el gap de
+    continuación \(G_{p_0}(\mu)\). El producto 2 se usa cuando ese gap supera
+    \(\Delta c/\Delta p\).
+\end{enumerate}
+
+\end{document}
