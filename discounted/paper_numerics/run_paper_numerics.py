@@ -227,7 +227,14 @@ def plot_extinction_margin(solution: dict, diagonals: pd.DataFrame, params: Para
     )
     top.axhline(0.0, color="#be123c", lw=1.1, ls="--", label="Investment threshold")
     top.axvline(435, color="#475569", lw=1.0, ls=":", label="Last active diagonal: 435")
-    top.scatter(selected, margin.iloc[selected], color="#0f766e", s=28, zorder=3)
+    top.scatter(
+        selected,
+        margin.iloc[selected],
+        color="#0f766e",
+        s=14,
+        zorder=3,
+        label="Selected diagonals",
+    )
     top.set(
         xlim=(350, 500),
         xlabel=r"History length $n=S+F$",
