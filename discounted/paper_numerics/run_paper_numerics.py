@@ -218,7 +218,13 @@ def plot_extinction_margin(solution: dict, diagonals: pd.DataFrame, params: Para
 
     margin = diagonals.maximum_G - params.threshold
     window = diagonals.n.between(350, 500)
-    top.plot(diagonals.loc[window, "n"], margin.loc[window], color="#0369a1", lw=1.5)
+    top.plot(
+        diagonals.loc[window, "n"],
+        margin.loc[window],
+        color="#0369a1",
+        lw=1.5,
+        label=r"Maximum margin $M_n$",
+    )
     top.axhline(0.0, color="#be123c", lw=1.1, ls="--", label="Investment threshold")
     top.axvline(435, color="#475569", lw=1.0, ls=":", label="Last active diagonal: 435")
     top.scatter(selected, margin.iloc[selected], color="#0f766e", s=28, zorder=3)
