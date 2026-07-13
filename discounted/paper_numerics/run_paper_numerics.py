@@ -235,6 +235,24 @@ def plot_extinction_margin(solution: dict, diagonals: pd.DataFrame, params: Para
         zorder=3,
         label="Selected diagonals",
     )
+    annotation_offsets = {
+        410: (-8, 10),
+        434: (-30, 16),
+        435: (-3, 30),
+        436: (24, -22),
+        460: (10, -14),
+    }
+    for n in selected:
+        top.annotate(
+            f"$n={n}$",
+            xy=(n, margin.iloc[n]),
+            xytext=annotation_offsets[n],
+            textcoords="offset points",
+            fontsize=7.5,
+            ha="center",
+            va="center",
+            arrowprops={"arrowstyle": "-", "color": "#64748b", "lw": 0.7},
+        )
     top.set(
         xlim=(350, 500),
         xlabel=r"History length $n=S+F$",
