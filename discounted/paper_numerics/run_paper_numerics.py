@@ -211,6 +211,46 @@ def plot_boundaries(diagonals: pd.DataFrame, params: Parameters) -> None:
     plt.close(fig)
 
 
+def plot_extinction_margin(solution: dict, diagonals: pd.DataFrame, params: Parameters) -> None:
+    """Plot the diagonal extinction margin and centered gaps near extinction."""
+    selected = [410, 434, 435, 436, 460]
+    fig, (top, bottom) = plt.subplots(2, 1, figsize=(7.6, 7.0))
+
+    margin = diagonals.maximum_G - params.threshold
+    window = diagonals.n.between(350, 500)
+    top.plot(diagonals.loc[window, "n"], margin.loc[window], color="#0369a1", lw=1.5)
+    top.axhline(0.0, color="#be123c", lw=1.1, ls="--", label="Investment threshold")
+    top.axvline(435, color="#475569", lw=1.0, ls=":", label="Last active diagonal: 435")
+    top.scatter(selected, margin.iloc[selected], color="#0f766e", s=28, zorder=3)
+    top.set(
+        xlim=(350, 500),
+        xlabel=r"History length $n=S+F$",
+        ylabel=r"$M_n=\max_{S+F=n}G(S,F)-h$",
+    )
+    top.legend(loc="upper right", fontsize=8)
+
+    colors = plt.cm.viridis(np.linspace(0.08, 0.9, len(selected)))
+    for color, n in zip(colors, selected):
+        gap = solution["layers"][n]["gap"] - params.threshold
+        successes = np.arange(n + 1)
+        posterior_mean = (successes + 1) / (n + 2)
+        bottom.plot(posterior_mean, gap, color=color, lw=1.35, label=f"$n={n}$")
+    bottom.axhline(0.0, color="#be123c", lw=1.1, ls="--")
+    bottom.axvline(params.p0, color="#475569", lw=1.0, ls=":", label=r"$p_0=0.5$")
+    bottom.set(
+        xlim=(0.44, 0.56),
+        ylim=(-0.02, 0.04),
+        xlabel=r"Posterior mean $m=(S+1)/(n+2)$",
+        ylabel=r"Centered gap $G(S,n-S)-h$",
+    )
+    bottom.legend(loc="upper right", ncol=2, fontsize=8)
+
+    fig.tight_layout()
+    fig.savefig(FIGURES / "extinction_margin_diagnostic.pdf")
+    fig.savefig(FIGURES / "extinction_margin_diagnostic.png")
+    plt.close(fig)
+
+
 def markdown_table(frame: pd.DataFrame) -> str:
     headers = [str(column) for column in frame.columns]
     rows = []
@@ -279,6 +319,7 @@ def main() -> None:
     plot_policy(states, diagonals, params)
     selected = plot_gap(solutions[-1], diagonals, params)
     plot_boundaries(diagonals, params)
+    plot_extinction_margin(solutions[-1], diagonals, params)
     write_report(convergence, diagonals, selected, params)
     print((HERE / "REPORT_paper_numerics.md").read_text())
 
