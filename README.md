@@ -7,39 +7,16 @@ each study folder so code, paper files, and figures do not get mixed together.
 
 ## Start Here
 
-The two current analysis tracks are:
-
-- [Finite-horizon study](finite_horizon/): original exact DP, simulations, and
-  paper.
-- [Discounted study](discounted/): discounted exact DP, fluid approximation,
-  and discounted paper.
-
-Secondary or older experiments are collected under
-[other_experiments/](other_experiments/) or documented as such in their own
-folder.
+The current analysis track is the [discounted study](discounted/), which
+contains the discounted exact DP and paper.
 
 ## Repository structure
 
 ```text
-finite_horizon/
-  main.py                  finite-horizon exact DP and simulations
-  README.md                exact reproduction commands
-  paper/                   manuscript source and compiled PDF
-  outputs/                 generated figures and local data
-
 discounted/
   README.md                map of the discounted study
   Paper/                   discounted manuscript
   DP/                      exact discounted finite-horizon DP
-  Fluid/                   deterministic fluid solver and reparameterization
-  BinaryBelief-Logit/      one-dimensional logit-demand experiment
-  BinaryBelief/            older binary-belief diagnostics
-
-other_experiments/
-  README.md
-  average_cost/
-  finite_memory/
-  finite_horizon_archives/
 ```
 
 ## Generated Files

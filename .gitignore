@@ -8,6 +8,7 @@ __pycache__/
 *.csv
 *.csv.gz
 .mplconfig/
+.Rhistory
 
 # Generated LaTeX build files (PDFs remain available for sharing)
 *.aux
@@ -17,31 +18,18 @@ __pycache__/
 *.out
 *.synctex.gz
 
-# Main-study data can be regenerated; keep the curated plots in Git
-finite_horizon/outputs/data/
-finite_horizon/outputs_ucb/
-finite_horizon/outputs_posterior_mean/
-
-# Local archives and generated output from secondary experiments
-other_experiments/finite_horizon_archives/
-other_experiments/average_cost/outputs/
-other_experiments/finite_memory/outputs/
+# Modular DP: keep the reproducible configs and curated full-profile outputs.
+# Quick/smoke runs are local pipeline checks and should not duplicate figures or
+# reports in Git.
+Modular DP/figures/quick/
+Modular DP/figures/smoke/
+Modular DP/results/quick/
+Modular DP/results/smoke/
 # Discounted runs: keep curated plots and Markdown reports, not raw data tables
 discounted/DP/outputs*/data/
 discounted/DP/outputs*/**/*.csv
 discounted/DP/outputs*/**/*.pkl
 discounted/DP/outputs/plots/details/
-discounted/Fluid/outputs*/data/
-discounted/Fluid/outputs*/**/*.csv
-discounted/Fluid/outputs*/**/*.pkl
-
-# Local generated outputs from older discounted diagnostics
-discounted/BinaryBelief/outputs*/
-discounted/BinaryBelief/figures_hidden_type/
-discounted/BinaryBelief/hidden_type_*.aux
-discounted/BinaryBelief/hidden_type_*.log
-discounted/BinaryBelief/hidden_type_*.out
-discounted/BinaryBelief-Logit/outputs/
 
 # Independent paper repository synchronized with GitHub/Overleaf
 discounted/OverleafPaper/

@@ -1,15 +1,11 @@
 # Discounted Model
 
-The discounted study is split into active pipelines plus older diagnostics:
+The discounted study is split into two active pipelines:
 
 - `DP/` contains the exact discounted dynamic program and its outputs.
-- `Fluid/` contains the deterministic fluid solver and its outputs.
 - `Paper/` contains the discounted manuscript.
-- `BinaryBelief-Logit/` contains the one-dimensional logit-demand experiment.
-- `BinaryBelief/` contains older binary-belief diagnostics retained for
-  reference.
 
-Most day-to-day work should start in `DP/`, `Fluid/`, or `Paper/`.
+Most day-to-day work should start in `DP/` or `Paper/`.
 
 The DP uses exact backward induction on a long finite horizon. The default uses
 \(\gamma=0.98\) and \(T=700\), for which
@@ -73,47 +69,11 @@ To run the full five-value \(p_0\) grid with \(\gamma=0.999\), \(T=2000\),
 250 simulated periods, and 400 replications per value:
 
 ```bash
-uv run python discounted/DP/main.py --gamma 0.999 --T 2000 --simulation-periods 250 --policy-period 50 --skip-horizon-check --outputs-dir discounted/DP/outputs_gamma_0999
+uv run python discounted/DP/main.py --gamma 0.999 --T 2000 --simulation-periods 250 --policy-period 50 --skip-horizon-check --outputs-dir /tmp/discounted_outputs_gamma_0999
 ```
 
-## Fluid solution
-
-Code:
-
-- `Fluid/fluid_model.py`: original `(s,f)` fluid HJB solver.
-- `Fluid/convergence_study.py`: grid and tail convergence checks.
-- `Fluid/reparameterized_all_p_study.py`: all-\(p_0\) analysis in `(n,m)`.
-- `Fluid/reparameterized_utils.py`: shared coordinate-transform helpers.
-
-To solve the discounted fluid HJB in the original success-failure state
-\((s,f)\) for
-\(p_0\in\{0.1,0.3,0.5,0.7,0.9\}\) and \(\gamma=0.999\):
-
-```bash
-uv run python discounted/Fluid/fluid_model.py
-```
-
-The script saves five comparable multi-panel figures:
-
-- `discounted/Fluid/outputs_gamma_0999/plots/fluid_policy_by_p0.png`
-- `discounted/Fluid/outputs_gamma_0999/plots/fluid_value_by_p0.png`
-- `discounted/Fluid/outputs_gamma_0999/plots/fluid_trajectories_by_p0.png`
-- `discounted/Fluid/outputs_gamma_0999/plots/fluid_trajectories_by_observations.png`
-- `discounted/Fluid/outputs_gamma_0999/plots/fluid_diagnostics_by_observations.png`
-
-The underlying state grids and optimal paths are saved under
-`discounted/Fluid/outputs_gamma_0999/data/`. Use `--p0 0.5` for a single
-three-panel figure, or `--p0-grid`, `--gamma`, `--max-count`, `--grid-step`,
-and `--outputs-dir` for other calibrations.
-
-To refresh the all-\(p_0\) reparameterized figures from saved fluid grids:
-
-```bash
-uv run python discounted/Fluid/reparameterized_all_p_study.py
-```
-
-Outputs are written under
-`discounted/Fluid/outputs_gamma_0999/reparameterized_all_p/`.
+The disposable output path is outside the repository so this run does not
+recreate the archived `outputs_gamma_0999` directory.
 
 ## Continuation value gap
 
@@ -176,10 +136,3 @@ The following are generated and can be regenerated from the commands above:
 
 - `DP/outputs*/data/`
 - `DP/outputs*/plots/`
-- `Fluid/outputs*/data/`
-- `Fluid/outputs*/plots/`
-- `Fluid/outputs_gamma_0999/convergence_study/`
-- `Fluid/outputs_gamma_0999/reparameterized_all_p/`
-
-The older `BinaryBelief*` folders are separate experiments; they are not needed
-to run the current `DP/` or `Fluid/` pipelines.

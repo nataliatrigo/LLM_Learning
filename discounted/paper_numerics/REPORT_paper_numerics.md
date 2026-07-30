@@ -31,7 +31,7 @@ The continuation-gap panels use diagonals `[25, 100, 114, 250, 410, 435, 460, 60
 
 ## Existing robustness evidence
 
-The prior reproducible search in `discounted/DP/analysis/test_gap_unimodality.py` examined 1175 configurations across all three quality regimes and found no robust within-diagonal interval violation. However, 78 first-pass cases had policy changes between the small outer grids, so the broad search is supporting evidence rather than a claim that all 1175 policies were fully converged. The baseline and every candidate violation received stronger outer-grid checks.
+The prior reproducible search in `../LLM_Learning_archived_experiments/discounted_DP/analysis/test_gap_unimodality.py` examined 1175 configurations across all three quality regimes and found no robust within-diagonal interval violation. However, 78 first-pass cases had policy changes between the small outer grids, so the broad search is supporting evidence rather than a claim that all 1175 policies were fully converged. The baseline and every candidate violation received stronger outer-grid checks.
 
 ## Interpretation
 

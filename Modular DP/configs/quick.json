@@ -1,0 +1,59 @@
+{
+  "profile": "quick",
+  "seed": 20260720,
+  "seller": {
+    "p0": 0.5,
+    "p1": 0.35,
+    "p2": 0.8,
+    "c1": 0.05,
+    "c2": 0.65,
+    "revenue": 1.0,
+    "gamma": 0.98
+  },
+  "methods": {
+    "scaled_eta": [0.25, 0.5, 1.0, 2.0, 4.0],
+    "temperature": [0.25, 0.5, 1.0, 2.0, 4.0],
+    "epsilon": [0.0, 0.02, 0.05, 0.1, 0.2, 0.5, 1.0],
+    "rho": [0.8, 0.9, 0.95, 0.98, 0.99]
+  },
+  "discrete": {
+    "outer_grids": [300, 450, 600],
+    "report_diagonal": 200,
+    "sensitivity_n_max": 1000,
+    "sensitivity_fit_min": 400,
+    "sensitivity_fit_max": 1000
+  },
+  "continuous": {
+    "grid_resolutions": [81, 161],
+    "residual_tolerance": 1e-9,
+    "max_iterations": 5000,
+    "selected_map_rho": [0.8, 0.9, 0.95, 0.98, 0.99]
+  },
+  "simulation": {
+    "paths": 200,
+    "periods": 1000,
+    "representative_paths": 5,
+    "late_thresholds": [500, 750, 900],
+    "late_window_start": 750
+  },
+  "dynamic_panels": {
+    "enabled": true,
+    "paths": 200,
+    "periods": 100,
+    "seed": 20260630,
+    "confidence_level": 0.95,
+    "late_window_start": 75,
+    "p0_values": [0.1, 0.3, 0.5, 0.7, 0.9],
+    "representative_methods": {
+      "scaled_eta": [0.5, 2.0],
+      "temperature": [0.5, 2.0],
+      "epsilon": [0.05, 0.1, 0.2],
+      "rho": [0.95]
+    },
+    "discrete_outer_grids": [450, 600],
+    "report_diagonal": 150,
+    "continuous_resolutions": [81, 161],
+    "continuous_tolerance": 1e-9,
+    "continuous_max_iterations": 5000
+  }
+}
