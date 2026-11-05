@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/natalia/Projects/LLM_Learning/oblivious/09_oe_three_sellers_fixed_p0/code/expanded_audit.py", line 163, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/oblivious/09_oe_three_sellers_fixed_p0/code/expanded_audit.py", line 148, in main
+    result = audit_pass(data,previous)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/oblivious/09_oe_three_sellers_fixed_p0/code/expanded_audit.py", line 96, in audit_pass
+    imported = original.verify_import_provenance(data,manifest)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/oblivious/09_oe_three_sellers_fixed_p0/code/audit.py", line 280, in verify_import_provenance
+    require(set(imported) <= set(source['completed']), 'Imported bundle was not completed in the source campaign')
+  File "/home/natalia/Projects/LLM_Learning/oblivious/09_oe_three_sellers_fixed_p0/code/audit.py", line 45, in require
+    raise AuditFailure(message)
+oblivious.oe_three_sellers_fixed_p0.code.audit.AuditFailure: Imported bundle was not completed in the source campaign
+2026-10-24T21:25:55.135073+00:00 complete_verified 144/144

@@ -1,0 +1,68 @@
+[2026-10-22T21:59:00.090097+00:00] conditional fixed p0=.5, rho=0.97, n=101
+  auditing outside demand
+  conditional start=previous_conditional_grid
+    local exact complementarity, residual=0.000368
+    conditional iteration 1, regret=0.125
+    conditional iteration 2, regret=0.0999
+    conditional iteration 3, regret=0.0706
+    conditional iteration 4, regret=0.0475
+    conditional iteration 5, regret=0.0345
+    conditional iteration 6, regret=0.0215
+    conditional iteration 7, regret=0.0133
+    conditional iteration 8, regret=0.0236
+    conditional iteration 9, regret=0.00582
+    conditional iteration 10, regret=0.0196
+    conditional iteration 11, regret=0.00877
+    conditional iteration 12, regret=0.00318
+    conditional iteration 13, regret=0.034
+    conditional iteration 14, regret=0.00169
+    conditional iteration 15, regret=0.0181
+    conditional iteration 16, regret=0.00738
+    conditional iteration 17, regret=0.00247
+    conditional iteration 18, regret=0.0356
+    conditional iteration 19, regret=0.00184
+    conditional iteration 20, regret=0.0179
+    continuation 1, temperature=0.3, residual=0.495
+    continuation 1, temperature=0.1, residual=0.484
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/natalia/Projects/LLM_Learning/oblivious/08_oe_distribution_fixed_p0/code/conditional_run.py", line 217, in <module>
+    main()
+  File "/home/natalia/Projects/LLM_Learning/oblivious/08_oe_distribution_fixed_p0/code/conditional_run.py", line 163, in main
+    competition = solve_case(experiment, reference, previous, args.max_evaluations)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/oblivious/08_oe_distribution_fixed_p0/code/conditional_run.py", line 90, in solve_case
+    result = experiment.solve(initial_policy=alpha, prefer_local=True,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/oblivious/04_oe_conditional_distribution/code/model.py", line 321, in solve
+    best = self._solve_prefer_local(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/oblivious/01_oe_distribution/code/model.py", line 370, in _solve_prefer_local
+    best = fallback()
+           ^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/oblivious/04_oe_conditional_distribution/code/model.py", line 323, in <lambda>
+    lambda: self.solve(initial, max_evaluations, progress,
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/oblivious/04_oe_conditional_distribution/code/model.py", line 371, in solve
+    result = root(equations, alpha, jac=jacobian, method="hybr",
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/.venv/lib/python3.12/site-packages/scipy/optimize/_root.py", line 254, in root
+    sol = _root_hybr(_wrapped_fun, x0, args=args, jac=jac, **options)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/.venv/lib/python3.12/site-packages/scipy/optimize/_minpack_py.py", line 256, in _root_hybr
+    retval = _minpack._hybrj(func, Dfun, x0, args, 1,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/.venv/lib/python3.12/site-packages/scipy/optimize/_root.py", line 216, in _wrapped_fun
+    return fun(*fargs)
+           ^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/oblivious/04_oe_conditional_distribution/code/model.py", line 358, in equations
+    data = engine.calculate(raw)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/oblivious/04_oe_conditional_distribution/code/model.py", line 129, in calculate
+    lu = splu(linear.tocsc())
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/.venv/lib/python3.12/site-packages/scipy/sparse/linalg/_dsolve/linsolve.py", line 433, in splu
+    return _superlu.gstrf(N, A.nnz, A.data, indices, indptr,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

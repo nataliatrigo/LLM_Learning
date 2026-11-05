@@ -1,0 +1,860 @@
+{
+  "created_utc": "2026-10-22T21:29:38.899956+00:00",
+  "audit": "Independent checks of the completed fixed-p0 grid refinement",
+  "scope": {
+    "economic_model": "Unchanged marginal-distribution OE, two endogenous sellers plus known fixed p0=.5, same monopoly benchmark",
+    "new_grids": [
+      101,
+      151,
+      201
+    ],
+    "rho": [
+      0.95,
+      0.97
+    ],
+    "fresh_checks": "Checkpoint/source/seed checksums; reconstructed demand and full joint calendar kernel; stationary residual; conditional optimality; actual joint discounted-value Bellman residual; recomputed product-2 and profit outcomes; policy and marginal-distribution comparisons",
+    "positive_stationarity": "Audited saved subtraction-free GTH certificate and independent-order agreement. The independent residual audit did not rerun the costly positive solver for every grid.",
+    "local_policy": "Aggregate grid stability is separate from local changes at discontinuous action boundaries or mixing nodes. Weighted and uniform policy differences and marginal Wasserstein distances are retained.",
+    "limitations": [
+      "No proof of continuous-state convergence.",
+      "No proof of uniqueness or exhaustive equilibrium enumeration.",
+      "Step-CDF sup distances can remain sensitive to atoms moving between grids.",
+      "Finite-grid certification applies to the stored demand quadrature and interpolation model."
+    ]
+  },
+  "all_six_refined_cases_passed_independent_audit": true,
+  "input_artifact_sha256": {
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5/arrays/rho_0p95_n051.json": "304c2da361248b6d2484e71a90f566fe3e4b8b8f0ab7c3866475f1044166db88",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5/arrays/rho_0p95_n051.npz": "240975ee5b925a7fde10dbcc90f68f0901a89a55b75edf88ace4b16df400ea2f",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p95/arrays/rho_0p95_n101.json": "216b0c55860619164b527a5cdf7c70e6ba1c5439be74194a8879efd00883524b",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p95/arrays/rho_0p95_n101.npz": "8f487bd8105c459ee5884e0f7ce049183218741bb72f40cb82b82c31884bdcce",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p95/arrays/rho_0p95_n151.json": "01d618257e03a8b76f71d7040f2d2b15b9c222b5006d007a50d50ca72e18aa54",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p95/arrays/rho_0p95_n151.npz": "1960b0803c3537800d85d2c7a2f211b47c9f30685661af35eded21d645e378ba",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p95/arrays/rho_0p95_n201.json": "97774a2ce90641094e9d49e5e1028260679e3c0f59d24f16b185c658bbbce5d8",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p95/arrays/rho_0p95_n201.npz": "5eaa0c082b99c5e108e451cd515d5302a696a0ad86463acd10fd20fc1d054677",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p97/provenance/REPRODUCIR.md": "b8852e5f57b23735b17d031c2cb575bd77e71eee4e3f58da6811517aa9b389b5",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p97/provenance/attach_followup_proposal.py": "ab5eb4f45d7e97c096fec017e11e7eb93dd93fb02dad0cbde7f81f0aadf91fe0",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p97/provenance/attach_followup_proposal_n201.py": "7700c3669b32e07cac32bcbbc119d7670dfe7506589b656373c15c3b1d900d39",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p97/provenance/attach_verified_proposal.py": "e1e8fa84218e26b5aa98febd5870fe1104c8bfb70f2dffcff83661f596053a3b",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p97/provenance/positive_face097.log": "a9948028cfc785a06dfe7bf73792a77eb704cb79d8835a20c06835a73ba3cb00",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p97/provenance/positive_face097.py": "33157f1f3f633239b111aaf44bd7e0b38b5e1788a5ca603316bfd371e254ebb4",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p97/provenance/positive_face097_one.log": "afa9274ed8d111cb64335080f1317bbf0fe29f376a93a5f5c7f1c6d6a3130ebd",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p97/provenance/positive_face097_one.py": "3d591d9797a7211e44c11949b2c8723ae72e06f6874d2f71de967704353db3ac",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p97/provenance/positive_face097_second.log": "b6d91fa55818dad92697e5d42275c89a3031ec54a07b2120cde4728d2e2b37cd",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p97/provenance/positive_face_refine097_n151.log": "3b6587627d1b4ce3eb7b0d2a26153bd67114ca0cf89378107cf53c208afb57fa",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p97/provenance/positive_face_refine097_n151.py": "1f3e6ea8287da4073459602c9c6f8351b46c2db0012bb5d463d28b67bbdb6bcb",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p97/provenance/rho097_positive_face_n101.json": "923b3f28892079ee6d0cf5adcaaa46423413a9453f580d76571c7d722ab8b5e9",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p97/provenance/rho097_positive_face_n101.npz": "605f146b63934596e14f2508a2fac9edd0d991502618b1a58bcee2f51c92d0a0",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p97/provenance/rho097_positive_face_n151.json": "5e518c33a1a43fdbef7d66386abc0738e7cbda1a6ea2e12c5587005d438d3a86",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p97/provenance/rho097_positive_face_n151.npz": "dbbf178e817c75423b895f1721c88305fce0420c6c181a8e5866f45fdf536f49",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p97/provenance/rho097_positive_face_n201.json": "fe45b4a0830757ad2e66954c2a586b9124874e2c7335cafef174be93933d290b",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p97/provenance/rho097_positive_face_n201.npz": "2420d79185ce615afa265a604754d3f1279b8ec60644bceb48aba0476b5b6575",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p97/provenance/sparse_face_refine097_n201.log": "21cb8ce422855bd4834818f0bb35cd76bb71f327dcfc2f609359da398bd99662",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p97/provenance/sparse_face_refine097_n201.py": "d13444c6a488ba1513686019b3c508b9e8c90ed62e58455d15cacb80c19c09e7",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p97/solver_diagnostics.json": "1d3c6b9ebe6e0f359d819978cecbf52ace585a3b9da1b150353db0c120f7ea8c",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5/arrays/rho_0p97_n051.json": "3f2cefe514f349727dc215d5cfcde141f6003b71e4b9c82d5372924289b2cfeb",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5/arrays/rho_0p97_n051.npz": "109ae04cce5f575190f910bfa292b5643cb71bc2316fa2ec140d852fa6d59b35",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p97/arrays/rho_0p97_n101.json": "74df50c55729527e8e6a11e3a61c44fb11a0d446dc297aaf9dcf79380c4041e9",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p97/arrays/rho_0p97_n101.npz": "6a06199e7d84bfcd60683b73e2f014859dcefaa4ac283fa46f0a824c3d31b29d",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p97/arrays/rho_0p97_n151.json": "ec86d085e8450f7bf10ab5134a2ceaabd5a29e2485be7aa201b13b329b509bb2",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p97/arrays/rho_0p97_n151.npz": "dc8b0710f81f017368240b5526a278fcb6b235bedd11ea6618b608d437285b48",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p97/arrays/rho_0p97_n201.json": "c2021a526b98d66ee1e549e03f4156e4372e6ac350679dab50b8b0424c636f90",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p97/arrays/rho_0p97_n201.npz": "071f5c5a6146aaf4c56da0741e600752a45794f60c5465d8af64da31a57ac779"
+  },
+  "checkpoint_bundle_sha256": {
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5/arrays/rho_0p95_n051.json": "304c2da361248b6d2484e71a90f566fe3e4b8b8f0ab7c3866475f1044166db88",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5/arrays/rho_0p95_n051.npz": "240975ee5b925a7fde10dbcc90f68f0901a89a55b75edf88ace4b16df400ea2f",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p95/arrays/rho_0p95_n101.json": "216b0c55860619164b527a5cdf7c70e6ba1c5439be74194a8879efd00883524b",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p95/arrays/rho_0p95_n101.npz": "8f487bd8105c459ee5884e0f7ce049183218741bb72f40cb82b82c31884bdcce",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p95/arrays/rho_0p95_n151.json": "01d618257e03a8b76f71d7040f2d2b15b9c222b5006d007a50d50ca72e18aa54",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p95/arrays/rho_0p95_n151.npz": "1960b0803c3537800d85d2c7a2f211b47c9f30685661af35eded21d645e378ba",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p95/arrays/rho_0p95_n201.json": "97774a2ce90641094e9d49e5e1028260679e3c0f59d24f16b185c658bbbce5d8",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p95/arrays/rho_0p95_n201.npz": "5eaa0c082b99c5e108e451cd515d5302a696a0ad86463acd10fd20fc1d054677",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5/arrays/rho_0p97_n051.json": "3f2cefe514f349727dc215d5cfcde141f6003b71e4b9c82d5372924289b2cfeb",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5/arrays/rho_0p97_n051.npz": "109ae04cce5f575190f910bfa292b5643cb71bc2316fa2ec140d852fa6d59b35",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p97/arrays/rho_0p97_n101.json": "74df50c55729527e8e6a11e3a61c44fb11a0d446dc297aaf9dcf79380c4041e9",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p97/arrays/rho_0p97_n101.npz": "6a06199e7d84bfcd60683b73e2f014859dcefaa4ac283fa46f0a824c3d31b29d",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p97/arrays/rho_0p97_n151.json": "ec86d085e8450f7bf10ab5134a2ceaabd5a29e2485be7aa201b13b329b509bb2",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p97/arrays/rho_0p97_n151.npz": "dc8b0710f81f017368240b5526a278fcb6b235bedd11ea6618b608d437285b48",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p97/arrays/rho_0p97_n201.json": "c2021a526b98d66ee1e549e03f4156e4372e6ac350679dab50b8b0424c636f90",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p97/arrays/rho_0p97_n201.npz": "071f5c5a6146aaf4c56da0741e600752a45794f60c5465d8af64da31a57ac779"
+  },
+  "per_rho_manifest_sha256": {
+    "0.95": {
+      "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p95/manifest.json": "4b02a7b07be239566c868ce01f080a91e7935c68a9f51ccab2ea1233a2e1477e"
+    },
+    "0.97": {
+      "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p97/manifest.json": "575f9b0c7013824b146bc2a048c7396e695a0ae3fa7aafc1f2a39f8a0ecea07f"
+    }
+  },
+  "numerical_source_sha256": {
+    "oblivious/08_oe_distribution_fixed_p0/code/run_experiment.py": "c77347060319c79d93af049c3bf9310a413d0eef8b97c978aa140622c5f3c814",
+    "oblivious/08_oe_distribution_fixed_p0/code/model.py": "dec4058cdc1623608d560d75e64b84b1733d70a817d75b8195b352281db136e5",
+    "forgetting/Code/model.py": "8b1f948f1d9009a021d1836b4f683f6224c65f724677bce591218a930cd28f7d",
+    "oblivious/01_oe_distribution/code/model.py": "35155f12067386f8ce5812c94a8ba3d2f109a1aec71ef696fe0a4b2ea2863dcc",
+    "oblivious/03_oe_following_monopoly/code/event_chain.py": "e32ed9b6323ffe3ebf0448df96dfe4cd76765044339a9d90b4c0930813d08f3a",
+    "oblivious/02_oe_p0/code/primitives.py": "e8a07e00220ab000c945d5a37ee562b9283bff4ceca8d525600e935e68334e11",
+    "oblivious/02_oe_p0/code/policy.py": "b77a2e2ea39b9250f6c3d99477ab09282775c1616bbfe8402d4ecfa88ad235be",
+    "oblivious/02_oe_p0/code/game.py": "af7679fa58bd591f605d901de8e3f2c4044a73f476ec4339d9c5fe9e00fdb292",
+    "oblivious/02_oe_p0/code/core.py": "325c4bd21094eb33c284137503c5e397e6f1bdad4981e3f9282dc8a524c79a61",
+    "oblivious/02_oe_p0/code/positive_stationary.py": "886efe856552f90e702134b9695c623f4c71d26cfeda68655217ccd4f524cab1",
+    "oblivious/02_oe_p0/code/positive_stationary.cpp": "15d1761182e1fbfa2034d40d7d928ff21f12c52911f54d7fe3d08a5e65c6bf7a",
+    "oblivious/08_oe_distribution_fixed_p0/code/refine_case.py": "6b1a8d5eda3919eb6b2bc6355272ff6744efb4fd179334c1e5b7be75ce3526fd"
+  },
+  "review_scripts": {
+    "/tmp/review_refinement.py": {
+      "sha256": "e107285cba6da9a73cbaf2dc9cc2dbdd1b3bf04cb1bab9d5b2538ec70c2b14c2",
+      "source": "from pathlib import Path\nimport json\nfrom hashlib import sha256\nimport numpy as np\nfrom scipy.stats import wasserstein_distance\nfrom oblivious.oe_distribution_fixed_p0.code.run_experiment import check_bundle\nfrom oblivious.oe_distribution_fixed_p0.code.model import FixedOutsideMarginalExperiment, outside_demand_probability\nfrom oblivious.oe_p0.code.primitives import Parameters\nfrom oblivious.oe_p0.code.policy import evaluate_policy\nroot=Path('/home/natalia/Projects/LLM_Learning')\nhome=root/'oblivious/08_oe_distribution_fixed_p0'\nold=home/'data/p0_0p5'; oldm=json.loads((old/'manifest.json').read_text()); out=[]\nreviewpath=Path('/tmp/review_refinement.json'); oldreviews={(r['rho'],r['n']):r for r in json.loads(reviewpath.read_text())} if reviewpath.exists() else {}\nfor rho in [.95,.97]:\n d=home/'data/p0_0p5_refinement'/('rho_'+str(rho).replace('.','p'))\n if not (d/'manifest.json').exists():continue\n m=json.loads((d/'manifest.json').read_text())\n for path,digest in m['numerical_sources'].items():assert sha256((root/path).read_bytes()).hexdigest()==digest,path\n assert m['historical_seed']['manifest_sha256']==sha256((old/'manifest.json').read_bytes()).hexdigest()\n prev=check_bundle(old,m['historical_seed']['tag'],oldm)\n for tag in m['completed']:\n  case=check_bundle(d,tag,m); n=case['n']; p=Parameters(rho=rho)\n  if (rho,n) in oldreviews:\n   out.append(oldreviews[(rho,n)]);prev=case;continue\n  e=FixedOutsideMarginalExperiment(n=n,params=p,p0=.5,order=256)\n  cp=case['competition']; mp=case['monopoly']; a=cp['policy']; v=cp['actual_values']; nu=cp['nu'];mu=nu.sum(axis=0)\n  adaptive_error=0.0;probes=[]\n  mixed=np.flatnonzero((a>0)&(a<1));edges=np.flatnonzero(np.diff(a)!=0)\n  nodes=sorted(set([n//2]+mixed.tolist()+edges[-1:].tolist()))\n  for ii in nodes:\n   for jj in nodes:\n    direct=outside_demand_probability(e.grid[ii],e.grid[jj],p,.5);error=abs(direct-e.game.D[ii,jj]);adaptive_error=max(adaptive_error,error);probes.append(dict(i=int(ii),j=int(jj),absolute_error=float(error)))\n  assert adaptive_error<2e-9\n  full=e.game.transition(np.broadcast_to(a[:,None],(n,n)),np.broadcast_to(a[None,:],(n,n)))\n  ev=evaluate_policy(e.grid,e.game.D@mu,a,p)\n  regret=np.max(np.maximum(ev['advantage'],0)-a*ev['advantage'])\n  assert regret<=1e-10,(tag,regret)\n  stationary=float(abs(full.T@nu.ravel()-nu.ravel()).sum());assert stationary<1e-11\n  reward=e.game.D*(.95-.6*a[:,None])\n  value_resid=float(np.max(abs(reward.ravel()+p.gamma*(full@v[0].ravel())-v[0].ravel())))\n  assert value_resid<1e-9,(tag,value_resid)\n  diffmetrics={}\n  for model,r in [('monopoly',mp),('competition',cp)]:\n   earlier=prev[model]; grid=r['grid']; alpha=r['policy']; xold=earlier['grid']; aold=earlier['policy']\n   mass=r['mu'] if model=='monopoly' else r['nu'].sum(axis=0)\n   if model=='monopoly':sold=mass*r['demand']\n   else:sold=(r['nu']*e.game.D).sum(axis=1)\n   sale_law=sold/sold.sum();da=abs(alpha-np.interp(grid,xold,aold))\n   outcome=next(row for row in case['outcomes'] if row['model']==model)\n   assert abs(float(sold@alpha/sold.sum())-outcome['product2_conditional'])<1e-13\n   assert abs(float(sold@(.95-.6*alpha))-outcome['profit_calendar'])<1e-13\n   oldmass=earlier['mu'] if model=='monopoly' else earlier['nu'].sum(axis=0)\n   union=np.unique(np.r_[grid,xold]); cf=np.r_[0,np.cumsum(mass)];co=np.r_[0,np.cumsum(oldmass)]\n   cdf_f=cf[np.searchsorted(grid,union,side='right')];cdf_o=co[np.searchsorted(xold,union,side='right')]\n   diffmetrics[model]=dict(phase_edges=grid[np.flatnonzero(np.diff(alpha)!=0)].tolist(),mixed_nodes=np.flatnonzero((alpha>0)&(alpha<1)).tolist(),old_phase_edges=xold[np.flatnonzero(np.diff(aold)!=0)].tolist(),policy_uniform_integral=float(np.trapezoid(da,grid)),policy_calendar_weighted=float(mass@da),policy_sale_weighted=float(sale_law@da),distribution_wasserstein=float(wasserstein_distance(grid,xold,mass,oldmass)),distribution_cdf_sup=float(np.max(abs(cdf_f-cdf_o))))\n  row=dict(rho=rho,n=n,coarse_n=prev['n'],certificate_regret=float(regret),fresh_stationary_l1=stationary,fresh_joint_value_residual=value_resid,saved_stationary=cp['stationary_diagnostics'],demand_doubling=case['demand_audit']['order_doubling_max_error'],difference_metrics=diffmetrics,checkpoint_sha256={tag+s:m['checkpoint_sha256'][tag+s] for s in ['.json','.npz']},fresh_critical_demand_adaptive_max_abs_error=float(adaptive_error),fresh_critical_demand_probes=probes,economic_reconstruction_verified=True,economic_reconstruction_absolute_error_bound=1e-13)\n  out.append(row);prev=case;print(json.dumps(row),flush=True)\nPath('/tmp/review_refinement.json').write_text(json.dumps(out,indent=2))\n"
+    },
+    "/tmp/finalize_independent_review.py": {
+      "sha256": "02c78cc2a9b2371e697b1113703bd9dc5518aa74e148a5919e06488230e81085",
+      "source": "from pathlib import Path\nfrom hashlib import sha256\nfrom datetime import datetime,timezone\nimport json,sys\nimport numpy as np\nsys.path.insert(0,'/home/natalia/Projects/LLM_Learning')\nfrom oblivious.oe_distribution_fixed_p0.code.run_experiment import check_bundle\nfrom oblivious.oe_following_monopoly.code.event_chain import purchase_chain_statistics\nfrom oblivious.oe_p0.code.primitives import Parameters\nroot=Path('/home/natalia/Projects/LLM_Learning');base=root/'oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement'\nreviews=json.loads(Path('/tmp/review_refinement.json').read_text());lookup={(r['rho'],r['n']):r for r in reviews}\ninputs={};manifests={};sources={};economic=[];comparisons=[]\ndef digest(p):return sha256(Path(p).read_bytes()).hexdigest()\nfor rho in [.95,.97]:\n d=base/('rho_'+str(rho).replace('.','p'));m=json.loads((d/'manifest.json').read_text())\n assert m['status']!='running' and m.get('current_grid') is None,(rho,m['status'])\n assert not m['failures'];assert len(m['completed'])==3;assert all((rho,n) in lookup for n in [101,151,201])\n manifests[str(rho)]={str((d/'manifest.json').relative_to(root)):digest(d/'manifest.json')}\n for source,expected in m['numerical_sources'].items():assert digest(root/source)==expected;sources[source]=expected\n for field in ['supplemental_search_provenance','diagnostic_artifacts']:\n  for local,expected in m.get(field,{}).items():\n   p=d/local;assert digest(p)==expected;inputs[str(p.relative_to(root))]=expected\n old=root/m['historical_seed']['directory'];om=json.loads((old/'manifest.json').read_text());tag=m['historical_seed']['tag'];oldcase=check_bundle(old,tag,om)\n for ext in ['.json','.npz']:inputs[str((old/'arrays'/(tag+ext)).relative_to(root))]=digest(old/'arrays'/(tag+ext))\n cases=[]\n for tag in m['completed']:\n  c=check_bundle(d,tag,m);cases.append(c);review=lookup[(rho,c['n'])];review['checkpoint_sha256']={}\n  for ext in ['.json','.npz']:\n   p=d/'arrays'/(tag+ext);got=digest(p);assert got==m['checkpoint_sha256'][p.name];inputs[str(p.relative_to(root))]=got;review['checkpoint_sha256'][str(p.relative_to(root))]=got\n  p=Parameters(**c['configuration']['parameters'])\n  for model in ['monopoly','competition']:\n   r=c[model];assert r['verified'];row=next(x for x in c['outcomes'] if x['model']==model);n=c['n'];a=r['policy']\n   event=purchase_chain_statistics(r['grid'],a,p);eta=event['sale_stationary'];event_use=float(eta@a)\n   initial=float(r['value'][n//2]) if model=='monopoly' else float(r['actual_values'][:,n//2,n//2].mean())\n   errors=dict(product2_calendar_identity=abs(row['product2_calendar']-row['sale_rate']*row['product2_conditional']),profit_identity=abs(row['profit_calendar']-row['sale_rate']*(p.R-p.c1-(p.c2-p.c1)*row['product2_conditional'])),actual_initial_value_match=abs(initial-row['value_initial']),event_chain_product2_use=abs(event_use-row['product2_conditional']),event_chain_reputation_quality=abs(float(eta@r['grid'])-(p.p1+(p.p2-p.p1)*event_use)),market_partition=abs(row['outside_rate']+(2 if model=='competition' else 1)*row['sale_rate']-1))\n   assert max(errors.values())<1e-9,(rho,n,model,errors)\n   economic.append(dict(rho=rho,n=n,model=model,verified=True,absolute_errors=errors))\n  if c['n']>101:\n   coarse=cases[-2]\n   for model in ['monopoly','competition']:\n    x=np.unique(np.r_[coarse[model]['grid'],c[model]['grid']]);delta=abs(np.interp(x,coarse[model]['grid'],coarse[model]['policy'])-np.interp(x,c[model]['grid'],c[model]['policy']))\n    review['difference_metrics'][model]['policy_sup_difference_linear_extensions']=float(delta.max())\n fine=cases[-1];coarse=cases[-2]\n for model in ['monopoly','competition']:\n  a=next(x for x in coarse['outcomes'] if x['model']==model);b=next(x for x in fine['outcomes'] if x['model']==model)\n  pd={k:abs(a[k]-b[k]) for k in ['sale_rate','product2_calendar','product2_conditional']};rd={k:abs(a[k]-b[k])/max(abs(a[k]),abs(b[k])) for k in ['profit_calendar','value_initial']}\n  comparisons.append(dict(rho=rho,model=model,coarse_n=coarse['n'],fine_n=fine['n'],passed=all(x<=.05 for x in [*pd.values(),*rd.values()]),absolute_probability_changes=pd,symmetric_relative_earnings_changes=rd))\nartifact=dict(created_utc=datetime.now(timezone.utc).isoformat(),audit='Independent checks of the completed fixed-p0 grid refinement',scope=dict(economic_model='Unchanged marginal-distribution OE, two endogenous sellers plus known fixed p0=.5, same monopoly benchmark',new_grids=[101,151,201],rho=[.95,.97],fresh_checks='Checkpoint/source/seed checksums; reconstructed demand and full joint calendar kernel; stationary residual; conditional optimality; actual joint discounted-value Bellman residual; recomputed product-2 and profit outcomes; policy and marginal-distribution comparisons',positive_stationarity='Audited saved subtraction-free GTH certificate and independent-order agreement. The independent residual audit did not rerun the costly positive solver for every grid.',local_policy='Aggregate grid stability is separate from local changes at discontinuous action boundaries or mixing nodes. Weighted and uniform policy differences and marginal Wasserstein distances are retained.',limitations=['No proof of continuous-state convergence.','No proof of uniqueness or exhaustive equilibrium enumeration.','Step-CDF sup distances can remain sensitive to atoms moving between grids.','Finite-grid certification applies to the stored demand quadrature and interpolation model.']),all_six_refined_cases_passed_independent_audit=True,input_artifact_sha256=inputs,checkpoint_bundle_sha256={k:v for k,v in inputs.items() if \"/arrays/\" in k},per_rho_manifest_sha256=manifests,numerical_source_sha256=sources,review_scripts={str(p):dict(sha256=digest(p),source=Path(p).read_text()) for p in ['/tmp/review_refinement.py','/tmp/finalize_independent_review.py']},case_audits=reviews,economic_identity_audits=economic,final_consecutive_grid_comparisons=comparisons)\nassert len(reviews)==6;assert all(r['passed'] for r in comparisons)\n(base/'independent_review.json').write_text(json.dumps(artifact,indent=2)+'\\n');Path('/tmp/review_refinement.json').write_text(json.dumps(reviews,indent=2)+'\\n')\nprint(base/'independent_review.json');print(json.dumps(comparisons,indent=2))\n"
+    }
+  },
+  "case_audits": [
+    {
+      "rho": 0.95,
+      "n": 101,
+      "coarse_n": 51,
+      "certificate_regret": 0.0,
+      "fresh_stationary_l1": 2.9706152334710503e-16,
+      "fresh_joint_value_residual": 5.305617056805545e-13,
+      "saved_stationary": {
+        "verified": true,
+        "residual": 2.9706152334710503e-16,
+        "row_sum_error": 1.2212453270876722e-15,
+        "probability_sum": 1.0,
+        "minimum_probability": 1.9210070124919985e-39,
+        "stability_l1": 6.411040567716017e-13,
+        "stability_tolerance": 1e-07,
+        "methods": [
+          "sparse jump-chain, middle normalization",
+          "sparse jump-chain, reversed order and edge normalization",
+          "independent positive GTH elimination"
+        ],
+        "preliminary_failures": [],
+        "symmetric_lumping": true,
+        "lumping_error": 0.0,
+        "solved_states": 5151,
+        "full_states": 10201,
+        "selection": "symmetric invariant law",
+        "communicating_components": 1,
+        "reduced_communicating_components": 1,
+        "minimum_exit_rate": 3.337859311614051e-07,
+        "exploratory": false,
+        "marginal_symmetry_l1": 1.6938048138410607e-16,
+        "scope": "Finite numerical kernel; no mixing-time or continuous-state guarantee"
+      },
+      "demand_doubling": 7.29993843151533e-12,
+      "difference_metrics": {
+        "monopoly": {
+          "phase_edges": [
+            0.2,
+            0.59
+          ],
+          "mixed_nodes": [],
+          "old_phase_edges": [
+            0.2,
+            0.6
+          ],
+          "policy_uniform_integral": 0.020000000000000018,
+          "policy_calendar_weighted": 0.19122768458606582,
+          "policy_sale_weighted": 0.2024772426847241,
+          "distribution_wasserstein": 0.011522373620307141,
+          "distribution_cdf_sup": 0.2316690143571824
+        },
+        "competition": {
+          "phase_edges": [
+            0.38,
+            0.71
+          ],
+          "mixed_nodes": [],
+          "old_phase_edges": [
+            0.36,
+            0.7000000000000001
+          ],
+          "policy_uniform_integral": 0.019999999999999962,
+          "policy_calendar_weighted": 0.052360945496813305,
+          "policy_sale_weighted": 0.06023754244190552,
+          "distribution_wasserstein": 0.0056184347007976,
+          "distribution_cdf_sup": 0.11627794373592537
+        }
+      },
+      "checkpoint_sha256": {
+        "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p95/arrays/rho_0p95_n101.json": "216b0c55860619164b527a5cdf7c70e6ba1c5439be74194a8879efd00883524b",
+        "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p95/arrays/rho_0p95_n101.npz": "8f487bd8105c459ee5884e0f7ce049183218741bb72f40cb82b82c31884bdcce"
+      }
+    },
+    {
+      "rho": 0.95,
+      "n": 151,
+      "coarse_n": 101,
+      "certificate_regret": 0.0,
+      "fresh_stationary_l1": 3.9633622363049175e-16,
+      "fresh_joint_value_residual": 5.329070518200751e-13,
+      "saved_stationary": {
+        "verified": true,
+        "residual": 3.9633622363049175e-16,
+        "row_sum_error": 1.3322676295501878e-15,
+        "probability_sum": 1.0,
+        "minimum_probability": 2.169400421806082e-46,
+        "stability_l1": 4.2238828585372075e-13,
+        "stability_tolerance": 1e-07,
+        "methods": [
+          "sparse jump-chain, middle normalization",
+          "sparse jump-chain, reversed order and edge normalization",
+          "independent positive GTH elimination"
+        ],
+        "preliminary_failures": [],
+        "symmetric_lumping": true,
+        "lumping_error": 0.0,
+        "solved_states": 11476,
+        "full_states": 22801,
+        "selection": "symmetric invariant law",
+        "communicating_components": 1,
+        "reduced_communicating_components": 1,
+        "minimum_exit_rate": 3.3378593116140513e-07,
+        "exploratory": false,
+        "marginal_symmetry_l1": 1.9724568574054336e-16,
+        "scope": "Finite numerical kernel; no mixing-time or continuous-state guarantee"
+      },
+      "demand_doubling": 2.6473268022186858e-11,
+      "difference_metrics": {
+        "monopoly": {
+          "phase_edges": [
+            0.2066666666666667,
+            0.5933333333333334
+          ],
+          "mixed_nodes": [],
+          "old_phase_edges": [
+            0.2,
+            0.59
+          ],
+          "policy_uniform_integral": 0.0066666666666667495,
+          "policy_calendar_weighted": 0.029995417185131698,
+          "policy_sale_weighted": 0.03070028706180974,
+          "distribution_wasserstein": 0.0027957276916872106,
+          "distribution_cdf_sup": 0.12827402793716036,
+          "policy_sup_difference_linear_extensions": 0.6666666666666694
+        },
+        "competition": {
+          "phase_edges": [
+            0.38,
+            0.7133333333333334
+          ],
+          "mixed_nodes": [],
+          "old_phase_edges": [
+            0.38,
+            0.71
+          ],
+          "policy_uniform_integral": 0.004444444444444489,
+          "policy_calendar_weighted": 0.022648772401602076,
+          "policy_sale_weighted": 0.026263615983149507,
+          "distribution_wasserstein": 0.002917960203664936,
+          "distribution_cdf_sup": 0.08974604369429329,
+          "policy_sup_difference_linear_extensions": 0.3333333333333408
+        }
+      },
+      "checkpoint_sha256": {
+        "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p95/arrays/rho_0p95_n151.json": "01d618257e03a8b76f71d7040f2d2b15b9c222b5006d007a50d50ca72e18aa54",
+        "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p95/arrays/rho_0p95_n151.npz": "1960b0803c3537800d85d2c7a2f211b47c9f30685661af35eded21d645e378ba"
+      }
+    },
+    {
+      "rho": 0.95,
+      "n": 201,
+      "coarse_n": 151,
+      "certificate_regret": 0.0,
+      "fresh_stationary_l1": 5.025439574164123e-16,
+      "fresh_joint_value_residual": 3.161915174132446e-13,
+      "saved_stationary": {
+        "verified": true,
+        "residual": 5.025439574164123e-16,
+        "row_sum_error": 1.9984014443252818e-15,
+        "probability_sum": 1.0000000000000002,
+        "minimum_probability": 2.2720786794223982e-51,
+        "stability_l1": 1.3267462585766283e-12,
+        "stability_tolerance": 1e-07,
+        "methods": [
+          "sparse jump-chain, middle normalization",
+          "sparse jump-chain, reversed order and edge normalization",
+          "independent positive GTH elimination"
+        ],
+        "preliminary_failures": [],
+        "symmetric_lumping": true,
+        "lumping_error": 0.0,
+        "solved_states": 20301,
+        "full_states": 40401,
+        "selection": "symmetric invariant law",
+        "communicating_components": 1,
+        "reduced_communicating_components": 1,
+        "minimum_exit_rate": 3.3378593116140513e-07,
+        "exploratory": false,
+        "marginal_symmetry_l1": 2.253138959253248e-16,
+        "scope": "Finite numerical kernel; no mixing-time or continuous-state guarantee"
+      },
+      "demand_doubling": 4.6492087957261674e-11,
+      "difference_metrics": {
+        "monopoly": {
+          "phase_edges": [
+            0.20500000000000002,
+            0.595
+          ],
+          "mixed_nodes": [],
+          "old_phase_edges": [
+            0.2066666666666667,
+            0.5933333333333334
+          ],
+          "policy_uniform_integral": 0.003750000000000039,
+          "policy_calendar_weighted": 0.017389880671634873,
+          "policy_sale_weighted": 0.017837391663797747,
+          "distribution_wasserstein": 0.002032058761698773,
+          "distribution_cdf_sup": 0.06834022559310282,
+          "policy_sup_difference_linear_extensions": 0.5000000000000042
+        },
+        "competition": {
+          "phase_edges": [
+            0.38,
+            0.715
+          ],
+          "mixed_nodes": [],
+          "old_phase_edges": [
+            0.38,
+            0.7133333333333334
+          ],
+          "policy_uniform_integral": 0.0025000000000000443,
+          "policy_calendar_weighted": 0.013369742999221192,
+          "policy_sale_weighted": 0.01556096032568306,
+          "distribution_wasserstein": 0.0020332654720863945,
+          "distribution_cdf_sup": 0.05870774711169224,
+          "policy_sup_difference_linear_extensions": 0.2500000000000042
+        }
+      },
+      "checkpoint_sha256": {
+        "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p95/arrays/rho_0p95_n201.json": "97774a2ce90641094e9d49e5e1028260679e3c0f59d24f16b185c658bbbce5d8",
+        "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p95/arrays/rho_0p95_n201.npz": "5eaa0c082b99c5e108e451cd515d5302a696a0ad86463acd10fd20fc1d054677"
+      }
+    },
+    {
+      "rho": 0.97,
+      "n": 101,
+      "coarse_n": 51,
+      "certificate_regret": 6.259787319275803e-17,
+      "fresh_stationary_l1": 2.4073694652012333e-16,
+      "fresh_joint_value_residual": 1.4210854715202004e-13,
+      "saved_stationary": {
+        "verified": true,
+        "residual": 2.4073694652012333e-16,
+        "row_sum_error": 1.6653345369377348e-15,
+        "probability_sum": 1.0,
+        "minimum_probability": 2.4081696632801056e-53,
+        "stability_l1": 5.607869946693462e-09,
+        "stability_tolerance": 1e-07,
+        "methods": [
+          "sparse jump-chain, middle normalization",
+          "sparse jump-chain, reversed order and edge normalization",
+          "independent positive GTH elimination"
+        ],
+        "preliminary_failures": [],
+        "symmetric_lumping": true,
+        "lumping_error": 0.0,
+        "solved_states": 5151,
+        "full_states": 10201,
+        "selection": "symmetric invariant law",
+        "communicating_components": 1,
+        "reduced_communicating_components": 1,
+        "minimum_exit_rate": 3.2339615757579787e-11,
+        "exploratory": false,
+        "marginal_symmetry_l1": 2.6414575991100035e-16,
+        "scope": "Finite numerical kernel; no mixing-time or continuous-state guarantee"
+      },
+      "demand_doubling": 1.7436052601738083e-12,
+      "difference_metrics": {
+        "monopoly": {
+          "phase_edges": [
+            0.3,
+            0.58
+          ],
+          "mixed_nodes": [],
+          "old_phase_edges": [
+            0.3,
+            0.58
+          ],
+          "policy_uniform_integral": 0.010000000000000009,
+          "policy_calendar_weighted": 0.10490175972864997,
+          "policy_sale_weighted": 0.10853035471105553,
+          "distribution_wasserstein": 0.006154875198043727,
+          "distribution_cdf_sup": 0.1955005060105316
+        },
+        "competition": {
+          "phase_edges": [
+            0.46,
+            0.47000000000000003,
+            0.68
+          ],
+          "mixed_nodes": [
+            47
+          ],
+          "old_phase_edges": [
+            0.42,
+            0.44,
+            0.66
+          ],
+          "policy_uniform_integral": 0.0510268072927761,
+          "policy_calendar_weighted": 0.28610603378130595,
+          "policy_sale_weighted": 0.31622564782121826,
+          "distribution_wasserstein": 0.031650234118848666,
+          "distribution_cdf_sup": 0.37090741849815934
+        }
+      },
+      "checkpoint_sha256": {
+        "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p97/arrays/rho_0p97_n101.json": "74df50c55729527e8e6a11e3a61c44fb11a0d446dc297aaf9dcf79380c4041e9",
+        "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p97/arrays/rho_0p97_n101.npz": "6a06199e7d84bfcd60683b73e2f014859dcefaa4ac283fa46f0a824c3d31b29d"
+      }
+    },
+    {
+      "rho": 0.97,
+      "n": 151,
+      "coarse_n": 101,
+      "certificate_regret": 5.787714884557113e-18,
+      "fresh_stationary_l1": 2.983141368002818e-16,
+      "fresh_joint_value_residual": 8.171241461241152e-13,
+      "saved_stationary": {
+        "verified": true,
+        "residual": 2.983141368002818e-16,
+        "row_sum_error": 1.6653345369377348e-15,
+        "probability_sum": 1.0,
+        "minimum_probability": 1.3920346307027161e-64,
+        "stability_l1": 1.603471688884246e-10,
+        "stability_tolerance": 1e-07,
+        "methods": [
+          "sparse jump-chain, middle normalization",
+          "sparse jump-chain, reversed order and edge normalization",
+          "independent positive GTH elimination"
+        ],
+        "preliminary_failures": [],
+        "symmetric_lumping": true,
+        "lumping_error": 0.0,
+        "solved_states": 11476,
+        "full_states": 22801,
+        "selection": "symmetric invariant law",
+        "communicating_components": 1,
+        "reduced_communicating_components": 1,
+        "minimum_exit_rate": 3.2339615757579787e-11,
+        "exploratory": false,
+        "marginal_symmetry_l1": 2.783731975218251e-16,
+        "scope": "Finite numerical kernel; no mixing-time or continuous-state guarantee"
+      },
+      "demand_doubling": 1.7147061548428155e-11,
+      "difference_metrics": {
+        "monopoly": {
+          "phase_edges": [
+            0.30000000000000004,
+            0.5800000000000001
+          ],
+          "mixed_nodes": [],
+          "old_phase_edges": [
+            0.3,
+            0.58
+          ],
+          "policy_uniform_integral": 0.004444444444444497,
+          "policy_calendar_weighted": 0.04879841945995024,
+          "policy_sale_weighted": 0.05016252125575355,
+          "distribution_wasserstein": 0.0030111215550732715,
+          "distribution_cdf_sup": 0.15011344306428376,
+          "policy_sup_difference_linear_extensions": 0.3333333333333296
+        },
+        "competition": {
+          "phase_edges": [
+            0.4666666666666667,
+            0.4733333333333334,
+            0.6866666666666668
+          ],
+          "mixed_nodes": [
+            71
+          ],
+          "old_phase_edges": [
+            0.46,
+            0.47000000000000003,
+            0.68
+          ],
+          "policy_uniform_integral": 0.013014883635780449,
+          "policy_calendar_weighted": 0.07804935585944694,
+          "policy_sale_weighted": 0.0903782857092277,
+          "distribution_wasserstein": 0.007599003038298768,
+          "distribution_cdf_sup": 0.1703884418473008,
+          "policy_sup_difference_linear_extensions": 0.8068430509571236
+        }
+      },
+      "checkpoint_sha256": {
+        "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p97/arrays/rho_0p97_n151.json": "ec86d085e8450f7bf10ab5134a2ceaabd5a29e2485be7aa201b13b329b509bb2",
+        "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p97/arrays/rho_0p97_n151.npz": "dc8b0710f81f017368240b5526a278fcb6b235bedd11ea6618b608d437285b48"
+      }
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "coarse_n": 151,
+      "certificate_regret": 1.4502858514732005e-13,
+      "fresh_stationary_l1": 4.1602339392351995e-16,
+      "fresh_joint_value_residual": 6.181721801112872e-13,
+      "saved_stationary": {
+        "verified": true,
+        "residual": 4.1602339392351995e-16,
+        "row_sum_error": 1.7763568394002505e-15,
+        "probability_sum": 1.0,
+        "minimum_probability": 1.0845563945817618e-72,
+        "stability_l1": 2.295753949851234e-11,
+        "stability_tolerance": 1e-07,
+        "methods": [
+          "sparse jump-chain, middle normalization",
+          "sparse jump-chain, reversed order and edge normalization",
+          "independent positive GTH elimination"
+        ],
+        "preliminary_failures": [],
+        "symmetric_lumping": true,
+        "lumping_error": 0.0,
+        "solved_states": 20301,
+        "full_states": 40401,
+        "selection": "symmetric invariant law",
+        "communicating_components": 1,
+        "reduced_communicating_components": 1,
+        "minimum_exit_rate": 3.2339615757579787e-11,
+        "exploratory": false,
+        "marginal_symmetry_l1": 2.0541993020084076e-16,
+        "scope": "Finite numerical kernel; no mixing-time or continuous-state guarantee"
+      },
+      "demand_doubling": 4.8723025614094695e-11,
+      "difference_metrics": {
+        "monopoly": {
+          "phase_edges": [
+            0.3,
+            0.58
+          ],
+          "mixed_nodes": [],
+          "old_phase_edges": [
+            0.30000000000000004,
+            0.5800000000000001
+          ],
+          "policy_uniform_integral": 0.002500000000000075,
+          "policy_calendar_weighted": 0.02767833068366141,
+          "policy_sale_weighted": 0.028363150261461675,
+          "distribution_wasserstein": 0.002003236144480618,
+          "distribution_cdf_sup": 0.14458343989568978,
+          "policy_sup_difference_linear_extensions": 0.2500000000000083
+        },
+        "competition": {
+          "phase_edges": [
+            0.47500000000000003,
+            0.48,
+            0.6900000000000001
+          ],
+          "mixed_nodes": [
+            96
+          ],
+          "old_phase_edges": [
+            0.4666666666666667,
+            0.4733333333333334,
+            0.6866666666666668
+          ],
+          "policy_uniform_integral": 0.004443933378128793,
+          "policy_calendar_weighted": 0.042304057813795794,
+          "policy_sale_weighted": 0.04896026008403942,
+          "distribution_wasserstein": 0.0058178322112011766,
+          "distribution_cdf_sup": 0.1338582543827624,
+          "policy_sup_difference_linear_extensions": 0.5
+        }
+      },
+      "checkpoint_sha256": {
+        "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p97/arrays/rho_0p97_n201.json": "c2021a526b98d66ee1e549e03f4156e4372e6ac350679dab50b8b0424c636f90",
+        "oblivious/08_oe_distribution_fixed_p0/data/p0_0p5_refinement/rho_0p97/arrays/rho_0p97_n201.npz": "071f5c5a6146aaf4c56da0741e600752a45794f60c5465d8af64da31a57ac779"
+      },
+      "fresh_critical_demand_adaptive_max_abs_error": 1.0919043447188415e-13,
+      "fresh_critical_demand_probes": [
+        {
+          "i": 96,
+          "j": 96,
+          "absolute_error": 3.9968028886505635e-15
+        },
+        {
+          "i": 96,
+          "j": 100,
+          "absolute_error": 1.0919043447188415e-13
+        },
+        {
+          "i": 96,
+          "j": 138,
+          "absolute_error": 1.8055001937966608e-14
+        },
+        {
+          "i": 100,
+          "j": 96,
+          "absolute_error": 1.0469403122215226e-13
+        },
+        {
+          "i": 100,
+          "j": 100,
+          "absolute_error": 8.326672684688674e-16
+        },
+        {
+          "i": 100,
+          "j": 138,
+          "absolute_error": 1.1171619185290638e-14
+        },
+        {
+          "i": 138,
+          "j": 96,
+          "absolute_error": 4.440892098500626e-15
+        },
+        {
+          "i": 138,
+          "j": 100,
+          "absolute_error": 2.453592884421596e-14
+        },
+        {
+          "i": 138,
+          "j": 138,
+          "absolute_error": 6.938893903907228e-15
+        }
+      ],
+      "economic_reconstruction_verified": true,
+      "economic_reconstruction_absolute_error_bound": 1e-13
+    }
+  ],
+  "economic_identity_audits": [
+    {
+      "rho": 0.95,
+      "n": 101,
+      "model": "monopoly",
+      "verified": true,
+      "absolute_errors": {
+        "product2_calendar_identity": 0.0,
+        "profit_identity": 0.0,
+        "actual_initial_value_match": 0.0,
+        "event_chain_product2_use": 1.1102230246251565e-16,
+        "event_chain_reputation_quality": 1.1102230246251565e-16,
+        "market_partition": 0.0
+      }
+    },
+    {
+      "rho": 0.95,
+      "n": 101,
+      "model": "competition",
+      "verified": true,
+      "absolute_errors": {
+        "product2_calendar_identity": 0.0,
+        "profit_identity": 0.0,
+        "actual_initial_value_match": 0.0,
+        "event_chain_product2_use": 0.0,
+        "event_chain_reputation_quality": 3.3306690738754696e-16,
+        "market_partition": 0.0
+      }
+    },
+    {
+      "rho": 0.95,
+      "n": 151,
+      "model": "monopoly",
+      "verified": true,
+      "absolute_errors": {
+        "product2_calendar_identity": 0.0,
+        "profit_identity": 5.551115123125783e-17,
+        "actual_initial_value_match": 0.0,
+        "event_chain_product2_use": 1.1102230246251565e-16,
+        "event_chain_reputation_quality": 1.1102230246251565e-16,
+        "market_partition": 0.0
+      }
+    },
+    {
+      "rho": 0.95,
+      "n": 151,
+      "model": "competition",
+      "verified": true,
+      "absolute_errors": {
+        "product2_calendar_identity": 0.0,
+        "profit_identity": 2.7755575615628914e-17,
+        "actual_initial_value_match": 0.0,
+        "event_chain_product2_use": 0.0,
+        "event_chain_reputation_quality": 1.1102230246251565e-16,
+        "market_partition": 0.0
+      }
+    },
+    {
+      "rho": 0.95,
+      "n": 201,
+      "model": "monopoly",
+      "verified": true,
+      "absolute_errors": {
+        "product2_calendar_identity": 0.0,
+        "profit_identity": 5.551115123125783e-17,
+        "actual_initial_value_match": 0.0,
+        "event_chain_product2_use": 1.1102230246251565e-16,
+        "event_chain_reputation_quality": 1.1102230246251565e-16,
+        "market_partition": 0.0
+      }
+    },
+    {
+      "rho": 0.95,
+      "n": 201,
+      "model": "competition",
+      "verified": true,
+      "absolute_errors": {
+        "product2_calendar_identity": 0.0,
+        "profit_identity": 8.326672684688674e-17,
+        "actual_initial_value_match": 0.0,
+        "event_chain_product2_use": 1.1102230246251565e-16,
+        "event_chain_reputation_quality": 0.0,
+        "market_partition": 2.220446049250313e-16
+      }
+    },
+    {
+      "rho": 0.97,
+      "n": 101,
+      "model": "monopoly",
+      "verified": true,
+      "absolute_errors": {
+        "product2_calendar_identity": 0.0,
+        "profit_identity": 0.0,
+        "actual_initial_value_match": 0.0,
+        "event_chain_product2_use": 0.0,
+        "event_chain_reputation_quality": 4.440892098500626e-16,
+        "market_partition": 0.0
+      }
+    },
+    {
+      "rho": 0.97,
+      "n": 101,
+      "model": "competition",
+      "verified": true,
+      "absolute_errors": {
+        "product2_calendar_identity": 0.0,
+        "profit_identity": 5.551115123125783e-17,
+        "actual_initial_value_match": 0.0,
+        "event_chain_product2_use": 1.1102230246251565e-16,
+        "event_chain_reputation_quality": 1.7763568394002505e-15,
+        "market_partition": 0.0
+      }
+    },
+    {
+      "rho": 0.97,
+      "n": 151,
+      "model": "monopoly",
+      "verified": true,
+      "absolute_errors": {
+        "product2_calendar_identity": 5.551115123125783e-17,
+        "profit_identity": 0.0,
+        "actual_initial_value_match": 0.0,
+        "event_chain_product2_use": 0.0,
+        "event_chain_reputation_quality": 5.551115123125783e-16,
+        "market_partition": 0.0
+      }
+    },
+    {
+      "rho": 0.97,
+      "n": 151,
+      "model": "competition",
+      "verified": true,
+      "absolute_errors": {
+        "product2_calendar_identity": 0.0,
+        "profit_identity": 5.551115123125783e-17,
+        "actual_initial_value_match": 0.0,
+        "event_chain_product2_use": 0.0,
+        "event_chain_reputation_quality": 6.661338147750939e-16,
+        "market_partition": 0.0
+      }
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "model": "monopoly",
+      "verified": true,
+      "absolute_errors": {
+        "product2_calendar_identity": 5.551115123125783e-17,
+        "profit_identity": 2.220446049250313e-16,
+        "actual_initial_value_match": 0.0,
+        "event_chain_product2_use": 1.1102230246251565e-16,
+        "event_chain_reputation_quality": 2.220446049250313e-16,
+        "market_partition": 0.0
+      }
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "model": "competition",
+      "verified": true,
+      "absolute_errors": {
+        "product2_calendar_identity": 0.0,
+        "profit_identity": 5.551115123125783e-17,
+        "actual_initial_value_match": 0.0,
+        "event_chain_product2_use": 2.220446049250313e-16,
+        "event_chain_reputation_quality": 1.1102230246251565e-16,
+        "market_partition": 0.0
+      }
+    }
+  ],
+  "final_consecutive_grid_comparisons": [
+    {
+      "rho": 0.95,
+      "model": "monopoly",
+      "coarse_n": 151,
+      "fine_n": 201,
+      "passed": true,
+      "absolute_probability_changes": {
+        "sale_rate": 0.002370056762670769,
+        "product2_calendar": 0.002727893242896795,
+        "product2_conditional": 0.0018643692090719588
+      },
+      "symmetric_relative_earnings_changes": {
+        "profit_calendar": 0.0012681050558422848,
+        "value_initial": 0.00027853227845726415
+      }
+    },
+    {
+      "rho": 0.95,
+      "model": "competition",
+      "coarse_n": 151,
+      "fine_n": 201,
+      "passed": true,
+      "absolute_probability_changes": {
+        "sale_rate": 6.343013264892283e-05,
+        "product2_calendar": 0.0009652281055249623,
+        "product2_conditional": 0.0018419801108896516
+      },
+      "symmetric_relative_earnings_changes": {
+        "profit_calendar": 0.0021048655969385485,
+        "value_initial": 0.0020915693971748084
+      }
+    },
+    {
+      "rho": 0.97,
+      "model": "monopoly",
+      "coarse_n": 151,
+      "fine_n": 201,
+      "passed": true,
+      "absolute_probability_changes": {
+        "sale_rate": 0.0020491635880887094,
+        "product2_calendar": 0.0023249978023919815,
+        "product2_conditional": 0.00155691036490202
+      },
+      "symmetric_relative_earnings_changes": {
+        "profit_calendar": 0.001057744364820057,
+        "value_initial": 0.0003668904938874918
+      }
+    },
+    {
+      "rho": 0.97,
+      "model": "competition",
+      "coarse_n": 151,
+      "fine_n": 201,
+      "passed": true,
+      "absolute_probability_changes": {
+        "sale_rate": 0.00035024669032990285,
+        "product2_calendar": 0.0027094238289895323,
+        "product2_conditional": 0.004927841959075474
+      },
+      "symmetric_relative_earnings_changes": {
+        "profit_calendar": 0.005041677754007546,
+        "value_initial": 0.005329342360607271
+      }
+    }
+  ]
+}

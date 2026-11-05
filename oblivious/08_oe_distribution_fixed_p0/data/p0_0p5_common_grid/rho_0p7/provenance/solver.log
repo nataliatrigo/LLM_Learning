@@ -1,0 +1,36 @@
+[2026-10-22T21:37:29.999591+00:00] refine rho=0.7, n=101, previous n=51
+  auditing demand
+  solving/certifying monopoly
+  competition start=verified_grid_51
+    local exact complementarity, residual=0
+  CERTIFIED in 241.8s; monopoly: P2=0.490698, profit=0.341243; competition: P2=0.560942, profit=0.243877
+  refinement comparison: [{"rho": 0.7, "model": "monopoly", "coarse_n": 51, "fine_n": 101, "passed": true, "product2_conditional_absolute_difference": 0.008729469798784306, "product2_calendar_absolute_difference": 0.006847800721806074, "sale_rate_absolute_difference": 0.004613160363115432, "outside_rate_absolute_difference": 0.004613160363115432, "profit_calendar_relative_difference": 0.0008024256632584027, "value_initial_relative_difference": 0.000360524583279805}, {"rho": 0.7, "model": "competition", "coarse_n": 51, "fine_n": 101, "passed": true, "product2_conditional_absolute_difference": 0.007052429948969374, "product2_calendar_absolute_difference": 0.003780626466487136, "sale_rate_absolute_difference": 0.0017636368503684552, "outside_rate_absolute_difference": 0.003527273700736827, "profit_calendar_relative_difference": 0.0024312260857718253, "value_initial_relative_difference": 0.0032372374614883944}]
+[2026-10-22T21:41:31.809581+00:00] refine rho=0.7, n=151, previous n=101
+  auditing demand
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/natalia/Projects/LLM_Learning/oblivious/08_oe_distribution_fixed_p0/code/refine_case.py", line 194, in <module>
+    main()
+  File "/home/natalia/Projects/LLM_Learning/oblivious/08_oe_distribution_fixed_p0/code/refine_case.py", line 141, in main
+    demand_audit = audit_demand(experiment)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/oblivious/08_oe_distribution_fixed_p0/code/run_experiment.py", line 103, in audit_demand
+    doubled, doubled_diagnostics = outside_demand_matrix(
+                                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/oblivious/08_oe_distribution_fixed_p0/code/model.py", line 109, in outside_demand_matrix
+    doubled = _raw_outside_demand(grid, params, p0, 2*order)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/oblivious/08_oe_distribution_fixed_p0/code/model.py", line 61, in _raw_outside_demand
+    nodes, weights = roots_jacobi(order, b[i]-1, 0)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/.venv/lib/python3.12/site-packages/scipy/special/_orthogonal.py", line 306, in roots_jacobi
+    return _gen_roots_and_weights(m, mu0, an_func, bn_func, f, df, False, mu)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/.venv/lib/python3.12/site-packages/scipy/special/_orthogonal.py", line 184, in _gen_roots_and_weights
+    dy = df(n, x)
+         ^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/.venv/lib/python3.12/site-packages/scipy/special/_orthogonal.py", line 305, in df
+    return 0.5 * (n + a + b + 1) * _ufuncs.eval_jacobi(n - 1, a + 1, b + 1, x)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

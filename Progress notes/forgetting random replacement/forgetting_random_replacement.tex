@@ -1,0 +1,671 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-noquoting,es-nodecimaldot]{babel}
+\usepackage{lmodern}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{microtype}
+\usepackage{needspace}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={Forgetting con reemplazo aleatorio: dos pruebas de la política de intervalo},pdfauthor={Notas de investigación}}
+\newtheorem{proposicion}{Proposición}
+\renewcommand{\proofname}{Demostración}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.45em}
+\setlength{\emergencystretch}{1.5em}
+\allowdisplaybreaks[1]
+\raggedbottom
+\title{Forgetting con reemplazo aleatorio\\[0.35em]
+\large Dos pruebas de la política de intervalo}
+\author{Progress notes}
+\date{3 de noviembre de 2026}
+
+\begin{document}
+\maketitle
+
+Esta nota explica por qué, cuando la memoria está llena, el vendedor
+elige el producto de mayor calidad en un solo intervalo de estados.
+La primera prueba sigue las ecuaciones de Bellman. La segunda usa
+programación lineal para demostrar que la mejor política de dos
+umbrales es óptima en el problema completo.
+
+Las dos pruebas comparten un paso: demostrar que la ventaja de elegir
+el producto 2 no puede ser positiva en dos regiones separadas por una
+región donde es no positiva. La prueba por programación lineal utiliza
+ese paso y lo combina con un certificado de optimalidad.
+
+\section{El modelo y el resultado que queremos probar}
+
+\subsection{Estado, productos y demanda}
+
+La capacidad $n$ es un entero positivo. La memoria contiene exactamente
+$n$ resultados. El estado $s$ es el
+número de éxitos recordados, de modo que $s\in\{0,\ldots,n\}$.
+El vendedor puede entregar dos productos. El producto 2 tiene mayor
+probabilidad de éxito y también mayor coste. Suponemos
+\begin{equation}
+0<p_0<1,\qquad 0<p_1<p_2<1,\qquad
+0\le c_1<c_2<R,\qquad 0<\gamma<1.
+\label{eq:supuestos}
+\end{equation}
+Aquí $p_0$ es la calidad de la opción externa, $p_i$ es la probabilidad
+de éxito del producto $i$, $c_i$ es su coste, $R$ es el ingreso por
+venta y $\gamma$ es el factor de descuento por período calendario.
+
+Con prior Beta$(1,1)$ y la regla de elección del modelo, la probabilidad
+de comprar al vendedor en el estado $s$ es
+\begin{equation}
+d_s=\Pr\{\operatorname{Beta}(s+1,n-s+1)>p_0\}
+   =\sum_{j=0}^{s}\binom{n+1}{j}p_0^j(1-p_0)^{n+1-j}.
+\label{eq:demand}
+\end{equation}
+La segunda expresión es una identidad entre la distribución Beta y la
+binomial. Nos permitirá estudiar cómo cambia la demanda al recordar
+un éxito adicional. En particular, $d_s>0$ para todos los estados.
+
+Después de cada compra, el resultado nuevo reemplaza una observación
+antigua elegida uniformemente, con independencia de si el resultado
+nuevo fue un éxito o un fracaso. Por ello, condicional a una compra
+y a usar el producto $i$,
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Estado siguiente & Probabilidad & Qué ocurrió \\
+\midrule
+$s+1$ & $p_i(1-s/n)$ & Éxito nuevo; se elimina un fracaso. \\
+$s-1$ & $(1-p_i)s/n$ & Fracaso nuevo; se elimina un éxito. \\
+$s$ & Probabilidad restante & El dato nuevo y el eliminado coinciden. \\
+\bottomrule
+\end{tabular}
+\end{center}
+En $s=0$ no se puede bajar y en $s=n$ no se puede subir. Si el
+consumidor elige la opción externa, el estado no cambia y el beneficio
+del período es cero.
+
+\subsection{Qué significa una política de intervalo}
+
+Una política estacionaria asigna un producto a cada estado, sin
+depender del período calendario. Queremos demostrar que existe una
+política óptima de la forma
+\begin{equation}
+\pi(s)=
+\begin{cases}
+2,&L\le s\le U,\\
+1,&\text{en los demás estados}.
+\end{cases}
+\label{eq:band-policy}
+\end{equation}
+Es decir, al recorrer los estados de menor a mayor, la política tiene
+el patrón
+\[
+\underbrace{1,\ldots,1}_{s<L}\ ,\qquad
+\underbrace{2,\ldots,2}_{L\le s\le U}\ ,\qquad
+\underbrace{1,\ldots,1}_{s>U}.
+\]
+Se permiten intervalos que llegan a un extremo, un único estado,
+todo el espacio de estados o ningún estado. Por tanto, el resultado
+incluye políticas con un solo umbral y políticas constantes.
+
+\begin{proposicion}\label{prop:intervalo}
+Bajo los supuestos \eqref{eq:supuestos}, con prior Beta$(1,1)$ y
+memoria llena, existe una política óptima de intervalo. Podemos
+elegir el producto 1 siempre que ambas acciones den el mismo valor.
+Si no hay empates, la política óptima estacionaria es única.
+\end{proposicion}
+
+El resultado no requiere restricciones adicionales sobre los parámetros
+de \eqref{eq:supuestos}. Se refiere a memoria llena; al final de la
+nota explicamos por qué el llenado inicial debe tratarse por separado.
+
+\section{Primera prueba: estudiar la ventaja del producto 2}
+\label{sec:primera}
+
+\subsection{Qué comparación determina la acción}
+
+Sea $V_s$ el beneficio descontado óptimo a partir del estado $s$.
+La ecuación de Bellman considera primero si ocurre una compra y,
+si ocurre, compara los dos productos. Usando las probabilidades de
+transición de la tabla y agrupando los términos en $V_s$, obtenemos
+\begin{equation}
+\begin{aligned}
+(1-\gamma)V_s=d_s\max_{i\in\{1,2\}}\biggl\{
+&R-c_i+\gamma p_i(1-s/n)(V_{s+1}-V_s)\\
+&-\gamma(1-p_i)(s/n)(V_s-V_{s-1})\biggr\}.
+\end{aligned}
+\label{eq:bellman}
+\end{equation}
+En los extremos omitimos el término cuyo coeficiente es cero. Esta
+convención se mantiene en todas las expresiones con estados vecinos.
+
+Para comparar acciones, escribimos únicamente las dos diferencias
+de parámetros que aparecen una y otra vez:
+\[
+\Delta p=p_2-p_1,\qquad \Delta c=c_2-c_1.
+\]
+Si usamos $V$ como valor de continuación, la ventaja del producto 2
+frente al producto 1, condicional a una compra, es
+\begin{equation}
+G_s=-\Delta c+\gamma\Delta p
+\left[(1-s/n)(V_{s+1}-V_s)+(s/n)(V_s-V_{s-1})\right].
+\label{eq:advantage}
+\end{equation}
+El primer término es el coste adicional. El segundo es el beneficio
+futuro de aumentar la probabilidad de éxito. Los dos incrementos del
+valor aparecen porque un éxito nuevo puede elevar el estado, o evitar
+la caída que habría producido un fracaso.
+
+El producto 2 es estrictamente mejor cuando $G_s>0$. Así, basta
+demostrar que los estados con ventaja positiva forman un intervalo.
+Para un problema finito y descontado como este existe una política
+óptima estacionaria: podemos elegir en cada estado una acción que
+alcance el máximo de Bellman.
+
+\subsection{Una transformación que cancela el coste adicional}
+
+La constante
+\[
+k=\frac{\Delta c}{\gamma\Delta p}
+\]
+es el incremento de valor que, después de descontar y multiplicar por
+la mejora en la probabilidad de éxito, compensa exactamente el coste
+adicional. Restemos ese incremento de referencia por cada éxito
+recordado:
+\begin{equation}
+W_s=V_s-ks.
+\label{eq:transform}
+\end{equation}
+Por ejemplo, $V_{s+1}-V_s=(W_{s+1}-W_s)+k$. Al sustituirlo en
+\eqref{eq:advantage}, los dos pesos suman uno y el término
+$\gamma\Delta p\,k$ cancela $\Delta c$. Queda
+\begin{equation}
+G_s=\gamma\Delta p
+\left[(1-s/n)(W_{s+1}-W_s)+(s/n)(W_s-W_{s-1})\right].
+\label{eq:advantage-transformed}
+\end{equation}
+Ahora solo necesitamos estudiar los signos de los incrementos de $W$.
+
+La misma sustitución en Bellman simplifica también el beneficio.
+Para cada producto se cumple
+\[
+R-c_i+\gamma k p_i=R-c_1+\gamma k p_1.
+\]
+Por eso, el término que queda después de restar $ks$ es el mismo
+para ambos productos. Lo llamaremos $F_s$:
+\begin{equation}
+F_s=d_s\left[R-c_1+\gamma k(p_1-s/n)\right]
+       -(1-\gamma)ks.
+\label{eq:transformed-reward}
+\end{equation}
+La ecuación para $W$ queda
+\begin{equation}
+\begin{aligned}
+(1-\gamma)W_s=F_s+\gamma d_s\max_{i\in\{1,2\}}\biggl\{
+&p_i(1-s/n)(W_{s+1}-W_s)\\
+&-(1-p_i)(s/n)(W_s-W_{s-1})\biggr\}.
+\end{aligned}
+\label{eq:transformed-bellman}
+\end{equation}
+Este es un cambio algebraico exacto. La cantidad $F_s$ es una ayuda
+para la prueba, no un nuevo beneficio económico que se añada al modelo.
+
+\subsection{Dónde son positivos los incrementos de F}
+\label{sec:signos-F}
+
+Usaremos $\Delta F_j=F_j-F_{j-1}$ para el cambio de $F$ entre estados
+consecutivos. Del mismo modo, por \eqref{eq:demand},
+\begin{equation}
+\Delta d_j=d_j-d_{j-1}
+ =\binom{n+1}{j}p_0^j(1-p_0)^{n+1-j}>0,
+\qquad j=1,\ldots,n.
+\label{eq:delta-demand}
+\end{equation}
+
+Para que las expresiones de este paso sean legibles, usaremos
+temporalmente una sola constante:
+\[
+\tau=n\left[p_1+\frac{R-c_1}{\gamma k}\right]>0.
+\]
+Con ella, \eqref{eq:transformed-reward} y su diferencia se escriben
+\begin{align}
+F_s&=\frac{\gamma k}{n}d_s(\tau-s)-(1-\gamma)ks,
+\notag\\
+\Delta F_j&=\frac{\gamma k}{n}
+ \left[\Delta d_j(\tau-j)-d_{j-1}\right]-(1-\gamma)k.
+\label{eq:delta-reward}
+\end{align}
+Si $j\ge\tau$, todos los términos de la última expresión son no
+positivos y el último es estrictamente negativo. Por tanto,
+$\Delta F_j<0$. Solo necesitamos estudiar los índices $j<\tau$.
+
+La razón entre dos probabilidades binomiales consecutivas es
+\[
+\frac{\Delta d_{j+1}}{\Delta d_j}
+  =\frac{n+1-j}{j+1}\frac{p_0}{1-p_0}.
+\]
+Al restar dos expresiones consecutivas de \eqref{eq:delta-reward}
+y usar esa razón, obtenemos, para $j=1,\ldots,n-1$,
+\begin{equation}
+\begin{aligned}
+\Delta F_{j+1}-\Delta F_j
+={}&\frac{\gamma k\,\Delta d_j}{n(j+1)(1-p_0)}\\[-0.2em]
+&\times\left[(\tau-j-1)((n+2)p_0-j-1)
+                     -2(j+1)(1-p_0)\right].
+\end{aligned}
+\label{eq:second-difference}
+\end{equation}
+El factor fuera del corchete es positivo. Para entender el signo del
+corchete, llamemos $x=j+1$ y observemos la expresión
+\begin{equation}
+(\tau-x)((n+2)p_0-x)-2(1-p_0)x.
+\label{eq:sign-expression}
+\end{equation}
+Mientras $0<x<\min\{\tau,(n+2)p_0\}$, los dos factores del producto
+son positivos y disminuyen con $x$. Su producto disminuye, mientras
+el término que restamos aumenta. La expresión empieza positiva en
+$x=0$ y es negativa al llegar al menor de esos dos límites. Por eso
+su signo solo puede pasar una vez de positivo a negativo en ese tramo.
+Si $(n+2)p_0\le x<\tau$, el producto ya es no positivo y el término
+que restamos es positivo, así que la expresión sigue siendo negativa.
+
+Esto demuestra que, entre los índices donde $\Delta F_j$ puede ser
+positivo, sus valores primero aumentan y después disminuyen. A partir
+de $j\ge\tau$, ya sabemos que son negativos. En consecuencia,
+\begin{equation}
+\{j:\Delta F_j>0\}\quad\text{es un intervalo, posiblemente vacío.}
+\label{eq:positive-F}
+\end{equation}
+En palabras: al recorrer los incrementos de $F$, no podemos encontrar
+uno positivo, luego uno no positivo y después otro positivo.
+Esta propiedad del signo es todo lo que necesitamos; no hace falta
+demostrar que toda la función $F$ sea cóncava.
+
+\subsection{La misma propiedad pasa a los incrementos del valor}
+\label{sec:signos-W}
+
+En este paso fijamos \emph{cualquier} política estacionaria $\pi$.
+Escribimos $V^\pi$ para su valor y $W_s^\pi=V_s^\pi-ks$ para su
+valor transformado. No suponemos que la política sea óptima ni que
+tenga forma de intervalo. Esta generalidad servirá también en la
+prueba por programación lineal.
+
+Para aligerar únicamente las ecuaciones de este paso, escribimos
+\[
+\lambda_s=\gamma d_s p_{\pi(s)}(1-s/n),\qquad
+\mu_s=\gamma d_s(1-p_{\pi(s)})s/n.
+\]
+Son las probabilidades de subir y bajar, respectivamente, multiplicadas
+por el descuento. Ambas son no negativas; $\lambda_n=\mu_0=0$.
+La evaluación de la política satisface
+\begin{equation}
+(1-\gamma)W_s^\pi=F_s
+ +\lambda_s(W_{s+1}^\pi-W_s^\pi)
+ -\mu_s(W_s^\pi-W_{s-1}^\pi).
+\label{eq:fixed-policy}
+\end{equation}
+
+Llamemos $w_j=W_j^\pi-W_{j-1}^\pi$ a los incrementos que queremos
+estudiar. Restar la ecuación de $j-1$ de la ecuación de $j$ da
+\begin{equation}
+\bigl[(1-\gamma)+\mu_j+\lambda_{j-1}\bigr]w_j
+ -\mu_{j-1}w_{j-1}-\lambda_jw_{j+1}
+ =\Delta F_j.
+\label{eq:tridiagonal}
+\end{equation}
+Cada ecuación conecta un incremento solo con sus dos vecinos.
+Por eso el sistema es \emph{tridiagonal}: su matriz tiene valores
+distintos de cero únicamente en la diagonal y en las dos diagonales
+adyacentes.
+
+Resolver este sistema no puede convertir un único intervalo positivo
+del lado derecho en dos intervalos positivos de la solución. Podemos
+verlo con la eliminación de Gauss, sin recurrir a un resultado
+adicional sobre matrices.
+
+Al eliminar sucesivamente las incógnitas de izquierda a derecha,
+los coeficientes de la diagonal se actualizan así:
+\begin{align}
+a_1&=(1-\gamma)+\mu_1+\lambda_0,\notag\\
+a_j&=(1-\gamma)+\mu_j+\lambda_{j-1}
+       -\frac{\mu_{j-1}\lambda_{j-1}}{a_{j-1}},
+\qquad j=2,\ldots,n.
+\label{eq:pivots}
+\end{align}
+Estos coeficientes son positivos. En efecto, $a_1>\mu_1$. Si
+$a_{j-1}>\mu_{j-1}$, entonces
+\[
+a_j=(1-\gamma)+\mu_j+
+\lambda_{j-1}\left(1-\frac{\mu_{j-1}}{a_{j-1}}\right)>\mu_j.
+\]
+Así, podemos hacer todas las divisiones de la eliminación.
+
+Los lados derechos actualizados, que llamamos $y_j$, y la sustitución
+final son
+\begin{align}
+y_1&=\Delta F_1,
+&y_j&=\Delta F_j+\frac{\mu_{j-1}}{a_{j-1}}y_{j-1},
+\label{eq:forward}\\
+w_n&=\frac{y_n}{a_n},
+&w_j&=\frac{y_j+\lambda_jw_{j+1}}{a_j}.
+\label{eq:backward}
+\end{align}
+La primera línea se recorre hacia la derecha y la segunda hacia la
+izquierda. Todos los pesos que multiplican los valores ya calculados
+son no negativos.
+
+Para entender qué ocurre con los signos en \eqref{eq:forward},
+recorramos los índices de izquierda a derecha:
+\begin{itemize}
+\item Antes del intervalo donde $\Delta F_j>0$, todos los valores
+calculados son no positivos.
+\item Dentro de ese intervalo, una vez que $y_j$ se hace positivo,
+los siguientes siguen siendo positivos: sumamos una entrada positiva
+y un múltiplo no negativo de un valor positivo.
+\item Después del intervalo, las entradas son no positivas.
+Una vez que $y_j$ se hace no positivo, ya no puede volver a ser positivo.
+\end{itemize}
+Por tanto, los valores positivos de $y_j$ forman un intervalo. El
+mismo razonamiento, leyendo de derecha a izquierda y dividiendo por
+los números positivos $a_j$, se aplica a \eqref{eq:backward}.
+Concluimos que
+\begin{equation}
+\{j:W_j^\pi-W_{j-1}^\pi>0\}
+\quad\text{es un intervalo, posiblemente vacío.}
+\label{eq:positive-W}
+\end{equation}
+
+\subsection{De los incrementos a la política óptima}
+\label{sec:greedy-interval}
+
+Sea $G_s^\pi$ la ventaja de elegir producto 2 una vez y después
+continuar con la política $\pi$. Se obtiene sustituyendo $V^\pi$
+por $V$ en \eqref{eq:advantage}. Por
+\eqref{eq:advantage-transformed}, su signo es el del promedio
+\[
+(1-s/n)w_{s+1}+(s/n)w_s.
+\]
+En los extremos el promedio es $w_1$ o $w_n$.
+
+Si todos los $w_j$ son no positivos, ninguna ventaja es positiva.
+En caso contrario, supongamos que los positivos están exactamente
+entre $a$ y $b$. Para los estados $s=a,\ldots,b-1$, el promedio
+usa dos incrementos positivos, por lo que es positivo. Fuera de los
+estados $a-1,\ldots,b$, usa solo incrementos no positivos. Únicamente
+los dos estados $a-1$ y $b$ pueden tener cualquiera de los dos signos.
+Agregar o quitar estos extremos no puede dividir el intervalo.
+Si $a=b$, los únicos candidatos son los dos estados consecutivos
+$a-1$ y $a$, de modo que la conclusión también vale.
+
+Hemos demostrado algo útil por sí mismo:
+\begin{quote}
+Para cualquier política estacionaria fija, los estados en que es
+estrictamente mejor elegir producto 2 y después continuar con esa
+política forman un intervalo.
+\end{quote}
+
+Para terminar la primera prueba, tomemos una política óptima
+estacionaria. Su valor es $V$. Elegir producto 2 cuando $G_s>0$ y
+producto 1 cuando $G_s\le0$ alcanza el máximo de Bellman en cada
+estado, incluidos los empates. Esa elección es óptima y, por lo que
+acabamos de demostrar, tiene forma de intervalo. Esto prueba la
+Proposición~\ref{prop:intervalo}.\hfill$\square$
+
+\section{Segunda prueba: programación lineal y mejora de políticas}
+\label{sec:lp}
+
+La segunda prueba organiza el mismo resultado como un problema de
+optimización. Primero escribimos un programa lineal que representa todas
+las decisiones posibles. Después mostramos que la mejor política de
+intervalo también resuelve ese programa completo.
+
+Necesitaremos una conclusión de la primera prueba: para cualquier
+política fija, elegir en cada estado la mejor acción usando su valor de
+continuación produce una política de intervalo. Por tanto, esta segunda
+prueba comparte con la primera el argumento sobre los signos; la
+programación lineal permite convertirlo en un certificado de optimalidad.
+
+\subsection{Escribir Bellman como un programa lineal}
+
+Para incluir en una sola expresión tanto las compras como los períodos
+sin compra, escribimos $P_i(s,t)$ para la probabilidad de pasar de $s$ a
+$t$ durante un período calendario si se usa el producto $i$. En nuestro
+modelo,
+\begin{align}
+P_i(s,s+1)&=d_s p_i(1-s/n),\notag\\
+P_i(s,s-1)&=d_s(1-p_i)s/n,\label{eq:lp-transition}\\
+P_i(s,s)&=1-P_i(s,s+1)-P_i(s,s-1).\notag
+\end{align}
+En los extremos se omiten las transiciones que salen de
+$\{0,\ldots,n\}$. Las demás probabilidades son cero. Así, $P_i$
+ya incluye el caso en que el consumidor elige la opción externa.
+
+El beneficio esperado de ese período es $d_s(R-c_i)$. El programa lineal
+de Bellman es
+\begin{equation}
+\begin{aligned}
+\min_{V_0,\ldots,V_n\in\mathbb R}\quad
+    &\sum_{s=0}^{n}V_s\\
+\text{sujeto a}\quad
+    &V_s\ge d_s(R-c_i)+\gamma\sum_{t=0}^{n}P_i(s,t)V_t,\\
+    &\hspace{4cm}s=0,\ldots,n,\quad i=1,2.
+\end{aligned}
+\label{eq:lp-primal}
+\end{equation}
+
+Aunque queremos maximizar los beneficios, aquí minimizamos. La razón es
+que cada restricción exige que $V_s$ sea al menos tan grande como el
+beneficio de elegir una acción y continuar con los valores $V_t$.
+Un vector factible es, por tanto, una cota superior del valor que puede
+alcanzar cualquier política. Buscamos la cota más ajustada.
+
+Para verificar esa interpretación, apliquemos una restricción a la
+acción que utiliza una política cualquiera. Repitiendo la desigualdad
+durante $N$ períodos, $V_s$ domina sus beneficios descontados hasta
+$N-1$ más el término de continuación
+$\gamma^N\mathbb E[V_{S_N}]$, donde $S_N$ es el estado después de
+$N$ períodos. Este último término tiende a cero porque hay
+finitos estados y $\gamma<1$. Por tanto, todo vector factible domina
+el valor de cualquier política. El valor óptimo satisface las
+restricciones y alcanza igualdad con la acción elegida. Es entonces
+la solución de \eqref{eq:lp-primal}. La formulación general se encuentra
+en \cite{ying-zhu2020}.
+
+\subsection{Qué significa el dual y cómo certifica una política}
+
+El dual de \eqref{eq:lp-primal} introduce una variable $x_{s,i}$ para
+cada estado y producto:
+\begin{equation}
+\begin{aligned}
+\max_{x_{s,i}\ge0}\quad
+    &\sum_{s=0}^{n}\sum_{i=1}^{2}d_s(R-c_i)x_{s,i}\\
+\text{sujeto a}\quad
+    &\sum_{i=1}^{2}x_{s,i}
+      -\gamma\sum_{t=0}^{n}\sum_{i=1}^{2}P_i(t,s)x_{t,i}=1,\\
+    &\hspace{6cm}s=0,\ldots,n.
+\end{aligned}
+\label{eq:lp-dual}
+\end{equation}
+
+Las variables $x_{s,i}$ cuentan visitas descontadas al estado $s$ en las
+que la política prescribe el producto $i$ si hay una compra. El lado
+derecho es uno porque en el primal
+sumamos el valor de todos los estados con el mismo peso. Una forma de
+interpretarlo es iniciar una trayectoria en cada estado y sumar sus
+visitas descontadas. La restricción expresa un balance: las visitas
+totales a $s$ son la visita inicial más las que llegan desde el período
+anterior, ponderadas por $\gamma$. Sumando los balances, el número total
+de visitas descontadas es $(n+1)/(1-\gamma)$, de modo que es finito.
+
+Ahora tomemos una política candidata $\pi$, por ejemplo, producto 2
+entre dos umbrales y producto 1 fuera. Su valor se calcula resolviendo
+las ecuaciones lineales
+\begin{equation}
+V_s^\pi=d_s(R-c_{\pi(s)})
+       +\gamma\sum_{t=0}^{n}P_{\pi(s)}(s,t)V_t^\pi.
+\label{eq:lp-evaluate}
+\end{equation}
+Por la estructura de las transiciones, cada ecuación solo involucra
+el estado actual y sus vecinos.
+
+Las visitas descontadas generadas por esta política son factibles en
+el dual. Además, $x_{s,i}=0$ si $i\ne\pi(s)$. Multiplicar las
+ecuaciones \eqref{eq:lp-evaluate} por las visitas correspondientes y
+usar los balances del dual da
+\begin{equation}
+\sum_{s=0}^{n}V_s^\pi
+ =\sum_{s=0}^{n}\sum_{i=1}^{2}d_s(R-c_i)x_{s,i}.
+\label{eq:lp-equal-objectives}
+\end{equation}
+
+Así, para certificar la política solo falta comprobar que $V^\pi$
+también satisface las restricciones de la acción alternativa en
+\eqref{eq:lp-primal}. Si las satisface, tenemos una solución factible
+primal y otra dual con el mismo objetivo. La dualidad débil garantiza
+que ambas son óptimas. En términos de \emph{holgura complementaria},
+la política solo asigna visitas a acciones cuyas restricciones se
+cumplen con igualdad.
+
+Para una candidata que usa producto 2 en $[L,U]$, esta comprobación
+consiste en verificar que la ventaja $G_s^\pi$ es no negativa dentro
+del intervalo y no positiva fuera. Hay que verificar todos los
+estados, no solo los dos extremos.
+
+\subsection{Por qué algún intervalo satisface todas las restricciones}
+
+Hasta aquí sabemos cómo verificar una política candidata. Falta
+demostrar que podemos encontrar una candidata óptima dentro de la
+familia de intervalos.
+
+Para ello usamos una \emph{mejora de políticas}: dado el valor
+$V^\pi$ de una política, elegimos en cada estado la acción con mayor
+beneficio actual más valor de continuación. Esta acción se llama
+\emph{greedy respecto a $V^\pi$}. No es una decisión basada únicamente
+en el beneficio inmediato: incorpora la continuación de la política
+que acabamos de evaluar.
+
+La mejora elige producto 2 exactamente cuando $G_s^\pi>0$, y producto
+1 en los demás casos. La primera prueba muestra que ese conjunto es
+un intervalo para \emph{cualquier} política fija $\pi$. Sus pasos
+algebraicos no exigían que la política inicial fuese óptima.
+
+Elijamos ahora la política de intervalo $\bar\pi$ que maximiza
+\[
+\sum_{s=0}^{n}V_s^\pi
+\]
+entre todos los intervalos, incluyendo el vacío. Esa elección existe
+porque hay un número finito de intervalos. Todavía no suponemos que
+sea la mejor entre las políticas de cualquier forma.
+
+Supongamos que $V^{\bar\pi}$ viola alguna restricción del primal.
+Construyamos su mejora greedy, $\widehat\pi$. En cada estado, esta
+mejora puede elegir la acción que usaba $\bar\pi$, así que
+\begin{equation}
+d_s(R-c_{\widehat\pi(s)})
+ +\gamma\sum_{t=0}^{n}P_{\widehat\pi(s)}(s,t)V_t^{\bar\pi}
+ \ge V_s^{\bar\pi}.
+\label{eq:lp-one-step}
+\end{equation}
+La desigualdad es estricta en al menos un estado, precisamente porque
+alguna restricción fue violada.
+
+Para ver que la mejora también aumenta el valor total, empecemos con
+$V^{(0)}=V^{\bar\pi}$ y evaluemos repetidamente la nueva política:
+\[
+V_s^{(\ell+1)}=d_s(R-c_{\widehat\pi(s)})
+  +\gamma\sum_{t=0}^{n}P_{\widehat\pi(s)}(s,t)V_t^{(\ell)},
+\qquad \ell=0,1,\ldots.
+\]
+Por \eqref{eq:lp-one-step}, el primer paso aumenta o mantiene cada
+componente y aumenta estrictamente alguna. Como las probabilidades
+son no negativas, el siguiente paso tampoco puede reducir ninguna
+componente; lo mismo ocurre en todos los pasos posteriores. Esta
+evaluación converge a $V^{\widehat\pi}$: en cada iteración, el mayor
+error respecto a ese valor se multiplica, como máximo, por
+$\gamma<1$. En consecuencia,
+\[
+V_s^{\widehat\pi}\ge V_s^{\bar\pi}\quad\text{para todo }s,
+\qquad
+\sum_{s=0}^{n}V_s^{\widehat\pi}
+   >\sum_{s=0}^{n}V_s^{\bar\pi}.
+\]
+
+Pero la nueva política $\widehat\pi$ también es un intervalo, por la
+conclusión de la primera prueba. Esto contradice que $\bar\pi$ fuera
+el mejor intervalo.
+
+Por tanto, $V^{\bar\pi}$ satisface todas las restricciones del primal.
+Sus visitas descontadas proporcionan una solución dual con el mismo
+objetivo, como en \eqref{eq:lp-equal-objectives}. La mejor política de
+intervalo es entonces óptima en el problema completo.\hfill$\square$
+
+El argumento también sugiere un procedimiento: empezar con una
+política cualquiera, evaluarla y mejorarla. Después de la primera
+mejora, la política ya es un intervalo. Las mejoras posteriores
+mantienen esa forma y se detienen cuando se cumplen todas las
+restricciones del primal. La propiedad de intervalo utilizada aquí
+se refiere a memoria llena; no se extiende automáticamente al llenado
+inicial.
+
+
+\clearpage
+\section{Aplicación y alcance del resultado}
+
+Para la calibración
+\[
+\begin{gathered}
+n=20,\quad p_0=0.5,\quad p_1=0.35,\quad p_2=0.8,\\
+R=1,\quad c_1=0.05,\quad c_2=0.65,\quad\gamma=0.98,
+\end{gathered}
+\]
+la política óptima usa producto 2 en los estados $s=5,\ldots,12$.
+Las pruebas anteriores explican por qué tiene que existir una política
+de intervalo; para encontrar sus extremos se evalúa la política y se
+verifican las desigualdades de Bellman.
+
+En el proyecto, el archivo
+\begin{center}
+\path{forgetting_random_replacement/code/verify_interval_theorem.py}
+\end{center}
+comprueba esta banda y las desigualdades de todas las acciones con
+aritmética racional exacta. Por tanto, los signos del certificado no
+dependen de una tolerancia numérica.
+
+\subsection{Por qué el llenado inicial es diferente}
+
+Si todavía solo se recuerdan $m<n$ observaciones, una compra lleva
+a la capa de memoria $m+1$. El estado necesita ahora dos números:
+$(m,s)$. La ventaja del producto 2 es
+\[
+G_{m,s}=-\Delta c+\gamma\Delta p
+          \left(V_{m+1,s+1}-V_{m+1,s}\right).
+\]
+La ecuación ya no conecta solo vecinos dentro de una capa fija, como
+en \eqref{eq:tridiagonal}. El resultado de intervalo puede fallar.
+
+Por ejemplo, con
+\[
+\begin{gathered}
+n=30,\quad p_0=0.45,\quad p_1=0.02,\quad p_2=0.15,\\
+R=1,\quad c_1=0,\quad c_2=0.53,\quad\gamma=0.99985,
+\end{gathered}
+\]
+en la capa $m=3$ las ventajas son aproximadamente
+\[
+G_{3,0}=0.03721,\quad G_{3,1}=-0.00979,\quad
+G_{3,2}=-0.02710,\quad G_{3,3}=0.01320.
+\]
+Se elige producto 2 en $\{0,3\}$, que no es un intervalo. Los signos
+de este ejemplo también están verificados con fracciones exactas en
+el archivo indicado. Esta diferencia es la razón para formular ambas
+pruebas específicamente para memoria llena.
+
+\begin{thebibliography}{1}
+\bibitem{ying-zhu2020}
+Lexing Ying y Yuhua Zhu (2020).
+\emph{A Note on Optimization Formulations of Markov Decision Processes}.
+Sección 2: formulación primal y dual para problemas descontados.
+\url{https://arxiv.org/abs/2012.09417}.
+\end{thebibliography}
+
+\end{document}

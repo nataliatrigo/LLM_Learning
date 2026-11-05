@@ -1,0 +1,127 @@
+{
+  "product_usage": {
+    "grid": {
+      "oe": {
+        "time": {
+          "__array__": "root/product_usage/grid/oe/time"
+        },
+        "q2": {
+          "__array__": "root/product_usage/grid/oe/q2"
+        },
+        "smoothed": {
+          "__array__": "root/product_usage/grid/oe/smoothed"
+        },
+        "se": {
+          "__array__": "root/product_usage/grid/oe/se"
+        },
+        "ci_low": {
+          "__array__": "root/product_usage/grid/oe/ci_low"
+        },
+        "ci_high": {
+          "__array__": "root/product_usage/grid/oe/ci_high"
+        },
+        "window_size": {
+          "__array__": "root/product_usage/grid/oe/window_size"
+        },
+        "n_replications": 20,
+        "smoothing_window": 100,
+        "definition": "q2(t) = mean_r 1{product[r,t] == 2}; selected seller, one purchase per calendar period.",
+        "smoothing": "Trailing mean over up to smoothing_window periods, including t; no future observations.",
+        "uncertainty": "Pointwise 95% Student-t intervals across independent path-level moving averages; clipped to [0,1].",
+        "start_period": 0,
+        "burn_in_discarded": false
+      },
+      "p0": {
+        "time": {
+          "__array__": "root/product_usage/grid/p0/time"
+        },
+        "q2": {
+          "__array__": "root/product_usage/grid/p0/q2"
+        },
+        "smoothed": {
+          "__array__": "root/product_usage/grid/p0/smoothed"
+        },
+        "se": {
+          "__array__": "root/product_usage/grid/p0/se"
+        },
+        "ci_low": {
+          "__array__": "root/product_usage/grid/p0/ci_low"
+        },
+        "ci_high": {
+          "__array__": "root/product_usage/grid/p0/ci_high"
+        },
+        "window_size": {
+          "__array__": "root/product_usage/grid/p0/window_size"
+        },
+        "n_replications": 20,
+        "smoothing_window": 100,
+        "definition": "q2(t) = mean_r 1{product[r,t] == 2}; selected seller, one purchase per calendar period.",
+        "smoothing": "Trailing mean over up to smoothing_window periods, including t; no future observations.",
+        "uncertainty": "Pointwise 95% Student-t intervals across independent path-level moving averages; clipped to [0,1].",
+        "start_period": 0,
+        "burn_in_discarded": false
+      }
+    }
+  },
+  "initial": [
+    0.5,
+    0.5
+  ],
+  "periods": 10000,
+  "smoothing_window": 100,
+  "early_periods": 500,
+  "layout": "For each simulation mode: unsmoothed panel above the moving-average panel.",
+  "source_manifest": "/home/natalia/Projects/LLM_Learning/equilibrium_comparison/data/rho095_n51_long_grid/manifest.json",
+  "source_manifest_sha256": "18091b33cfcf349f3468ef70d88f93d0bd4966b9826612daf3722a42777b1a8e",
+  "raw_sources": {
+    "grid": {
+      "metadata": "/home/natalia/Projects/LLM_Learning/equilibrium_comparison/data/rho095_n51_long_grid/raw/n051_grid/metadata.json",
+      "metadata_sha256": "b2e8e3f367cdd3441c38e8b6a83a37a851c13a8b9a1e06ca5c10633c873b5051",
+      "profiles": {
+        "oe": {
+          "path": "/home/natalia/Projects/LLM_Learning/equilibrium_comparison/data/rho095_n51_long_grid/raw/n051_grid/oe.npz",
+          "product_prefix_sha256": "17a3eeb60b6af6eab78e56fbf9fc6194ffb59870420d3e22531fd91c3d88a77c",
+          "shape": [
+            20,
+            10000
+          ],
+          "dtype": "uint8"
+        },
+        "p0": {
+          "path": "/home/natalia/Projects/LLM_Learning/equilibrium_comparison/data/rho095_n51_long_grid/raw/n051_grid/p0.npz",
+          "product_prefix_sha256": "abb7293dbb9b68e5102945538dc52790567065326f194c7a8197a404ffe71859",
+          "shape": [
+            20,
+            10000
+          ],
+          "dtype": "uint8"
+        }
+      }
+    }
+  },
+  "no_new_simulations": true,
+  "no_equilibrium_solved": true,
+  "stationary_reference": {
+    "frequencies": {
+      "oe": 0.7452000292073152,
+      "p0": 0.8433307221197156
+    },
+    "definition": "sum_ij nu[i,j] * (D[i,j] * policy[i] + (1-D[i,j]) * policy[j]); actual seller selection.",
+    "scope": "Stationary for the original discrete reputation process; a reference benchmark for continuous extensions.",
+    "source_analysis": {
+      ".json": {
+        "path": "/home/natalia/Projects/LLM_Learning/equilibrium_comparison/data/rho095_n51_long_grid/analysis.json",
+        "sha256": "f634a32897326bbc7ea2d54e43c4ffb932f286e7cda5c7a60bcf9a186b47212f"
+      },
+      ".npz": {
+        "path": "/home/natalia/Projects/LLM_Learning/equilibrium_comparison/data/rho095_n51_long_grid/analysis.npz",
+        "sha256": "8a84f6681fdfc3f3fa8edb5a817bd6604f18dc5e6984185a59dd9da7af49fbe1"
+      }
+    }
+  },
+  "source_code_sha256": {
+    "analysis.py": "3366aff1861869cb53cfe9893f9ec5310f7a590980882a063b5fe7d2c1079188",
+    "reporting.py": "1575b47a2af231ab60c42386108cfb6506933736d6671d3e131cabe128f9f95d",
+    "plot_product_usage.py": "f168672c197def524b9b09fc48d61d9c95450aae8a3764ed15aa4f9586e9a749"
+  }
+}

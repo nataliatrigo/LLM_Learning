@@ -1,0 +1,176 @@
+OE p0: CONSISTENCIA CON PROMEDIO TEMPORAL ESPERADO
+
+El benchmark p₀ es un escalar fijo dentro del problema de optimización.
+Se elige para que coincida con el promedio esperado del sorteo TS del rival
+en una ventana finita de períodos de calendario del juego real de dos vendedores.
+En cada período se comparan los dos sorteos TS; solo actualiza su reputación
+el vendedor seleccionado. El promedio incluye al rival en todos los períodos,
+también cuando no es seleccionado.
+
+Descarte B=10,000; ventana T=100,000; reputaciones iniciales=[0.5, 0.5].
+Estados preselección t=10,000,...,109,999, con X₀ como estado inicial.
+Para una política alpha y su matriz de transición P_alpha:
+  nu_bar = (1/T) sum_{t=B}^{B+T-1} nu_0 P_alpha^t;
+  F_T(p₀,alpha) = sum_{x_A,x_B} nu_bar(x_A,x_B) m_rho(x_B);
+  m_rho(x) = (1-rho+x)/(3-2*rho);   p₀ = F_T(p₀,alpha).
+
+La esperanza del sorteo TS condicional a la reputación es m_rho(x).
+Por eso propagar la ley y promediar m_rho calcula el promedio esperado
+del sorteo sin ruido Monte Carlo. No se está imponiendo la media de una
+única trayectoria, un promedio condicionado a ventas ni una media de calidad.
+Si se acelera una cola de propagación, la cota de truncamiento se reporta
+por separado: no es una certificación del error de redondeo aritmético.
+
+PARÁMETROS Y COMPARACIÓN
+Referencia: endogenous_p0/data/rho_forgetting_mixed, candidato seleccionado
+en la misma grilla. Ese experimento usa la distribución estacionaria para
+cerrar p₀. Se conserva su política y se evalúa también en esta misma ventana.
+El comparador es OE p0 original; no es el modelo following_monopoly.
+Parámetros: {"R": 1.0, "c1": 0.05, "c2": 0.65, "gamma": 0.98, "p1": 0.35, "p2": 0.8}
+Los valores de rho se indican en cada caso de la tabla siguiente.
+La demanda usada para elegir producto sigue siendo P(theta(x)>p₀),
+con cola Beta. Las mezclas interiores exigen indiferencia de valores.
+
+RESULTADOS POR RHO
+p₀ nuevo | p₀ original | diferencia | residual temporal nuevo | candidatos
+rho=0.6, n=51: 0.499986864 | 0.499986864 | 5.55111512e-16 | 0 | 1
+  Candidato verificado: True; nodos mixtos: 0.
+  Política original evaluada en la misma ventana: F_T=0.499986864; F_T-p₀_original=5.5511e-16.
+  Nueva política: F estacionario=0.499986864; distancia TV entre ley temporal y estacionaria=6.4296e-15.
+  Diferencia absoluta media entre políticas sobre los nodos=0.
+  Cota L1 de truncamiento temporal=9.1987e-11; pasos propagados=223.
+  Revalidación independiente del seleccionado: True; |F_T-p₀|=2.498e-15; diferencia L1 de leyes=1.1811e-12.
+  Método: Full joint kernel, all periods, no symmetry reduction or early stop.
+rho=0.7, n=51: 0.529006695 | 0.529006695 | 0 | 1.665e-15 | 3
+  Candidato verificado: True; nodos mixtos: 1.
+  Política original evaluada en la misma ventana: F_T=0.529006695; F_T-p₀_original=1.6653e-15.
+  Nueva política: F estacionario=0.529006695; distancia TV entre ley temporal y estacionaria=1.1104e-14.
+  Diferencia absoluta media entre políticas sobre los nodos=0.
+  Cota L1 de truncamiento temporal=9.4625e-11; pasos propagados=334.
+  Revalidación independiente del seleccionado: True; |F_T-p₀|=1.7764e-15; diferencia L1 de leyes=1.1817e-12.
+  Método: Full joint kernel, all periods, no symmetry reduction or early stop.
+rho=0.8, n=51: 0.588873511 | 0.588873511 | 7.54951657e-15 | 0 | 1
+  Candidato verificado: True; nodos mixtos: 0.
+  Política original evaluada en la misma ventana: F_T=0.588873511; F_T-p₀_original=7.5495e-15.
+  Nueva política: F estacionario=0.588873511; distancia TV entre ley temporal y estacionaria=3.8365e-14.
+  Diferencia absoluta media entre políticas sobre los nodos=0.
+  Cota L1 de truncamiento temporal=9.8234e-11; pasos propagados=799.
+  Revalidación independiente del seleccionado: True; |F_T-p₀|=8.6597e-15; diferencia L1 de leyes=1.1893e-12.
+  Método: Full joint kernel, all periods, no symmetry reduction or early stop.
+rho=0.9, n=51: 0.669680542 | 0.669680532 | 9.38564515e-09 | 0 | 1
+  Candidato verificado: True; nodos mixtos: 0.
+  Política original evaluada en la misma ventana: F_T=0.669680542; F_T-p₀_original=9.3856e-09.
+  Nueva política: F estacionario=0.669680532; distancia TV entre ley temporal y estacionaria=3.5754e-08.
+  Diferencia absoluta media entre políticas sobre los nodos=0.
+  Cota L1 de truncamiento temporal=9.9976e-11; pasos propagados=59841.
+  Revalidación independiente del seleccionado: True; |F_T-p₀|=2.3661e-12; diferencia L1 de leyes=1.7681e-11.
+  Método: Full joint kernel, all periods, no symmetry reduction or early stop.
+rho=0.95, n=51: 0.680474794 | 0.680474794 | 4.4408921e-16 | 1.099e-14 | 1
+  Candidato verificado: True; nodos mixtos: 1.
+  Política original evaluada en la misma ventana: F_T=0.685431815; F_T-p₀_original=0.004957.
+  Nueva política: F estacionario=0.673640539; distancia TV entre ley temporal y estacionaria=0.027892.
+  Diferencia absoluta media entre políticas sobre los nodos=0.0056026.
+  Cota L1 de truncamiento temporal=8.4243e-11; pasos propagados=109993.
+  Revalidación independiente del seleccionado: True; |F_T-p₀|=1.0105e-11; diferencia L1 de leyes=8.4241e-11.
+  Método: Full joint kernel, all periods, no symmetry reduction or early stop.
+rho=0.97, n=51: 0.63960501 | 0.63960501 | 1.33226763e-15 | 3.697e-14 | 1
+  Candidato verificado: True; nodos mixtos: 1.
+  Política original evaluada en la misma ventana: F_T=0.665064269; F_T-p₀_original=0.025459.
+  Nueva política: F estacionario=0.578560965; distancia TV entre ley temporal y estacionaria=0.26534.
+  Diferencia absoluta media entre políticas sobre los nodos=0.016766.
+  Cota L1 de truncamiento temporal=7.3354e-11; pasos propagados=109996.
+  Revalidación independiente del seleccionado: True; |F_T-p₀|=6.9061e-12; diferencia L1 de leyes=7.3348e-11.
+  Método: Full joint kernel, all periods, no symmetry reduction or early stop.
+rho=0.99, n=51: 0.5330767 | 0.434271313 | 0.0988053869 | 0 | 1
+  Candidato verificado: True; nodos mixtos: 0.
+  Política original evaluada en la misma ventana: F_T=0.477413489; F_T-p₀_original=0.043142.
+  Nueva política: F estacionario=0.396253352; distancia TV entre ley temporal y estacionaria=0.83876.
+  Diferencia absoluta media entre políticas sobre los nodos=0.20109.
+  Cota L1 de truncamiento temporal=5.1867e-11; pasos propagados=109999.
+  Revalidación independiente del seleccionado: True; |F_T-p₀|=3.5325e-12; diferencia L1 de leyes=5.1827e-11.
+  Método: Full joint kernel, all periods, no symmetry reduction or early stop.
+rho=0.999, n=51: 0.271102584 | 0.175648825 | 0.0954537593 | 0 | 1
+  Candidato verificado: True; nodos mixtos: 0.
+  Política original evaluada en la misma ventana: F_T=0.271102584; F_T-p₀_original=0.095454.
+  Nueva política: F estacionario=0.175648825; distancia TV entre ley temporal y estacionaria=1.
+  Diferencia absoluta media entre políticas sobre los nodos=0.
+  Cota L1 de truncamiento temporal=7.9924e-11; pasos propagados=109999.
+  Revalidación independiente del seleccionado: True; |F_T-p₀|=1.1054e-12; diferencia L1 de leyes=7.9962e-11.
+  Método: Full joint kernel, all periods, no symmetry reduction or early stop.
+
+Casos con candidato seleccionado verificado: 8/8.
+Candidatos guardados en total: 10.
+Máximo residual absoluto temporal entre seleccionados verificados: 3.69704e-14.
+
+RESULTADOS ECONÓMICOS EN LA MISMA VENTANA
+Ambas políticas se evalúan desde la misma condición inicial y con B,T comunes.
+Son flujos esperados por período de calendario, sin descuento ni ruido Monte Carlo.
+Producto 2 y éxito son fracciones de compras; el beneficio es por vendedor
+y período de calendario (incluye beneficio cero cuando no vende).
+Para cada rho se muestra original -> nuevo.
+rho=0.6, n=51: producto 2 0.451011 -> 0.451011; beneficio 0.3396967 -> 0.3396967; éxito 0.552955 -> 0.552955
+rho=0.7, n=51: producto 2 0.5257005 -> 0.5257005; beneficio 0.3172898 -> 0.3172898; éxito 0.5865652 -> 0.5865652
+rho=0.8, n=51: producto 2 0.6753354 -> 0.6753354; beneficio 0.2723994 -> 0.2723994; éxito 0.6539009 -> 0.6539009
+rho=0.9, n=51: producto 2 0.8332378 -> 0.8332378; beneficio 0.2250286 -> 0.2250286; éxito 0.724957 -> 0.724957
+rho=0.95, n=51: producto 2 0.8433533 -> 0.8432474; beneficio 0.221994 -> 0.2220258; éxito 0.729509 -> 0.7294613
+rho=0.97, n=51: producto 2 0.7580677 -> 0.7578387; beneficio 0.2475797 -> 0.2476484; éxito 0.6911305 -> 0.6910274
+rho=0.99, n=51: producto 2 0.3021103 -> 0.4916394; beneficio 0.3843669 -> 0.3275082; éxito 0.4859496 -> 0.5712377
+rho=0.999, n=51: producto 2 0 -> 0; beneficio 0.475 -> 0.475; éxito 0.35 -> 0.35
+
+SENSIBILIDAD DE LA VENTANA CON POLÍTICA FIJA
+Se conserva la política nueva seleccionada; no se resuelve otro equilibrio.
+rho=0.6, n=51, B=10000, T=200000: F_T=0.499986864, F_T-p₀=-2.22045e-16.
+rho=0.6, n=51, B=20000, T=100000: F_T=0.499986864, F_T-p₀=-1.11022e-16.
+rho=0.7, n=51, B=10000, T=200000: F_T=0.529006695, F_T-p₀=9.99201e-16.
+rho=0.7, n=51, B=20000, T=100000: F_T=0.529006695, F_T-p₀=1.55431e-15.
+rho=0.8, n=51, B=10000, T=200000: F_T=0.588873511, F_T-p₀=-3.33067e-15.
+rho=0.8, n=51, B=20000, T=100000: F_T=0.588873511, F_T-p₀=-8.88178e-16.
+rho=0.9, n=51, B=10000, T=200000: F_T=0.669680537, F_T-p₀=-4.69311e-09.
+rho=0.9, n=51, B=20000, T=100000: F_T=0.669680533, F_T-p₀=-8.44875e-09.
+rho=0.95, n=51, B=10000, T=200000: F_T=0.678305257, F_T-p₀=-0.00216954.
+rho=0.95, n=51, B=20000, T=100000: F_T=0.679718816, F_T-p₀=-0.000755978.
+rho=0.97, n=51, B=10000, T=200000: F_T=0.636135751, F_T-p₀=-0.00346926.
+rho=0.97, n=51, B=20000, T=100000: F_T=0.638871583, F_T-p₀=-0.000733427.
+rho=0.99, n=51, B=10000, T=200000: F_T=0.515072658, F_T-p₀=-0.018004.
+rho=0.99, n=51, B=20000, T=100000: F_T=0.528792145, F_T-p₀=-0.00428456.
+rho=0.999, n=51, B=10000, T=200000: F_T=0.263306879, F_T-p₀=-0.00779571.
+rho=0.999, n=51, B=20000, T=100000: F_T=0.267487745, F_T-p₀=-0.00361484.
+
+ALCANCE DE LA INTERPRETACIÓN
+Una ventana finita depende del horizonte, el descarte y las condiciones iniciales.
+Descartar períodos no prueba estacionariedad. Un promedio escalar cercano
+al estacionario tampoco prueba que las distribuciones sean cercanas.
+Bajo condiciones ergódicas apropiadas, el promedio temporal de largo plazo
+puede coincidir con la media estacionaria. Eso no identifica automáticamente
+la ventana finita usada aquí con una distribución estacionaria.
+Los valores son deterministas para la cadena discretizada, sujetos a tolerancias
+numéricas. No son estimaciones de una simulación ni tienen intervalos Monte Carlo.
+La cota de cola solo controla esa aproximación; no incluye errores de cuadratura,
+redondeo, solución de la política ni discretización de reputaciones.
+La búsqueda guarda los candidatos encontrados y verificados; no demuestra
+completitud ni unicidad. Los candidatos originales se usan además como
+propuestas y se vuelven a verificar con el cierre temporal para aceptarlos.
+Una pequeña diferencia entre p₀ seleccionados no
+demuestra que se haya seguido la misma rama cuando hay varios candidatos.
+El certificado corresponde a la grilla y a la consistencia escalar especificada.
+No demuestra convergencia al modelo continuo ni equilibrio perfecto de Markov
+del juego en el que ambos vendedores observan las dos reputaciones.
+
+ARCHIVOS Y FIGURAS
+summary.csv: candidatos seleccionados, comparación original, cierres y diagnósticos.
+candidates.csv: todos los candidatos guardados, mezclas y residuos numéricos.
+horizon_sensitivity.csv: ventanas más largas o posteriores, con política fija.
+economic_outcomes.csv: uso de producto 2, beneficios y éxito esperado por política
+  en la misma ventana; incluye cuotas de mercado y beneficios de cada vendedor.
+01_p0_comparison: benchmarks de ambos experimentos para todos los rho.
+02_policy_comparison: políticas; rombos indican mezcla en nodos guardados.
+03_reputation_cdf_comparison: ambas políticas en la misma ventana, con leyes
+  estacionarias punteadas como diagnóstico adicional.
+04_consistency_map_comparison: mapa temporal nuevo y estacionario original;
+  puntos evaluados, candidatos verificados y seleccionados. Las mezclas en
+  estados indiferentes hacen que el cierre dependa de p₀ y de la política.
+05_joint_law_comparison: ambas políticas y ambas leyes, en una escala log común.
+06_advantage_comparison: ventaja del producto 2 bajo los dos benchmarks.
+07_economic_outcome_comparison: producto 2, beneficio por vendedor y éxito
+  del cliente bajo ambas políticas, en la misma ventana temporal.
+Todas las figuras se guardan en PNG y PDF; el color distingue el modelo.

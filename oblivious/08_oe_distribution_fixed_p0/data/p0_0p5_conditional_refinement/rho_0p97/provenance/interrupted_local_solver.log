@@ -1,0 +1,39 @@
+[2026-10-22T22:09:38.174647+00:00] conditional fixed p0=.5, rho=0.97, n=151
+  auditing outside demand
+  conditional start=certified_n101_interpolation (proposal only)
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/natalia/Projects/LLM_Learning/oblivious/08_oe_distribution_fixed_p0/code/conditional_refine_case.py", line 230, in <module>
+    main()
+  File "/home/natalia/Projects/LLM_Learning/oblivious/08_oe_distribution_fixed_p0/code/conditional_refine_case.py", line 161, in main
+    competition = experiment.solve(initial_policy=initial, prefer_local=True,
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/oblivious/04_oe_conditional_distribution/code/model.py", line 321, in solve
+    best = self._solve_prefer_local(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/oblivious/01_oe_distribution/code/model.py", line 263, in _solve_prefer_local
+    result = root(equations, alpha, jac=jacobian, method="hybr",
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/.venv/lib/python3.12/site-packages/scipy/optimize/_root.py", line 254, in root
+    sol = _root_hybr(_wrapped_fun, x0, args=args, jac=jac, **options)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/.venv/lib/python3.12/site-packages/scipy/optimize/_minpack_py.py", line 256, in _root_hybr
+    retval = _minpack._hybrj(func, Dfun, x0, args, 1,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/.venv/lib/python3.12/site-packages/scipy/optimize/_root.py", line 216, in _wrapped_fun
+    return fun(*fargs)
+           ^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/oblivious/01_oe_distribution/code/model.py", line 228, in equations
+    data = engine.calculate(raw)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/oblivious/04_oe_conditional_distribution/code/model.py", line 144, in calculate
+    invariant = checked_joint_stationary(e.game, full, force_positive=True)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/oblivious/02_oe_p0/code/core.py", line 130, in checked_joint_stationary
+    positive = _positive_invariant(jump, rates)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/oblivious/02_oe_p0/code/positive_stationary.py", line 122, in positive_invariant
+    status = function(n, np.ascontiguousarray(reduced.indptr, dtype=np.int64),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

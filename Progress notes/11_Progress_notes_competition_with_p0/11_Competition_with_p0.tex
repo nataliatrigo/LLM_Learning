@@ -1,0 +1,409 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\Pb}{\mathbb P}
+\newcommand{\E}{\mathbb E}
+\DeclareMathOperator{\Beta}{Beta}
+\DeclareMathOperator{\BR}{BR}
+\allowdisplaybreaks[1]
+\title{Competition with a Fixed Outside Option}
+\author{Progress note --- transcription of handwritten notes}
+\date{\today}
+
+\begin{document}
+\maketitle
+In this note we present a competition model where the customer chooses
+between two sellers and a known outside option of fixed quality $p_0$.
+
+\section{Elements of the model}
+
+\begin{itemize}
+\item Two symmetric providers, indexed by $j\in\{A,B\}$.
+\item Two products, indexed by $i\in\{1,2\}$.
+\item Success probabilities: $0<p_1<p_2<1$.
+\item Costs: $c_1<c_2$.
+\item Revenue: $R>c_2$.
+\item Outside option quality $p_0\in(0,1)$, fixed and known to all agents.
+\item Discount factor $\gamma\in(0,1)$ per calendar period.
+\end{itemize}
+
+\section{Customer beliefs.}
+Recall that in the forgetting model, past observations are discounted by a factor $\rho$ whenever a new outcome is observed. Thus, after $k$ interactions with the seller, the total effective information satisfies
+$$
+S_k+F_k=\rho(S_{k-1}+F_{k-1})+1,
+$$
+with \(S_0+F_0=0\). Iterating this expression yields
+$$
+S_k+F_k=1+\rho+\cdots+\rho^{k-1}
+=\frac{1-\rho^k}{1-\rho} \quad \to 1/(1-\rho)\quad\text{as }k\to\infty.
+$$
+
+To study the limiting behavior, we normalize the state as 
+$$x_s=(1-\rho)S_k$$ 
+$$x_f=(1-\rho)F_k$$
+
+Since $x_s+x_f=1-\rho^k\to1$, we focus on the limiting boundary $x_s+x_f=1$, which can be represented by a single variable $x=x_s$, with $x_f=1-x$. Then $x\in [0,1]$ when $\rho \in [1/2,1)$. 
+
+For each seller we will call this normalized state variable $x_j$ for $j\in\{A,B\}$ that will represent the proportion of successes for provider $j$ in the long run. The customer observes the state
+$$
+x=(x_A,x_B),
+$$
+Her beliefs are
+\begin{align}
+\theta_A\mid x_A&\sim\Beta(1+\frac{x_A}{1-\rho},1+\frac{1-x_A}{1-\rho}),\\
+\theta_B\mid x_B&\sim\Beta(1+\frac{x_B}{1-\rho},1+\frac{1-x_B}{1-\rho}).
+\end{align}
+
+
+\paragraph{Customer choice.}
+The customer uses Thompson sampling (TS), drawing independently from the
+two belief distributions and choosing
+\begin{equation}
+y_t=
+\begin{cases}
+A,&\widetilde\theta_A>\max\{\widetilde\theta_B,p_0\},\\
+B,&\widetilde\theta_B>\max\{\widetilde\theta_A,p_0\},\\
+0,&p_0>\max\{\widetilde\theta_A,\widetilde\theta_B\},
+\end{cases}
+\end{equation}
+where $0$ denotes the outside option. Ties have probability zero.
+The selection probabilities are
+\begin{align}
+D_A(x_A,x_B;p_0)
+&=\Pb(\widetilde\theta_A>\max\{\widetilde\theta_B,p_0\}\mid x_A,x_B),\\
+D_B(x_A,x_B;p_0)
+&=\Pb(\widetilde\theta_B>\max\{\widetilde\theta_A,p_0\}\mid x_A,x_B),\\
+D_0(x_A,x_B;p_0)
+&=\Pb(\widetilde\theta_A<p_0\mid x_A)
+  \Pb(\widetilde\theta_B<p_0\mid x_B).
+\end{align}
+Hence $D_A+D_B+D_0=1$.
+
+\section{Timing, state transitions, and strategies}
+
+\paragraph{Timing.}
+\begin{enumerate}
+    \item The customer observes $x=(x_A,x_B)$, while each
+    seller $j$ observes only its own reputation $x_j$.
+    
+    \item The customer chooses seller $A$, seller $B$, or the outside
+    option using Thompson sampling.
+    
+    \item If a seller is selected, it chooses a product $i\in\{1,2\}$
+    according to its strategy $\sigma_j(\cdot\mid x_j)$
+    and receives profit $R-c_i$.
+    
+    \item If a seller is selected, the customer observes the outcome,
+    but not the product.
+    
+    \item Only the selected seller's reputation is updated.
+    If the outside option is chosen, neither reputation changes and
+    both sellers receive zero profit.
+\end{enumerate}
+Thus, forgetting occurs only when a new outcome is observed from a seller,
+whereas discounting applies in every calendar period.
+
+\paragraph{State transitions.}
+Superscripts $s$ and $f$ denote success and failure,
+respectively. The state transitions are
+\begin{equation}
+\begin{aligned}
+T_A^s(x)&=(\rho x_A+1-\rho,x_B),\\
+T_A^f(x)&=(\rho x_A,x_B),\\
+T_B^s(x)&=(x_A,\rho x_B+1-\rho),\\
+T_B^f(x)&=(x_A,\rho x_B).
+\end{aligned}
+\end{equation}
+For an individual seller, we write these updates as
+$T_\rho^s(x_j)=\rho x_j+1-\rho$ and $T_\rho^f(x_j)=\rho x_j$.
+
+\paragraph{Strategies.}
+We consider stationary mixed strategies that depend only
+on the seller's own reputation. For each seller $j\in\{A,B\}$,
+a strategy is a mapping
+\begin{equation}
+\sigma_j:[0,1]\rightarrow\Delta(\{1,2\}),
+\end{equation}
+where $\sigma_j(i\mid x_j)$ denotes the probability that
+seller $j$ chooses product $i$ when selected at reputation
+$x_j$.
+
+\section{Oblivious equilibrium: Distribution}
+
+\paragraph{Oblivious approximation:}
+Throughout this section, $p_0$ is fixed. It is a parameter of the model,
+rather than a conjecture determined by the equilibrium conditions.
+Suppose that each seller $j\in\{A,B\}$ assumes that
+its competitor's reputation follows a stationary distribution
+$\mu_{-j}$ on $[0,1]$, measured in calendar time before customer selection.
+
+Instead of observing the competitor's current reputation,
+seller $j$ computes its expected demand by averaging over
+this distribution. Write $D(x_j,y;p_0)=D_A(x_j,y;p_0)$, with the
+focal seller's reputation as the first argument. By symmetry, the same
+function applies to either seller. Then
+\begin{equation}
+d_j(x_j;\mu_{-j},p_0)
+=
+\int_0^1 D(x_j,y;p_0)\,\mu_{-j}(dy).
+\end{equation}
+
+Thus, each seller's demand depends only on its own reputation
+and the conjectured distribution of its competitor, given $p_0$.
+When optimizing, the seller treats this distribution as fixed.
+
+\paragraph{Seller's problem:}
+Let $U_j(x_j)$ denote seller $j$'s optimal expected discounted
+profit before customer selection. We leave the dependence of $U_j$
+on the fixed parameter $p_0$ implicit. Given the conjectured distribution
+$\mu_{-j}$, the Bellman equation is
+\begin{equation}
+\begin{aligned}
+U_j(x_j) ={}& \gamma[1-d_j(x_j;\mu_{-j},p_0)]U_j(x_j)\\
+&+d_j(x_j;\mu_{-j},p_0)
+\max_{i\in\{1,2\}}\Big\{ R-c_i\\
+&\qquad+\gamma\left[ p_i U_j(T_\rho^s(x_j)) + (1-p_i)U_j(T_\rho^f(x_j))
+\right] \Big\}.
+\end{aligned}
+\end{equation}
+
+If the seller is not selected, either its competitor or the outside option
+is chosen. In both cases it receives no profit and its own reputation
+remains unchanged, which explains the term $\gamma(1-d_j)U_j$.
+If selected, it chooses a product to maximize its current profit and
+expected future value.
+
+\paragraph{Stationary distribution:}
+Given a strategy $\sigma_j$, the probability of success conditional on
+seller $j$ being selected is
+\begin{equation}
+p_{\sigma_j}(x_j) = \sigma_j(1\mid x_j)p_1 + \sigma_j(2\mid x_j)p_2.
+\end{equation}
+
+Given a strategy profile $\sigma=(\sigma_A,\sigma_B)$,
+let $P^{\sigma,p_0}(x,C)$ denote the probability that the
+joint reputation state belongs to a measurable set
+$C\subseteq[0,1]^2$ in the next period, given the
+current state $x=(x_A,x_B)$. The transition probabilities are
+\begin{equation}
+\begin{aligned}
+P^{\sigma,p_0}(x,C)
+={}&D_0(x_A,x_B;p_0)\mathbf{1}\{x\in C\}\\
+&+\sum_{j\in\{A,B\}}D_j(x_A,x_B;p_0)
+\Big[p_{\sigma_j}(x_j)\mathbf{1}\{T_j^s(x)\in C\}\\
+&\hspace{42mm}+(1-p_{\sigma_j}(x_j))
+\mathbf{1}\{T_j^f(x)\in C\}\Big].
+\end{aligned}
+\end{equation}
+The first term accounts for the outside option: both reputations remain
+unchanged. In particular, the probability that $B$ sells is $D_B$, rather
+than $1-D_A$.
+
+\paragraph{Oblivious equilibrium:}
+For the given $p_0$, a symmetric oblivious equilibrium is a mixed strategy $\sigma^*$,
+a reputation distribution $\mu^*$, and a joint stationary
+distribution $\nu^*$ satisfying the following conditions.
+Here $U_{\mu^*}$ is the value from the seller's problem with
+$\mu_{-j}=\mu^*$ and the given $p_0$.
+
+\textit{Optimality:}
+\begin{equation}
+\begin{aligned}
+\operatorname{supp}\sigma^*(\cdot\mid x)
+\subseteq
+\arg\max_{i\in\{1,2\}}
+\Big\{
+R-c_i
++\gamma\big[
+&p_iU_{\mu^*}(T_\rho^s(x))\\
+&+(1-p_i)U_{\mu^*}(T_\rho^f(x))
+\big]
+\Big\}.
+\end{aligned}
+\end{equation}
+
+\textit{Consistency:}
+\begin{equation}
+\begin{aligned}
+\nu^*&=\nu^*P^{\sigma^*,p_0},\\
+\mu^*(C)&=\nu^*(C\times[0,1])
+=\nu^*([0,1]\times C),
+\qquad \forall C\subseteq[0,1]
+\text{ measurable}.
+\end{aligned}
+\end{equation}
+
+Here $P^{\sigma^*,p_0}$ denotes the joint transition kernel
+of the actual two-seller game when both sellers follow
+$\sigma^*$ and face the same fixed outside option $p_0$.
+
+The first condition requires each seller to choose only
+optimal products given the conjectured distribution $\mu^*$.
+The second requires this distribution to coincide with the
+marginal distributions generated when both sellers follow
+$\sigma^*$ in the actual game, including periods in which the outside
+option is chosen. No independence between the two reputations is assumed.
+
+\section{Product choice as the number of sellers grows}
+
+Consider $N$ sellers and one customer choice per calendar period,
+keeping $p_0$, $\rho<1$,
+$\gamma<1$, and all other parameters fixed. Write
+$D_j^{(N)}(x;p_0)$ for seller $j$'s selection probability at the joint
+reputation state $x=(x_1,\ldots,x_N)$, and $U_N(x_j)$ for its oblivious
+value in the same Bellman equation as above.
+
+\paragraph{Proposition.}
+There exists a finite $N_0$ such that, for every $N\geq N_0$, product~1
+is strictly optimal at every reputation, for any conjectured joint
+distribution of rival reputations. In particular, every symmetric
+distribution oblivious equilibrium satisfies
+$\sigma^*(1\mid x_j)=1$ for all $x_j\in[0,1]$ when $N\geq N_0$.
+
+\paragraph{Proof.}
+Consider that the customer selects seller $j$ when its TS draw exceeds
+both $p_0$ and every rival's draw. Ignoring $p_0$ can only increase this
+probability, so
+\begin{equation}
+\begin{aligned}
+D_j^{(N)}(x;p_0)
+&=\Pb\!\left(
+\widetilde\theta_j>\max\{p_0,\max_{k\neq j}\widetilde\theta_k\}
+\mid x\right)\\
+&\leq\Pb(\widetilde\theta_j>\widetilde\theta_k
+\text{ for all }k\neq j\mid x).
+\end{aligned}
+\end{equation}
+Now, write $\widetilde\theta_j(z)$ for seller $j$'s TS draw at reputation
+$z$. If $x'>x$, then
+\begingroup
+\renewcommand{\theHequation}{stochastic-larger-draw}
+\begin{equation}
+\Pb(\widetilde\theta_j(x')>t)
+\geq\Pb(\widetilde\theta_j(x)>t),
+\qquad t\in(0,1).
+\tag{*}\label{eq:stochastic-larger-draw}
+\end{equation}
+\endgroup
+We prove \eqref{eq:stochastic-larger-draw} below. The most favorable case
+for seller $j$ is therefore to have reputation $1$, while every rival
+has reputation $0$. Hence
+\begin{equation}
+\Pb(\widetilde\theta_j>\widetilde\theta_k
+\text{ for all }k\neq j\mid x)
+\leq\Pb(\widetilde\theta_j(1)>\widetilde\theta_k(0)
+\text{ for all }k\neq j).
+\end{equation}
+
+Consider that $\widetilde\theta_j(1)\sim\Beta(a,1)$ and
+$\widetilde\theta_k(0)\sim\Beta(1,a)$, where $a=1+1/(1-\rho)$.
+For $t\in(0,1)$,
+\begin{equation}
+\Pb(\widetilde\theta_k(0)<t)
+=\int_0^t a(1-s)^{a-1}\,ds
+=1-(1-t)^a.
+\end{equation}
+Since the TS draws are independent conditional on reputations, averaging
+over seller $j$'s draw gives
+\begin{equation}
+\begin{aligned}
+&\Pb(\widetilde\theta_j(1)>\widetilde\theta_k(0)
+\text{ for all }k\neq j)\\
+&\qquad=\int_0^1
+\big[\Pb(\widetilde\theta_k(0)<t)\big]^{N-1}
+a t^{a-1}\,dt\\
+&\qquad=\int_0^1\big[1-(1-t)^a\big]^{N-1}a t^{a-1}\,dt\\
+&\qquad=\E\!\left[
+\big(1-(1-\widetilde\theta_j(1))^a\big)^{N-1}\right].
+\end{aligned}
+\end{equation}
+The bound is valid at every joint reputation state, so
+\begin{equation}
+\sup_{x\in[0,1]^N}D_j^{(N)}(x;p_0)
+\leq\E\!\left[
+\big(1-(1-\widetilde\theta_j(1))^a\big)^{N-1}\right].
+\end{equation}
+
+Since $\widetilde\theta_j(1)\in(0,1)$ almost surely,
+\begin{equation}
+\big(1-(1-\widetilde\theta_j(1))^a\big)^{N-1}
+\longrightarrow0\quad\text{almost surely},
+\end{equation}
+and this expression lies between $0$ and $1$. By dominated convergence,
+\begin{equation}
+\begin{aligned}
+&\lim_{N\to\infty}\E\!\left[
+\big(1-(1-\widetilde\theta_j(1))^a\big)^{N-1}\right]\\
+&\qquad=\E\!\left[
+\lim_{N\to\infty}
+\big(1-(1-\widetilde\theta_j(1))^a\big)^{N-1}\right]=0.
+\end{aligned}
+\end{equation}
+It follows that
+\begin{equation}
+\sup_{x\in[0,1]^N}D_j^{(N)}(x;p_0)\longrightarrow0.
+\end{equation}
+The seller's oblivious demand averages $D_j^{(N)}$ over the conjectured
+joint distribution of rival reputations, so the same bound applies to
+any such distribution, including correlated reputations.
+
+Now recall that profit per sale is bounded by $R-c_1$. Therefore,
+\begin{equation}
+\begin{aligned}
+0\leq U_N(x_j)
+&\leq\sum_{t=0}^{\infty}\gamma^t(R-c_1)
+\sup_{x\in[0,1]^N}D_j^{(N)}(x;p_0)\\
+&=\frac{R-c_1}{1-\gamma}
+\sup_{x\in[0,1]^N}D_j^{(N)}(x;p_0)
+\longrightarrow0.
+\end{aligned}
+\end{equation}
+Using this in the optimality condition, and writing
+$\Delta c=c_2-c_1>0$ and $\Delta p=p_2-p_1>0$, we obtain
+\begin{equation}
+\begin{aligned}
+&\lim_{N\to\infty}\Big\{
+-\Delta c+\gamma\Delta p
+\big[U_N(T_\rho^s(x_j))-U_N(T_\rho^f(x_j))\big]\Big\}\\
+&\qquad=-\Delta c+\gamma\Delta p(0-0)
+=-\Delta c<0.
+\end{aligned}
+\end{equation}
+The convergence is uniform in reputation and rival conjectures.
+Thus, product~1 is strictly optimal at every reputation for all
+sufficiently large $N$.\hfill$\square$
+
+\paragraph{Proof of \eqref{eq:stochastic-larger-draw}.}
+Let $f_x$ denote the posterior density at reputation $x$. For $x'>x$,
+\begin{equation}
+\frac{f_{x'}(t)}{f_x(t)}
+=C\left(\frac{t}{1-t}\right)^{(x'-x)/(1-\rho)},
+\qquad C>0,
+\end{equation}
+where $C$ does not depend on $t$. This ratio increases continuously
+from $0$ to infinity. Hence the densities cross once, at some
+$t_*\in(0,1)$: $f_{x'}\leq f_x$ below $t_*$ and $f_{x'}\geq f_x$ above it.
+Since both densities integrate to $1$,
+\begin{equation}
+\begin{aligned}
+\int_0^t\big[f_{x'}(s)-f_x(s)\big]\,ds
+&\leq0,\qquad t\leq t_*,\\
+\int_0^t\big[f_{x'}(s)-f_x(s)\big]\,ds
+&=-\int_t^1\big[f_{x'}(s)-f_x(s)\big]\,ds\leq0,
+\quad t\geq t_*.
+\end{aligned}
+\end{equation}
+Taking complements gives
+\begin{equation}
+\Pb(\widetilde\theta_j(x')>t)
+=1-\int_0^t f_{x'}(s)\,ds
+\geq1-\int_0^t f_x(s)\,ds
+=\Pb(\widetilde\theta_j(x)>t),
+\end{equation}
+which proves \eqref{eq:stochastic-larger-draw}.\hfill$\square$
+
+\end{document}

@@ -1,0 +1,3892 @@
+{
+  "rho": 0.97,
+  "n": 201,
+  "p0": 0.5,
+  "configuration": {
+    "n": 201,
+    "parameters": {
+      "R": 1.0,
+      "c1": 0.05,
+      "c2": 0.65,
+      "p1": 0.35,
+      "p2": 0.8,
+      "gamma": 0.98,
+      "rho": 0.97
+    },
+    "p0": 0.5,
+    "order": 256,
+    "tolerance": 1e-07,
+    "dp_tolerance": 1e-10,
+    "stationary_tolerance": 1e-11,
+    "stationary_stability_tolerance": 1e-07,
+    "closure": "Full marginal of actual joint calendar-time invariant law",
+    "strategy": "Symmetric mixed own-reputation policy",
+    "market": "Two endogenous sellers and one external fixed known outside option",
+    "outside_event": "Zero focal profit, no observation, both reputations freeze",
+    "forgetting_clock": "Seller observations only; unselected reputation freezes",
+    "p0_role": "External common benchmark; not an endogenous equilibrium object"
+  },
+  "monopoly": {
+    "grid": {
+      "__array__": "root/monopoly/grid"
+    },
+    "policy": {
+      "__array__": "root/monopoly/policy"
+    },
+    "value": {
+      "__array__": "root/monopoly/value"
+    },
+    "demand": {
+      "__array__": "root/monopoly/demand"
+    },
+    "advantage": {
+      "__array__": "root/monopoly/advantage"
+    },
+    "mu": {
+      "__array__": "root/monopoly/mu"
+    },
+    "sale_stationary": {
+      "__array__": "root/monopoly/sale_stationary"
+    },
+    "verified": true,
+    "diagnostics": {
+      "conditional_regret": 0.0,
+      "bellman_residual": 2.1316282072803006e-14,
+      "original_value_max_difference": 3.581135388230905e-12,
+      "original_bellman_residual": 9.237055564881302e-14,
+      "stationary_residual": 1.8045330726601247e-16,
+      "independent_stationary_l1": 2.3229609029859175e-16,
+      "sale_law_l1": 1.9664216214286633e-16,
+      "sale_time": {
+        "sale_stationary": {
+          "__array__": "root/monopoly/diagnostics/sale_time/sale_stationary"
+        },
+        "generated_quality": 0.5818828881354681,
+        "mean_reputation_at_sale": 0.5818828881354678,
+        "quality_reputation_difference": 2.220446049250313e-16,
+        "stationary_residual": 9.247208540955851e-17,
+        "stationary_verified": true,
+        "stability_l1": 1.2983381094783941e-16,
+        "row_sum_error": 2.220446049250313e-16,
+        "minimum_exit_rate": 0.35,
+        "method": "Sale-time embedded chain; independent positive GTH elimination in both state orders",
+        "scope": "Finite numerical kernel for own-reputation policies; final actual-game joint law is checked separately"
+      }
+    }
+  },
+  "competition": {
+    "grid": {
+      "__array__": "root/competition/grid"
+    },
+    "policy": {
+      "__array__": "root/competition/policy"
+    },
+    "value": {
+      "__array__": "root/competition/value"
+    },
+    "advantage": {
+      "__array__": "root/competition/advantage"
+    },
+    "nu": {
+      "__array__": "root/competition/nu"
+    },
+    "mu_a": {
+      "__array__": "root/competition/mu_a"
+    },
+    "mu_b": {
+      "__array__": "root/competition/mu_b"
+    },
+    "mu": {
+      "__array__": "root/competition/mu"
+    },
+    "demand": {
+      "__array__": "root/competition/demand"
+    },
+    "marginal_residual": 0.0,
+    "verified": true,
+    "candidate_verified": true,
+    "summary": {
+      "rho": 0.97,
+      "n": 201,
+      "verified": true,
+      "candidate_verified": true,
+      "marginal_l1": 0.0,
+      "marginal_residual": 0.0,
+      "stationary_residual": 4.1602339392351995e-16,
+      "mixed_nodes": 1,
+      "mixed_indices": [
+        96
+      ],
+      "mixed_reputations": [
+        0.48
+      ],
+      "mixed_probabilities": [
+        0.8677297120235843
+      ],
+      "mean_reputation": 0.6516352614308489,
+      "mean_posterior": 0.6430521334253292,
+      "dp": {
+        "verified": true,
+        "bellman_residual": 1.778777662864878e-14,
+        "policy_evaluation_residual": 7.105427357601002e-15,
+        "conditional_regret": 1.4502858514732005e-13,
+        "complementarity_residual": 1.0964562591198046e-12,
+        "mixed_indifference_residual": 1.0964562591198046e-12,
+        "best_response_gain_upper_bound": 4.8071991759740555e-12,
+        "best_response_numerical_error_bound": 4.807088153671593e-12,
+        "iterations": 5
+      },
+      "stationary": {
+        "verified": true,
+        "residual": 4.1602339392351995e-16,
+        "row_sum_error": 1.7763568394002505e-15,
+        "probability_sum": 1.0,
+        "minimum_probability": 1.0845563945817618e-72,
+        "stability_l1": 2.295753949851234e-11,
+        "stability_tolerance": 1e-07,
+        "methods": [
+          "sparse jump-chain, middle normalization",
+          "sparse jump-chain, reversed order and edge normalization",
+          "independent positive GTH elimination"
+        ],
+        "preliminary_failures": [],
+        "symmetric_lumping": true,
+        "lumping_error": 0.0,
+        "solved_states": 20301,
+        "full_states": 40401,
+        "selection": "symmetric invariant law",
+        "communicating_components": 1,
+        "reduced_communicating_components": 1,
+        "minimum_exit_rate": 3.2339615757579787e-11,
+        "exploratory": false,
+        "marginal_symmetry_l1": 2.0541993020084076e-16,
+        "scope": "Finite numerical kernel; no mixing-time or continuous-state guarantee"
+      }
+    },
+    "dp_diagnostics": {
+      "verified": true,
+      "bellman_residual": 1.778777662864878e-14,
+      "policy_evaluation_residual": 7.105427357601002e-15,
+      "conditional_regret": 1.4502858514732005e-13,
+      "complementarity_residual": 1.0964562591198046e-12,
+      "mixed_indifference_residual": 1.0964562591198046e-12,
+      "best_response_gain_upper_bound": 4.8071991759740555e-12,
+      "best_response_numerical_error_bound": 4.807088153671593e-12,
+      "iterations": 5
+    },
+    "stationary_diagnostics": {
+      "verified": true,
+      "residual": 4.1602339392351995e-16,
+      "row_sum_error": 1.7763568394002505e-15,
+      "probability_sum": 1.0,
+      "minimum_probability": 1.0845563945817618e-72,
+      "stability_l1": 2.295753949851234e-11,
+      "stability_tolerance": 1e-07,
+      "methods": [
+        "sparse jump-chain, middle normalization",
+        "sparse jump-chain, reversed order and edge normalization",
+        "independent positive GTH elimination"
+      ],
+      "preliminary_failures": [],
+      "symmetric_lumping": true,
+      "lumping_error": 0.0,
+      "solved_states": 20301,
+      "full_states": 40401,
+      "selection": "symmetric invariant law",
+      "communicating_components": 1,
+      "reduced_communicating_components": 1,
+      "minimum_exit_rate": 3.2339615757579787e-11,
+      "exploratory": false,
+      "marginal_symmetry_l1": 2.0541993020084076e-16,
+      "scope": "Finite numerical kernel; no mixing-time or continuous-state guarantee"
+    },
+    "mixed_nodes": 1,
+    "mixed_indices": [
+      96
+    ],
+    "mixed_probabilities": [
+      0.8677297120235843
+    ],
+    "history": [
+      {
+        "call": 1,
+        "kind": "exploratory sparse response only",
+        "seconds": 1.8844426379982906,
+        "regret": 0.008616751412922063,
+        "violations": [
+          {
+            "i": 96,
+            "x": 0.48,
+            "alpha": 1.0,
+            "advantage": -0.008616751412922063
+          }
+        ]
+      },
+      {
+        "call": 2,
+        "kind": "exploratory sparse response only",
+        "seconds": 1.8942792269990605,
+        "regret": 0.0675365769946541,
+        "violations": [
+          {
+            "i": 94,
+            "x": 0.47000000000000003,
+            "alpha": 0.0,
+            "advantage": 0.00820668468739616
+          },
+          {
+            "i": 95,
+            "x": 0.47500000000000003,
+            "alpha": 0.0,
+            "advantage": 0.03948782973730658
+          },
+          {
+            "i": 96,
+            "x": 0.48,
+            "alpha": 0.0,
+            "advantage": 0.0675365769946541
+          },
+          {
+            "i": 136,
+            "x": 0.68,
+            "alpha": 1.0,
+            "advantage": -0.0002591454655289649
+          },
+          {
+            "i": 137,
+            "x": 0.685,
+            "alpha": 1.0,
+            "advantage": -0.0014629086821398296
+          },
+          {
+            "i": 138,
+            "x": 0.6900000000000001,
+            "alpha": 1.0,
+            "advantage": -0.003305160365386972
+          }
+        ]
+      },
+      {
+        "call": 3,
+        "kind": "exploratory sparse response only",
+        "seconds": 1.7428831590004847,
+        "regret": 0.001125395199927916,
+        "violations": [
+          {
+            "i": 96,
+            "x": 0.48,
+            "alpha": 0.8868499697504381,
+            "advantage": -0.0012689803668196609
+          }
+        ]
+      },
+      {
+        "call": 4,
+        "kind": "exploratory sparse response only",
+        "seconds": 1.8525167339976178,
+        "regret": 5.345031363705596e-07,
+        "violations": [
+          {
+            "i": 96,
+            "x": 0.48,
+            "alpha": 0.8676690472808241,
+            "advantage": 4.039139183897866e-06
+          }
+        ]
+      },
+      {
+        "call": 5,
+        "kind": "exploratory sparse response only",
+        "seconds": 1.7880035870002757,
+        "regret": 1.120508038177103e-08,
+        "violations": [
+          {
+            "i": 96,
+            "x": 0.48,
+            "alpha": 0.8677299060619856,
+            "advantage": -1.2913096925082357e-08
+          }
+        ]
+      },
+      {
+        "call": 6,
+        "kind": "exploratory sparse response only",
+        "seconds": 1.8791341760006617,
+        "regret": 3.483076909292957e-12,
+        "violations": []
+      },
+      {
+        "call": 7,
+        "kind": "exploratory sparse response only",
+        "seconds": 1.6862667839995993,
+        "regret": 5.06924540227368e-14,
+        "violations": []
+      }
+    ],
+    "positive_polish_history": [
+      {
+        "label": "sparse mixed root at 96",
+        "polish": 0,
+        "seconds": 137.7609466569993,
+        "verified": true,
+        "dp": {
+          "verified": true,
+          "bellman_residual": 1.778777662864878e-14,
+          "policy_evaluation_residual": 7.105427357601002e-15,
+          "conditional_regret": 1.4502858514732005e-13,
+          "complementarity_residual": 1.0964562591198046e-12,
+          "mixed_indifference_residual": 1.0964562591198046e-12,
+          "best_response_gain_upper_bound": 4.8071991759740555e-12,
+          "best_response_numerical_error_bound": 4.807088153671593e-12,
+          "iterations": 5
+        }
+      }
+    ],
+    "search_metadata": {
+      "method": "Sparse jump-stationarity active-set proposals; full unchanged positive e.evaluate certificate; analytic-Jacobian positive-residual Newton polish if needed",
+      "source": "provenance/sparse_face_refine097_n201.py",
+      "exploratory_evaluations": 7,
+      "fresh_certifications": 1,
+      "exhaustive": false,
+      "unique": false,
+      "policy_restriction": "None: all endpoint inequalities checked by final certificate"
+    },
+    "actual_values": {
+      "__array__": "root/competition/actual_values"
+    },
+    "actual_value_diagnostics": {
+      "residuals": {
+        "__array__": "root/competition/actual_value_diagnostics/residuals"
+      },
+      "iterations": 176,
+      "method": "checked BiCGSTAB",
+      "krylov_callback_iterations": [
+        162,
+        176
+      ],
+      "krylov_status": [
+        0,
+        0
+      ]
+    },
+    "attempts": [
+      {
+        "initialization": "independent sparse signed-law proposal with full positive certificate",
+        "verified": true,
+        "diagnostics": {
+          "verified": true,
+          "bellman_residual": 1.778777662864878e-14,
+          "policy_evaluation_residual": 7.105427357601002e-15,
+          "conditional_regret": 1.4502858514732005e-13,
+          "complementarity_residual": 1.0964562591198046e-12,
+          "mixed_indifference_residual": 1.0964562591198046e-12,
+          "best_response_gain_upper_bound": 4.8071991759740555e-12,
+          "best_response_numerical_error_bound": 4.807088153671593e-12,
+          "iterations": 5
+        },
+        "search": {
+          "method": "Sparse jump-stationarity active-set proposals; full unchanged positive e.evaluate certificate; analytic-Jacobian positive-residual Newton polish if needed",
+          "source": "provenance/sparse_face_refine097_n201.py",
+          "exploratory_evaluations": 7,
+          "fresh_certifications": 1,
+          "exhaustive": false,
+          "unique": false,
+          "policy_restriction": "None: all endpoint inequalities checked by final certificate"
+        }
+      }
+    ]
+  },
+  "demand_audit": {
+    "verified": true,
+    "partition_max_error": 1.7763568394002505e-15,
+    "diagonal_max_error": 1.1102230246251565e-16,
+    "monopoly_dominance_violation": 0.0,
+    "order_doubling_max_error": 4.8723025614094695e-11,
+    "adaptive_max_error": 6.217248937900877e-15,
+    "probes": [
+      {
+        "i": 0,
+        "j": 0,
+        "direct": 4.619945108225683e-11,
+        "matrix": 4.619945108225684e-11,
+        "absolute_error": 1.2924697071141057e-26
+      },
+      {
+        "i": 0,
+        "j": 50,
+        "direct": 4.6143257372228046e-11,
+        "matrix": 4.6143257372228046e-11,
+        "absolute_error": 0.0
+      },
+      {
+        "i": 0,
+        "j": 100,
+        "direct": 2.610721232560768e-11,
+        "matrix": 2.610721232560703e-11,
+        "absolute_error": 6.494660278248381e-25
+      },
+      {
+        "i": 0,
+        "j": 150,
+        "direct": 1.6414526960367022e-13,
+        "matrix": 1.6414526960365272e-13,
+        "absolute_error": 1.7493779434181158e-26
+      },
+      {
+        "i": 0,
+        "j": 200,
+        "direct": 1.219110985605596e-20,
+        "matrix": 1.2191109856053709e-20,
+        "absolute_error": 2.250930622502582e-33
+      },
+      {
+        "i": 50,
+        "j": 0,
+        "direct": 0.0018781654076477504,
+        "matrix": 0.0018781654076477387,
+        "absolute_error": 1.1709383462843448e-17
+      },
+      {
+        "i": 50,
+        "j": 50,
+        "direct": 0.0018764016550290286,
+        "matrix": 0.0018764016550290156,
+        "absolute_error": 1.3010426069826053e-17
+      },
+      {
+        "i": 50,
+        "j": 100,
+        "direct": 0.001146781728098678,
+        "matrix": 0.0011467817280990996,
+        "absolute_error": 4.215378046623641e-16
+      },
+      {
+        "i": 50,
+        "j": 150,
+        "direct": 1.1944386415787398e-05,
+        "matrix": 1.1944386415795694e-05,
+        "absolute_error": 8.295840685408618e-18
+      },
+      {
+        "i": 50,
+        "j": 200,
+        "direct": 4.721527249966999e-12,
+        "matrix": 4.721527249971075e-12,
+        "absolute_error": 4.076126338811111e-24
+      },
+      {
+        "i": 100,
+        "j": 0,
+        "direct": 0.49999999999699124,
+        "matrix": 0.4999999999969925,
+        "absolute_error": 1.27675647831893e-15
+      },
+      {
+        "i": 100,
+        "j": 50,
+        "direct": 0.49979230097573957,
+        "matrix": 0.49979230097574,
+        "absolute_error": 4.440892098500626e-16
+      },
+      {
+        "i": 100,
+        "j": 100,
+        "direct": 0.37499999999999917,
+        "matrix": 0.375,
+        "absolute_error": 8.326672684688674e-16
+      },
+      {
+        "i": 100,
+        "j": 150,
+        "direct": 0.018386429919589532,
+        "matrix": 0.018386429919585882,
+        "absolute_error": 3.649858193455202e-15
+      },
+      {
+        "i": 100,
+        "j": 200,
+        "direct": 2.60834257855514e-07,
+        "matrix": 2.608342578554612e-07,
+        "absolute_error": 5.278074052578359e-20
+      },
+      {
+        "i": 150,
+        "j": 0,
+        "direct": 0.9981218345922507,
+        "matrix": 0.9981218345922445,
+        "absolute_error": 6.217248937900877e-15
+      },
+      {
+        "i": 150,
+        "j": 50,
+        "direct": 0.9981134177112104,
+        "matrix": 0.9981134177112044,
+        "absolute_error": 5.995204332975845e-15
+      },
+      {
+        "i": 150,
+        "j": 100,
+        "direct": 0.9806744873765773,
+        "matrix": 0.9806744873765751,
+        "absolute_error": 2.1094237467877974e-15
+      },
+      {
+        "i": 150,
+        "j": 150,
+        "direct": 0.49999823624735434,
+        "matrix": 0.49999823624735074,
+        "absolute_error": 3.608224830031759e-15
+      },
+      {
+        "i": 150,
+        "j": 200,
+        "direct": 0.0008074294597390742,
+        "matrix": 0.0008074294597392663,
+        "absolute_error": 1.9212062496443139e-16
+      },
+      {
+        "i": 200,
+        "j": 0,
+        "direct": 0.9999999999537992,
+        "matrix": 0.9999999999538005,
+        "absolute_error": 1.3322676295501878e-15
+      },
+      {
+        "i": 200,
+        "j": 50,
+        "direct": 0.9999999999491642,
+        "matrix": 0.9999999999491658,
+        "absolute_error": 1.5543122344752192e-15
+      },
+      {
+        "i": 200,
+        "j": 100,
+        "direct": 0.999999739142641,
+        "matrix": 0.9999997391426425,
+        "absolute_error": 1.5543122344752192e-15
+      },
+      {
+        "i": 200,
+        "j": 150,
+        "direct": 0.9991925705401717,
+        "matrix": 0.9991925705401741,
+        "absolute_error": 2.3314683517128287e-15
+      },
+      {
+        "i": 200,
+        "j": 200,
+        "direct": 0.4999999999999986,
+        "matrix": 0.5,
+        "absolute_error": 1.3877787807814457e-15
+      }
+    ],
+    "production": {
+      "order": 256,
+      "p0": 0.5,
+      "quadrature": "Truncated positive log-domain Gauss--Jacobi",
+      "raw_partition_error": 6.233638050190393e-10,
+      "raw_relative_selected_mass_error": 6.233638050190393e-10,
+      "raw_diagonal_error": 1.7628387638524146e-10,
+      "raw_monopoly_bound_violation": 3.709255125272648e-13,
+      "raw_min": 1.2191109856053709e-20,
+      "raw_max": 0.9999999999539471,
+      "order_doubling_max_abs": 5.925183677035761e-10,
+      "order_doubling_max_relative_tail": 1.0672410078831996e-09,
+      "positive_tail_underflow_entries": 0,
+      "min_monopoly_sale_probability": 4.619945108332404e-11,
+      "partition_error": 1.7763568394002505e-15,
+      "min_positive_demand": 1.2191109856053709e-20
+    },
+    "doubled": {
+      "order": 512,
+      "p0": 0.5,
+      "quadrature": "Truncated positive log-domain Gauss--Jacobi",
+      "raw_partition_error": 3.079980714915109e-11,
+      "raw_relative_selected_mass_error": 3.079980714915109e-11,
+      "raw_diagonal_error": 6.969980148596733e-12,
+      "raw_monopoly_bound_violation": 8.246736626915663e-13,
+      "raw_min": 1.2191109856025469e-20,
+      "raw_max": 0.9999999999535758,
+      "order_doubling_max_abs": 2.938360665893924e-11,
+      "order_doubling_max_relative_tail": 5.292559977360556e-11,
+      "positive_tail_underflow_entries": 0,
+      "min_monopoly_sale_probability": 4.619945108332404e-11,
+      "partition_error": 1.7763568394002505e-15,
+      "min_positive_demand": 1.2191109856025469e-20
+    }
+  },
+  "outcomes": [
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "verified": true,
+      "product2_conditional": 0.5152953069677068,
+      "product2_calendar": 0.4189731238041754,
+      "sale_rate": 0.8130738202714356,
+      "profit_calendar": 0.5210362549753587,
+      "value_initial": 21.869977771650294,
+      "perceived_value_initial": 21.869977771650294,
+      "outside_rate": 0.1869261797285644,
+      "industry_profit_calendar": 0.5210362549753587,
+      "sale_law_l1": 1.9664216214286633e-16,
+      "sale_weighted_reputation": 0.581882888135468,
+      "sale_weighted_quality": 0.5818828881354681,
+      "seller_sales_symmetry_l1": 0.0,
+      "mixed_nodes": 0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "verified": true,
+      "product2_conditional": 0.7299059853174996,
+      "product2_calendar": 0.3637060774670128,
+      "sale_rate": 0.498291676987421,
+      "profit_calendar": 0.25515344665784223,
+      "value_initial": 9.919182292765274,
+      "perceived_value_initial": 4.15683584261962,
+      "outside_rate": 0.0034166460251579926,
+      "industry_profit_calendar": 0.5103068933156845,
+      "sale_law_l1": 2.7040526089855685e-16,
+      "sale_weighted_reputation": 0.6784576933928749,
+      "sale_weighted_quality": 0.6784576933928749,
+      "seller_sales_symmetry_l1": 1.2278260681342918e-16,
+      "mixed_nodes": 1
+    }
+  ],
+  "policy_rows": [
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.0,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.005,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.01,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.015,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.02,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.025,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.03,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.035,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.04,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.045,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.05,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.055,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.06,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.065,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.07,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.075,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.08,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.085,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.09,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.095,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.1,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.105,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.11,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.115,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.12,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.125,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.13,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.135,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.14,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.145,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.15,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.155,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.16,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.165,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.17,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.17500000000000002,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.18,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.185,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.19,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.195,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.2,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.20500000000000002,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.21,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.215,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.22,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.225,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.23,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.23500000000000001,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.24,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.245,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.25,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.255,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.26,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.265,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.27,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.275,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.28,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.28500000000000003,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.29,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.295,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.3,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.305,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.31,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.315,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.32,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.325,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.33,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.335,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.34,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.34500000000000003,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.35000000000000003,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.355,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.36,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.365,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.37,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.375,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.38,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.385,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.39,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.395,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.4,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.405,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.41000000000000003,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.41500000000000004,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.42,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.425,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.43,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.435,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.44,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.445,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.45,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.455,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.46,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.465,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.47000000000000003,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.47500000000000003,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.48,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.485,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.49,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.495,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.5,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.505,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.51,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.515,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.52,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.525,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.53,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.535,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.54,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.545,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.55,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.555,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.56,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.5650000000000001,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.5700000000000001,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.5750000000000001,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.58,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.585,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.59,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.595,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.6,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.605,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.61,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.615,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.62,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.625,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.63,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.635,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.64,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.645,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.65,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.655,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.66,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.665,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.67,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.675,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.68,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.685,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.6900000000000001,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.6950000000000001,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.7000000000000001,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.705,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.71,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.715,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.72,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.725,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.73,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.735,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.74,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.745,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.75,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.755,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.76,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.765,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.77,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.775,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.78,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.785,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.79,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.795,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.8,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.805,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.81,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.8150000000000001,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.8200000000000001,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.8250000000000001,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.8300000000000001,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.835,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.84,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.845,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.85,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.855,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.86,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.865,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.87,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.875,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.88,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.885,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.89,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.895,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.9,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.905,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.91,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.915,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.92,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.925,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.93,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.935,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.9400000000000001,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.9450000000000001,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.9500000000000001,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.9550000000000001,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.96,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.965,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.97,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.975,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.98,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.985,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.99,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 0.995,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "monopoly",
+      "reputation": 1.0,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.0,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.005,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.01,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.015,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.02,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.025,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.03,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.035,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.04,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.045,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.05,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.055,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.06,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.065,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.07,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.075,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.08,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.085,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.09,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.095,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.1,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.105,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.11,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.115,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.12,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.125,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.13,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.135,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.14,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.145,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.15,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.155,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.16,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.165,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.17,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.17500000000000002,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.18,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.185,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.19,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.195,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.2,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.20500000000000002,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.21,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.215,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.22,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.225,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.23,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.23500000000000001,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.24,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.245,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.25,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.255,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.26,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.265,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.27,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.275,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.28,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.28500000000000003,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.29,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.295,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.3,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.305,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.31,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.315,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.32,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.325,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.33,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.335,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.34,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.34500000000000003,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.35000000000000003,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.355,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.36,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.365,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.37,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.375,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.38,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.385,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.39,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.395,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.4,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.405,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.41000000000000003,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.41500000000000004,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.42,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.425,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.43,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.435,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.44,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.445,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.45,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.455,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.46,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.465,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.47000000000000003,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.47500000000000003,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.48,
+      "product2_probability": 0.8677297120235843
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.485,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.49,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.495,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.5,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.505,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.51,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.515,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.52,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.525,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.53,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.535,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.54,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.545,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.55,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.555,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.56,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.5650000000000001,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.5700000000000001,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.5750000000000001,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.58,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.585,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.59,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.595,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.6,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.605,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.61,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.615,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.62,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.625,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.63,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.635,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.64,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.645,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.65,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.655,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.66,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.665,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.67,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.675,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.68,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.685,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.6900000000000001,
+      "product2_probability": 1.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.6950000000000001,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.7000000000000001,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.705,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.71,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.715,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.72,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.725,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.73,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.735,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.74,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.745,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.75,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.755,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.76,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.765,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.77,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.775,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.78,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.785,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.79,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.795,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.8,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.805,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.81,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.8150000000000001,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.8200000000000001,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.8250000000000001,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.8300000000000001,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.835,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.84,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.845,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.85,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.855,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.86,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.865,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.87,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.875,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.88,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.885,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.89,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.895,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.9,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.905,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.91,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.915,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.92,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.925,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.93,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.935,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.9400000000000001,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.9450000000000001,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.9500000000000001,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.9550000000000001,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.96,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.965,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.97,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.975,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.98,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.985,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.99,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 0.995,
+      "product2_probability": 0.0
+    },
+    {
+      "rho": 0.97,
+      "n": 201,
+      "p0": 0.5,
+      "model": "competition",
+      "reputation": 1.0,
+      "product2_probability": 0.0
+    }
+  ],
+  "elapsed_seconds": 55.39844604999962,
+  "refinement_metadata": {
+    "seed_grid": 151,
+    "seed_is_proposal_only": true,
+    "elapsed_seconds_scope": "Attachment stage only; positive search response times are recorded separately in competition.history",
+    "exploratory_search_response_seconds": 12.72752630499599,
+    "exploratory_stationary_law": "Sparse signed jump-chain solve; search proposal only",
+    "final_stationary_certificate": "Unchanged full positive GTH certificate through e.evaluate",
+    "certificate": "Fresh unchanged full e.evaluate in proposal; immutable source/config check; fresh demand/monopoly/actual values/flow checks at attachment",
+    "previous_completed_tag": "rho_0p97_n151",
+    "supplementary_search": "Sparse signed-law active-set candidates with fresh full positive certificate",
+    "search_log": "provenance/sparse_face_refine097_n201.log",
+    "prior_search_route": "Certified n151 policy used as the proposal seed; no n201 continuation run"
+  }
+}

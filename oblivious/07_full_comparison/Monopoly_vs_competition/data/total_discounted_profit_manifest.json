@@ -1,0 +1,497 @@
+{
+  "status": "complete",
+  "created_utc": "2026-10-20T20:48:48.030688+00:00",
+  "definition": "Expected sum from t=0 to infinity of gamma^t times calendar-period seller profit, before the initial selection; not multiplied by 1-gamma.",
+  "gamma": 0.98,
+  "initial_monopoly": 0.5,
+  "initial_competition": [
+    0.5,
+    0.5
+  ],
+  "rhos": [
+    0.6,
+    0.7,
+    0.8,
+    0.9,
+    0.95,
+    0.97,
+    0.99,
+    0.999
+  ],
+  "grid": 51,
+  "competition": "Value of saved OE p0 policy with actual two-seller demand; per seller, averaging equal initial A and B values. Policy evaluation only, not a full-state equilibrium solve.",
+  "monopoly": "Value of original forgetting optimal pure policy with fixed saved equilibrium p0(rho).",
+  "following_monopoly": "Value of saved following-monopoly (OE quality) policy under actual two-seller demand, per seller from (.5,.5). Its own benchmark equals rival quality conditional on rival sales; no new equilibrium or monopoly solve.",
+  "following_monopoly_native_value": "Stored separately as following_monopoly_perceived_bellman_value; the plotted curve uses actual two-seller competition, not fixed-benchmark perceived value.",
+  "native_oe_p0_value": "Saved separately as oe_p0_perceived_bellman_value; its fixed-benchmark environment is the monopoly environment, and it is not the plotted competition outcome.",
+  "method": "Discounted linear policy evaluation; validated by 2000-period forward expected discounted sums and a remaining-tail bound. No Monte Carlo or stationary averaging.",
+  "validation_periods": 2000,
+  "diagnostics": [
+    {
+      "rho": 0.6,
+      "verified": true,
+      "monopoly_bellman_residual": 7.105427357601002e-15,
+      "competition_bellman_residuals": [
+        4.618527782440651e-14,
+        4.973799150320701e-14
+      ],
+      "monopoly_residual_value_error_bound": 3.552713678800498e-13,
+      "competition_residual_value_error_bounds": [
+        2.3092638912203236e-12,
+        2.4868995751603486e-12
+      ],
+      "monopoly_optimality_gap": 0.0,
+      "original_forgetting_solver_max_value_gap": 2.1955770534987096e-12,
+      "native_oe_p0_solver_max_value_gap": 0.0,
+      "monopoly_forward_sum_error": 1.7763568394002505e-14,
+      "competition_forward_sum_error": 2.1316282072803006e-14,
+      "forward_sum_tail_bounds": {
+        "monopoly": [
+          1.226475095756505e-16
+        ],
+        "competition": [
+          1.3092638085529108e-16,
+          1.3092638085529108e-16
+        ]
+      },
+      "full_state_seller_symmetry_error": 8.881784197001252e-14,
+      "transition_row_sum_error": 2.220446049250313e-16,
+      "competition_evaluation_method": "checked BiCGSTAB",
+      "following_monopoly": {
+        "bellman_residuals": [
+          6.039613253960852e-14,
+          6.039613253960852e-14
+        ],
+        "residual_value_error_bounds": [
+          3.019806626980423e-12,
+          3.019806626980423e-12
+        ],
+        "forward_sum_error": 1.0658141036401503e-14,
+        "forward_sum_tail_bounds": [
+          1.3092638085529108e-16,
+          1.3092638085529108e-16
+        ],
+        "full_state_seller_symmetry_error": 1.1013412404281553e-13,
+        "transition_row_sum_error": 2.220446049250313e-16,
+        "quality_equilibrium_consistency_error": 1.1102230246251565e-16,
+        "evaluation_method": "checked BiCGSTAB"
+      }
+    },
+    {
+      "rho": 0.7,
+      "verified": true,
+      "monopoly_bellman_residual": 3.552713678800501e-15,
+      "competition_bellman_residuals": [
+        4.263256414560601e-14,
+        4.263256414560601e-14
+      ],
+      "monopoly_residual_value_error_bound": 1.776356839400249e-13,
+      "competition_residual_value_error_bounds": [
+        2.1316282072802985e-12,
+        2.1316282072802985e-12
+      ],
+      "monopoly_optimality_gap": 0.0,
+      "original_forgetting_solver_max_value_gap": 2.263078613395919e-12,
+      "native_oe_p0_solver_max_value_gap": 8.881784197001252e-15,
+      "monopoly_forward_sum_error": 5.5067062021407764e-14,
+      "competition_forward_sum_error": 1.5987211554602254e-14,
+      "forward_sum_tail_bounds": {
+        "monopoly": [
+          1.2601662601335944e-16
+        ],
+        "competition": [
+          1.3328080749530405e-16,
+          1.3328080749530405e-16
+        ]
+      },
+      "full_state_seller_symmetry_error": 4.618527782440651e-14,
+      "transition_row_sum_error": 3.3306690738754696e-16,
+      "competition_evaluation_method": "checked BiCGSTAB",
+      "following_monopoly": {
+        "bellman_residuals": [
+          4.618527782440651e-14,
+          2.842170943040401e-14
+        ],
+        "residual_value_error_bounds": [
+          2.3092638912203236e-12,
+          1.4210854715201992e-12
+        ],
+        "forward_sum_error": 2.6645352591003757e-14,
+        "forward_sum_tail_bounds": [
+          1.3328080749530405e-16,
+          1.3328080749530405e-16
+        ],
+        "full_state_seller_symmetry_error": 4.263256414560601e-14,
+        "transition_row_sum_error": 3.3306690738754696e-16,
+        "quality_equilibrium_consistency_error": 1.1102230246251565e-16,
+        "evaluation_method": "checked BiCGSTAB"
+      }
+    },
+    {
+      "rho": 0.8,
+      "verified": true,
+      "monopoly_bellman_residual": 3.552713678800501e-15,
+      "competition_bellman_residuals": [
+        5.3290705182007514e-14,
+        6.750155989720952e-14
+      ],
+      "monopoly_residual_value_error_bound": 1.776356839400249e-13,
+      "competition_residual_value_error_bounds": [
+        2.6645352591003733e-12,
+        3.375077994860473e-12
+      ],
+      "monopoly_optimality_gap": 0.0,
+      "original_forgetting_solver_max_value_gap": 2.4922286456785514e-12,
+      "native_oe_p0_solver_max_value_gap": 0.0,
+      "monopoly_forward_sum_error": 6.750155989720952e-14,
+      "competition_forward_sum_error": 4.263256414560601e-14,
+      "forward_sum_tail_bounds": {
+        "monopoly": [
+          1.2892782437947077e-16
+        ],
+        "competition": [
+          1.343924045538232e-16,
+          1.343924045538232e-16
+        ]
+      },
+      "full_state_seller_symmetry_error": 2.877698079828406e-13,
+      "transition_row_sum_error": 2.220446049250313e-16,
+      "competition_evaluation_method": "checked BiCGSTAB",
+      "following_monopoly": {
+        "bellman_residuals": [
+          7.815970093361102e-14,
+          6.750155989720952e-14
+        ],
+        "residual_value_error_bounds": [
+          3.907985046680548e-12,
+          3.375077994860473e-12
+        ],
+        "forward_sum_error": 3.730349362740526e-14,
+        "forward_sum_tail_bounds": [
+          1.343924045538232e-16,
+          1.343924045538232e-16
+        ],
+        "full_state_seller_symmetry_error": 1.4921397450962104e-13,
+        "transition_row_sum_error": 2.220446049250313e-16,
+        "quality_equilibrium_consistency_error": 1.1102230246251565e-16,
+        "evaluation_method": "checked BiCGSTAB"
+      }
+    },
+    {
+      "rho": 0.9,
+      "verified": true,
+      "monopoly_bellman_residual": 3.552713678800501e-15,
+      "competition_bellman_residuals": [
+        7.105427357601002e-14,
+        7.460698725481052e-14
+      ],
+      "monopoly_residual_value_error_bound": 1.776356839400249e-13,
+      "competition_residual_value_error_bounds": [
+        3.5527136788004977e-12,
+        3.730349362740523e-12
+      ],
+      "monopoly_optimality_gap": 0.0,
+      "original_forgetting_solver_max_value_gap": 2.533084852984757e-12,
+      "native_oe_p0_solver_max_value_gap": 0.0,
+      "monopoly_forward_sum_error": 1.509903313490213e-14,
+      "competition_forward_sum_error": 2.1316282072803006e-14,
+      "forward_sum_tail_bounds": {
+        "monopoly": [
+          1.32903491577474e-16
+        ],
+        "competition": [
+          1.3453781774189238e-16,
+          1.3453781774189238e-16
+        ]
+      },
+      "full_state_seller_symmetry_error": 1.7053025658242404e-13,
+      "transition_row_sum_error": 3.3306690738754696e-16,
+      "competition_evaluation_method": "checked BiCGSTAB",
+      "following_monopoly": {
+        "bellman_residuals": [
+          8.881784197001252e-14,
+          8.526512829121202e-14
+        ],
+        "residual_value_error_bounds": [
+          4.440892098500622e-12,
+          4.263256414560597e-12
+        ],
+        "forward_sum_error": 4.440892098500626e-14,
+        "forward_sum_tail_bounds": [
+          1.3453781774189238e-16,
+          1.3453781774189238e-16
+        ],
+        "full_state_seller_symmetry_error": 1.0658141036401503e-13,
+        "transition_row_sum_error": 2.220446049250313e-16,
+        "quality_equilibrium_consistency_error": 6.661338147750939e-16,
+        "evaluation_method": "checked BiCGSTAB"
+      }
+    },
+    {
+      "rho": 0.95,
+      "verified": true,
+      "monopoly_bellman_residual": 3.552713678800501e-15,
+      "competition_bellman_residuals": [
+        8.526512829121202e-14,
+        8.526512829121202e-14
+      ],
+      "monopoly_residual_value_error_bound": 1.776356839400249e-13,
+      "competition_residual_value_error_bounds": [
+        4.263256414560597e-12,
+        4.263256414560597e-12
+      ],
+      "monopoly_optimality_gap": 0.0,
+      "original_forgetting_solver_max_value_gap": 2.9416469260468148e-12,
+      "native_oe_p0_solver_max_value_gap": 1.4210854715202004e-14,
+      "monopoly_forward_sum_error": 2.220446049250313e-15,
+      "competition_forward_sum_error": 6.039613253960852e-14,
+      "forward_sum_tail_bounds": {
+        "monopoly": [
+          1.344965228101594e-16
+        ],
+        "competition": [
+          1.3453800845883196e-16,
+          1.3453800845883196e-16
+        ]
+      },
+      "full_state_seller_symmetry_error": 2.1671553440683056e-13,
+      "transition_row_sum_error": 3.3306690738754696e-16,
+      "competition_evaluation_method": "checked BiCGSTAB",
+      "following_monopoly": {
+        "bellman_residuals": [
+          9.947598300641403e-14,
+          9.947598300641403e-14
+        ],
+        "residual_value_error_bounds": [
+          4.973799150320697e-12,
+          4.973799150320697e-12
+        ],
+        "forward_sum_error": 1.7763568394002505e-14,
+        "forward_sum_tail_bounds": [
+          1.3453800845883196e-16,
+          1.3453800845883196e-16
+        ],
+        "full_state_seller_symmetry_error": 4.973799150320701e-13,
+        "transition_row_sum_error": 3.3306690738754696e-16,
+        "quality_equilibrium_consistency_error": 3.275157922644212e-14,
+        "evaluation_method": "checked BiCGSTAB"
+      }
+    },
+    {
+      "rho": 0.97,
+      "verified": true,
+      "monopoly_bellman_residual": 7.105427357601002e-15,
+      "competition_bellman_residuals": [
+        1.4566126083082054e-13,
+        1.1723955140041653e-13
+      ],
+      "monopoly_residual_value_error_bound": 3.552713678800498e-13,
+      "competition_residual_value_error_bounds": [
+        7.28306304154102e-12,
+        5.861977570020822e-12
+      ],
+      "monopoly_optimality_gap": 3.885780586188048e-15,
+      "original_forgetting_solver_max_value_gap": 3.254285729781259e-12,
+      "native_oe_p0_solver_max_value_gap": 3.197442310920451e-14,
+      "monopoly_forward_sum_error": 8.43769498715119e-15,
+      "competition_forward_sum_error": 4.263256414560601e-14,
+      "forward_sum_tail_bounds": {
+        "monopoly": [
+          1.3453797927459337e-16
+        ],
+        "competition": [
+          1.345380084590819e-16,
+          1.345380084590819e-16
+        ]
+      },
+      "full_state_seller_symmetry_error": 3.694822225952521e-13,
+      "transition_row_sum_error": 3.3306690738754696e-16,
+      "competition_evaluation_method": "checked BiCGSTAB",
+      "following_monopoly": {
+        "bellman_residuals": [
+          5.684341886080802e-14,
+          6.394884621840902e-14
+        ],
+        "residual_value_error_bounds": [
+          2.8421709430403983e-12,
+          3.197442310920448e-12
+        ],
+        "forward_sum_error": 1.4210854715202004e-13,
+        "forward_sum_tail_bounds": [
+          1.345380084590819e-16,
+          1.345380084590819e-16
+        ],
+        "full_state_seller_symmetry_error": 1.7763568394002505e-13,
+        "transition_row_sum_error": 3.3306690738754696e-16,
+        "quality_equilibrium_consistency_error": 1.942890293094024e-14,
+        "evaluation_method": "checked BiCGSTAB"
+      }
+    },
+    {
+      "rho": 0.99,
+      "verified": true,
+      "monopoly_bellman_residual": 7.105427357601002e-15,
+      "competition_bellman_residuals": [
+        3.552713678800501e-14,
+        3.552713678800501e-14
+      ],
+      "monopoly_residual_value_error_bound": 3.552713678800498e-13,
+      "competition_residual_value_error_bounds": [
+        1.7763568394002488e-12,
+        1.7763568394002488e-12
+      ],
+      "monopoly_optimality_gap": 2.3314683517128287e-15,
+      "original_forgetting_solver_max_value_gap": 3.872457909892546e-12,
+      "native_oe_p0_solver_max_value_gap": 2.1316282072803006e-14,
+      "monopoly_forward_sum_error": 1.4921397450962104e-13,
+      "competition_forward_sum_error": 7.105427357601002e-14,
+      "forward_sum_tail_bounds": {
+        "monopoly": [
+          1.345380084590819e-16
+        ],
+        "competition": [
+          1.345380084590819e-16,
+          1.345380084590819e-16
+        ]
+      },
+      "full_state_seller_symmetry_error": 2.5579538487363607e-13,
+      "transition_row_sum_error": 3.3306690738754696e-16,
+      "competition_evaluation_method": "checked BiCGSTAB",
+      "following_monopoly": {
+        "bellman_residuals": [
+          3.552713678800501e-14,
+          3.552713678800501e-14
+        ],
+        "residual_value_error_bounds": [
+          1.7763568394002488e-12,
+          1.7763568394002488e-12
+        ],
+        "forward_sum_error": 1.5276668818842154e-13,
+        "forward_sum_tail_bounds": [
+          1.345380084590819e-16,
+          1.345380084590819e-16
+        ],
+        "full_state_seller_symmetry_error": 2.984279490192421e-13,
+        "transition_row_sum_error": 3.3306690738754696e-16,
+        "quality_equilibrium_consistency_error": 0.0,
+        "evaluation_method": "checked BiCGSTAB"
+      }
+    },
+    {
+      "rho": 0.999,
+      "verified": true,
+      "monopoly_bellman_residual": 1.4210854715202004e-14,
+      "competition_bellman_residuals": [
+        2.1316282072803006e-14,
+        2.1316282072803006e-14
+      ],
+      "monopoly_residual_value_error_bound": 7.105427357600996e-13,
+      "competition_residual_value_error_bounds": [
+        1.0658141036401493e-12,
+        1.0658141036401493e-12
+      ],
+      "monopoly_optimality_gap": 0.0,
+      "original_forgetting_solver_max_value_gap": 4.739320047519868e-12,
+      "native_oe_p0_solver_max_value_gap": 0.0,
+      "monopoly_forward_sum_error": 1.4921397450962104e-13,
+      "competition_forward_sum_error": 1.1368683772161603e-13,
+      "forward_sum_tail_bounds": {
+        "monopoly": [
+          1.345380084590819e-16
+        ],
+        "competition": [
+          1.345380084590819e-16,
+          1.345380084590819e-16
+        ]
+      },
+      "full_state_seller_symmetry_error": 2.4158453015843406e-13,
+      "transition_row_sum_error": 3.3306690738754696e-16,
+      "competition_evaluation_method": "checked BiCGSTAB",
+      "following_monopoly": {
+        "bellman_residuals": [
+          2.1316282072803006e-14,
+          2.1316282072803006e-14
+        ],
+        "residual_value_error_bounds": [
+          1.0658141036401493e-12,
+          1.0658141036401493e-12
+        ],
+        "forward_sum_error": 1.1368683772161603e-13,
+        "forward_sum_tail_bounds": [
+          1.345380084590819e-16,
+          1.345380084590819e-16
+        ],
+        "full_state_seller_symmetry_error": 2.4158453015843406e-13,
+        "transition_row_sum_error": 3.3306690738754696e-16,
+        "quality_equilibrium_consistency_error": 0.0,
+        "evaluation_method": "checked BiCGSTAB"
+      }
+    }
+  ],
+  "scope": "Finite 51-point grid and saved OE p0 and OE quality equilibria; residual bounds exclude grid, demand quadrature, and equilibrium-benchmark approximation error.",
+  "input_files_sha256": {
+    "Full comparison/Monopoly_vs_competition/data/comparison.json": "486c143ab73e036d47739ac02050f8f77024028619e55e55c0879e107943a56f",
+    "Full comparison/Monopoly_vs_competition/data/manifest.json": "ba3d6b72dbbafce4e922a1f73528ca75d531656e53c42f6a97a98a4da76945a1",
+    "following_monopoly/data/quality_sales_n51/manifest.json": "5f29ebcc8bfc9470547cb5442d45616682a0e169a481c9ee9c4c1212295504cb",
+    "Full comparison/Monopoly_vs_competition/data/arrays/rho_0p6_n051.json": "3e0f7052a19aae6fc0ce1e721fbb548661fb898f47630211102cceb30dd3b48c",
+    "Full comparison/Monopoly_vs_competition/data/arrays/rho_0p6_n051.npz": "6f002303389f27ac874169bf869ecd097791af836c929f78bd69f99695eb0f97",
+    "endogenous_p0/data/rho_forgetting_mixed/arrays/rho_0p6_n051.json": "a4bfd0212316495db43699c1bc7b8d1c20b384f60a8a58249fd3d79ad38a5b93",
+    "endogenous_p0/data/rho_forgetting_mixed/arrays/rho_0p6_n051.npz": "0eb77b92c9d9c164ee6319ebd47c874cfe793ad19dddbc3f6d13f87f5964a6d1",
+    "following_monopoly/data/quality_sales_n51/arrays/rho_0p6_n051.json": "7c1726f4697657a3c77792c1d3e8132379c3d7b3dcd7bfe481ff8f943ba90f99",
+    "following_monopoly/data/quality_sales_n51/arrays/rho_0p6_n051.npz": "abe8cd082552947ad7a8153f3820cc7b1a64475c1cc5adcd93e290b29e3b969e",
+    "Full comparison/Monopoly_vs_competition/data/arrays/rho_0p7_n051.json": "0b9040fba49cc7fa9e2798408156951d846eca20b74703fe0a9afe01d2cf2a5b",
+    "Full comparison/Monopoly_vs_competition/data/arrays/rho_0p7_n051.npz": "efcd632bdc581b5f2ffb55e6e41ed3a0589bc2dcd7c38f9422d3b137c7124daa",
+    "endogenous_p0/data/rho_forgetting_mixed/arrays/rho_0p7_n051.json": "1b9116ee3d872ff2a7357c84f5c1914ecd18b2329cfcff7e2225416935f85fbb",
+    "endogenous_p0/data/rho_forgetting_mixed/arrays/rho_0p7_n051.npz": "de78deb1fa89a8dc6ecf76998ba125e9a76dcdfe51f38dba813fc870f015509e",
+    "following_monopoly/data/quality_sales_n51/arrays/rho_0p7_n051.json": "dad29b19d3c29cce43c6767ac9bca2a40ce3d2e8bf4ce7d6818f93987afdb88e",
+    "following_monopoly/data/quality_sales_n51/arrays/rho_0p7_n051.npz": "f9d9603797fd679070da2191c01e1abf1cc128cf42a5fde5c4012264aa1ea28f",
+    "Full comparison/Monopoly_vs_competition/data/arrays/rho_0p8_n051.json": "d79211fef3a00c0fa5b719d826b359d85f0963176ee88cfd2a99890dc37d6d1a",
+    "Full comparison/Monopoly_vs_competition/data/arrays/rho_0p8_n051.npz": "0994d7444bcef0acd3c1a4079ef6ae6cb41ba64c576461faf0037530c3731eb4",
+    "endogenous_p0/data/rho_forgetting_mixed/arrays/rho_0p8_n051.json": "37b09dc9901855b5776b5d877ee0c613210e865dd4735bff01c2a0346a19bbae",
+    "endogenous_p0/data/rho_forgetting_mixed/arrays/rho_0p8_n051.npz": "44d9ea8010ea64bebfdcddcb370ce2183adac029c241d2b5a7247ea751ba68ea",
+    "following_monopoly/data/quality_sales_n51/arrays/rho_0p8_n051.json": "f67da4c8818ffc0b197e4c312a34f0f0476e42948afd945bb3321da6f6739c0f",
+    "following_monopoly/data/quality_sales_n51/arrays/rho_0p8_n051.npz": "cea2185850a4eec0f336460f69dbbdfda2aaecd785854260cafac81180f0009f",
+    "Full comparison/Monopoly_vs_competition/data/arrays/rho_0p9_n051.json": "319ad39172c9204f2229fe1cae2a8d3b7aff89afcfdc712f4c2e3708e1edb1ef",
+    "Full comparison/Monopoly_vs_competition/data/arrays/rho_0p9_n051.npz": "766e956a197522f1b70d7f5f369ef777e32c7dd1e43c954a95bff4aa25b5fa2d",
+    "endogenous_p0/data/rho_forgetting_mixed/arrays/rho_0p9_n051.json": "5776c124a59b66234a0691489199d5c192483879fc3e45a90c3cfec42cab15e0",
+    "endogenous_p0/data/rho_forgetting_mixed/arrays/rho_0p9_n051.npz": "64cb969d01a3b06bec39a4c258489bb7f9c1541addf8f7cb043debfa2b11e0f0",
+    "following_monopoly/data/quality_sales_n51/arrays/rho_0p9_n051.json": "2ef6ad834c43749c41a2eb08a44006ecd4ee8f2b2568b61eedd089ea01829169",
+    "following_monopoly/data/quality_sales_n51/arrays/rho_0p9_n051.npz": "878060c8c9d360e71fd8e408ef58ec7008af952d5ba35d0849e366ee097d2758",
+    "Full comparison/Monopoly_vs_competition/data/arrays/rho_0p95_n051.json": "999f37ec3405da8afd5ea9538ce729058025a8a89c34ebacd29e8a38f4ec2c59",
+    "Full comparison/Monopoly_vs_competition/data/arrays/rho_0p95_n051.npz": "7d7654dfcee5f35af4c52e5aec80938806e205dabb31ce08d5fbc0d206783fdd",
+    "endogenous_p0/data/rho_forgetting_mixed/arrays/rho_0p95_n051.json": "6a263014531a0492742fcd49ff15d1953266c94ddb5f3f8a97ed91ac24173292",
+    "endogenous_p0/data/rho_forgetting_mixed/arrays/rho_0p95_n051.npz": "8499f6983a423279af5995d5350682f063418ff6ce1a87ddf0a02b056660095c",
+    "following_monopoly/data/quality_sales_n51/arrays/rho_0p95_n051.json": "c06a009aea51cffafb4320315e45d6142233c76f54259c69fddfe40a392ccdcd",
+    "following_monopoly/data/quality_sales_n51/arrays/rho_0p95_n051.npz": "bae642b0f2f2f351b6f7cb5d0a25e469d2a17f70899dde72e0b572cd10245673",
+    "Full comparison/Monopoly_vs_competition/data/arrays/rho_0p97_n051.json": "6406e545da92445057aceb52dd63463378d7c4ed39e365a1d874b83e3448ed14",
+    "Full comparison/Monopoly_vs_competition/data/arrays/rho_0p97_n051.npz": "4e5acd6157b43193b95881591d9fbfc630ffc2cdfd53371b046591c880b21f8f",
+    "endogenous_p0/data/rho_forgetting_mixed/arrays/rho_0p97_n051.json": "175172c56d8918e37f1bb2c4d2974016230247a3222373e93baaa4aa31a13504",
+    "endogenous_p0/data/rho_forgetting_mixed/arrays/rho_0p97_n051.npz": "fe298655ce63b0aac1880db974ed62e71491f04b8999d366b58a34e037c519cf",
+    "following_monopoly/data/quality_sales_n51/arrays/rho_0p97_n051.json": "7a00183bfe6d00b14ae7e00be3b180b1da030d1c060ff1a423762a428d326f5d",
+    "following_monopoly/data/quality_sales_n51/arrays/rho_0p97_n051.npz": "2d490b63681b48c1c6cccdfdfc48eee6de693e466290cb4ed2be6115888edcb1",
+    "Full comparison/Monopoly_vs_competition/data/arrays/rho_0p99_n051.json": "41459e731799d22ef98538b4d28d2fe1d9037207ae429e091cbab286c6d86e71",
+    "Full comparison/Monopoly_vs_competition/data/arrays/rho_0p99_n051.npz": "5674bccb704831617e6142f8eff26d61b141d97053b009deda39b011c7958263",
+    "endogenous_p0/data/rho_forgetting_mixed/arrays/rho_0p99_n051.json": "cf0f63b1349d029792c7ed0e6c8e69af5e8883c6d729463caaf1588de8aef99f",
+    "endogenous_p0/data/rho_forgetting_mixed/arrays/rho_0p99_n051.npz": "0a456a1727a4002d5897ae84f7ed17ec44644e9bd9f206f9aaddfad23318807e",
+    "following_monopoly/data/quality_sales_n51/arrays/rho_0p99_n051.json": "a1fbe166a67380ef4ac19b7212a7a1c536d3f36233ef76038d393fac730f59da",
+    "following_monopoly/data/quality_sales_n51/arrays/rho_0p99_n051.npz": "7a071549a9fc45448a1415edf2cf01fdd515b0b2c42a1ee50e8876bd27e85976",
+    "Full comparison/Monopoly_vs_competition/data/arrays/rho_0p999_n051.json": "1ce7c5a882f51fb42b81cb40225bfcf71def8083a5f19158412f8e9557e035a9",
+    "Full comparison/Monopoly_vs_competition/data/arrays/rho_0p999_n051.npz": "828b9875733c44dd21dc5deadaa025567d82fc97fd5150b70b180e8d60d45a1b",
+    "endogenous_p0/data/rho_forgetting_mixed/arrays/rho_0p999_n051.json": "5cb7704608a12a9977733f5da247a4da0edbfcac01def229a99ac0b0c8603454",
+    "endogenous_p0/data/rho_forgetting_mixed/arrays/rho_0p999_n051.npz": "b910aafd75f7a57d831cdaf793262455d0ef559fe78484f8ce672afbf060dd99",
+    "following_monopoly/data/quality_sales_n51/arrays/rho_0p999_n051.json": "b5345f05b70fbc79151cd79637b8762bfe543901c6f1076d45a5307e66b45c67",
+    "following_monopoly/data/quality_sales_n51/arrays/rho_0p999_n051.npz": "27ef967972434ff453f619f056edd8a3465c9e1735fb6747afa41c8e87e55341",
+    "Full comparison/Monopoly_vs_competition/code/plot_total_profit.py": "a5c43762a53f13f2f825cd3372d94e1054e536457d401c655a12fa3c99e78061",
+    "Full comparison/Monopoly_vs_competition/code/plot_comparison.py": "2a187d0770825e6db61c561f0335b205124c31d83cbc163890571865fcc97856",
+    "endogenous_p0/code/game.py": "af7679fa58bd591f605d901de8e3f2c4044a73f476ec4339d9c5fe9e00fdb292",
+    "endogenous_p0/code/policy.py": "b77a2e2ea39b9250f6c3d99477ab09282775c1616bbfe8402d4ecfa88ad235be",
+    "endogenous_p0/code/primitives.py": "e8a07e00220ab000c945d5a37ee562b9283bff4ceca8d525600e935e68334e11",
+    "endogenous_p0/code/run_experiment.py": "33700079f244597b3a17ddfea0a1d17bb534903c87c78b0b1e691c99372e8bb6"
+  },
+  "output_files_sha256": {
+    "data/total_discounted_profit.csv": "be0258239d942dab1cd4e8e77ec48c8ef0271f86d8192ebb164796b6e59727c1",
+    "data/total_discounted_profit_arrays.npz": "5b58c9a1e0c136078d0176ec387b05917d841cb7eeeb126ae9b7b6b358647b21",
+    "Figures/04_total_discounted_profit_across_rho.png": "72f89ec3a770a53872927087d9fa6ba2a87cfde0641adcda9a06704b8b114778",
+    "Figures/04_total_discounted_profit_across_rho.pdf": "2b91dc958ef59aa60a2589234610fae909d20920ed7af0826b48a656d1d8af09"
+  }
+}

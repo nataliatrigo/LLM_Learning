@@ -1,0 +1,93 @@
+COMPARACIÓN ECONÓMICA: OE distribution Y OE p0
+
+Experimento implementado y ejecutado exclusivamente con las dos políticas guardadas verificadas.
+Parámetros: R=1, c1=0.05, c2=0.65, p1=0.35, p2=0.80, gamma=0.98, rho=0.95.
+Ambos vendedores comienzan en la reputación madura 0.5. La selección siempre usa sus dos sorteos Beta reales.
+No se sobrescribieron soluciones de equilibrio ni se calcularon nuevos equilibrios.
+
+CONFIGURACIÓN
+Principal: 20 réplicas pareadas; 100.000 observaciones después de 10.000 períodos de descarte.
+Tres modos: grilla con interpolación estocástica, estados continuos con política del nodo más cercano,
+y estados continuos con interpolación lineal (que puede añadir mezcla entre nodos puros).
+Estabilidad: ventanas de 200.000 observaciones y/o 20.000 de descarte; grillas guardadas 21, 31 y 51.
+Validación adicional: grilla 51, 20 réplicas, 500.000 de descarte y 1.000.000 de observaciones.
+Las ejecuciones comparten los uniformes por réplica/período; sus horizontes no son experimentos independientes.
+Los IC usan réplicas independientes, nunca la suposición de observaciones independientes dentro de una trayectoria.
+Salvo indicación contraria, los números siguientes son de estados continuos con nodo más cercano y 51 puntos.
+
+1. DIFERENCIA ENTRE LAS POLÍTICAS
+La diferencia absoluta media de probabilidades de producto 2, uniforme en [0,1], es 14.4323 puntos porcentuales.
+Se conservan las probabilidades mixtas: no se convierten en acciones puras ni se impone una estructura de umbral.
+
+2. ESTADOS VISITADOS Y ESTADOS EN QUE OCURRE UNA COMPRA
+Desacuerdo condicionado a los estados de todas las compras:
+  Bajo OE distribution: 25.1139 (IC95% 24.9998, 25.228) puntos porcentuales.
+  Bajo p₀: 58.7703 (IC95% 58.5872, 58.9535) puntos porcentuales.
+Las políticas difieren en estados relevantes para las decisiones observadas. Cada medida usa las visitas de su propio perfil.
+
+3. USO DE PRODUCTO 2
+  OE distribution: 74.6207 (IC95% 74.5016, 74.7398)% de las compras.
+  p₀: 84.564 (IC95% 84.4724, 84.6556)% de las compras.
+p₀ genera mayor uso de producto 2. Las tablas separan frecuencia por compra del vendedor, por período y de mercado.
+
+4. BENEFICIOS
+Beneficio total de la industria por período:
+  OE distribution: 0.502276 (IC95% 0.501561, 0.50299).
+  p₀: 0.442616 (IC95% 0.442067, 0.443165).
+OE distribution genera mayor beneficio total; el producto 2 tiene mayor costo. Las diferencias temporales entre A y B
+no son ventajas intrínsecas de un vendedor: los parámetros, políticas e inicio son simétricos.
+La figura 6 y la tabla separan el beneficio descontado desde el estado inicial del promedio posterior al descarte.
+La cola omitida después de 1.000 períodos está acotada por 8.415e-8 por vendedor.
+
+5. RESULTADOS DEL CLIENTE
+  Éxito con OE distribution: 68.6118 (IC95% 68.5949, 68.6287)%.
+  Éxito con p₀: 73.0931 (IC95% 73.0669, 73.1193)%.
+p₀ mejora la tasa de éxito. El beneficio de los vendedores no se utiliza como medida del bienestar del cliente.
+
+6. DISTRIBUCIONES DE REPUTACIÓN
+Las CDF y leyes conjuntas difieren entre perfiles. Las tablas contienen medias, varianzas, correlación,
+Wasserstein y error máximo de CDF. Las comparaciones de estados continuos usan las observaciones sin redondear;
+solo los histogramas usan celdas de visualización. No se da por supuesta la estacionariedad de ventanas finitas.
+
+7. CONSISTENCIA DE OE distribution
+El residuo de consistencia de la marginal guardada es cero; el máximo residuo del kernel conjunto es 1.39e-17.
+En la validación discreta larga, el error de la media de B frente a la predicción es 1.51377e-05 (IC95% -0.000114804, 0.000145079).
+La distancia Wasserstein empírica de B a su marginal guardada es 0.000306316 (IC95% 0.000242141, 0.00037049).
+Las diferencias continuas frente a la ley discreta incluyen efectos de grilla y extensión; no son automáticamente errores del cierre.
+
+8. CONSISTENCIA DE p₀ Y MEZCLA LENTA
+p₀ guardado = 0.6804747936; residuo de la ecuación fija = 1.19e-14.
+En la ventana inicial, estados muy bajos y persistentes están escasamente representados. La propagación
+determinista del kernel, sin Monte Carlo, encuentra un sesgo inicial esperado de +0.004957 en el promedio posterior.
+Con 500.000 de descarte y un millón de observaciones, ese sesgo esperado baja a +0.0001261.
+En esa validación larga:
+  Promedio TS de B: 0.681146 (IC95% 0.667951, 0.694341).
+  Promedio posterior de B: 0.681144 (IC95% 0.667954, 0.694333).
+Ambos intervalos incluyen p₀. Esto es compatible con la condición escalar; no demuestra que toda la ley esté bien estimada.
+La media de A todavía tiene un error positivo cuyo intervalo excluye cero: 0.00928176 (IC95% 0.00269843, 0.0158651).
+Las colas raras siguen limitando la precisión de 20 réplicas. No se declara convergencia completa de las distribuciones.
+Los residuos estacionarios pequeños no garantizan mezcla rápida; los IC t pueden representar mal colas persistentes poco observadas.
+
+9. MAGNITUD ECONÓMICA E INCERTIDUMBRE
+Las diferencias pareadas de producto 2, beneficio total y éxito del cliente excluyen cero en los modos probados.
+En la simulación continua principal: p₀ aumenta producto 2 aproximadamente 9.94 puntos y éxito 4.48 puntos,
+mientras reduce el beneficio total por período aproximadamente 0.05966. Las conclusiones sobre flujos son
+mucho más precisas que las de distribución de reputaciones; los intervalos no eliminan sesgos del horizonte o de la grilla.
+
+10. ESTABILIDAD Y ALCANCE
+El signo de los contrastes económicos se mantiene al ampliar las ventanas, cambiar la extensión y usar las grillas guardadas.
+Las magnitudes dependen de la grilla: en continuo/nodo cercano, producto 2 pasa de 68.37% a 74.62% para OE distribution,
+y de 77.21% a 84.56% para p₀, al pasar de 21 a 51 puntos. No se ha demostrado convergencia a resoluciones más finas.
+La validación larga discreta no establece mezcla rápida de los procesos continuos.
+Reemplazar la distribución del rival por un promedio endógeno cambia decisiones y resultados relevantes.
+Este experimento mide esas diferencias; no determina cuál aproximación es más exacta frente a un equilibrio completo conocido.
+
+ARCHIVOS
+comparison_table.csv: comparación e intervalos por modelo y modo.
+research_summary.txt: informe detallado de las diez preguntas, con cifras adicionales.
+transient_validation.txt y .csv: sesgo del horizonte finito separado del error Monte Carlo.
+rare_state_diagnostics.json: frecuencias por réplica de reputaciones <=0.2.
+../rho095_n51_long_grid/: validación adicional de un millón de observaciones.
+../../figures/rho095_n51/: 10 figuras en PNG/PDF (01–07, 09, 11 y 14).
+README del experimento: instrucciones reproducibles y significado de todos los archivos.
+Verificación de implementación: 30 pruebas numéricas aprobadas y ejecución completa comprobada.

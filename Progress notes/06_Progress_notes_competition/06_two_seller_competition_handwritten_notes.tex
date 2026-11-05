@@ -1,0 +1,201 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\Pb}{\mathbb P}
+\DeclareMathOperator{\Beta}{Beta}
+\DeclareMathOperator{\BR}{BR}
+\allowdisplaybreaks[1]
+\title{Two-Seller Competition: Model and Extinction Questions}
+\author{Progress note --- transcription of handwritten notes}
+\date{October 7, 2026}
+
+\begin{document}
+\maketitle
+
+This note transcribes the three handwritten pages into English. The initial
+intuition and its subsequent qualification are presented in their original
+order.
+
+\section{Elements of the model}
+
+\begin{itemize}
+\item Two symmetric providers, indexed by $j\in\{A,B\}$.
+\item Two products, indexed by $i\in\{1,2\}$.
+\item Success probabilities: $0<p_1<p_2<1$.
+\item Costs: $c_1<c_2$.
+\item Revenue: $R>c_2$.
+\end{itemize}
+
+\paragraph{Customer beliefs.}
+The customer observes the state
+\[
+s=(S_A,F_A,S_B,F_B),
+\]
+where $S_j$ and $F_j$ count provider $j$'s successes and failures. Her
+beliefs are
+\begin{align}
+\theta_A\mid S_A,F_A&\sim\Beta(1+S_A,1+F_A),\\
+\theta_B\mid S_B,F_B&\sim\Beta(1+S_B,1+F_B).
+\end{align}
+For the first model, we assume that \emph{both sellers observe the full
+state $s$}.
+
+\paragraph{Customer choice.}
+The customer uses Thompson sampling (TS), drawing independently from the
+two belief distributions and choosing
+\begin{equation}
+y_t=
+\begin{cases}
+A,&\widetilde\theta_A>\widetilde\theta_B,\\
+B,&\widetilde\theta_B>\widetilde\theta_A.
+\end{cases}
+\end{equation}
+Thus the selection probabilities are
+\begin{equation}
+D_A(s)=\Pb(\widetilde\theta_A>\widetilde\theta_B\mid s),
+\qquad D_B(s)=1-D_A(s).
+\end{equation}
+Ties have probability zero under the continuous Beta distributions.
+
+\section{Timing, state transitions, and strategies}
+
+\paragraph{Timing.}
+\begin{enumerate}
+\item Everyone observes $s$.
+\item The customer chooses a seller using Thompson sampling.
+\item Only the selected provider chooses product $i$.
+\item The customer observes the outcome, but not the product.
+\item The selected provider's state is updated.
+\end{enumerate}
+
+\paragraph{State transitions.}
+Superscripts $s$ and $f$ denote success and failure, respectively:
+\begin{equation}
+\begin{aligned}
+T_A^s(s)&=(S_A+1,F_A,S_B,F_B),\\
+T_A^f(s)&=(S_A,F_A+1,S_B,F_B),\\
+T_B^s(s)&=(S_A,F_A,S_B+1,F_B),\\
+T_B^f(s)&=(S_A,F_A,S_B,F_B+1).
+\end{aligned}
+\end{equation}
+
+\paragraph{Strategies.}
+The sellers' product choices, conditional on selection, are
+\begin{equation}
+\pi_A(s)\in\{1,2\},\qquad \pi_B(s)\in\{1,2\}.
+\end{equation}
+Here $\pi_j$ denotes a product-choice strategy, as in the handwritten notes.
+
+\section{Bellman equation and equilibrium}
+
+\paragraph{Bellman equation.}
+Fix seller $B$'s strategy $\pi_B$. Let $V_A(s)$ be seller $A$'s optimal
+discounted value before customer selection, and let $\gamma\in(0,1)$
+denote the discount factor. Then
+\begin{equation}\label{eq:bellman}
+\begin{aligned}
+V_A(s)={}&D_A(s)\max_{i\in\{1,2\}}\Bigl\{
+R-c_i+\gamma\bigl[p_iV_A(T_A^s(s))
+ +(1-p_i)V_A(T_A^f(s))\bigr]\Bigr\}\\
+&+D_B(s)\gamma\Bigl[
+p_{\pi_B(s)}V_A(T_B^s(s))
+ +(1-p_{\pi_B(s)})V_A(T_B^f(s))\Bigr].
+\end{aligned}
+\end{equation}
+With $\pi_A$ fixed, seller $B$'s Bellman equation is symmetric.
+
+\paragraph{Equilibrium.}
+A pair $(\pi_A^*,\pi_B^*)$ is a Markov perfect equilibrium if, at every
+state $s$, $\pi_A^*(s)$ solves the maximization given $\pi_B^*$, and
+$\pi_B^*(s)$ solves the corresponding maximization given $\pi_A^*$.
+Equivalently,
+\begin{equation}
+\boxed{\pi_A^*\in\BR_A(\pi_B^*),\qquad
+       \pi_B^*\in\BR_B(\pi_A^*).}
+\end{equation}
+
+\paragraph{Product 2.}
+Conditional on being selected, we obtain the same threshold. Define
+$\Delta c=c_2-c_1$ and $\Delta p=p_2-p_1$. For seller $A$,
+\begin{equation}\label{eq:threshold}
+\boxed{\text{Product 2 is optimal}
+\quad\Longleftrightarrow\quad
+\gamma\bigl[V_A(T_A^s(s))-V_A(T_A^f(s))\bigr]
+\geq\frac{\Delta c}{\Delta p}.}
+\end{equation}
+At equality, both products are optimal.
+
+\section{Initial intuition and computational concerns}
+
+\paragraph{Initial intuition.}
+Extinction should continue to hold because the customer will eventually
+have accumulated so much information that her beliefs will change very
+little. Thus, both sellers will eventually stop using product~2.
+
+\paragraph{Problems and possible approaches.}
+\begin{itemize}
+\item In the base model, the state space is infinite (the state keeps
+growing), which makes implementation computationally demanding.
+\item Perhaps it would be better to work with forgetting.
+\item If so, we could take advantage of the boundary.
+\end{itemize}
+
+\section{Does extinction occur?}
+
+Not always, or more precisely, not at every state. Why? There are cases
+in which the difference in demand does not tend to zero as $n$ grows.
+
+\paragraph{Example.}
+Consider the sequence of states
+\begin{equation}
+s_n=(0,n,0,n),\qquad n\in\mathbb N_0.
+\end{equation}
+In particular, the customer's draw for seller $B$ satisfies
+$\widetilde\theta_B\sim\Beta(1,n+1)$. Calculate seller $A$'s demand
+after each possible outcome:
+\begin{align}
+\text{Success:}\quad
+D_A(T_A^s(s_n))
+&=\Pb\bigl(\Beta(2,n+1)>\Beta(1,n+1)\bigr)
+=\frac{3n+4}{4n+6},\label{eq:success-demand}\\[4pt]
+\text{Failure:}\quad
+D_A(T_A^f(s_n))
+&=\Pb\bigl(\Beta(1,n+2)>\Beta(1,n+1)\bigr)
+=\frac{n+1}{2n+3}.\label{eq:failure-demand}
+\end{align}
+The Beta notation inside these probabilities represents independent
+random variables with the indicated distributions. Therefore,
+\begin{equation}
+\begin{aligned}
+D_A(T_A^s(s_n))-D_A(T_A^f(s_n))
+&=\frac{3n+4}{4n+6}-\frac{n+1}{2n+3}\\
+&=\frac{n+2}{4n+6}
+=\frac{1+2/n}{4+6/n}
+\longrightarrow\frac14,
+\end{aligned}
+\end{equation}
+
+In this case, because the posteriors concentrate around zero, seller $A$
+may still benefit from using product~2. We cannot guarantee that the
+difference in demand is small at every state simply because the total
+number of observations is large.
+
+\paragraph{Note.}
+The calculation above concerns the demand difference which is the tool that we used in the base case to proof the extinction result. 
+\eqref{eq:threshold}.
+
+The thing with this example is that the probability of that state occurring is very small, and that is an important point. Maybe we need to study individual trajectories to understand what happens?
+
+\paragraph{Computational problem.}
+Because the state grows without bound, implementing the full problem is
+infeasible or computationally very demanding. We would need to truncate
+the problem.
+
+\paragraph{What could we prove.}
+Existence of equilibrium? 
+
+\end{document}

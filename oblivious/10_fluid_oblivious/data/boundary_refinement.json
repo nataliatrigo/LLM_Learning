@@ -1,0 +1,79 @@
+{
+  "case": {
+    "p0": 0.1,
+    "rho": 0.6
+  },
+  "purpose": "Additional sensitivity near product-1 boundary; not a replacement of primary sweep grids.",
+  "grids": [
+    {
+      "nodes": 8001,
+      "equilibria": [
+        {
+          "x_star": 0.3523766279107741,
+          "alpha": 0.0052813953572758724,
+          "kind": "mixed",
+          "verified": true,
+          "diagnostics": {
+            "foc_seed": 0.3526304549578431,
+            "foc_residual": 0.00032750858683339157,
+            "root_consistency_refined": true,
+            "consistency_error": 3.1934066502259384e-11,
+            "holding_value": 23.3683322109147,
+            "optimized_value": 23.368333362920463,
+            "holding_value_gap": 1.152005761895225e-06,
+            "conditional_holding_defect": 4.667662823457915e-08,
+            "hamiltonian_gap": 9.538655715828718e-13,
+            "holding_value_tolerance": 6.872923910766407e-05,
+            "conditional_tolerance": 2e-05,
+            "hjb_residual": 1.3429146683563431e-11,
+            "spatial_tolerance": 0.0005,
+            "action_valid": true,
+            "policy_root_adjustment": -3.1934066502259384e-11,
+            "selected_root_kind": "attractive"
+          }
+        }
+      ],
+      "status": "equilibrium_found",
+      "hjb_solves": 12,
+      "elapsed_seconds": 12.63015434800036
+    },
+    {
+      "nodes": 16001,
+      "equilibria": [
+        {
+          "x_star": 0.3525009201583631,
+          "alpha": 0.005557600351918039,
+          "kind": "mixed",
+          "verified": true,
+          "diagnostics": {
+            "foc_seed": 0.3526304549578431,
+            "foc_residual": 0.00016711195804464118,
+            "root_consistency_refined": true,
+            "consistency_error": 4.835331579577939e-10,
+            "holding_value": 23.364337703487845,
+            "optimized_value": 23.36433800151536,
+            "holding_value_gap": 2.980275155550771e-07,
+            "conditional_holding_defect": 1.2075341174340595e-08,
+            "hamiltonian_gap": 6.634891531276e-12,
+            "holding_value_tolerance": 1.7179492615138445e-05,
+            "conditional_tolerance": 2e-05,
+            "hjb_residual": 2.366307150225566e-11,
+            "spatial_tolerance": 0.00025,
+            "action_valid": true,
+            "policy_root_adjustment": -4.835331579577939e-10,
+            "selected_root_kind": "attractive"
+          }
+        }
+      ],
+      "status": "equilibrium_found",
+      "hjb_solves": 14,
+      "elapsed_seconds": 26.339350477999687
+    }
+  ],
+  "interpretation": {
+    "continuous_smooth_foc_candidate": 0.3526304549578431,
+    "continuous_candidate_product2_fraction": 0.00584545546187365,
+    "positive_mixing_on_both_extra_grids": true,
+    "note": "The extra refinements move reputation toward the continuous smooth first-order candidate. Positive but small product-2 use persists. The 4001-node main-grid fraction (~0.005002) understates these finer-grid estimates; relative precision of this small mixture is materially weaker than its absolute state accuracy. The FOC candidate is a numerical reference, not a rigorous limit certificate."
+  }
+}

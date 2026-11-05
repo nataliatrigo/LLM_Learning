@@ -1,0 +1,110 @@
+{
+  "rhos": [
+    0.6,
+    0.7,
+    0.8,
+    0.9,
+    0.95,
+    0.97,
+    0.99,
+    0.999
+  ],
+  "grid": 51,
+  "models": {
+    "p0": {
+      "label": "Competition (OE p0)",
+      "color": "#D55E00",
+      "linestyle": "--"
+    },
+    "monopoly": {
+      "label": "Monopoly (forgetting)",
+      "color": "#0072B2",
+      "linestyle": "-"
+    }
+  },
+  "parameters": {
+    "R": 1.0,
+    "c1": 0.05,
+    "c2": 0.65,
+    "p1": 0.35,
+    "p2": 0.8,
+    "gamma": 0.98
+  },
+  "p0_by_rho": {
+    "0.6": 0.49998686447600826,
+    "0.7": 0.5290066948476545,
+    "0.8": 0.5888735114866731,
+    "0.9": 0.6696805323634819,
+    "0.95": 0.6804747935855047,
+    "0.97": 0.6396050102316267,
+    "0.99": 0.43427131328566043,
+    "0.999": 0.17564882507528973
+  },
+  "simulation": {
+    "periods": 100000,
+    "burn_in": 10000,
+    "replications": 20,
+    "seed": 20261017,
+    "mode": "grid"
+  },
+  "initial_monopoly": 0.5,
+  "initial_competition": [
+    0.5,
+    0.5
+  ],
+  "no_new_competition_simulation": true,
+  "monopoly_solver": "forgetting.Code.model.solve_boundary; original forgetting problem at fixed saved OE-p0 benchmark",
+  "equilibrium_closed_again": false,
+  "action_tolerance": 1e-06,
+  "policy_tie_convention": "Existing forgetting rule: product 2 iff advantage > 1e-6; product 1 at numerical ties. Saved OE-p0 mixtures remain the competition policy. Matched-mixture monopoly is sensitivity only, without extra simulations.",
+  "warnings": [
+    {
+      "rho": 0.95,
+      "model": "monopoly",
+      "kind": "initialization_and_slow_mixing",
+      "occupation_l1_from_stationary": 1.8847186960221027,
+      "stationary_sale_rate": 0.01073887857971238,
+      "finite_window_sale_rate": 0.47428523424106495,
+      "message": "The fixed initial-state finite window does not approximate the stationary law; Monte Carlo intervals exclude initialization bias."
+    },
+    {
+      "rho": 0.97,
+      "model": "monopoly",
+      "kind": "initialization_and_slow_mixing",
+      "occupation_l1_from_stationary": 1.9986959917189833,
+      "stationary_sale_rate": 4.193795849069538e-05,
+      "finite_window_sale_rate": 0.5722054739874918,
+      "message": "The fixed initial-state finite window does not approximate the stationary law; Monte Carlo intervals exclude initialization bias."
+    },
+    {
+      "rho": 0.99,
+      "model": "monopoly",
+      "kind": "initialization_and_slow_mixing",
+      "occupation_l1_from_stationary": 1.9999999999371771,
+      "stationary_sale_rate": 2.2062776366819055e-12,
+      "finite_window_sale_rate": 0.785872354561664,
+      "message": "The fixed initial-state finite window does not approximate the stationary law; Monte Carlo intervals exclude initialization bias."
+    },
+    {
+      "rho": 0.999,
+      "model": "monopoly",
+      "kind": "initialization_and_slow_mixing",
+      "occupation_l1_from_stationary": 2.0000000000006732,
+      "stationary_sale_rate": 2.413824503610751e-75,
+      "finite_window_sale_rate": 0.8040588689120899,
+      "message": "The fixed initial-state finite window does not approximate the stationary law; Monte Carlo intervals exclude initialization bias."
+    }
+  ],
+  "definitions": {
+    "policy": "P(product 2 | own seller selected, own reputation x).",
+    "product2_conditional": "Stationary: product 2 fraction of own sales. Simulation: total product 2 sales / total own sales across independent paths (pooled ratio); competition pools both symmetric sellers.",
+    "product2_calendar": "Product 2 sales per calendar period for one seller; competition averages A and B.",
+    "seller_profit": "Profit per calendar period for one seller, including zero-profit periods when the outside option or rival sells; competition averages A and B.",
+    "sale_rate": "Probability the seller makes a sale in a calendar period; competition pools symmetric sellers and equals 1/2.",
+    "conditional_uncertainty": "95% Student-t interval using independent-path cluster delta-method SE for the pooled ratio; zero-sale paths remain in the cluster sample; entire zero-sale samples are unavailable.",
+    "other_uncertainty": "95% Student-t intervals across 20 independent path means; all MC intervals exclude initialization bias.",
+    "finite_window_expected": "Exact finite-grid expected outcomes over retained periods from initial reputation .5 after burn-in; conditional usage is ratio of expected sale counts, the pooled estimator target.",
+    "stationary_usage_identity": "Only the matched-mixture sensitivity shares the competition own-sale event chain; its stationary conditional product-2 share equals competition. The main forgetting curve uses its original pure tie rule.",
+    "scope": "Finite common 51-point grid, stationary and finite-window outcomes; saved OE-p0 competition is not asserted to be a full-state Markov-perfect equilibrium."
+  }
+}

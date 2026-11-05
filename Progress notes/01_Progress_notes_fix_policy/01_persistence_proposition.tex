@@ -1,0 +1,1007 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Pb}{\mathbb P}
+\newcommand{\Ind}[1]{\mathbf 1\{#1\}}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\title{Persistence of High-Quality Product Use under Forgetting}
+\author{Standalone theoretical note}
+\date{}
+\begin{document}
+\maketitle
+
+This note presents the proofs of the discussed proposition about the frequent use of the high-quality product.
+
+
+\paragraph{Model and notation.}
+Fix $\rho\in(0,1)$, $\gamma\in(0,1)$, $p_0\in(0,1)$,
+$0<p_1<p_2<1$, and $0\leq c_1<c_2<R$.
+Write $\Delta c=c_2-c_1$ and $\Delta p=p_2-p_1$.
+As in the manuscript, the normalized state space and outcome transitions are
+\begin{align*}
+\mathcal Z&=\{(x_s,x_f):x_s\geq0,\ x_f\geq0,\ x_s+x_f\leq1\},\\
+T_\rho^s(x_s,x_f)&=(\rho x_s+1-\rho,\rho x_f),\\
+T_\rho^f(x_s,x_f)&=(\rho x_s,\rho x_f+1-\rho).
+\end{align*}
+
+\begin{lemma}[Continuity of $V_\rho$]For every $\rho\in[0,1)$, the Bellman equation has a unique bounded continuous solution $V_\rho$ on $\mathcal Z$.
+\end{lemma}
+
+\begin{proof}
+Let $C(\mathcal Z)$ be the space of continuous real-valued functions on
+$\mathcal Z$, with norm $\|v\|_\infty=\sup_{z\in\mathcal Z}|v(z)|$.
+Continuity of demand and the transition maps implies that the Bellman
+operator $\mathcal T_\rho$ maps $C(\mathcal Z)$ into itself. Since
+\begin{equation*}
+0\leq\frac{D_\rho(z)}{1-\gamma[1-D_\rho(z)]}\leq1,
+\end{equation*}
+we have
+\begin{equation*}
+\|\mathcal T_\rho v-\mathcal T_\rho w\|_\infty
+\leq\gamma\|v-w\|_\infty.
+\end{equation*}
+Thus $\mathcal T_\rho$ is a contraction. As $\mathcal Z$ is compact,
+$C(\mathcal Z)$ is complete, and the Banach fixed-point theorem gives
+a unique bounded continuous solution $V_\rho$.
+\end{proof}
+
+\paragraph{The boundary set.}
+For $0<\rho<1$, define
+\begin{equation}
+\mathcal K_\rho=
+\left\{
+\left((1-\rho)\sum_{j=0}^{\infty}\rho^j b_j,
+      (1-\rho)\sum_{j=0}^{\infty}\rho^j(1-b_j)\right)
+:\ b_j\in\{0,1\}\text{ for every }j\geq0
+\right\}.
+\end{equation}
+Here $b_j=1$ represents a success and $b_j=0$ a failure, with $j=0$
+representing the most recent outcome. Since
+\begin{equation*}
+(1-\rho)\sum_{j=0}^{\infty}\rho^j=1,
+\end{equation*}
+every point of $\mathcal K_\rho$ lies on the boundary segment
+$x_s+x_f=1$. Equivalently,
+\begin{equation}
+\mathcal K_\rho=\{(x,1-x):x\in C_\rho\},
+\qquad
+C_\rho=\left\{(1-\rho)\sum_{j=0}^{\infty}\rho^j b_j:
+b_j\in\{0,1\}\text{ for every }j\geq0\right\}.
+\end{equation}
+We call $\mathcal K_\rho$ the limiting reachable set: its points can be
+approached arbitrarily closely by states generated from $(0,0)$ through
+increasingly long histories of successes and failures. It satisfies
+\begin{equation}
+\mathcal K_\rho=T_\rho^s(\mathcal K_\rho)\cup T_\rho^f(\mathcal K_\rho).
+\end{equation}
+If $\rho\geq1/2$, then $C_\rho=[0,1]$, so $\mathcal K_\rho$ is the
+entire boundary segment. If $0<\rho<1/2$, then $C_\rho$ is a Cantor set,
+so $\mathcal K_\rho$ is only a subset of that segment.
+
+Thus $\mathcal K_\rho$ describes limiting reachable states, rather than
+states reached after finitely many observations. In particular, from
+$(0,0)$ and for $0<\rho<1$, the coordinate sum after $n$ observations is
+$1-\rho^n<1$. Such states approach the boundary without reaching it in
+finite time. We next verify compactness of the limiting set.
+
+\begin{lemma}[Compactness of $\mathcal{K}_\rho$] For $\rho \in (0,1)$ we have that the set $\mathcal{K}_\rho$ is compact. 
+\end{lemma}
+
+\begin{proof}
+On the boundary, write $(x_s,x_f)=(x,1-x)$. Start with all possible
+first coordinates, $K_0=[0,1]$, then 
+\begin{equation*}
+K_{n+1}=f_0(K_n)\cup f_1(K_n),
+\qquad f_0(x)=\rho x,\quad f_1(x)=\rho x+(1-\rho).
+\end{equation*}
+Since $K_0$ is compact and both maps are continuous, induction shows
+that every $K_n$ is compact. Moreover, $K_1\subseteq K_0$; applying
+both maps to each inclusion gives
+\begin{equation*}
+K_{n+1}\subseteq K_n\qquad\text{for every }n\geq0.
+\end{equation*}
+We now prove the equality
+\begin{equation*}
+C_\rho=\bigcap_{n=0}^{\infty}K_n.
+\end{equation*}
+
+\medskip
+\noindent\textit{First inclusion: $C_\rho\subseteq\bigcap_{n\geq0}K_n$.}
+Let $x\in C_\rho$. By definition, there are digits $b_j\in\{0,1\}$
+such that $x=(1-\rho)\sum_{j=0}^{\infty}\rho^j b_j$.
+For any $n\geq1$, separate the first $n$ terms:
+\begin{equation*}
+x=(1-\rho)\sum_{j=0}^{n-1}\rho^j b_j+\rho^n y_n,
+\qquad
+y_n=(1-\rho)\sum_{k=0}^{\infty}\rho^k b_{n+k}\in[0,1].
+\end{equation*}
+This is precisely the result of applying $n$ transitions to $y_n$:
+\begin{equation*}
+x=f_{b_0}\circ f_{b_1}\circ\cdots\circ f_{b_{n-1}}(y_n).
+\end{equation*}
+Since $y_n\in K_0$, it follows that $x\in K_n$. This holds for every
+$n$, and $x\in K_0$ as well, so $x\in\bigcap_{n\geq0}K_n$.
+
+\medskip
+\noindent\textit{Second inclusion: $\bigcap_{n\geq0}K_n\subseteq C_\rho$.}
+Let $x\in\bigcap_{n\geq0}K_n$. Membership in each $K_n$ means that
+we can represent this same fixed number using $n$ digits and a remainder.
+Choose one such representation for each $n$. The first three have the form
+\begin{align*}
+x&=(1-\rho)a_0+\rho y_1,\\
+x&=(1-\rho)c_0+(1-\rho)\rho c_1+\rho^2y_2,\\
+x&=(1-\rho)d_0+(1-\rho)\rho d_1
+  +(1-\rho)\rho^2d_2+\rho^3y_3,\\
+&\ \vdots
+\end{align*}
+Each digit is either $0$ or $1$, and every $y_n$ belongs to $[0,1]$.
+Different letters emphasize that representations using different numbers
+of digits need not initially agree in their first, second, or later digits.
+We now select digits that form a single infinite sequence.
+
+First, each representation begins with either $0$ or $1$. At least one
+of these two values must occur as the first digit in infinitely many
+representations. Call that value $b_0$ and keep only those representations.
+
+Next, discard any representation with fewer than two digits. Infinitely
+many remain, and their second digit is again either $0$ or $1$. Choose
+a value occurring in that position infinitely often, call it $b_1$,
+and keep only those representations. They now all begin with $b_0,b_1$.
+
+Continue in the same way. At each step we discard the finitely many
+representations that are too short, then choose the next digit so that
+infinitely many representations agree with all digits chosen so far.
+This constructs a sequence $b_0,b_1,b_2,\ldots$.
+
+To check that its series equals $x$, fix any $m\geq1$. There are still
+representations using $n\geq m$ digits whose first $m$ digits are
+$b_0,\ldots,b_{m-1}$. In any such representation, everything after
+these first $m$ terms, including $\rho^n y_n$, is nonnegative and at most
+\begin{equation*}
+(1-\rho)\sum_{j=m}^{n-1}\rho^j+\rho^n=\rho^m.
+\end{equation*}
+Therefore the partial sums of the single sequence we have chosen satisfy
+\begin{equation*}
+0\leq x-(1-\rho)\sum_{j=0}^{m-1}\rho^j b_j\leq\rho^m.
+\end{equation*}
+Since $\rho^m\to0$, these partial sums converge to $x$. Hence
+$x=(1-\rho)\sum_{j=0}^{\infty}\rho^j b_j$, so $x\in C_\rho$.
+This proves the equality.
+
+This intersection is closed and contained in $[0,1]$, hence compact by
+the Heine--Borel theorem. Finally,
+$\mathcal K_\rho=\{(x,1-x):x\in C_\rho\}$ is the image of this compact
+set under the continuous map $x\mapsto(x,1-x)$, so it is compact.
+\end{proof}
+
+\paragraph{Strict advantage and persistent use.}
+Define the maximum advantage of product~2 on the boundary set by
+\begin{equation}
+\mathcal A_\rho=\max_{z\in\mathcal K_\rho}
+\left\{-\Delta c+\gamma\Delta p
+\left[V_\rho(T_\rho^s z)-V_\rho(T_\rho^f z)\right]\right\}.
+\end{equation}
+This maximum exists by continuity and compactness.
+
+\begin{proposition}[Persistent use of product~2]
+\label{prop:persistence}
+If $\mathcal A_\rho>0$, then there is a constant
+$\eta>0$, such that
+\begin{equation}
+\liminf_{N\to\infty}\frac1N\sum_{n=1}^{N}\Ind{i_n=2}\geq\eta
+\qquad\text{a.s},
+\end{equation}
+where $i_n$ is the product chosen at the $n$th interaction with the provider~$A$.
+In particular, product~2 is used infinitely often.
+\end{proposition}
+
+\begin{proof}
+Fix an optimal policy and an initial state $x_0\in\mathcal Z$.
+Throughout the proof, $x=(x_s,x_f)$ denotes the full normalized
+state in
+\begin{equation*}
+\mathcal Z=\{(x_s,x_f):x_s\ge0,\ x_f\ge0,\ x_s+x_f\le1\},
+\end{equation*}
+and $\|\cdot\|$ denotes the Euclidean norm.
+Let $x_n$ be the state after the $n$th interaction with provider A.
+Thus, product $i_n$ is chosen at state $x_{n-1}$.
+
+Since $D_\rho$ is continuous and strictly positive on the compact
+set $\mathcal Z$, it is bounded below by a positive constant.
+Consequently, each successive interaction with provider A occurs
+in finite calendar time almost surely, so the interaction sequence
+is well defined.
+
+To locate states where product 2 is uniquely optimal, define,
+for every $x\in\mathcal Z$,
+\begin{equation*}
+a_\rho(x)
+:=-\Delta c+\gamma\Delta p
+\left[
+V_\rho(T_\rho^s(x))-V_\rho(T_\rho^f(x))
+\right].
+\end{equation*}
+By continuity of $V_\rho$ and the transition maps,
+$a_\rho$ is continuous on $\mathcal Z$.
+Since $\mathcal K_\rho$ is compact, the maximum
+\begin{equation*}
+\mathcal A_\rho
+=\max_{x\in\mathcal K_\rho}a_\rho(x)
+\end{equation*}
+is attained. Choose $x^*\in\mathcal K_\rho$ such that
+\begin{equation*}
+a_\rho(x^*)=\mathcal A_\rho>0.
+\end{equation*}
+
+By continuity at $x^*$, there exists $\varepsilon>0$ such that,
+for all $x\in\mathcal Z$,
+\begin{equation*}
+\|x-x^*\|<\varepsilon
+\quad\Longrightarrow\quad
+|a_\rho(x)-\mathcal A_\rho|
+<\frac{\mathcal A_\rho}{2}.
+\end{equation*}
+In particular,
+\begin{equation}
+\label{eq:pers-neighborhood}
+\|x-x^*\|<\varepsilon
+\quad\Longrightarrow\quad
+a_\rho(x)>
+\mathcal A_\rho-\frac{\mathcal A_\rho}{2}
+=\frac{\mathcal A_\rho}{2}>0.
+\end{equation}
+
+Here $a_\rho(x)$ is the difference between the values of choosing
+products 2 and 1, conditional on a purchase from provider A and
+with optimal continuation in both cases.
+Therefore, product 2 is uniquely optimal at every state in this
+neighborhood.
+
+We next show that a single finite outcome sequence brings every
+starting state into this neighborhood. For any
+$x,\widetilde x\in\mathcal Z$, applying the success transition
+to both states gives
+\begin{equation*}
+\begin{aligned}
+T_\rho^s(x)-T_\rho^s(\widetilde x)
+&=(\rho x_s+1-\rho,\rho x_f)
+ -(\rho\widetilde x_s+1-\rho,\rho\widetilde x_f)\\
+&=\rho(x_s-\widetilde x_s,x_f-\widetilde x_f)\\
+&=\rho(x-\widetilde x).
+\end{aligned}
+\end{equation*}
+The same identity holds for a failure.
+Hence, for either $o\in\{s,f\}$,
+\begin{equation*}
+\|T_\rho^o(x)-T_\rho^o(\widetilde x)\|
+=\rho\|x-\widetilde x\|.
+\end{equation*}
+
+For a sequence $w=(w_1,\ldots,w_m)\in\{s,f\}^m$,
+listed in chronological order, write
+\begin{equation*}
+T_\rho^w
+:=T_\rho^{w_m}\circ\cdots\circ T_\rho^{w_1}.
+\end{equation*}
+Repeated application of the preceding identity yields
+\begin{equation}
+\label{eq:pers-contraction}
+\|T_\rho^w(x)-T_\rho^w(\widetilde x)\|
+=\rho^m\|x-\widetilde x\|.
+\end{equation}
+
+Since the diameter of $\mathcal Z$ is $\sqrt{2}$,
+choose an integer $m\ge1$ such that
+\begin{equation*}
+\sqrt{2}\,\rho^m<\varepsilon.
+\end{equation*}
+This choice of $m$ does not depend on the starting state.
+
+The invariance identity
+\begin{equation*}
+\mathcal K_\rho
+=T_\rho^s(\mathcal K_\rho)\cup T_\rho^f(\mathcal K_\rho),
+\end{equation*}
+iterated $m$ times, gives
+\begin{equation*}
+\mathcal K_\rho
+=\bigcup_{w\in\{s,f\}^m}T_\rho^w(\mathcal K_\rho).
+\end{equation*}
+Because $x^*\in\mathcal K_\rho$, there exist a sequence
+$w\in\{s,f\}^m$ and a state
+$\widetilde x\in\mathcal K_\rho$ such that
+\begin{equation*}
+T_\rho^w(\widetilde x)=x^*.
+\end{equation*}
+
+Fix this sequence $w$.
+For every starting state $x\in\mathcal Z$,
+\begin{equation}
+\label{eq:pers-word}
+\begin{aligned}
+\|T_\rho^w(x)-x^*\|
+&=\|T_\rho^w(x)-T_\rho^w(\widetilde x)\|\\
+&=\rho^m\|x-\widetilde x\|\\
+&\le\sqrt{2}\,\rho^m<\varepsilon.
+\end{aligned}
+\end{equation}
+Thus, the same sequence $w$ brings every starting state into
+the neighborhood in \eqref{eq:pers-neighborhood}.
+
+To bound the probability of this sequence conditional on past
+observations, let $\mathcal F_n$ denote the complete history
+through the outcome of interaction $n$, including the initial
+state and past product choices.
+Set
+\begin{equation*}
+q:=\min\{p_1,1-p_2\}>0.
+\end{equation*}
+
+At every interaction, regardless of the chosen product,
+the conditional probability of success is at least $p_1$,
+and that of failure is at least $1-p_2$.
+Therefore,
+\begin{equation*}
+\begin{aligned}
+\Pr(\text{success at interaction }n+1\mid\mathcal F_n)
+&\ge p_1\ge q,\\
+\Pr(\text{failure at interaction }n+1\mid\mathcal F_n)
+&\ge1-p_2\ge q,
+\end{aligned}
+\qquad\text{almost surely}.
+\end{equation*}
+
+By successive conditioning, the conditional probability that
+the next $m$ outcomes equal the fixed sequence $w$ is at least
+$q^m$, regardless of the previous history.
+This does not require independence between outcomes or blocks.
+
+Divide the interactions into consecutive, nonoverlapping blocks
+of length $m$.
+Block $k$ contains interactions
+\begin{equation*}
+(k-1)m+1,\ldots,km.
+\end{equation*}
+Define the indicator
+\begin{equation*}
+X_k
+:=\mathbf 1\{
+\text{the outcomes in block }k\text{ equal }w
+\}.
+\end{equation*}
+Then
+\begin{equation}
+\label{eq:pers-block-bound}
+\mathbb E[X_k\mid\mathcal F_{(k-1)m}]
+=\Pr(X_k=1\mid\mathcal F_{(k-1)m})
+\ge q^m
+\qquad\text{almost surely}.
+\end{equation}
+
+To turn \eqref{eq:pers-block-bound} into an almost-sure frequency
+bound, define $M_0=0$ and, for $k\ge1$,
+\begin{equation*}
+M_k
+:=\sum_{j=1}^{k}
+\left(
+X_j-\mathbb E[X_j\mid\mathcal F_{(j-1)m}]
+\right).
+\end{equation*}
+We verify that $(M_k)_{k\ge0}$ is a martingale with respect to
+$(\mathcal F_{km})_{k\ge0}$.
+
+First, $X_j$ is $\mathcal F_{jm}$-measurable and
+$\mathbb E[X_j\mid\mathcal F_{(j-1)m}]$ is
+$\mathcal F_{(j-1)m}$-measurable.
+For $j\le k$,
+\begin{equation*}
+\mathcal F_{(j-1)m}
+\subseteq\mathcal F_{jm}
+\subseteq\mathcal F_{km}.
+\end{equation*}
+Thus, every term in $M_k$ is determined by the history available
+after block $k$, so $M_k$ is $\mathcal F_{km}$-measurable.
+
+Second, since $X_j$ and its conditional expectation belong
+to $[0,1]$,
+\begin{equation*}
+\left|
+X_j-\mathbb E[X_j\mid\mathcal F_{(j-1)m}]
+\right|\le1.
+\end{equation*}
+Consequently,
+\begin{equation*}
+\mathbb E[|M_k|]
+\le
+\mathbb E\!\left[
+\sum_{j=1}^{k}
+\left|
+X_j-\mathbb E[X_j\mid\mathcal F_{(j-1)m}]
+\right|
+\right]
+\le k<\infty.
+\end{equation*}
+In fact, $|M_k|\le k$, so
+$\mathbb E[M_k^2]\le k^2<\infty$ as well.
+
+Third, separating the last increment and taking conditional
+expectations gives
+\begin{equation*}
+\begin{aligned}
+\mathbb E[M_k\mid\mathcal F_{(k-1)m}]
+&=M_{k-1}
++\mathbb E\!\left[
+X_k-\mathbb E[X_k\mid\mathcal F_{(k-1)m}]
+\mid\mathcal F_{(k-1)m}
+\right]\\
+&=M_{k-1}
++\mathbb E[X_k\mid\mathcal F_{(k-1)m}]
+-\mathbb E[X_k\mid\mathcal F_{(k-1)m}]\\
+&=M_{k-1}.
+\end{aligned}
+\end{equation*}
+This establishes the martingale property.
+
+Also, the tower property gives
+\begin{equation*}
+\mathbb E\!\left[
+X_j-\mathbb E[X_j\mid\mathcal F_{(j-1)m}]
+\right]
+=\mathbb E[X_j]-\mathbb E[X_j]=0,
+\end{equation*}
+so $\mathbb E[M_k]=0$ for every $k$.
+
+To obtain almost-sure convergence, observe that
+\begin{equation*}
+|M_k-M_{k-1}|
+=
+\left|
+X_k-\mathbb E[X_k\mid\mathcal F_{(k-1)m}]
+\right|
+\le1.
+\end{equation*}
+Hence
+\begin{equation*}
+\mathbb E[(M_k-M_{k-1})^2]\le1,
+\end{equation*}
+and therefore
+\begin{equation*}
+\sum_{k=1}^{\infty}
+\frac{\mathbb E[(M_k-M_{k-1})^2]}{k^2}
+\le
+\sum_{k=1}^{\infty}\frac{1}{k^2}
+<\infty.
+\end{equation*}
+The martingale strong law, in the form of
+\cite[Exercise~4.4.11]{Durrett2019} with $b_k=k$,
+now yields
+\begin{equation}
+\label{eq:pers-martingale-limit}
+\frac{M_k}{k}\longrightarrow0
+\qquad\text{almost surely}.
+\end{equation}
+
+By the definition of $M_k$ and \eqref{eq:pers-block-bound},
+\begin{equation*}
+\begin{aligned}
+\frac{1}{k}\sum_{j=1}^{k}X_j
+&=
+\frac{1}{k}\sum_{j=1}^{k}
+\mathbb E[X_j\mid\mathcal F_{(j-1)m}]
++\frac{M_k}{k}\\
+&\ge q^m+\frac{M_k}{k}.
+\end{aligned}
+\end{equation*}
+Taking lower limits and using
+\eqref{eq:pers-martingale-limit}, we obtain
+\begin{equation}
+\label{eq:pers-block-frequency}
+\liminf_{k\to\infty}
+\frac{1}{k}\sum_{j=1}^{k}X_j
+\ge q^m
+\qquad\text{almost surely}.
+\end{equation}
+
+It remains to relate these block occurrences to choices of product 2.
+If $X_j=1$, then \eqref{eq:pers-word} implies
+\begin{equation*}
+\|x_{jm}-x^*\|<\varepsilon.
+\end{equation*}
+By \eqref{eq:pers-neighborhood}, product 2 is uniquely optimal
+at $x_{jm}$, and the optimal policy must therefore choose it
+at interaction $jm+1$.
+Thus,
+\begin{equation*}
+\mathbf 1\{i_{jm+1}=2\}\ge X_j.
+\end{equation*}
+
+For a horizon of $N$ interactions, this guaranteed product-2
+choice is included in the count only when
+\begin{equation*}
+jm+1\le N
+\quad\Longleftrightarrow\quad
+j\le\frac{N-1}{m}.
+\end{equation*}
+Define
+\begin{equation*}
+K_N:=\left\lfloor\frac{N-1}{m}\right\rfloor.
+\end{equation*}
+The interactions $jm+1$, for $1\le j\le K_N$, are distinct
+and belong to the first $N$ interactions.
+Consequently,
+\begin{equation*}
+\sum_{n=1}^{N}\mathbf 1\{i_n=2\}
+\ge
+\sum_{j=1}^{K_N}\mathbf 1\{i_{jm+1}=2\}
+\ge
+\sum_{j=1}^{K_N}X_j.
+\end{equation*}
+
+For $N\ge m+1$, so that $K_N\ge1$, dividing by $N$ gives
+\begin{equation*}
+\frac{1}{N}\sum_{n=1}^{N}\mathbf 1\{i_n=2\}
+\ge
+\frac{K_N}{N}
+\left(
+\frac{1}{K_N}\sum_{j=1}^{K_N}X_j
+\right).
+\end{equation*}
+Since
+\begin{equation*}
+\frac{N-1}{mN}-\frac{1}{N}
+<
+\frac{K_N}{N}
+\le
+\frac{N-1}{mN},
+\end{equation*}
+we have $K_N/N\to1/m$ and $K_N\to\infty$.
+
+The averages
+$K_N^{-1}\sum_{j=1}^{K_N}X_j$ belong to $[0,1]$,
+so taking lower limits yields
+\begin{equation*}
+\begin{aligned}
+\liminf_{N\to\infty}
+\frac{1}{N}\sum_{n=1}^{N}\mathbf 1\{i_n=2\}
+&\ge
+\liminf_{N\to\infty}
+\frac{K_N}{N}
+\left(
+\frac{1}{K_N}\sum_{j=1}^{K_N}X_j
+\right)\\
+&=
+\frac{1}{m}
+\liminf_{N\to\infty}
+\frac{1}{K_N}\sum_{j=1}^{K_N}X_j\\
+&\ge
+\frac{q^m}{m}>0
+\qquad\text{almost surely},
+\end{aligned}
+\end{equation*}
+where the final inequality follows from
+\eqref{eq:pers-block-frequency}.
+
+Taking $\eta=q^m/m$ proves the assertion.
+Since finitely many uses of product 2 would give a limiting
+frequency of zero, product 2 is used infinitely often
+almost surely.
+\end{proof}
+
+\begin{proposition}[Characterization of positive advantage]
+\label{prop:positive-characterization}
+Let $U^{1}_\rho$ be the value of always choosing product~1.
+For $\rho\in(0,1)$, we have $\mathcal A_\rho>0$ if and only if
+\begin{equation}
+\max_{z\in\mathcal K_\rho}
+\left[U_\rho^1(T_\rho^s z)-U_\rho^1(T_\rho^f z)\right]
+>\frac{\Delta c}{\gamma\Delta p}.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Conditional on a purchase from seller~$A$, let
+\begin{equation*}
+Q_\rho^i(z)
+=R-c_i+\gamma\left[p_iU_\rho^1(T_\rho^s z)
++(1-p_i)U_\rho^1(T_\rho^f z)\right],
+\qquad i\in\{1,2\}.
+\end{equation*}
+This is the value of choosing product~$i$ for the current purchase and
+product~1 thereafter. Subtracting the two expressions gives
+\begin{equation*}
+Q_\rho^2(z)-Q_\rho^1(z)
+=-\Delta c+\gamma\Delta p
+\left[U_\rho^1(T_\rho^s z)-U_\rho^1(T_\rho^f z)\right].
+\end{equation*}
+Define
+\begin{equation*}
+\mathcal A_\rho^1
+=\max_{z\in\mathcal K_\rho}
+\left\{-\Delta c+\gamma\Delta p
+\left[U_\rho^1(T_\rho^s z)-U_\rho^1(T_\rho^f z)\right]\right\}.
+\end{equation*}
+The fixed-policy operator is a contraction preserving continuity,
+so $U_\rho^1$ is continuous and this maximum exists.
+We first show that $\mathcal A_\rho>0$ if and only if
+$\mathcal A_\rho^1>0$, by proving that their nonpositivity conditions
+are equivalent.
+
+Suppose $\mathcal A_\rho^1\leq0$. Then
+$ Q_\rho^1(z)\geq Q_\rho^2(z)$ at every
+$z\in\mathcal K_\rho$. By the fixed-policy Bellman equation,
+\begin{equation*}
+U_\rho^1(z)
+=\frac{D_\rho(z)}{1-\gamma[1-D_\rho(z)]}Q_\rho^1(z)
+=\frac{D_\rho(z)}{1-\gamma[1-D_\rho(z)]}
+\max_{i\in\{1,2\}} Q_\rho^i(z).
+\end{equation*}
+Thus $U_\rho^1$ also satisfies the optimal Bellman equation on
+$\mathcal K_\rho$. Since this set is invariant under both transitions,
+the Bellman operator restricted to it is a contraction. Uniqueness
+therefore gives $U_\rho^1=V_\rho$ on $\mathcal K_\rho$, and hence
+$\mathcal A_\rho=\mathcal A_\rho^1\leq0$.
+
+Conversely, suppose $\mathcal A_\rho\leq0$. Product~1 then maximizes
+the Bellman expression evaluated at $V_\rho$ at every state in
+$\mathcal K_\rho$. Consequently, $V_\rho$ satisfies the Bellman equation
+for always choosing product~1 on this invariant set. Uniqueness of
+the fixed-policy value gives $V_\rho=U_\rho^1$ there, and hence
+$\mathcal A_\rho^1=\mathcal A_\rho\leq0$.
+
+We have proved $\mathcal A_\rho\leq0$ if and only if
+$\mathcal A_\rho^1\leq0$. Taking negations gives the desired equivalence
+of strict positivity. Finally, since $\Delta c$ and $\gamma\Delta p>0$
+do not depend on $z$,
+\begin{equation*}
+\mathcal A_\rho^1
+=-\Delta c+\gamma\Delta p\max_{z\in\mathcal K_\rho}
+\left[U_\rho^1(T_\rho^s z)-U_\rho^1(T_\rho^f z)\right].
+\end{equation*}
+Therefore $\mathcal A_\rho^1>0$ is equivalent to the inequality
+in the statement.
+\end{proof}
+
+% Let $V_\rho$ be the unique bounded continuous optimal value function on
+% $\mathcal Z$, whose existence and continuity are established by the
+% manuscript's contraction argument. Define its continuation gap by
+% \[
+% G_\rho(z)=\gamma\left[V_\rho(T_\rho^s z)-V_\rho(T_\rho^f z)\right].
+% \]
+% Conditional on provider~$A$ being selected, product~2 is strictly optimal at
+% $z$ precisely when
+% \begin{equation}\label{eq:strict}
+% -\Delta c+\Delta p\,G_\rho(z)>0.
+% \end{equation}
+% An optimal policy below means a measurable selection of a Bellman-maximizing
+% product at every state. Either maximizing product may be selected at ties.
+
+% Let $\mathcal K_\rho$ be the manuscript's limiting reachable set. Equivalently,
+% it is the nonempty compact attractor of the two outcome maps:
+% \begin{equation}\label{eq:attractor}
+% \mathcal K_\rho=T_\rho^s(\mathcal K_\rho)
+% \mathbin{\cup}T_\rho^f(\mathcal K_\rho).
+% \end{equation}
+% Both maps contract sup-norm distances by the factor $\rho$. The attractor is
+% contained in $x_s+x_f=1$; it is the full boundary segment when
+% $\rho\geq1/2$, and need not be an interval when $\rho<1/2$.
+% These compactness and invariance claims are established in
+% Lemma~\ref{lem:compactness} below.
+
+% \begin{lemma}[Compactness and the range of forgetting parameters]
+% \label{lem:compactness}
+% For every fixed $\rho\in[0,1)$, $\mathcal Z$ is a compact invariant state
+% space, and $\mathcal K_\rho$ is a nonempty compact invariant subset of the
+% boundary $x_s+x_f=1$. In original coordinates the closed domain
+% \[
+% \left\{(S,F):S\geq0,\ F\geq0,\ S+F\leq\frac1{1-\rho}\right\}
+% \]
+% is also compact. These statements do not require $\rho\geq1/2$.
+% \end{lemma}
+
+% \begin{proof}
+% The set $\mathcal Z$ is the intersection of three closed half-spaces and is
+% contained in $[0,1]^2$. It is therefore closed and bounded, hence compact
+% by the Heine--Borel theorem. For either outcome, the coordinates remain
+% nonnegative and their sum becomes
+% \[
+% \rho(x_s+x_f)+1-\rho\leq1.
+% \]
+% Thus both continuous outcome maps send $\mathcal Z$ into itself.
+
+% We parameterize the boundary $x_s+x_f=1$ by $x=x_s\in[0,1]$, so that
+% $x_f=1-x$. On this boundary, define the two maps
+% \begin{equation}
+% f_0(x)=\rho x,
+% \qquad
+% f_1(x)=\rho x+(1-\rho).
+% \end{equation}
+% Starting from
+% \begin{equation}
+% K_0=[0,1],
+% \end{equation}
+% define recursively
+% \begin{equation}
+% K_{n+1}=f_0(K_n)\cup f_1(K_n).
+% \end{equation}
+% Write
+% \begin{equation}
+% C_\rho=\bigcap_{n=0}^{\infty}K_n.
+% \end{equation}
+% We will show that $C_\rho$ is nonempty and compact, and identify
+% $\mathcal K_\rho=\{(x,1-x):x\in C_\rho\}$.
+
+% We consider separately the cases $\rho\geq1/2$ and $\rho<1/2$.
+
+% \medskip
+% \noindent\textit{Case 1: $\rho\geq1/2$.}
+
+% The images of the initial interval under the two maps are
+% \begin{equation}
+% f_0([0,1])=[0,\rho],
+% \qquad
+% f_1([0,1])=[1-\rho,1].
+% \end{equation}
+% Since $1-\rho\leq\rho$, the two intervals overlap or meet at a single
+% point, and together they cover the entire interval $[0,1]$. Therefore,
+% \begin{equation}
+% K_1=f_0(K_0)\cup f_1(K_0)
+% =[0,\rho]\cup[1-\rho,1]=[0,1]=K_0.
+% \end{equation}
+% Applying the same maps again produces the same set, so
+% \begin{equation}
+% K_n=[0,1]\qquad\text{for every }n\geq0.
+% \end{equation}
+% It follows that
+% \begin{equation}
+% C_\rho=\bigcap_{n=0}^{\infty}K_n=[0,1],
+% \end{equation}
+% which is nonempty and compact.
+
+% \medskip
+% \noindent\textit{Case 2: $\rho<1/2$.}
+
+% In this case $\rho<1-\rho$, so the two images are separated:
+% \begin{equation}
+% K_1=[0,\rho]\cup[1-\rho,1].
+% \end{equation}
+% We first show that every $K_n$ is compact. The initial set $K_0=[0,1]$
+% is compact. If $K_n$ is compact, continuity of $f_0$ and $f_1$ implies
+% that $f_0(K_n)$ and $f_1(K_n)$ are compact. Their finite union
+% $K_{n+1}$ is therefore compact. By induction, every $K_n$ is compact.
+
+% We next show that the sets are nested. Since both maps send $[0,1]$
+% into itself,
+% \begin{equation}
+% K_1\subseteq K_0.
+% \end{equation}
+% If $K_n\subseteq K_{n-1}$, then
+% \begin{equation}
+% f_0(K_n)\subseteq f_0(K_{n-1}),
+% \qquad
+% f_1(K_n)\subseteq f_1(K_{n-1}),
+% \end{equation}
+% and therefore
+% \begin{equation}
+% K_{n+1}=f_0(K_n)\cup f_1(K_n)
+% \subseteq f_0(K_{n-1})\cup f_1(K_{n-1})=K_n.
+% \end{equation}
+% Hence,
+% \begin{equation}
+% K_0\supseteq K_1\supseteq K_2\supseteq\cdots.
+% \end{equation}
+% Each $K_n$ is closed, so their intersection $C_\rho$ is closed.
+% Moreover, $C_\rho\subseteq[0,1]$, so it is bounded. By the
+% Heine--Borel theorem, $C_\rho$ is compact. It is nonempty because
+% $0$ and $1$ belong to every $K_n$.
+
+% \medskip
+% In both cases, the continuous image
+% \begin{equation}
+% \{(x,1-x):x\in C_\rho\}
+% \end{equation}
+% is nonempty and compact. To check invariance, nesting gives
+% $f_0(C_\rho)\cup f_1(C_\rho)\subseteq C_\rho$.
+% Conversely, for $x\in C_\rho$, write $x=f_{a_n}(y_n)$ with
+% $a_n\in\{0,1\}$ and $y_n\in K_n$. Choose a subsequence with constant
+% $a_n$ and a further subsequence with $y_n\to y$. Nesting and closedness
+% imply $y\in C_\rho$, and continuity gives $x=f_{a_n}(y)$.
+% Thus $C_\rho=f_0(C_\rho)\cup f_1(C_\rho)$.
+
+% This set also gives precisely the limiting reachable states.
+% Each $K_n$ is the union of images of $[0,1]$ under all length-$n$
+% outcome words. For $x\in C_\rho$, choose such a word whose image
+% contains $x$. The corresponding two-dimensional word maps a boundary
+% point to $(x,1-x)$. Applying it instead to $(0,0)$ gives a reachable
+% state within $\rho^n$ in the supremum norm. Conversely, a state reached
+% from $(0,0)$ after $m$ observations is within $\rho^m$ of the same word
+% applied to a boundary point. For $m\geq n$, that boundary image has its
+% first coordinate in $K_m\subseteq K_n$. Thus any limit as history lengths
+% tend to infinity belongs to $\{(x,1-x):x\in K_n\}$ for every $n$.
+% Consequently,
+% \begin{equation}
+% \mathcal K_\rho=\{(x,1-x):x\in C_\rho\}.
+% \end{equation}
+
+% Finally, for fixed $\rho<1$, dividing both coordinates by $1-\rho$
+% is a continuous invertible linear change of coordinates. Its image of
+% $\mathcal Z$ is the original closed domain in the statement, which is
+% therefore compact as well.
+% \end{proof}
+
+% \paragraph{Endpoints and finite histories.}
+% At $\rho=0$, the maps are constant and
+% $\mathcal K_0=\{(1,0),(0,1)\}$, so compactness still holds.
+% For $0<\rho<1$, states reached from $(0,0)$ after finitely many observations
+% satisfy $x_s+x_f=1-\rho^k<1$. That finite-history reachable set need not be
+% closed; the compact sets above include the limiting states. No finite-time
+% arrival at the boundary is asserted.
+% At $\rho=1$, the normalization is not invertible and the original process
+% has $S+F=k$, with no bounded state domain over all histories. Thus this
+% compactness argument does not apply to cumulative learning. Also, the
+% original closed domains are not uniformly bounded as $\rho\uparrow1$.
+% The fixed geometric triangle $\mathcal Z$ remains compact as a set, but its
+% interpretation as an equivalent normalized state space requires $\rho<1$.
+
+% Denote the maximum conditional gain on that set by
+% \begin{equation}\label{eq:maxgain}
+% \mathcal A_\rho
+% =\max_{z\in\mathcal K_\rho}
+% \left\{-\Delta c+\Delta p\,G_\rho(z)\right\}.
+% \end{equation}
+% The maximum exists by continuity and compactness. This is the scalar denoted
+% $M(\rho)$ in the companion analysis note; it is not the manuscript's
+% state-dependent conditional value $M_\rho(z)$.
+
+% Let $z_k$ be the state after the $k$th purchase from~$A$, and let $i_k$ be
+% the product supplied at that purchase. Thus $i_k$ is chosen at $z_{k-1}$.
+% Conditional on the history and $i_k=i$, the outcome is a success with
+% probability $p_i$, and $z_k$ is respectively $T_\rho^s z_{k-1}$ or
+% $T_\rho^f z_{k-1}$. These conditional probabilities, rather than independence
+% of realized product choices, are what the proof uses.
+
+% \begin{proposition}[Persistent high-quality product use]\label{prop:persistence}
+% Suppose $\mathcal A_\rho>0$. There exists $\eta>0$, depending on the model
+% parameters but not on the initial state, such that under any optimal policy
+% as specified above, for every $z_0\in\mathcal Z$,
+% \begin{equation}\label{eq:persistence}
+% \liminf_{N\to\infty}\frac1N\sum_{k=1}^N\Ind{i_k=2}
+% \geq\eta
+% \qquad\text{almost surely}.
+% \end{equation}
+% In particular, the conclusion holds from $z_0=(0,0)$, without requiring the
+% process to reach the boundary in finite time.
+% \end{proposition}
+
+% \begin{proof}
+% \textit{Step 1: a finite outcome sequence forces a strictly optimal
+% product-2 decision.}
+% By \eqref{eq:maxgain}, there is $z^*\in\mathcal K_\rho$ satisfying
+% \eqref{eq:strict}. Continuity of $G_\rho$ gives $\delta>0$ such that
+% \begin{equation}\label{eq:neighborhood}
+% z\in\mathcal Z,\quad \|z-z^*\|_\infty<\delta
+% \quad\Longrightarrow\quad
+% -\Delta c+\Delta p\,G_\rho(z)>0.
+% \end{equation}
+% Choose an integer $L\geq1$ with $\rho^L<\delta$.
+% Iterating \eqref{eq:attractor}, the images of $\mathcal K_\rho$ under all
+% outcome words of length~$L$ cover $\mathcal K_\rho$. Hence there are
+% $w_1,\ldots,w_L\in\{s,f\}$ and $y\in\mathcal K_\rho$ such that
+% \[
+% z^*=T_\rho^{w_L}\circ\cdots\circ T_\rho^{w_1}(y).
+% \]
+% For every $z\in\mathcal Z$, contraction and
+% $\operatorname{diam}_\infty(\mathcal Z)=1$ give
+% \begin{equation}\label{eq:forcing}
+% \left\|T_\rho^{w_L}\circ\cdots\circ T_\rho^{w_1}(z)-z^*\right\|_\infty
+% =\rho^L\|z-y\|_\infty\leq\rho^L<\delta.
+% \end{equation}
+% Consequently, observing the prescribed word forces the next product choice
+% to be~2 under every optimal policy, regardless of the starting state.
+
+% \medskip
+% \noindent\textit{Step 2: every block has a uniformly positive conditional
+% probability of containing product~2.}
+% Put
+% \[
+% \varepsilon=\min\{p_1,1-p_2\}>0,
+% \qquad m=L+1,\qquad q=\varepsilon^L>0.
+% \]
+% Consider any block of $m$ purchases and condition on its entire starting
+% history. Whatever product is chosen, the conditional probability of success
+% is at least $p_1$, and that of failure is at least $1-p_2$. Thus every
+% prescribed outcome has conditional probability at least $\varepsilon$,
+% including after any prefix of the word $w_1,\ldots,w_L$.
+% Repeated conditioning therefore gives
+% \[
+% \Pb(\text{the first $L$ outcomes of the block are }w_1,\ldots,w_L
+% \mid\text{history before the block})\geq\varepsilon^L=q.
+% \]
+% Whenever this word occurs, \eqref{eq:forcing} and \eqref{eq:neighborhood}
+% force product~2 at the last, $(L+1)$st, purchase of the block. Consequently,
+% \begin{equation}\label{eq:blockbound}
+% \Pb(\text{the block contains product~2}\mid
+% \text{history before the block})\geq q.
+% \end{equation}
+% The strict assumption $p_2<1$ ensures that $\varepsilon>0$. No independence
+% of product choices or outcome blocks is needed.
+
+% \medskip
+% \noindent\textit{Step 3: the block bound implies a positive lower frequency.}
+% Partition the purchases into disjoint blocks of length $m$.
+% Let $Y_j$ indicate that block~$j$ contains at least one product-2 choice,
+% and let $\mathcal F_j$ be the history through purchase $jm$.
+% By \eqref{eq:blockbound},
+% \[
+% \E[Y_j\mid\mathcal F_{j-1}]\geq q.
+% \]
+% The variables $Y_j-\E[Y_j\mid\mathcal F_{j-1}]$ are martingale
+% differences bounded in absolute value by~1. For every $a>0$, the
+% Azuma--Hoeffding inequality gives
+% \[
+% \Pb\left(
+% \left|\sum_{j=1}^J
+% \bigl(Y_j-\E[Y_j\mid\mathcal F_{j-1}]\bigr)\right|\geq aJ
+% \right)\leq2\exp(-a^2J/2).
+% \]
+% The right-hand side is summable in $J$. Borel--Cantelli, applied for
+% $a=1,1/2,1/3,\ldots$, therefore yields
+% \[
+% \frac1J\sum_{j=1}^J
+% \bigl(Y_j-\E[Y_j\mid\mathcal F_{j-1}]\bigr)\longrightarrow0
+% \quad\text{almost surely}.
+% \]
+% It follows that
+% \[
+% \liminf_{J\to\infty}\frac1J\sum_{j=1}^J Y_j\geq q
+% \quad\text{almost surely}.
+% \]
+% For arbitrary $N$, set $J=\lfloor N/m\rfloor$. Each successful complete
+% block contributes at least one distinct product-2 purchase, so
+% \[
+% \frac1N\sum_{k=1}^N\Ind{i_k=2}
+% \geq\frac{J}{N}\,\frac1J\sum_{j=1}^JY_j.
+% \]
+% Since $J/N\to1/m$, \eqref{eq:persistence} follows with
+% \[
+% \eta=\frac{q}{m}=
+% \frac{\bigl(\min\{p_1,1-p_2\}\bigr)^L}{L+1}>0.
+% \]
+% \end{proof}
+
+% \paragraph{Interpretation and scope.}
+% The result concerns the exact policy on the full state space, not a numerical
+% policy obtained by projecting the state onto the boundary. The neighborhood
+% in \eqref{eq:neighborhood} includes interior states, and \eqref{eq:forcing}
+% holds for every state in $\mathcal Z$. Thus the proof does not assume finite-time
+% arrival at the boundary. Nor does it require a single-threshold policy,
+% independence between blocks, or a unique invariant distribution.
+
+% The positive lower bound may be extremely small. The proposition establishes
+% neither convergence of the empirical frequency to a unique constant nor a
+% useful finite-horizon visitation rate. Identifying parameter values for which
+% $\mathcal A_\rho>0$ is a separate task; that inequality is the hypothesis,
+% not a conclusion asserted for all intermediate forgetting rates.
+
+% Finally, purchases from~$A$ occur infinitely often almost surely in the
+% calendar-time model. For fixed $\rho<1$, its Beta-tail demand $D_\rho$ is
+% continuous and strictly positive on compact $\mathcal Z$, hence bounded below
+% by a positive constant. Conditional on any history, the probability of no
+% purchase from~$A$ in the next $n$ calendar periods is bounded by a geometric
+% term tending to zero. The interaction index used above is therefore
+% well-defined for all $k$ almost surely. Statement~\eqref{eq:persistence}
+% measures the frequency among these purchases.
+
+\begin{thebibliography}{1}
+\bibitem{Durrett2019}
+Rick Durrett.
+\textit{Probability: Theory and Examples}.
+Fifth edition. Cambridge University Press, 2019.
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,1223 @@
+{
+  "rho": 0.9,
+  "n": 101,
+  "configuration": {
+    "parameters": {
+      "R": 1.0,
+      "c1": 0.05,
+      "c2": 0.65,
+      "p1": 0.35,
+      "p2": 0.8,
+      "gamma": 0.98,
+      "rho": 0.9
+    },
+    "n": 101,
+    "order": 128,
+    "tolerance": 1e-07,
+    "dp_tolerance": 1e-10
+  },
+  "initializations": [
+    {
+      "name": "product_1",
+      "policy": {
+        "__array__": "root/initializations/0/policy"
+      }
+    },
+    {
+      "name": "half",
+      "policy": {
+        "__array__": "root/initializations/1/policy"
+      }
+    },
+    {
+      "name": "previous_grid",
+      "policy": {
+        "__array__": "root/initializations/2/policy"
+      }
+    }
+  ],
+  "attempts": [
+    {
+      "start": "product_1",
+      "candidate": {
+        "grid": {
+          "__array__": "root/attempts/0/candidate/grid"
+        },
+        "policy": {
+          "__array__": "root/attempts/0/candidate/policy"
+        },
+        "value": {
+          "__array__": "root/attempts/0/candidate/value"
+        },
+        "advantage": {
+          "__array__": "root/attempts/0/candidate/advantage"
+        },
+        "nu": {
+          "__array__": "root/attempts/0/candidate/nu"
+        },
+        "mu_a": {
+          "__array__": "root/attempts/0/candidate/mu_a"
+        },
+        "mu_b": {
+          "__array__": "root/attempts/0/candidate/mu_b"
+        },
+        "mu": {
+          "__array__": "root/attempts/0/candidate/mu"
+        },
+        "demand": {
+          "__array__": "root/attempts/0/candidate/demand"
+        },
+        "marginal_residual": 0.0,
+        "verified": true,
+        "candidate_verified": true,
+        "summary": {
+          "rho": 0.9,
+          "n": 101,
+          "verified": true,
+          "candidate_verified": true,
+          "marginal_l1": 0.0,
+          "marginal_residual": 0.0,
+          "stationary_residual": 2.913050936493747e-16,
+          "mixed_nodes": 1,
+          "mixed_indices": [
+            65
+          ],
+          "mixed_reputations": [
+            0.65
+          ],
+          "mixed_probabilities": [
+            0.5318788268465477
+          ],
+          "mean_reputation": 0.6172342037396578,
+          "mean_posterior": 0.5976951697830483,
+          "dp": {
+            "verified": true,
+            "bellman_residual": 5.731565621403613e-15,
+            "policy_evaluation_residual": 5.329070518200751e-15,
+            "conditional_regret": 7.276064666493033e-16,
+            "complementarity_residual": 1.5543122344752192e-15,
+            "mixed_indifference_residual": 1.5543122344752192e-15,
+            "best_response_gain_upper_bound": 6.448175327022904e-13,
+            "best_response_numerical_error_bound": 6.217248937900872e-13,
+            "iterations": 5
+          },
+          "stationary": {
+            "verified": true,
+            "residual": 2.913050936493747e-16,
+            "row_sum_error": 4.440892098500626e-16,
+            "probability_sum": 1.0,
+            "minimum_probability": 2.1381269270938243e-40,
+            "stability_l1": 1.6528554089596379e-15,
+            "stability_tolerance": 1e-07,
+            "methods": [
+              "sparse jump-chain, middle normalization",
+              "sparse jump-chain, reversed order and edge normalization",
+              "independent positive GTH elimination"
+            ],
+            "preliminary_failures": [],
+            "symmetric_lumping": true,
+            "lumping_error": 0.0,
+            "solved_states": 5151,
+            "full_states": 10201,
+            "selection": "symmetric invariant law",
+            "communicating_components": 1,
+            "reduced_communicating_components": 1,
+            "minimum_exit_rate": 0.35,
+            "exploratory": false,
+            "marginal_symmetry_l1": 2.4069551222313977e-16,
+            "scope": "Finite numerical kernel; no mixing-time or continuous-state guarantee"
+          }
+        },
+        "dp_diagnostics": {
+          "verified": true,
+          "bellman_residual": 5.731565621403613e-15,
+          "policy_evaluation_residual": 5.329070518200751e-15,
+          "conditional_regret": 7.276064666493033e-16,
+          "complementarity_residual": 1.5543122344752192e-15,
+          "mixed_indifference_residual": 1.5543122344752192e-15,
+          "best_response_gain_upper_bound": 6.448175327022904e-13,
+          "best_response_numerical_error_bound": 6.217248937900872e-13,
+          "iterations": 5
+        },
+        "stationary_diagnostics": {
+          "verified": true,
+          "residual": 2.913050936493747e-16,
+          "row_sum_error": 4.440892098500626e-16,
+          "probability_sum": 1.0,
+          "minimum_probability": 2.1381269270938243e-40,
+          "stability_l1": 1.6528554089596379e-15,
+          "stability_tolerance": 1e-07,
+          "methods": [
+            "sparse jump-chain, middle normalization",
+            "sparse jump-chain, reversed order and edge normalization",
+            "independent positive GTH elimination"
+          ],
+          "preliminary_failures": [],
+          "symmetric_lumping": true,
+          "lumping_error": 0.0,
+          "solved_states": 5151,
+          "full_states": 10201,
+          "selection": "symmetric invariant law",
+          "communicating_components": 1,
+          "reduced_communicating_components": 1,
+          "minimum_exit_rate": 0.35,
+          "exploratory": false,
+          "marginal_symmetry_l1": 2.4069551222313977e-16,
+          "scope": "Finite numerical kernel; no mixing-time or continuous-state guarantee"
+        },
+        "mixed_nodes": 1,
+        "mixed_indices": [
+          65
+        ],
+        "mixed_probabilities": [
+          0.5318788268465477
+        ],
+        "history": [
+          {
+            "attempt": 0,
+            "temperature": 0.3,
+            "equation_error": 6.721290191080698e-13,
+            "evaluations": 16,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.1,
+            "equation_error": 8.204548151979907e-14,
+            "evaluations": 9,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.03,
+            "equation_error": 2.639222174138922e-12,
+            "evaluations": 9,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.01,
+            "equation_error": 2.9428681713739024e-12,
+            "evaluations": 11,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.003,
+            "equation_error": 9.551248680850222e-13,
+            "evaluations": 27,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.001,
+            "equation_error": 5.0737192225369654e-14,
+            "evaluations": 8,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.0003,
+            "equation_error": 0.0014834647762477227,
+            "evaluations": 158,
+            "solver_success": false,
+            "solver_message": "The number of calls to function has reached maxfev = 150."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.0001,
+            "equation_error": 2.1327384303049257e-13,
+            "evaluations": 6,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.0,
+            "equation_error": 3.885780586188048e-15,
+            "evaluations": 3,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          }
+        ],
+        "search_metadata": {
+          "evaluations": 249,
+          "exploratory_evaluations": 249,
+          "strong_polish_evaluations": 0,
+          "max_evaluations": 1500,
+          "attempts": 1,
+          "method": "Joint-marginal reduced complementarity with analytic sensitivities and continuation",
+          "exhaustive": false,
+          "unique": false,
+          "scope": "Finite grid and numerical demand matrix; no continuous-state or MPE claim"
+        }
+      }
+    },
+    {
+      "start": "half",
+      "candidate": {
+        "grid": {
+          "__array__": "root/attempts/1/candidate/grid"
+        },
+        "policy": {
+          "__array__": "root/attempts/1/candidate/policy"
+        },
+        "value": {
+          "__array__": "root/attempts/1/candidate/value"
+        },
+        "advantage": {
+          "__array__": "root/attempts/1/candidate/advantage"
+        },
+        "nu": {
+          "__array__": "root/attempts/1/candidate/nu"
+        },
+        "mu_a": {
+          "__array__": "root/attempts/1/candidate/mu_a"
+        },
+        "mu_b": {
+          "__array__": "root/attempts/1/candidate/mu_b"
+        },
+        "mu": {
+          "__array__": "root/attempts/1/candidate/mu"
+        },
+        "demand": {
+          "__array__": "root/attempts/1/candidate/demand"
+        },
+        "marginal_residual": 0.0,
+        "verified": true,
+        "candidate_verified": true,
+        "summary": {
+          "rho": 0.9,
+          "n": 101,
+          "verified": true,
+          "candidate_verified": true,
+          "marginal_l1": 0.0,
+          "marginal_residual": 0.0,
+          "stationary_residual": 2.727173732099257e-16,
+          "mixed_nodes": 1,
+          "mixed_indices": [
+            65
+          ],
+          "mixed_reputations": [
+            0.65
+          ],
+          "mixed_probabilities": [
+            0.5318788268467073
+          ],
+          "mean_reputation": 0.6172342037396586,
+          "mean_posterior": 0.5976951697830489,
+          "dp": {
+            "verified": true,
+            "bellman_residual": 4.0702073829182876e-15,
+            "policy_evaluation_residual": 3.552713678800501e-15,
+            "conditional_regret": 9.354940285487855e-16,
+            "complementarity_residual": 1.9984014443252818e-15,
+            "mixed_indifference_residual": 1.9984014443252818e-15,
+            "best_response_gain_upper_bound": 3.623767952376508e-13,
+            "best_response_numerical_error_bound": 3.552713678800498e-13,
+            "iterations": 5
+          },
+          "stationary": {
+            "verified": true,
+            "residual": 2.727173732099257e-16,
+            "row_sum_error": 4.440892098500626e-16,
+            "probability_sum": 1.0,
+            "minimum_probability": 2.1381269270937367e-40,
+            "stability_l1": 1.1236797011108152e-15,
+            "stability_tolerance": 1e-07,
+            "methods": [
+              "sparse jump-chain, middle normalization",
+              "sparse jump-chain, reversed order and edge normalization",
+              "independent positive GTH elimination"
+            ],
+            "preliminary_failures": [],
+            "symmetric_lumping": true,
+            "lumping_error": 0.0,
+            "solved_states": 5151,
+            "full_states": 10201,
+            "selection": "symmetric invariant law",
+            "communicating_components": 1,
+            "reduced_communicating_components": 1,
+            "minimum_exit_rate": 0.35,
+            "exploratory": false,
+            "marginal_symmetry_l1": 2.0852173983650805e-16,
+            "scope": "Finite numerical kernel; no mixing-time or continuous-state guarantee"
+          }
+        },
+        "dp_diagnostics": {
+          "verified": true,
+          "bellman_residual": 4.0702073829182876e-15,
+          "policy_evaluation_residual": 3.552713678800501e-15,
+          "conditional_regret": 9.354940285487855e-16,
+          "complementarity_residual": 1.9984014443252818e-15,
+          "mixed_indifference_residual": 1.9984014443252818e-15,
+          "best_response_gain_upper_bound": 3.623767952376508e-13,
+          "best_response_numerical_error_bound": 3.552713678800498e-13,
+          "iterations": 5
+        },
+        "stationary_diagnostics": {
+          "verified": true,
+          "residual": 2.727173732099257e-16,
+          "row_sum_error": 4.440892098500626e-16,
+          "probability_sum": 1.0,
+          "minimum_probability": 2.1381269270937367e-40,
+          "stability_l1": 1.1236797011108152e-15,
+          "stability_tolerance": 1e-07,
+          "methods": [
+            "sparse jump-chain, middle normalization",
+            "sparse jump-chain, reversed order and edge normalization",
+            "independent positive GTH elimination"
+          ],
+          "preliminary_failures": [],
+          "symmetric_lumping": true,
+          "lumping_error": 0.0,
+          "solved_states": 5151,
+          "full_states": 10201,
+          "selection": "symmetric invariant law",
+          "communicating_components": 1,
+          "reduced_communicating_components": 1,
+          "minimum_exit_rate": 0.35,
+          "exploratory": false,
+          "marginal_symmetry_l1": 2.0852173983650805e-16,
+          "scope": "Finite numerical kernel; no mixing-time or continuous-state guarantee"
+        },
+        "mixed_nodes": 1,
+        "mixed_indices": [
+          65
+        ],
+        "mixed_probabilities": [
+          0.5318788268467073
+        ],
+        "history": [
+          {
+            "attempt": 0,
+            "temperature": 0.3,
+            "equation_error": 5.089262344881718e-13,
+            "evaluations": 11,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.1,
+            "equation_error": 1.0080825063596421e-13,
+            "evaluations": 9,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.03,
+            "equation_error": 2.657096764835387e-12,
+            "evaluations": 9,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.01,
+            "equation_error": 2.8888003100746573e-12,
+            "evaluations": 11,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.003,
+            "equation_error": 1.495703561005257e-11,
+            "evaluations": 27,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.001,
+            "equation_error": 2.6778579353958776e-13,
+            "evaluations": 11,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.0003,
+            "equation_error": 0.0014834649197692507,
+            "evaluations": 158,
+            "solver_success": false,
+            "solver_message": "The number of calls to function has reached maxfev = 150."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.0001,
+            "equation_error": 7.310818617156656e-13,
+            "evaluations": 12,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.0,
+            "equation_error": 1.2212453270876722e-15,
+            "evaluations": 3,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          }
+        ],
+        "search_metadata": {
+          "evaluations": 253,
+          "exploratory_evaluations": 253,
+          "strong_polish_evaluations": 0,
+          "max_evaluations": 1500,
+          "attempts": 1,
+          "method": "Joint-marginal reduced complementarity with analytic sensitivities and continuation",
+          "exhaustive": false,
+          "unique": false,
+          "scope": "Finite grid and numerical demand matrix; no continuous-state or MPE claim"
+        }
+      }
+    },
+    {
+      "start": "previous_grid",
+      "candidate": {
+        "grid": {
+          "__array__": "root/attempts/2/candidate/grid"
+        },
+        "policy": {
+          "__array__": "root/attempts/2/candidate/policy"
+        },
+        "value": {
+          "__array__": "root/attempts/2/candidate/value"
+        },
+        "advantage": {
+          "__array__": "root/attempts/2/candidate/advantage"
+        },
+        "nu": {
+          "__array__": "root/attempts/2/candidate/nu"
+        },
+        "mu_a": {
+          "__array__": "root/attempts/2/candidate/mu_a"
+        },
+        "mu_b": {
+          "__array__": "root/attempts/2/candidate/mu_b"
+        },
+        "mu": {
+          "__array__": "root/attempts/2/candidate/mu"
+        },
+        "demand": {
+          "__array__": "root/attempts/2/candidate/demand"
+        },
+        "marginal_residual": 0.0,
+        "verified": true,
+        "candidate_verified": true,
+        "summary": {
+          "rho": 0.9,
+          "n": 101,
+          "verified": true,
+          "candidate_verified": true,
+          "marginal_l1": 0.0,
+          "marginal_residual": 0.0,
+          "stationary_residual": 2.8837669050072844e-16,
+          "mixed_nodes": 1,
+          "mixed_indices": [
+            65
+          ],
+          "mixed_reputations": [
+            0.65
+          ],
+          "mixed_probabilities": [
+            0.5318788268466685
+          ],
+          "mean_reputation": 0.6172342037396584,
+          "mean_posterior": 0.5976951697830488,
+          "dp": {
+            "verified": true,
+            "bellman_residual": 7.910417564006516e-15,
+            "policy_evaluation_residual": 7.105427357601002e-15,
+            "conditional_regret": 1.455212933298231e-15,
+            "complementarity_residual": 3.1086244689504383e-15,
+            "mixed_indifference_residual": 3.1086244689504383e-15,
+            "best_response_gain_upper_bound": 7.194245199571008e-13,
+            "best_response_numerical_error_bound": 7.105427357600996e-13,
+            "iterations": 5
+          },
+          "stationary": {
+            "verified": true,
+            "residual": 2.8837669050072844e-16,
+            "row_sum_error": 4.440892098500626e-16,
+            "probability_sum": 0.9999999999999999,
+            "minimum_probability": 2.138126927093751e-40,
+            "stability_l1": 1.4206070567433778e-15,
+            "stability_tolerance": 1e-07,
+            "methods": [
+              "sparse jump-chain, middle normalization",
+              "sparse jump-chain, reversed order and edge normalization",
+              "independent positive GTH elimination"
+            ],
+            "preliminary_failures": [],
+            "symmetric_lumping": true,
+            "lumping_error": 0.0,
+            "solved_states": 5151,
+            "full_states": 10201,
+            "selection": "symmetric invariant law",
+            "communicating_components": 1,
+            "reduced_communicating_components": 1,
+            "minimum_exit_rate": 0.35,
+            "exploratory": false,
+            "marginal_symmetry_l1": 2.3181087083084167e-16,
+            "scope": "Finite numerical kernel; no mixing-time or continuous-state guarantee"
+          }
+        },
+        "dp_diagnostics": {
+          "verified": true,
+          "bellman_residual": 7.910417564006516e-15,
+          "policy_evaluation_residual": 7.105427357601002e-15,
+          "conditional_regret": 1.455212933298231e-15,
+          "complementarity_residual": 3.1086244689504383e-15,
+          "mixed_indifference_residual": 3.1086244689504383e-15,
+          "best_response_gain_upper_bound": 7.194245199571008e-13,
+          "best_response_numerical_error_bound": 7.105427357600996e-13,
+          "iterations": 5
+        },
+        "stationary_diagnostics": {
+          "verified": true,
+          "residual": 2.8837669050072844e-16,
+          "row_sum_error": 4.440892098500626e-16,
+          "probability_sum": 0.9999999999999999,
+          "minimum_probability": 2.138126927093751e-40,
+          "stability_l1": 1.4206070567433778e-15,
+          "stability_tolerance": 1e-07,
+          "methods": [
+            "sparse jump-chain, middle normalization",
+            "sparse jump-chain, reversed order and edge normalization",
+            "independent positive GTH elimination"
+          ],
+          "preliminary_failures": [],
+          "symmetric_lumping": true,
+          "lumping_error": 0.0,
+          "solved_states": 5151,
+          "full_states": 10201,
+          "selection": "symmetric invariant law",
+          "communicating_components": 1,
+          "reduced_communicating_components": 1,
+          "minimum_exit_rate": 0.35,
+          "exploratory": false,
+          "marginal_symmetry_l1": 2.3181087083084167e-16,
+          "scope": "Finite numerical kernel; no mixing-time or continuous-state guarantee"
+        },
+        "mixed_nodes": 1,
+        "mixed_indices": [
+          65
+        ],
+        "mixed_probabilities": [
+          0.5318788268466685
+        ],
+        "history": [
+          {
+            "attempt": 0,
+            "temperature": 0.3,
+            "equation_error": 1.0347278589506459e-13,
+            "evaluations": 12,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.1,
+            "equation_error": 6.944445019030354e-14,
+            "evaluations": 9,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.03,
+            "equation_error": 2.6648683260077632e-12,
+            "evaluations": 9,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.01,
+            "equation_error": 3.0869751199702478e-12,
+            "evaluations": 11,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.003,
+            "equation_error": 2.270406085358445e-13,
+            "evaluations": 27,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.001,
+            "equation_error": 1.94932958663685e-12,
+            "evaluations": 10,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.0003,
+            "equation_error": 0.0014834653190194391,
+            "evaluations": 158,
+            "solver_success": false,
+            "solver_message": "The number of calls to function has reached maxfev = 150."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.0001,
+            "equation_error": 1.1251000131551336e-12,
+            "evaluations": 6,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.0,
+            "equation_error": 1.9984014443252818e-15,
+            "evaluations": 3,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          }
+        ],
+        "search_metadata": {
+          "evaluations": 247,
+          "exploratory_evaluations": 247,
+          "strong_polish_evaluations": 0,
+          "max_evaluations": 1500,
+          "attempts": 1,
+          "method": "Joint-marginal reduced complementarity with analytic sensitivities and continuation",
+          "exhaustive": false,
+          "unique": false,
+          "scope": "Finite grid and numerical demand matrix; no continuous-state or MPE claim"
+        }
+      }
+    }
+  ],
+  "candidates": [
+    {
+      "grid": {
+        "__array__": "root/candidates/0/grid"
+      },
+      "policy": {
+        "__array__": "root/candidates/0/policy"
+      },
+      "value": {
+        "__array__": "root/candidates/0/value"
+      },
+      "advantage": {
+        "__array__": "root/candidates/0/advantage"
+      },
+      "nu": {
+        "__array__": "root/candidates/0/nu"
+      },
+      "mu_a": {
+        "__array__": "root/candidates/0/mu_a"
+      },
+      "mu_b": {
+        "__array__": "root/candidates/0/mu_b"
+      },
+      "mu": {
+        "__array__": "root/candidates/0/mu"
+      },
+      "demand": {
+        "__array__": "root/candidates/0/demand"
+      },
+      "marginal_residual": 0.0,
+      "verified": true,
+      "candidate_verified": true,
+      "summary": {
+        "rho": 0.9,
+        "n": 101,
+        "verified": true,
+        "candidate_verified": true,
+        "marginal_l1": 0.0,
+        "marginal_residual": 0.0,
+        "stationary_residual": 2.913050936493747e-16,
+        "mixed_nodes": 1,
+        "mixed_indices": [
+          65
+        ],
+        "mixed_reputations": [
+          0.65
+        ],
+        "mixed_probabilities": [
+          0.5318788268465477
+        ],
+        "mean_reputation": 0.6172342037396578,
+        "mean_posterior": 0.5976951697830483,
+        "dp": {
+          "verified": true,
+          "bellman_residual": 5.731565621403613e-15,
+          "policy_evaluation_residual": 5.329070518200751e-15,
+          "conditional_regret": 7.276064666493033e-16,
+          "complementarity_residual": 1.5543122344752192e-15,
+          "mixed_indifference_residual": 1.5543122344752192e-15,
+          "best_response_gain_upper_bound": 6.448175327022904e-13,
+          "best_response_numerical_error_bound": 6.217248937900872e-13,
+          "iterations": 5
+        },
+        "stationary": {
+          "verified": true,
+          "residual": 2.913050936493747e-16,
+          "row_sum_error": 4.440892098500626e-16,
+          "probability_sum": 1.0,
+          "minimum_probability": 2.1381269270938243e-40,
+          "stability_l1": 1.6528554089596379e-15,
+          "stability_tolerance": 1e-07,
+          "methods": [
+            "sparse jump-chain, middle normalization",
+            "sparse jump-chain, reversed order and edge normalization",
+            "independent positive GTH elimination"
+          ],
+          "preliminary_failures": [],
+          "symmetric_lumping": true,
+          "lumping_error": 0.0,
+          "solved_states": 5151,
+          "full_states": 10201,
+          "selection": "symmetric invariant law",
+          "communicating_components": 1,
+          "reduced_communicating_components": 1,
+          "minimum_exit_rate": 0.35,
+          "exploratory": false,
+          "marginal_symmetry_l1": 2.4069551222313977e-16,
+          "scope": "Finite numerical kernel; no mixing-time or continuous-state guarantee"
+        }
+      },
+      "dp_diagnostics": {
+        "verified": true,
+        "bellman_residual": 5.731565621403613e-15,
+        "policy_evaluation_residual": 5.329070518200751e-15,
+        "conditional_regret": 7.276064666493033e-16,
+        "complementarity_residual": 1.5543122344752192e-15,
+        "mixed_indifference_residual": 1.5543122344752192e-15,
+        "best_response_gain_upper_bound": 6.448175327022904e-13,
+        "best_response_numerical_error_bound": 6.217248937900872e-13,
+        "iterations": 5
+      },
+      "stationary_diagnostics": {
+        "verified": true,
+        "residual": 2.913050936493747e-16,
+        "row_sum_error": 4.440892098500626e-16,
+        "probability_sum": 1.0,
+        "minimum_probability": 2.1381269270938243e-40,
+        "stability_l1": 1.6528554089596379e-15,
+        "stability_tolerance": 1e-07,
+        "methods": [
+          "sparse jump-chain, middle normalization",
+          "sparse jump-chain, reversed order and edge normalization",
+          "independent positive GTH elimination"
+        ],
+        "preliminary_failures": [],
+        "symmetric_lumping": true,
+        "lumping_error": 0.0,
+        "solved_states": 5151,
+        "full_states": 10201,
+        "selection": "symmetric invariant law",
+        "communicating_components": 1,
+        "reduced_communicating_components": 1,
+        "minimum_exit_rate": 0.35,
+        "exploratory": false,
+        "marginal_symmetry_l1": 2.4069551222313977e-16,
+        "scope": "Finite numerical kernel; no mixing-time or continuous-state guarantee"
+      },
+      "mixed_nodes": 1,
+      "mixed_indices": [
+        65
+      ],
+      "mixed_probabilities": [
+        0.5318788268465477
+      ],
+      "history": [
+        {
+          "attempt": 0,
+          "temperature": 0.3,
+          "equation_error": 6.721290191080698e-13,
+          "evaluations": 16,
+          "solver_success": true,
+          "solver_message": "The solution converged."
+        },
+        {
+          "attempt": 0,
+          "temperature": 0.1,
+          "equation_error": 8.204548151979907e-14,
+          "evaluations": 9,
+          "solver_success": true,
+          "solver_message": "The solution converged."
+        },
+        {
+          "attempt": 0,
+          "temperature": 0.03,
+          "equation_error": 2.639222174138922e-12,
+          "evaluations": 9,
+          "solver_success": true,
+          "solver_message": "The solution converged."
+        },
+        {
+          "attempt": 0,
+          "temperature": 0.01,
+          "equation_error": 2.9428681713739024e-12,
+          "evaluations": 11,
+          "solver_success": true,
+          "solver_message": "The solution converged."
+        },
+        {
+          "attempt": 0,
+          "temperature": 0.003,
+          "equation_error": 9.551248680850222e-13,
+          "evaluations": 27,
+          "solver_success": true,
+          "solver_message": "The solution converged."
+        },
+        {
+          "attempt": 0,
+          "temperature": 0.001,
+          "equation_error": 5.0737192225369654e-14,
+          "evaluations": 8,
+          "solver_success": true,
+          "solver_message": "The solution converged."
+        },
+        {
+          "attempt": 0,
+          "temperature": 0.0003,
+          "equation_error": 0.0014834647762477227,
+          "evaluations": 158,
+          "solver_success": false,
+          "solver_message": "The number of calls to function has reached maxfev = 150."
+        },
+        {
+          "attempt": 0,
+          "temperature": 0.0001,
+          "equation_error": 2.1327384303049257e-13,
+          "evaluations": 6,
+          "solver_success": true,
+          "solver_message": "The solution converged."
+        },
+        {
+          "attempt": 0,
+          "temperature": 0.0,
+          "equation_error": 3.885780586188048e-15,
+          "evaluations": 3,
+          "solver_success": true,
+          "solver_message": "The solution converged."
+        }
+      ],
+      "search_metadata": {
+        "evaluations": 249,
+        "exploratory_evaluations": 249,
+        "strong_polish_evaluations": 0,
+        "max_evaluations": 1500,
+        "attempts": 1,
+        "method": "Joint-marginal reduced complementarity with analytic sensitivities and continuation",
+        "exhaustive": false,
+        "unique": false,
+        "scope": "Finite grid and numerical demand matrix; no continuous-state or MPE claim"
+      }
+    }
+  ],
+  "selected": {
+    "grid": {
+      "__array__": "root/selected/grid"
+    },
+    "policy": {
+      "__array__": "root/selected/policy"
+    },
+    "value": {
+      "__array__": "root/selected/value"
+    },
+    "advantage": {
+      "__array__": "root/selected/advantage"
+    },
+    "nu": {
+      "__array__": "root/selected/nu"
+    },
+    "mu_a": {
+      "__array__": "root/selected/mu_a"
+    },
+    "mu_b": {
+      "__array__": "root/selected/mu_b"
+    },
+    "mu": {
+      "__array__": "root/selected/mu"
+    },
+    "demand": {
+      "__array__": "root/selected/demand"
+    },
+    "marginal_residual": 0.0,
+    "verified": true,
+    "candidate_verified": true,
+    "summary": {
+      "rho": 0.9,
+      "n": 101,
+      "verified": true,
+      "candidate_verified": true,
+      "marginal_l1": 0.0,
+      "marginal_residual": 0.0,
+      "stationary_residual": 2.913050936493747e-16,
+      "mixed_nodes": 1,
+      "mixed_indices": [
+        65
+      ],
+      "mixed_reputations": [
+        0.65
+      ],
+      "mixed_probabilities": [
+        0.5318788268465477
+      ],
+      "mean_reputation": 0.6172342037396578,
+      "mean_posterior": 0.5976951697830483,
+      "dp": {
+        "verified": true,
+        "bellman_residual": 5.731565621403613e-15,
+        "policy_evaluation_residual": 5.329070518200751e-15,
+        "conditional_regret": 7.276064666493033e-16,
+        "complementarity_residual": 1.5543122344752192e-15,
+        "mixed_indifference_residual": 1.5543122344752192e-15,
+        "best_response_gain_upper_bound": 6.448175327022904e-13,
+        "best_response_numerical_error_bound": 6.217248937900872e-13,
+        "iterations": 5
+      },
+      "stationary": {
+        "verified": true,
+        "residual": 2.913050936493747e-16,
+        "row_sum_error": 4.440892098500626e-16,
+        "probability_sum": 1.0,
+        "minimum_probability": 2.1381269270938243e-40,
+        "stability_l1": 1.6528554089596379e-15,
+        "stability_tolerance": 1e-07,
+        "methods": [
+          "sparse jump-chain, middle normalization",
+          "sparse jump-chain, reversed order and edge normalization",
+          "independent positive GTH elimination"
+        ],
+        "preliminary_failures": [],
+        "symmetric_lumping": true,
+        "lumping_error": 0.0,
+        "solved_states": 5151,
+        "full_states": 10201,
+        "selection": "symmetric invariant law",
+        "communicating_components": 1,
+        "reduced_communicating_components": 1,
+        "minimum_exit_rate": 0.35,
+        "exploratory": false,
+        "marginal_symmetry_l1": 2.4069551222313977e-16,
+        "scope": "Finite numerical kernel; no mixing-time or continuous-state guarantee"
+      }
+    },
+    "dp_diagnostics": {
+      "verified": true,
+      "bellman_residual": 5.731565621403613e-15,
+      "policy_evaluation_residual": 5.329070518200751e-15,
+      "conditional_regret": 7.276064666493033e-16,
+      "complementarity_residual": 1.5543122344752192e-15,
+      "mixed_indifference_residual": 1.5543122344752192e-15,
+      "best_response_gain_upper_bound": 6.448175327022904e-13,
+      "best_response_numerical_error_bound": 6.217248937900872e-13,
+      "iterations": 5
+    },
+    "stationary_diagnostics": {
+      "verified": true,
+      "residual": 2.913050936493747e-16,
+      "row_sum_error": 4.440892098500626e-16,
+      "probability_sum": 1.0,
+      "minimum_probability": 2.1381269270938243e-40,
+      "stability_l1": 1.6528554089596379e-15,
+      "stability_tolerance": 1e-07,
+      "methods": [
+        "sparse jump-chain, middle normalization",
+        "sparse jump-chain, reversed order and edge normalization",
+        "independent positive GTH elimination"
+      ],
+      "preliminary_failures": [],
+      "symmetric_lumping": true,
+      "lumping_error": 0.0,
+      "solved_states": 5151,
+      "full_states": 10201,
+      "selection": "symmetric invariant law",
+      "communicating_components": 1,
+      "reduced_communicating_components": 1,
+      "minimum_exit_rate": 0.35,
+      "exploratory": false,
+      "marginal_symmetry_l1": 2.4069551222313977e-16,
+      "scope": "Finite numerical kernel; no mixing-time or continuous-state guarantee"
+    },
+    "mixed_nodes": 1,
+    "mixed_indices": [
+      65
+    ],
+    "mixed_probabilities": [
+      0.5318788268465477
+    ],
+    "history": [
+      {
+        "attempt": 0,
+        "temperature": 0.3,
+        "equation_error": 6.721290191080698e-13,
+        "evaluations": 16,
+        "solver_success": true,
+        "solver_message": "The solution converged."
+      },
+      {
+        "attempt": 0,
+        "temperature": 0.1,
+        "equation_error": 8.204548151979907e-14,
+        "evaluations": 9,
+        "solver_success": true,
+        "solver_message": "The solution converged."
+      },
+      {
+        "attempt": 0,
+        "temperature": 0.03,
+        "equation_error": 2.639222174138922e-12,
+        "evaluations": 9,
+        "solver_success": true,
+        "solver_message": "The solution converged."
+      },
+      {
+        "attempt": 0,
+        "temperature": 0.01,
+        "equation_error": 2.9428681713739024e-12,
+        "evaluations": 11,
+        "solver_success": true,
+        "solver_message": "The solution converged."
+      },
+      {
+        "attempt": 0,
+        "temperature": 0.003,
+        "equation_error": 9.551248680850222e-13,
+        "evaluations": 27,
+        "solver_success": true,
+        "solver_message": "The solution converged."
+      },
+      {
+        "attempt": 0,
+        "temperature": 0.001,
+        "equation_error": 5.0737192225369654e-14,
+        "evaluations": 8,
+        "solver_success": true,
+        "solver_message": "The solution converged."
+      },
+      {
+        "attempt": 0,
+        "temperature": 0.0003,
+        "equation_error": 0.0014834647762477227,
+        "evaluations": 158,
+        "solver_success": false,
+        "solver_message": "The number of calls to function has reached maxfev = 150."
+      },
+      {
+        "attempt": 0,
+        "temperature": 0.0001,
+        "equation_error": 2.1327384303049257e-13,
+        "evaluations": 6,
+        "solver_success": true,
+        "solver_message": "The solution converged."
+      },
+      {
+        "attempt": 0,
+        "temperature": 0.0,
+        "equation_error": 3.885780586188048e-15,
+        "evaluations": 3,
+        "solver_success": true,
+        "solver_message": "The solution converged."
+      }
+    ],
+    "search_metadata": {
+      "evaluations": 249,
+      "exploratory_evaluations": 249,
+      "strong_polish_evaluations": 0,
+      "max_evaluations": 1500,
+      "attempts": 1,
+      "method": "Joint-marginal reduced complementarity with analytic sensitivities and continuation",
+      "exhaustive": false,
+      "unique": false,
+      "scope": "Finite grid and numerical demand matrix; no continuous-state or MPE claim"
+    }
+  },
+  "selected_start": "product_1",
+  "demand_audit": {
+    "verified": true,
+    "tolerance": 1e-06,
+    "maximum_error": 4.284646304419937e-09,
+    "doubled_order": 256,
+    "doubled_order_max_difference": 3.981001639452586e-09,
+    "original_raw": {
+      "order": 128,
+      "raw_diagonal_error": 2.1423231522099684e-09,
+      "raw_symmetry_error": 4.284646304419937e-09,
+      "raw_min": 1.4175710770139057e-06,
+      "raw_max": 0.999998582428923
+    },
+    "doubled_raw": {
+      "order": 256,
+      "raw_diagonal_error": 1.1083700623970572e-10,
+      "raw_symmetry_error": 2.5049695651091497e-10,
+      "raw_min": 1.417571077014474e-06,
+      "raw_max": 0.999998582428923
+    },
+    "independent_checks": [
+      {
+        "x": 0.0,
+        "y": 1.0,
+        "matrix_probability": 1.4175710770139057e-06,
+        "direct_probability": 1.417571077013798e-06,
+        "reverse_probability": 0.999998582428923,
+        "matrix_error": 1.0778494253810972e-19,
+        "independent_symmetry_error": 0.0,
+        "independent_diagonal_error": null
+      },
+      {
+        "x": 0.25,
+        "y": 0.75,
+        "matrix_probability": 0.015386247243859286,
+        "direct_probability": 0.015386247243859246,
+        "reverse_probability": 0.9846137527561398,
+        "matrix_error": 3.9898639947466563e-17,
+        "independent_symmetry_error": 8.881784197001252e-16,
+        "independent_diagonal_error": null
+      },
+      {
+        "x": 0.49,
+        "y": 0.51,
+        "matrix_probability": 0.46618839293583747,
+        "direct_probability": 0.4661883929358377,
+        "reverse_probability": 0.5338116070641623,
+        "matrix_error": 2.220446049250313e-16,
+        "independent_symmetry_error": 0.0,
+        "independent_diagonal_error": null
+      },
+      {
+        "x": 0.8,
+        "y": 0.4,
+        "matrix_probability": 0.9597523219814241,
+        "direct_probability": 0.9597523219814232,
+        "reverse_probability": 0.04024767801857579,
+        "matrix_error": 8.881784197001252e-16,
+        "independent_symmetry_error": 9.992007221626409e-16,
+        "independent_diagonal_error": null
+      },
+      {
+        "x": 0.5,
+        "y": 0.5,
+        "matrix_probability": 0.5,
+        "direct_probability": 0.5,
+        "reverse_probability": 0.5,
+        "matrix_error": 0.0,
+        "independent_symmetry_error": 0.0,
+        "independent_diagonal_error": 0.0
+      }
+    ],
+    "independent_method": "Adaptive quadrature with stable scipy.stats.beta.pdf"
+  },
+  "elapsed_seconds": 4958.781350320001
+}

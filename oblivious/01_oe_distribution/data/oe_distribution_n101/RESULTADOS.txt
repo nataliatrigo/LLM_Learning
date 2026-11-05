@@ -1,0 +1,31 @@
+OE distribution
+
+Optimización: demanda promediada sobre la marginal incondicional del rival, como en el OE distribution.
+Consistencia: esa marginal debe ser la marginal de la distribución conjunta real.
+La mezcla interior exige indiferencia. Los extremos 0 y 1 siguen permitidos.
+Verificado significa verificado en la grilla; no demuestra precisión del modelo continuo ni MPE.
+La búsqueda con varios inicios no demuestra unicidad ni exhaustividad.
+
+rho | puntos por vendedor | candidatos verificados | mezcla en seleccionado | error marginal L1
+0.6 | 51 | 1 | 1 | 0
+0.6 | 101 | 1 | 0 | 0
+0.7 | 51 | 1 | 0 | 0
+0.7 | 101 | 1 | 0 | 0
+0.8 | 51 | 1 | 0 | 0
+0.8 | 101 | 1 | 0 | 0
+0.9 | 51 | 1 | 0 | 0
+0.9 | 101 | 1 | 1 | 0
+0.95 | 51 | 1 | 0 | 0
+0.95 | 101 | 1 | 0 | 0
+0.97 | 51 | 1 | 1 | 0
+0.97 | 101 | 1 | 1 | 0
+0.99 | 51 | 1 | 1 | 0
+0.99 | 101 | 0 | 5 | 0
+0.999 | 51 | 1 | 0 | 0
+0.999 | 101 | 1 | 0 | 0
+
+En el solver reducido la marginal se obtiene de la conjunta en cada evaluación.
+Por eso el error marginal puede ser cero por construcción; además debe pasar la optimalidad.
+Un intento sin optimalidad verificada se conserva como diagnóstico, no como equilibrio.
+Consulte candidates.csv para todas las soluciones y initializations.csv para todos los intentos.
+Las simulaciones interpolan la política entre nodos y no certifican optimalidad fuera de ellos.

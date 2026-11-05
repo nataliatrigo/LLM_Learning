@@ -1,0 +1,158 @@
+{
+  "experiment_id": 12,
+  "completed_at_utc": "2026-10-29T23:03:03.894705+00:00",
+  "elapsed_seconds": 531.0865973100008,
+  "configuration": {
+    "experiment_id": 12,
+    "experiment": "Fluid monopoly and symmetric competition with long-run average profit",
+    "source_config": "../10_fluid_oblivious/config.json",
+    "objective": "long_run_average_profit",
+    "numerics": {
+      "own_points": 501,
+      "search_points": 241,
+      "quadrature_order": 128,
+      "refined_own_points": 1001,
+      "refined_search_points": 481,
+      "refined_quadrature_order": 256,
+      "profit_atol": 1e-12,
+      "profit_rtol": 1e-09,
+      "u_tolerance": 1e-06,
+      "optimizer_xatol": 1e-12,
+      "refinement_u_tolerance": 2e-05,
+      "demand_audit_atol": 2e-10
+    },
+    "diagnostic": {
+      "p0": 0.8,
+      "rho": 0.9,
+      "points": 501
+    },
+    "parameters": {
+      "p1": 0.35,
+      "p2": 0.8,
+      "c1": 0.05,
+      "c2": 0.65,
+      "R": 1.0
+    },
+    "p0s": [
+      0.1,
+      0.3,
+      0.5,
+      0.7,
+      0.8,
+      0.9
+    ],
+    "rhos": [
+      0.6,
+      0.7,
+      0.8,
+      0.9
+    ],
+    "source_configuration": {
+      "parameters": {
+        "R": 1.0,
+        "c1": 0.05,
+        "c2": 0.65,
+        "p1": 0.35,
+        "p2": 0.8,
+        "gamma": 0.98
+      },
+      "p0s": [
+        0.1,
+        0.3,
+        0.5,
+        0.7,
+        0.8,
+        0.9
+      ],
+      "rhos": [
+        0.6,
+        0.7,
+        0.8,
+        0.9
+      ],
+      "grids": [
+        1001,
+        2001,
+        4001
+      ],
+      "quadrature_order": 128,
+      "search_points": 121,
+      "search_refinement_points": 241,
+      "refinement": {
+        "equilibrium_reputation_absolute": 0.002,
+        "equilibrium_fraction_absolute": 0.005,
+        "market_share_absolute": 0.002,
+        "policy_disagreement_measure": 0.005
+      },
+      "trajectories": {
+        "initial": [
+          0.5,
+          0.5
+        ],
+        "horizon": 3000,
+        "samples": 3001,
+        "bin_width": 25,
+        "rtol": 1e-09,
+        "atol": 1e-11,
+        "max_step": 10
+      },
+      "workers": 2,
+      "comparison_models": [
+        "fluid_monopoly",
+        "fluid_competition"
+      ]
+    },
+    "source_config_path": "oblivious/10_fluid_oblivious/config.json",
+    "source_config_sha256": "fd90af367fed4591ed8fdf1939099970547e685ec540c3e34e2e021929ea9590",
+    "source_discount_ignored": 0.98,
+    "discount_used_in_objective": false
+  },
+  "software": {
+    "python": "3.12.3",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "pandas": "3.0.3"
+  },
+  "source_sha256": {
+    "oblivious/12_fluid_average_profit/code/run_experiment.py": "2b11c25e7e7805793248fc0db33389ac86ad7d89cd55500fc5fcfb8deb8abd51",
+    "oblivious/12_fluid_average_profit/code/model.py": "ad18219dc1ceeab5420b621dd76c69762dc006bdd3b481de22be96b0d42d35ff",
+    "oblivious/12_fluid_average_profit/code/reporting.py": "0fdb71ef49829b87886e3a9e63b88ec3f90cea9c6ff7565a665015feac572d13",
+    "oblivious/12_fluid_average_profit/config.json": "779996e8561d8d5093770d9f858e1f23496c04aa61218e478271aaaa559a9b30",
+    "oblivious/10_fluid_oblivious/config.json": "fd90af367fed4591ed8fdf1939099970547e685ec540c3e34e2e021929ea9590",
+    "oblivious/10_fluid_oblivious/code/model.py": "76f8ef0fba99c7c628c65bc003220dfd9b5f77e97e4df27a7668f72a9a3f5979",
+    "oblivious/02_oe_p0/code/primitives.py": "e8a07e00220ab000c945d5a37ee562b9283bff4ceca8d525600e935e68334e11",
+    "oblivious/08_oe_distribution_fixed_p0/code/model.py": "dec4058cdc1623608d560d75e64b84b1733d70a817d75b8195b352281db136e5"
+  },
+  "output_sha256": {
+    "data/case_summary.csv": "8afc374808c0809f2b0b73ce6cc4b6f484e319c4b56d1419de83a3fd9040c9f9",
+    "data/coarse_search_results.json": "531b43250111881ea3aabe76cd9aad68ac295900665a4fcc5a608e2ef4a306ed",
+    "data/comparisons.csv": "b616eb8e3a935c9cb62ae768c9111bb8191a4d3ba5615c2a7783d37b6ff062ae",
+    "data/competition_solutions.csv": "b0563cba18fb39d59fa95ccae98bee69cda26c81cb393a2aa77b8beae511c87b",
+    "data/configuration_used.json": "42446b66c75a32a1594feeabf6cc0cc6934e256e0976fc1f4bc943b9c967613f",
+    "data/diagnostic.json": "0358c60e6dda1d1ebbc7cf91c32e601d405725c744251f414ed90f8e5d47fba1",
+    "data/diagnostic_best_responses.csv": "1e78f5ffff021c93f47fa95d68ebb986fbd23d2e7b0a18b3a0add9785d7acfbe",
+    "data/diagnostic_curves.csv": "042538f81ee6b6cb9f8eab8478cbd8cd602367a59c5347afd60ce7fba13ec0b3",
+    "data/diagnostic_payoffs.csv": "014734caac19e38a9ad1aaf1b688d9dd5df4c31ed0d8c257d846a5ab7657a289",
+    "data/independent_validation.csv": "762faa626b89dd495c374d408007b6cd508bf263b3c4d7c76c16c7a9667992ec",
+    "data/monopoly_solutions.csv": "551129bbf2710c61f7dd80168bea69d8fe5927a47fe483c538e0a7bc24ff7bab",
+    "data/refinement.csv": "4b4e499623396de32db5eeb406b8c47404c8986825b013fa5aa3ddc013ba6bd0",
+    "data/scan_quadrature_validation.csv": "60a2f3dffed6cf6de8cd0852cc5460293aa4276bd6a18310c05e2c2bb14172e6",
+    "data/search_results.json": "98c78bcc35cd697d27467e534f34667b6595bd7caaa01ce9bd8b6835990a6e37",
+    "data/solutions.csv": "0aa0d25e78882310048833793ca9e9267aae4907ddbb5d628f48001d5827ec0f",
+    "data/validation.json": "be0c997721ba13d14566ac840b868f5adf06dca425ddf1e2b4fa03aeb85f551f"
+  },
+  "validation": {
+    "passed": true,
+    "refinement_passed": true,
+    "independent_demand_passed": true,
+    "scan_quadrature_passed": true,
+    "deviation_gains_passed": true,
+    "max_refinement_u_change": 1.0151307328065684e-07,
+    "max_independent_demand_error": 5.149769499723789e-13,
+    "max_scan_quadrature_profit_error": 1.3616885397027545e-13,
+    "max_market_accounting_error": 0.0,
+    "independent_audit_rows": 178,
+    "scope": "Numerical exploration and checks, not an exhaustive analytic existence certificate"
+  },
+  "figure_count": 9
+}

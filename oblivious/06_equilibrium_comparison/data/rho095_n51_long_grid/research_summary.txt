@@ -1,0 +1,137 @@
+RESEARCH SUMMARY: OE distribution AND OE p0
+
+Both profiles are simulated in the same actual two-seller game. Customer selection
+uses two independent Beta posterior draws in every calendar period. The saved
+optimization-demand approximations never determine simulated customer selections.
+
+Primitives: R=1, c1=0.05, c2=0.65, p1=0.35, p2=0.8, gamma=0.98, rho=0.95.
+Primary grid: 51 points per seller; independent replications: 20.
+Primary behavioral interpretation: Grid validation. Nearest-node extension preserves each stored product probability.
+Linear extension is reported separately: between unequal pure nodes it creates
+additional mixing, so it is an additional policy approximation.
+All intervals below are based on independent replication means, not independent periods.
+Paired model differences use common random numbers within each replication.
+
+FINITE-HORIZON INTERPRETATION: removing burn-in does not guarantee stationarity.
+These are estimates over the recorded post-burn-in windows. Slow mixing can leave
+initial-condition bias that replication-based confidence intervals do not measure.
+In particular, precise aggregate flows need not imply convergence of the reputation law or p₀.
+If present, transient_validation.txt reports a separate deterministic finite-horizon check.
+
+INPUT VALIDATION
+OE distribution: verified saved candidate; source rho_forgetting/rho_0p95_n051; candidate index 0; 1 verified candidate(s) in this case.
+  Consistency residual: 0 (L1(mu_star - sum_A nu)).
+  Actual joint-kernel stationarity residual (maximum absolute coordinate): 1.3877788e-17.
+OE p0: verified saved candidate; source rho_forgetting_mixed/rho_0p95_n051; candidate index 0; 1 verified candidate(s) in this case.
+  Consistency residual: 1.1879386e-14 (abs(p0_star - E_nu[m(X_B)])).
+  Actual joint-kernel stationarity residual (maximum absolute coordinate): 6.9388939e-18.
+Verification concerns the saved grid equilibrium and its consistency conditions.
+This comparison neither establishes uniqueness nor proves optimality in the full game.
+
+1. HOW DIFFERENT ARE THE POLICIES?
+The uniformly weighted mean absolute difference in the probability of product 2 is 14.43 percentage points over [0,1], using nearest-node policy extension.
+OE distribution has 0 mixed grid node(s); mixed choices remain probabilistic.
+OE p0 has 1 mixed grid node(s); mixed choices remain probabilistic.
+No threshold shape is imposed. Figure 1 shows the saved policy values.
+The numerical tables report policy differences, including partial differences in mixing.
+
+2. DO THEY DIFFER IN FREQUENTLY VISITED STATES?
+Under OE distribution:
+  Post-burn-in-state-weighted difference, seller A: 19.889% [95% CI 19.839, 19.938] percentage-probability units.
+  Difference conditional on A being selected: 24.988% [95% CI 24.928, 25.048].
+  Difference at all market purchases: 24.956% [95% CI 24.918, 24.993].
+Under OE p0:
+  Post-burn-in-state-weighted difference, seller A: 49.594% [95% CI 48.894, 50.295] percentage-probability units.
+  Difference conditional on A being selected: 56.436% [95% CI 56.368, 56.504].
+  Difference at all market purchases: 56.419% [95% CI 56.374, 56.465].
+Each weighted measure uses the recorded post-burn-in behavior of that profile. It measures
+differences in product probabilities, rather than flagging every unequal mixture as a full disagreement.
+
+3. WHICH PROFILE GENERATES MORE PRODUCT 2?
+OE distribution market frequency: 74.531% [95% CI 74.491, 74.571].
+OE p0 market frequency: 84.335% [95% CI 84.298, 84.371].
+OE distribution minus OE p0 = -9.8039 percentage points [95% paired CI -9.8334, -9.7744]; the interval excludes zero.
+The comparison table separately reports seller-conditional and calendar-period frequencies.
+
+4. WHICH PROFILE GENERATES HIGHER SELLER PROFITS?
+OE distribution: seller A 0.25165 [95% CI 0.25123, 0.25207]; seller B 0.25116 [95% CI 0.25076, 0.25157]; industry 0.50281 [95% CI 0.50257, 0.50305].
+OE p0: seller A 0.22578 [95% CI 0.2183, 0.23326]; seller B 0.21821 [95% CI 0.21078, 0.22565]; industry 0.44399 [95% CI 0.44377, 0.44421].
+OE distribution minus OE p0 = 0.058823 [95% paired CI 0.058646, 0.059]; the interval excludes zero.
+These are post-burn-in average profits per calendar period, including zero profit when a seller is not selected.
+Higher seller profits do not establish that a policy is a more accurate equilibrium approximation.
+Discounted profits are separate initial-state outcomes in Figure 6 and the comparison table.
+They use the same (0.5, 0.5) initial state and the first 1000 periods.
+
+5. WHICH PROFILE GENERATES HIGHER CUSTOMER SUCCESS?
+OE distribution success rate: 68.541% [95% CI 68.533, 68.549].
+OE p0 success rate: 72.955% [95% CI 72.947, 72.963].
+OE distribution minus OE p0 = -4.4141 percentage points [95% paired CI -4.4218, -4.4064]; the interval excludes zero.
+Customer success, failure and the selected product's success probability are reported independently
+of seller profit. No monetary customer-welfare interpretation is imposed.
+
+6. DO THE REPUTATION DISTRIBUTIONS DIFFER?
+OE distribution: mean reputation A 0.67634 [95% CI 0.6762, 0.67648]; B 0.67628 [95% CI 0.67615, 0.67641].
+  Variance A 0.0018281 [95% CI 0.0018123, 0.0018439]; B 0.001826 [95% CI 0.0018116, 0.0018405]; correlation -0.044639 [95% CI -0.045868, -0.043411].
+OE p0: mean reputation A 0.7078 [95% CI 0.70122, 0.71439]; B 0.69926 [95% CI 0.68475, 0.71377].
+  Variance A 0.0066339 [95% CI 0.0037169, 0.0095508]; B 0.0099248 [95% CI 0.0039387, 0.015911]; correlation -0.07801 [95% CI -0.085573, -0.070446].
+Figures 3 and 4 show the marginal CDFs and joint laws. Continuous CDF and Wasserstein
+calculations use the actual unrounded states. Only the joint heatmaps use nearest-node display bins.
+
+7. DOES OE distribution REPRODUCE ITS ASSUMED STATIONARY MARGINAL?
+Grid validation:
+  Seller A mean error: 7.3552e-05 [95% CI -6.5061e-05, 0.00021216]; variance error: -2.3417e-05 [95% CI -3.9227e-05, -7.6061e-06].
+  Wasserstein distance: 0.00031216 [95% CI 0.00025087, 0.00037345]; maximum CDF distance: 0.0024648 [95% CI 0.0018338, 0.0030958].
+Grid simulation is the direct check against the equilibrium's numerical joint kernel.
+Continuous-simulation discrepancies also contain transition-grid and policy-extension effects;
+a nonzero continuous-versus-discrete CDF distance is not by itself a failure of OE distribution consistency.
+Distances are nonnegative: their intervals quantify the mean finite-simulation distance,
+not a hypothesis test that the underlying distributions differ. Seller B diagnostics are in the table.
+
+8. DOES OE p0 REPRODUCE THE LONG-RUN AVERAGE TS DRAW?
+Saved equilibrium p₀ = 0.6804747936.
+Grid validation: mean TS draw of B 0.68115 [95% CI 0.66795, 0.69434]; mean posterior expectation of B 0.68114 [95% CI 0.66795, 0.69433].
+  TS-minus-p₀ error 0.00067124 [95% CI -0.012524, 0.013866]; posterior-mean-minus-p₀ error 0.00066887 [95% CI -0.012521, 0.013859].
+TS draws contain additional posterior sampling noise. Posterior means remove that noise
+while retaining serially correlated reputation fluctuations. Figure 9 starts its running averages
+after burn-in and shows replication-based uncertainty; it does not reinterpret consistency as optimality.
+
+9. ARE THE DIFFERENCES LARGE RELATIVE TO MONTE CARLO UNCERTAINTY?
+OE distribution minus OE p0 = -9.8039 percentage points [95% paired CI -9.8334, -9.7744]; the interval excludes zero.
+OE distribution minus OE p0 = 0.058823 [95% paired CI 0.058646, 0.059]; the interval excludes zero.
+OE distribution minus OE p0 = -4.4141 percentage points [95% paired CI -4.4218, -4.4064]; the interval excludes zero.
+The signs and intervals indicate Monte Carlo resolution. Economic importance should be judged
+from the reported effect sizes, in percentage points or profit units, rather than statistical significance alone.
+
+10. ARE THE CONCLUSIONS STABLE UNDER LONGER RUNS AND GRID CHANGES?
+Grid validation, baseline, product2_market: paired difference -0.098039 [95% CI -0.098334, -0.097744].
+Grid validation, baseline, industry_profit: paired difference 0.058823 [95% CI 0.058646, 0.059].
+Grid validation, baseline, success_rate: paired difference -0.044141 [95% CI -0.044218, -0.044064].
+The longer and longer-burn windows share simulated paths. Their agreement is a stability
+diagnostic, not an independent replication of the experiment.
+The signs of the three flow-outcome differences agree across these recorded windows;
+the estimates above show their magnitudes and Monte Carlo intervals.
+Stable flow-outcome differences do not establish that reputation distributions or p₀ have converged.
+Available saved grids evaluated: 51 points per seller.
+  OE distribution, Grid validation, product 2 market frequency: n=51: 74.53%.
+  OE p0, Grid validation, product 2 market frequency: n=51: 84.33%.
+The sensitivity.csv table separates the saved grid sizes and simulation rules. Grid changes also change
+the saved equilibrium policy and may select different verified equilibrium candidates;
+those changes are not pure Monte Carlo noise or a controlled test on a fixed policy.
+Agreement about which profile uses more product 2 does not imply stable absolute usage levels.
+No equilibrium beyond the available 51-point grid was solved, so convergence at finer
+resolutions is not established.
+Nearest and linear extensions are kept distinct in every outcome figure. Disagreement between
+them indicates policy-extension sensitivity, especially near product-choice boundaries.
+
+INTERPRETATION
+Replacing the competitor's full marginal by an endogenous scalar changes the optimization problem.
+The comparison measures resulting differences in policies, post-burn-in behavior and outcomes.
+It does not identify an approximation error against a known exact equilibrium. Numerical kernel
+residuals, Monte Carlo uncertainty and discretization/policy-extension sensitivity are separate diagnostics.
+The optional asymmetric cross-policy experiment is not part of this symmetric-profile comparison.
+
+FILES
+comparison_table.csv: both models, standard errors, 95% intervals, and paired differences by mode.
+The runner also saves raw path arrays, per-replication statistics, configurations, seeds and input audits.
+Figures 1–10 address the requested comparisons; Figures 11–13 cover short-run behavior,
+profit dispersion across replications and available-grid sensitivity.

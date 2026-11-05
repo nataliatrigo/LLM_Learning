@@ -1,0 +1,33 @@
+iteration 0 regret 0.05395005506765549 bad [47, 69] mixed [] weights []
+face [47, 69] x [0.31762831790098606, -0.0005098600976542909] residual [-5.989123696037435e-05, -0.003582395477611522] success False
+iteration 1 regret 0.003582395477611522 bad [47, 69] mixed [47] weights [0.31762831790098606]
+face [47, 69] x [0.3173776441983895, -7.144443718158232e-05] residual [-9.591974787248603e-05, -0.0035812583541354748] success False
+iteration 2 regret 0.0035812583541354748 bad [47, 69] mixed [47] weights [0.3173776441983895]
+face [47, 69] x [0.3173484755595037, -8.848488904853565e-05] residual [-0.00010011263034936935, -0.0035811260203908457] success False
+iteration 3 regret 0.0035811260203908457 bad [47, 69] mixed [47] weights [0.3173484755595037]
+Traceback (most recent call last):
+  File "/tmp/conditional_positive_complementarity_n101.py", line 37, in <module>
+    solved=root(face,np.clip(alpha[active],1e-4,1-1e-4),method='hybr',options={'xtol':1e-10,'eps':1e-7,'maxfev':80,'factor':.3})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/.venv/lib/python3.12/site-packages/scipy/optimize/_root.py", line 254, in root
+    sol = _root_hybr(_wrapped_fun, x0, args=args, jac=jac, **options)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/.venv/lib/python3.12/site-packages/scipy/optimize/_minpack_py.py", line 250, in _root_hybr
+    retval = _minpack._hybrd(func, x0, args, 1, xtol, maxfev,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/.venv/lib/python3.12/site-packages/scipy/optimize/_root.py", line 216, in _wrapped_fun
+    return fun(*fargs)
+           ^^^^^^^^^^^
+  File "/tmp/conditional_positive_complementarity_n101.py", line 35, in face
+    advantage=response(trial)[active]
+              ^^^^^^^^^^^^^^^
+  File "/tmp/conditional_positive_complementarity_n101.py", line 17, in response
+    inv=checked_joint_stationary(e.game,P,force_positive=True)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/oblivious/02_oe_p0/code/core.py", line 130, in checked_joint_stationary
+    positive = _positive_invariant(jump, rates)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/oblivious/02_oe_p0/code/positive_stationary.py", line 122, in positive_invariant
+    status = function(n, np.ascontiguousarray(reduced.indptr, dtype=np.int64),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

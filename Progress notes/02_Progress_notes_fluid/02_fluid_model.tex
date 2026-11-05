@@ -1,0 +1,169 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Pb}{\mathbb P}
+\newcommand{\Ind}[1]{\mathbf 1\{#1\}}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\title{Fluid model forgetting case}
+\author{Standalone theoretical note}
+\date{}
+\begin{document}
+\maketitle
+
+This note presents the fluid model and some results. 
+
+\subsection*{Fluid bellman for fixed policy U}
+Recall $U^1_\rho$ corresponds to the value function when applying the fixed policy of using always product 1 (for simplicity of this note I'm going to use just $U$). For the purpose of this note we are going to work with the normalized coordinates $x = (1-\rho)S$. We start from the bellman equation
+
+\begin{equation}
+  U(x) = (1-D(x)) \gamma U(x)+ D(x)[ R-c_1 + \gamma(p_1U(T^s_\rho(x)) + (1-p_1)U(T^f_\rho(x)))]
+\end{equation}
+Considering the transitions as 
+\begin{align}
+  T^s_{dt}(x) &= \rho^{dt}x + (1-\rho^{dt}) \\
+  T^f_{dt}(x) &= \rho^{dt}x
+\end{align}
+We set 
+\begin{align*}
+  \rho^{dt} = e^{-\lambda dt} = 1- \lambda dt + o(dt)\\
+  \gamma^{dt} = e^{-\delta dt} = 1- \delta dt + o(dt)
+\end{align*}
+Then, replacing in the transition functions we obtain
+\begin{align}
+  T^s_{dt}(x) - x &= \lambda(1- x)dt + o(dt)\\
+  T^f_{dt}(x) - x &= -\lambda xdt + o(dt)
+\end{align}
+These are our ODE equations
+\begin{equation}
+  \begin{cases}
+    \text{success: } &\dot{x} = \lambda(1- x)\\
+    \text{failure: } &\dot{x} = -\lambda x 
+  \end{cases}
+\end{equation}
+Now, we note that the expected change of the state in the bellman equation would be 
+\begin{equation}
+  D(x)[p_1 \lambda(1-x) + (1-p_1)(-\lambda x)] dt = D(x) \lambda (p_1-x)dt
+\end{equation}
+Hence we have 
+\begin{equation}
+  \dot{x}= D(x)\lambda (p_1-x) 
+\end{equation}
+We can write our bellman equation over $dt$ as follows
+\begin{equation}
+  U(x) = (1-D(x)) \gamma^{dt} U(x)+ D(x)[ (R-c_1)dt + \gamma^{dt}(p_1U(T^s_{dt}(x)) + (1-p_1)U(T^f_{dt}(x)))]
+\end{equation}
+Now, we approximate $U(T^s_{dt}(x))$ and $U(T^f_{dt}(x))$ using Taylor expansion
+\begin{align}
+  U(T^s_{dt}(x)) &= U(x) + \lambda(1-x)U'(x)dt + o(dt) \\
+  U(T^f_{dt}(x)) &= U(x) - \lambda x U'(x)dt + o(dt) 
+\end{align}
+replacing the discount factor's approximations 
+\begin{align}
+  U(x) = (1-D(x))(1-\delta dt)U(x) + D(x)[(R-c_1)dt + \\(1-\delta dt)(U(x) + \lambda(p_1-x)U'(x)dt) ]+ o(dt)
+\end{align}
+Rearranging terms we get
+\begin{align}
+  U(x) &= U(x) + [D(x)(R-c_1) + D(x) (\lambda (p_1-x)U'(x))-\delta U(x)]dt  + o(dt)\\ 
+  \Rightarrow 0 &= [D(x)(R-c_1) + D(x) (\lambda (p_1-x)U'(x))-\delta U(x)]dt  + o(dt)
+\end{align}
+Dividing by $dt$ and taking $dt \rightarrow 0$ we get
+\begin{equation}
+  \delta U(x) = D(x)(R-c_1) + D(x)\lambda (p_1-x)U'(x)
+\end{equation}
+% Evaluating this at $p_1$ we get 
+% \begin{equation}
+%   U(p_1) = \frac{D(p_1)(R-c_1)}{\delta} 
+% \end{equation}
+To solve it, let $x(t)$ denote the fluid state at time $t$, starting from $x(0)=x$. The fluid Bellman equation can therefore be written as
+\begin{equation}
+    \delta U(x(t))=D(x(t))(R-c_1)+U'(x(t))\dot{x}(t).
+\end{equation}
+By the chain rule,
+\begin{equation}
+    \frac{d}{dt}U(x(t))=U'(x(t))\dot{x}(t).
+\end{equation}
+Hence,
+\begin{equation}
+    \frac{d}{dt}U(x(t)) - \delta U(x(t)) = -D(x(t))(R-c_1) 
+\end{equation}
+Multiplying both sides by $e^{-\delta t}$,
+\begin{equation}
+    e^{-\delta t}\frac{d}{dt}U(x(t))-\delta e^{-\delta t}U(x(t))=-(R-c_1)e^{-\delta t}D(x(t)).
+\end{equation}
+The left-hand side is the derivative of $e^{-\delta t}U(x(t))$, so
+\begin{equation}
+    \frac{d}{dt}
+    \left[
+        e^{-\delta t}U(x(t))
+    \right]=-(R-c_1)e^{-\delta t}D(x(t)).
+\end{equation}
+Integrating from $0$ to $T$,
+\begin{equation}
+    e^{-\delta T}U(x(T))-U(x)=-(R-c_1)\int_0^T e^{-\delta t}D(x(t))\,dt.
+\end{equation}
+Rearranging,
+\begin{equation}
+    U(x)=e^{-\delta T}U(x(T))+(R-c_1)\int_0^T e^{-\delta t}D(x(t))\,dt.
+\end{equation}
+Since $D(x)>0$, the sign of $\dot{x}(t)$ is determined by $p_1-x(t)$.
+Thus, $x(t)$ moves toward $p_1$ from either side and
+\begin{equation}
+    x(t) \rightarrow p_1
+    \qquad \text{as } t\rightarrow\infty.
+\end{equation}
+Moreover, $U$ is bounded and $\delta>0$, so
+\begin{equation}
+    e^{-\delta T}U(x(T))\rightarrow 0.
+\end{equation}
+Taking $T\rightarrow\infty$, we obtain the fluid value under the fixed
+policy of always using product 1:
+\begin{equation}
+    U(x) = (R-c_1) \int_0^\infty e^{-\delta t}D(x(t))dt
+\end{equation}
+where $x(t)$ solves
+\begin{equation}
+    \dot{x}(t)=D(x(t))\lambda(p_1-x(t)),\qquad x(0)=x.
+\end{equation}
+
+This expression provides an integral representation of the fluid value function. The trajectory $x(t)$ is determined by the demand function
+$D(\cdot)$. 
+
+\subsection*{Fluid bellman for V}
+We start from the bellman equation 
+\begin{equation*}
+  V(x)= (1-D(x))\gamma V(x) + D(x)\max_{i \in\{1,2\}} \left\{R-c_i + \gamma[p_iV(T^s(x)) +(1-p_i)V(T^f(x))]\right\}
+\end{equation*}
+similar as before we can write
+\begin{equation*}
+  \begin{aligned}
+  V(x)={}& (1-D(x))(1-\delta dt) V(x) \\
+  &+ D(x)\max_{i \in\{1,2\}} \left\{(R-c_i)dt + (1-\delta dt)[V(x) +\lambda(p_i-x)V'(x)dt]\right\} + o(dt)
+  \end{aligned}
+\end{equation*}
+distributing and rearranging terms we get 
+\begin{align*}
+  V(x)= (1-D(x))&(1-\delta dt) V(x) + \\D(x)\max_{i \in\{1,2\}} &\left\{(R-c_i)dt + V(x) + [\lambda(p_i-x)V'(x) - \delta V(x)]dt \right\} +o(dt)
+\end{align*}
+Since $V(x)$ and $\delta V(x)$ do not depend on $i$ we get
+\begin{align*}
+  V(x)= V(x) + [D(x)\max_{i \in\{1,2\}} &\left\{R-c_i + \lambda(p_i-x)V'(x) \right\} -\delta V(x)]dt + o(dt)
+\end{align*}
+dividing by $dt$ and taking $dt\rightarrow 0 $ we get
+\begin{align*}
+  \delta V(x)= D(x)\max_{i \in\{1,2\}} &\left\{R-c_i + \lambda(p_i-x)V'(x) \right\} 
+\end{align*}
+We get that product 2 is optimal when 
+\begin{eqnarray}
+  R-c_2 + \lambda(p_2-x)V'(x) &>& R-c_1 + \lambda(p_1-x)V'(x)\\
+  \iff V'(x) &>& \frac{\Delta c}{\lambda\Delta p}
+\end{eqnarray}
+Which is basically the same equation we had in the original model. 
+
+
+\end{document}

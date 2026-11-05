@@ -1,0 +1,45 @@
+FINITE-HORIZON VERSUS STATIONARY VALIDATION
+
+No equilibrium was solved. The already saved joint transition matrices were propagated
+deterministically from (.5,.5). Every reported window expectation is free of Monte Carlo noise.
+The calculation concerns the discrete grid kernel; continuous policy extensions remain separate.
+
+OE distribution
+Saved stationary-law residual (maximum coordinate): 1.38777878e-17.
+Final law L1 distance from stationarity at t=1500000: 6.20699238e-07.
+Final probability sum: 1.0000000000197.
+  baseline: start=500000, retained=1000000.
+    Expected mean reputation B 0.676265226; stationary 0.676265001.
+    Expected posterior mean B 0.660241115; stationary 0.66024091.
+    Expected mass X_B<=.2: 4.24252105e-05; stationary 4.27788609e-05.
+    mean_reputation_B finite-window minus stationary: 2.25182139e-07.
+      Monte Carlo 0.676280139; 95% CI [0.676150197, 0.676410081]; contains finite-window expectation: True; contains stationary prediction: True.
+    mean_posterior_B finite-window minus stationary: 2.04711633e-07.
+      Monte Carlo 0.660254672; 95% CI [0.660136543, 0.660372801]; contains finite-window expectation: True; contains stationary prediction: True.
+    product2_market finite-window minus stationary: 5.59287061e-11.
+      Monte Carlo 0.7453084; 95% CI [0.744908374, 0.745708426]; contains finite-window expectation: True; contains stationary prediction: True.
+
+OE p0
+Saved stationary-law residual (maximum coordinate): 6.9388939e-18.
+Final law L1 distance from stationarity at t=1500000: 0.000286968235.
+Final probability sum: 1.000000000006.
+  baseline: start=500000, retained=1000000.
+    Expected mean reputation B 0.698660974; stationary 0.698522273.
+    Expected posterior mean B 0.680600886; stationary 0.680474794.
+    Expected mass X_B<=.2: 0.0163330434; stationary 0.0165449286.
+    mean_reputation_B finite-window minus stationary: 0.000138701145.
+      Monte Carlo 0.699258031; 95% CI [0.684749266, 0.713766796]; contains finite-window expectation: True; contains stationary prediction: True.
+    mean_posterior_B finite-window minus stationary: 0.00012609195.
+      Monte Carlo 0.681143665; 95% CI [0.667953878, 0.694333451]; contains finite-window expectation: True; contains stationary prediction: True.
+    product2_market finite-window minus stationary: 1.11499766e-07.
+      Monte Carlo 0.84334725; 95% CI [0.84297991, 0.84371459]; contains finite-window expectation: True; contains stationary prediction: True.
+
+INTERPRETATION
+A nonzero deterministic window bias is an initial-condition/slow-convergence effect,
+not a failed stationary fixed-point equation. A small stationary residual does not imply fast mixing.
+Replication intervals describe finite-horizon sampling uncertainty and do not remove initial-state bias.
+Rare, persistent low-reputation episodes can make the distribution of replication means skewed.
+An interval excluding the exact finite-window expectation can occur through sampling variation or
+limited accuracy of the replication-t approximation; it does not by itself diagnose an equilibrium error.
+Check reputation and scalar-consistency diagnostics separately from product use/profit/success:
+flow outcomes may stabilize much sooner than the calendar-time reputation distribution.

@@ -1,0 +1,196 @@
+\documentclass{beamer}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\graphicspath{{../OverleafPaper/figures/}{OverleafPaper/figures/}{../forgetting/outputs/test/monte_carlo/figures/}{forgetting/outputs/test/monte_carlo/figures/}{../forgetting/outputs/test/first_2000/figures/individual_states/p0_0.5/}{forgetting/outputs/test/first_2000/figures/individual_states/p0_0.5/}{../forgetting/outputs/test/first_2000/figures/state_distributions/p0_0.5/}{forgetting/outputs/test/first_2000/figures/state_distributions/p0_0.5/}}
+
+\title{Weekly report}
+\author{Natalia Trigo Tomasevich}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}{Route of the paper}
+    \begin{itemize}
+        \item Study the intermediate rates of forgetting
+        \item Study the competition model
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Route of the paper}
+    \begin{itemize}
+        \item \textcolor<1>{red}{Study the intermediate rates of forgetting}
+        \item Study the competition model
+    \end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{From last meeting}
+    For the forgetting case we have 
+    \begin{itemize}
+        \item Results for the extreme rates (slow and fast forgetting meaning $\rho\to 0$ and $\rho\to 1$)
+        \item Plot of use of product 2 for different values of $p_0$ and $\rho$
+        \item Montecarlo simulations
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Region of use of product 2 }
+    The shaded region only indicates that product 2 is optimal in at least
+    one state for each pair $(p_0,\rho)$.
+
+    \vspace{0.6em}
+    \centering
+    \includegraphics[width=0.90\textwidth,height=0.62\textheight,keepaspectratio]{positive_investment_window_by_p0.pdf}
+\end{frame}
+
+\begin{frame}{Monte Carlo simulations: $\rho=0.95$}
+    \small
+    Something that we should note is that the montecarlo simulations don't show the frequency of use of product 2 in a single trajectory, but the percentage of trajectories that use product 2 at a certain period of time.
+
+    \begin{center}
+        \makebox[\textwidth][c]{\includegraphics[width=1.15\textwidth,height=0.60\textheight,keepaspectratio]{monte_carlo_forgetting_p0_panels.pdf}}
+    \end{center}
+\end{frame}
+
+\begin{frame}{so\dots}
+    \begin{itemize}[<+->]
+        \item We can plot a single trajectory to see the frequency of use of product 2 over time
+        \item When the selection of the provider is not frequent, plotting the trajectory in calendar time produces long periods in which the state does not change.
+        \item We can index the trajectory by interactions with the provider. This only changes the plot's axis, not the solution. The optimal policy is calculated through the bellman equation that already accounts for the periods in which A is not selected.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Individual trajectory: $\rho=0.3$, $p_0=0.5$}
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.15\textwidth,height=0.88\textheight,keepaspectratio]{individual_states_p0_0.5_rho_0.3_path_1_start_1_n_2000.png}}
+\end{frame}
+
+\begin{frame}{Individual trajectory: $\rho=0.5$, $p_0=0.5$}
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.15\textwidth,height=0.88\textheight,keepaspectratio]{individual_states_p0_0.5_rho_0.5_path_1_start_1_n_2000.png}}
+\end{frame}
+
+\begin{frame}{Individual trajectory: $\rho=0.7$, $p_0=0.5$}
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.15\textwidth,height=0.88\textheight,keepaspectratio]{individual_states_p0_0.5_rho_0.7_path_1_start_1_n_2000.png}}
+\end{frame}
+
+\begin{frame}{Individual trajectory: $\rho=0.8$, $p_0=0.5$}
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.15\textwidth,height=0.88\textheight,keepaspectratio]{individual_states_p0_0.5_rho_0.8_path_1_start_1_n_2000.png}}
+\end{frame}
+
+\begin{frame}{Individual trajectory: $\rho=0.9$, $p_0=0.5$}
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.15\textwidth,height=0.88\textheight,keepaspectratio]{individual_states_p0_0.5_rho_0.9_path_1_start_1_n_2000.png}}
+\end{frame}
+
+\begin{frame}{Individual trajectory: $\rho=0.95$, $p_0=0.5$}
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.15\textwidth,height=0.88\textheight,keepaspectratio]{individual_states_p0_0.5_rho_0.95_path_1_start_1_n_2000.png}}
+\end{frame}
+
+\begin{frame}{Individual trajectory: $\rho=0.99$, $p_0=0.5$}
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.15\textwidth,height=0.88\textheight,keepaspectratio]{individual_states_p0_0.5_rho_0.99_path_1_start_1_n_2000.png}}
+\end{frame}
+
+\begin{frame}{Individual trajectory: $\rho=0.999$, $p_0=0.5$}
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.15\textwidth,height=0.88\textheight,keepaspectratio]{individual_states_p0_0.5_rho_0.999_path_1_start_1_n_2000.png}}
+\end{frame}
+
+\begin{frame}{How are we solving the problem}
+    \begin{itemize}[<+->]
+        \item After $k$ interactions with the provider, the effective information is $N_k=\frac{1-\rho^k}{1-\rho}
+        \longrightarrow
+        \frac{1}{1-\rho}$ as $k\to\infty$.
+        \item Then, in the long run, the state approaches the boundary $S+F=\frac{1}{1-\rho}$.
+        \item We can solve the bellman equation in that bundary
+        \item Numerically, we start from the long run boundary and we identify a number $K$ of interactions where the effective information is close to the long run boundary. Then we solve the bellman equation backwards from $K$ to $0$. 
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{What we want to do next}
+    \begin{itemize}
+        \item The idea is to first study the set of states where the product 2 is used in the long run and prove that said region is visited infinitey often.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Numerical result $\rho=0.9$}
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.15\textwidth,height=0.80\textheight,keepaspectratio]{state_distribution_p0_0.5_rho_0.9.png}}
+\end{frame}
+
+\begin{frame}{The idea}
+    \begin{itemize}[<+->]
+        \item We can study the maximum advantage of product 2 over product 1 $$\mathcal A_\rho =\max_{z\in\mathcal K_\rho}\left\{-\Delta c+\Delta p\,G_\rho(z)  \right\}$$ with $G_\rho(z)=\gamma\left[V_\rho\!\left(T_\rho^s z\right)-V_\rho\!\left(T_\rho^f z\right)\right]$
+        \item If $\mathcal A_\rho>0$,then the set of states where product 2 is used is non-empty. By continuity, there is a neighborhood of some $z^*\in\mathcal K_\rho$
+        in which product 2 remains optimal.
+        \item Then, the intuition is that a sufficiently long sequence of successes and failures can bring the state arbitrarily close to $z^*\in\mathcal K_\rho$.Since every such finite sequence has positive probability of occurring, there are repeated opportunities to enter the product-2 region.
+        \item The proof is not ready yet
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{The idea}
+    \begin{itemize}
+        \item From the numerical experiments we can, in most cases, see thresholds for when the provider decides to use product 2 based on the state
+        \item These thresholds are bounds on the actual visted states
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Thresholds and $\mathcal A_\rho$ ($p_0=0.5$)}
+    \centering
+    \scriptsize
+    \makebox[\textwidth][c]{%
+    \begin{tabular}{rrlrrr}
+        \toprule
+        $\rho$ & $K$ & Product 2 region & $\mathcal A_\rho$ & Min $S$ & Max $S$ \\
+        \midrule
+        $0.3$   & $10$    & $0.000000 \leq S < 0.236868$ & $0.063933$  & $7.16791\times10^{-5}$ & $1.42857$ \\
+        $0.5$   & $17$    & $0.000000 \leq S < 0.890691$ & $0.433679$  & $0.00655083$ & $1.99935$ \\
+        $0.7$   & $33$    & $0.000000 \leq S < 1.956824$ & $1.64313$   & $0.138242$   & $3.2993$  \\
+        $0.8$   & $52$    & $0.000000 \leq S < 3.064622$ & $3.07362$   & $0.591492$   & $4.79443$ \\
+        $0.9$   & $110$   & $0.046307 < S < 6.173594$    & $2.5117$    & $2.68771$    & $8.5797$  \\
+        $0.95$  & $225$   & $4.156680 < S < 11.965573$   & $1.78615$   & $8.13693$    & $15.1894$ \\
+        $0.99$  & $1146$  & $41.564085 < S < 54.235753$  & $0.556712$  & $49.8819$    & $60.8368$ \\
+        $0.999$ & $11508$ & None                         & $-0.170155$ & $322.119$    & $384.329$ \\
+        \bottomrule
+    \end{tabular}}
+
+    \vspace{1.2em}
+    \begin{minipage}{0.95\textwidth}
+    \footnotesize
+    State $S$; $K$ is the cut of the boundary solution. None means
+    product 1 throughout. Min and Max $S$ are observed sample extremes in the simulation from
+    $100{,}001$--$200{,}000$.
+    \end{minipage}
+\end{frame}
+
+
+\begin{frame}{Next steps}
+    \begin{itemize}
+        \item Write the formal proof of the frequent use of the product 2
+        \item Explore ideas on how to find the thresholds analitically
+    \end{itemize}
+\end{frame}
+
+% \begin{frame}{Difference between sets: $\rho=0.3$}
+%     \centering
+%     \makebox[\textwidth][c]{\includegraphics[width=1.15\textwidth,height=0.80\textheight,keepaspectratio]{state_distribution_p0_0.5_rho_0.3_kappa_preview.png}}
+% \end{frame}
+
+
+
+% \appendix
+% \section{Appendix}
+
+% \begin{frame}{Appendix: Monte Carlo comparison across $\rho$ and $p_0$}
+%     \centering
+%     \makebox[\textwidth][c]{\includegraphics[width=1.15\textwidth,height=0.88\textheight,keepaspectratio]{monte_carlo_forgetting_by_rho.png}}
+% \end{frame}
+
+\end{document}

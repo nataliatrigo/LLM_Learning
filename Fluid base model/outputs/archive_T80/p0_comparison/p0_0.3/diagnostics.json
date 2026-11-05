@@ -1,0 +1,337 @@
+{
+  "parameters": {
+    "p0": 0.3,
+    "p1": 0.35,
+    "p2": 0.8,
+    "c1": 0.05,
+    "c2": 0.65,
+    "revenue": 1.0,
+    "gamma": 0.98
+  },
+  "delta": 0.020202707317519466,
+  "effective_config": {
+    "primitives": {
+      "p0": 0.3,
+      "p1": 0.35,
+      "p2": 0.8,
+      "c1": 0.05,
+      "c2": 0.65,
+      "revenue": 1.0,
+      "gamma": 0.98
+    },
+    "solver": {
+      "mesh_steps": [
+        0.5,
+        0.25,
+        0.125
+      ],
+      "report_n": 100.0,
+      "truncation_tolerance": 1e-06,
+      "action_tolerance": 1e-08
+    },
+    "p0_comparison": {
+      "values": [
+        0.1,
+        0.3,
+        0.5,
+        0.7,
+        0.9
+      ]
+    },
+    "simulation": {
+      "horizon": 80.0,
+      "dt": 0.05,
+      "initial_states": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          2.0,
+          8.0
+        ],
+        [
+          8.0,
+          2.0
+        ],
+        [
+          10.0,
+          10.0
+        ]
+      ],
+      "check_time_refinement": true
+    }
+  },
+  "method": "monotone forward-neighbor HJB, backward diagonal sweep, simultaneous boundary brackets",
+  "meshes": [
+    {
+      "h": 0.5,
+      "cutoff_n": 979.0,
+      "report_n": 100.0,
+      "action_tolerance": 1e-08,
+      "retained_states": 20301,
+      "value_at_origin_lower": 40.775923989979795,
+      "value_at_origin_upper": 40.77592408937981,
+      "advantage_at_origin": 0.5063205907140914,
+      "maximum_hjb_residual": 3.47499806707674e-14,
+      "maximum_truncation_interval_width": 9.970718508611753e-07,
+      "theoretical_truncation_bound": 9.970718517931742e-07,
+      "actions": {
+        "0": 0,
+        "1": 15986,
+        "2": 4315
+      },
+      "action_codes": {
+        "0": "tie or unresolved truncation uncertainty",
+        "1": "product 1",
+        "2": "product 2"
+      },
+      "solve_seconds": 8.273429232000126,
+      "reused_saved_grid": false
+    },
+    {
+      "h": 0.25,
+      "cutoff_n": 976.75,
+      "report_n": 100.0,
+      "action_tolerance": 1e-08,
+      "retained_states": 80601,
+      "value_at_origin_lower": 41.15974576790006,
+      "value_at_origin_upper": 41.15974586893933,
+      "advantage_at_origin": 0.44948775077396597,
+      "maximum_hjb_residual": 6.872280522429719e-14,
+      "maximum_truncation_interval_width": 9.980150466049054e-07,
+      "theoretical_truncation_bound": 9.980148303299914e-07,
+      "actions": {
+        "0": 0,
+        "1": 63251,
+        "2": 17350
+      },
+      "action_codes": {
+        "0": "tie or unresolved truncation uncertainty",
+        "1": "product 1",
+        "2": "product 2"
+      },
+      "solve_seconds": 32.1782794300002,
+      "reused_saved_grid": false
+    },
+    {
+      "h": 0.125,
+      "cutoff_n": 975.625,
+      "report_n": 100.0,
+      "action_tolerance": 1e-08,
+      "retained_states": 321201,
+      "value_at_origin_lower": 41.357800772460756,
+      "value_at_origin_upper": 41.35780087452091,
+      "advantage_at_origin": 0.42354483288806943,
+      "maximum_hjb_residual": 1.2800871473928055e-13,
+      "maximum_truncation_interval_width": 9.984611821778344e-07,
+      "theoretical_truncation_bound": 9.9846059150834e-07,
+      "actions": {
+        "0": 0,
+        "1": 251203,
+        "2": 69998
+      },
+      "action_codes": {
+        "0": "tie or unresolved truncation uncertainty",
+        "1": "product 1",
+        "2": "product 2"
+      },
+      "solve_seconds": 124.54593997199981,
+      "reused_saved_grid": false
+    }
+  ],
+  "mesh_comparisons": [
+    {
+      "coarse_h": 0.5,
+      "fine_h": 0.25,
+      "common_states": 20301,
+      "maximum_value_change": 1.475640340457268,
+      "maximum_advantage_change": 0.9055859091115153,
+      "nominal_policy_disagreements": 119,
+      "policy_disagreement_fraction": 0.005861780207871534,
+      "disagreements_with_both_truncation_certificates_strict": 119,
+      "maximum_advantage_magnitude_at_policy_disagreement": 0.3246024891289581,
+      "interpretation": "Mesh differences are numerical evidence; truncation certificates do not certify mesh accuracy."
+    },
+    {
+      "coarse_h": 0.25,
+      "fine_h": 0.125,
+      "common_states": 80601,
+      "maximum_value_change": 0.7970325343547238,
+      "maximum_advantage_change": 0.5268899255326485,
+      "nominal_policy_disagreements": 312,
+      "policy_disagreement_fraction": 0.0038709197156362824,
+      "disagreements_with_both_truncation_certificates_strict": 312,
+      "maximum_advantage_magnitude_at_policy_disagreement": 0.2628106589469625,
+      "interpretation": "Mesh differences are numerical evidence; truncation certificates do not certify mesh accuracy."
+    }
+  ],
+  "time_refinement": [
+    {
+      "state_index": 0,
+      "path_id": "1: S0=0,F0=0",
+      "policy": "optimal",
+      "coarse_terminal_t": 80.0,
+      "fine_terminal_t": 80.0,
+      "terminal_S_change": 0.010313811113949356,
+      "terminal_F_change": 0.0037548512087113295,
+      "terminal_x_change": 6.366580522965126e-05,
+      "discounted_profit_change": 0.000272306541134526,
+      "product2_time_share_change": 0.00015624999999989952,
+      "both_reach_same_horizon": true
+    },
+    {
+      "state_index": 0,
+      "path_id": "1: S0=0,F0=0",
+      "policy": "product1",
+      "coarse_terminal_t": 80.0,
+      "fine_terminal_t": 80.0,
+      "terminal_S_change": 1.5579549170752216e-06,
+      "terminal_F_change": 2.893344841936596e-06,
+      "terminal_x_change": 3.5350833371694534e-10,
+      "discounted_profit_change": 4.001374279027914e-06,
+      "product2_time_share_change": 0.0,
+      "both_reach_same_horizon": true
+    },
+    {
+      "state_index": 0,
+      "path_id": "1: S0=0,F0=0",
+      "policy": "product2",
+      "coarse_terminal_t": 80.0,
+      "fine_terminal_t": 80.0,
+      "terminal_S_change": 4.0007373293349247e-05,
+      "terminal_F_change": 1.0001843318008241e-05,
+      "terminal_x_change": 4.5178115692934284e-09,
+      "discounted_profit_change": 1.6637605490643637e-05,
+      "product2_time_share_change": 0.0,
+      "both_reach_same_horizon": true
+    },
+    {
+      "state_index": 1,
+      "path_id": "2: S0=2,F0=8",
+      "policy": "optimal",
+      "coarse_terminal_t": 80.0,
+      "fine_terminal_t": 80.0,
+      "terminal_S_change": 4.550850006523888e-05,
+      "terminal_F_change": 0.00013388642980771692,
+      "terminal_x_change": 2.7413799963404983e-07,
+      "discounted_profit_change": 4.930436663741489e-05,
+      "product2_time_share_change": 8.326672684688674e-16,
+      "both_reach_same_horizon": true
+    },
+    {
+      "state_index": 1,
+      "path_id": "2: S0=2,F0=8",
+      "policy": "product1",
+      "coarse_terminal_t": 80.0,
+      "fine_terminal_t": 80.0,
+      "terminal_S_change": 1.15937744382677e-06,
+      "terminal_F_change": 2.1531295573140596e-06,
+      "terminal_x_change": 1.440358665671937e-09,
+      "discounted_profit_change": 1.2319570075192132e-06,
+      "product2_time_share_change": 0.0,
+      "both_reach_same_horizon": true
+    },
+    {
+      "state_index": 1,
+      "path_id": "2: S0=2,F0=8",
+      "policy": "product2",
+      "coarse_terminal_t": 80.0,
+      "fine_terminal_t": 80.0,
+      "terminal_S_change": 4.4920408008408685e-05,
+      "terminal_F_change": 1.1230101108594681e-05,
+      "terminal_x_change": 4.8366102345376305e-08,
+      "discounted_profit_change": 1.6260628498798724e-05,
+      "product2_time_share_change": 0.0,
+      "both_reach_same_horizon": true
+    },
+    {
+      "state_index": 2,
+      "path_id": "3: S0=8,F0=2",
+      "policy": "optimal",
+      "coarse_terminal_t": 80.0,
+      "fine_terminal_t": 80.0,
+      "terminal_S_change": 1.249531322855546e-08,
+      "terminal_F_change": 2.3205643628898542e-08,
+      "terminal_x_change": 2.07396322338127e-11,
+      "discounted_profit_change": 3.837860163002915e-08,
+      "product2_time_share_change": 0.0,
+      "both_reach_same_horizon": true
+    },
+    {
+      "state_index": 2,
+      "path_id": "3: S0=8,F0=2",
+      "policy": "product1",
+      "coarse_terminal_t": 80.0,
+      "fine_terminal_t": 80.0,
+      "terminal_S_change": 1.249531322855546e-08,
+      "terminal_F_change": 2.3205643628898542e-08,
+      "terminal_x_change": 2.07396322338127e-11,
+      "discounted_profit_change": 3.837860163002915e-08,
+      "product2_time_share_change": 0.0,
+      "both_reach_same_horizon": true
+    },
+    {
+      "state_index": 2,
+      "path_id": "3: S0=8,F0=2",
+      "policy": "product2",
+      "coarse_terminal_t": 80.0,
+      "fine_terminal_t": 80.0,
+      "terminal_S_change": 4.159734601216769e-08,
+      "terminal_F_change": 1.0399340055755601e-08,
+      "terminal_x_change": 3.686162486360445e-12,
+      "discounted_profit_change": 1.696628793013133e-08,
+      "product2_time_share_change": 0.0,
+      "both_reach_same_horizon": true
+    },
+    {
+      "state_index": 3,
+      "path_id": "4: S0=10,F0=10",
+      "policy": "optimal",
+      "coarse_terminal_t": 80.0,
+      "fine_terminal_t": 80.0,
+      "terminal_S_change": 7.535194868069084e-08,
+      "terminal_F_change": 1.3993974334880477e-07,
+      "terminal_x_change": 7.290967829476358e-11,
+      "discounted_profit_change": 1.0520104609668124e-07,
+      "product2_time_share_change": 0.0,
+      "both_reach_same_horizon": true
+    },
+    {
+      "state_index": 3,
+      "path_id": "4: S0=10,F0=10",
+      "policy": "product1",
+      "coarse_terminal_t": 80.0,
+      "fine_terminal_t": 80.0,
+      "terminal_S_change": 7.535194868069084e-08,
+      "terminal_F_change": 1.3993974334880477e-07,
+      "terminal_x_change": 7.290967829476358e-11,
+      "discounted_profit_change": 1.0520104609668124e-07,
+      "product2_time_share_change": 0.0,
+      "both_reach_same_horizon": true
+    },
+    {
+      "state_index": 3,
+      "path_id": "4: S0=10,F0=10",
+      "policy": "product2",
+      "coarse_terminal_t": 80.0,
+      "fine_terminal_t": 80.0,
+      "terminal_S_change": 1.3915928036567493e-06,
+      "terminal_F_change": 3.4789715641636576e-07,
+      "terminal_x_change": 1.1048407744240762e-09,
+      "discounted_profit_change": 5.5205604354569e-07,
+      "product2_time_share_change": 0.0,
+      "both_reach_same_horizon": true
+    }
+  ],
+  "all_paths_reach_requested_horizon": true,
+  "saved_trajectory_dt": 0.025,
+  "figures": [
+    "figures/policy_sf.png",
+    "figures/value_and_demand.png",
+    "figures/policy_nx.png",
+    "figures/trajectories.png",
+    "figures/switching_advantage.png"
+  ],
+  "elapsed_seconds": 178.92700472200022
+}

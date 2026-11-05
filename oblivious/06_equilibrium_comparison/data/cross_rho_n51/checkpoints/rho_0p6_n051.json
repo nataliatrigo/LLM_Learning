@@ -1,0 +1,1494 @@
+{
+  "rho": 0.6,
+  "verified": true,
+  "audit": {
+    "verified": true,
+    "parameters": {
+      "R": 1.0,
+      "c1": 0.05,
+      "c2": 0.65,
+      "p1": 0.35,
+      "p2": 0.8,
+      "gamma": 0.98,
+      "rho": 0.6
+    },
+    "n": 51,
+    "order": 128,
+    "state_definition": "Mature reputation x in [0,1]; Beta(1+x/(1-rho),1+(1-x)/(1-rho)); only the selected seller updates.",
+    "demand": {
+      "verified": true,
+      "order": 128,
+      "doubled_order": 256,
+      "doubled_order_max_difference": 4.0034853210357824e-10,
+      "independent_checks": [
+        {
+          "i": 0,
+          "j": 2,
+          "x": 0.0,
+          "y": 0.04,
+          "matrix_probability": 0.4625464037930901,
+          "direct_probability": 0.4625464042172008,
+          "absolute_error": 4.241106910107817e-10
+        },
+        {
+          "i": 0,
+          "j": 50,
+          "x": 0.0,
+          "y": 1.0,
+          "matrix_probability": 0.026844663787997658,
+          "direct_probability": 0.026844663788000548,
+          "absolute_error": 2.8900493109773606e-15
+        },
+        {
+          "i": 12,
+          "j": 38,
+          "x": 0.24,
+          "y": 0.76,
+          "matrix_probability": 0.1658560049985254,
+          "direct_probability": 0.16585600499852574,
+          "absolute_error": 3.3306690738754696e-16
+        },
+        {
+          "i": 24,
+          "j": 26,
+          "x": 0.48,
+          "y": 0.52,
+          "matrix_probability": 0.47054774276086164,
+          "direct_probability": 0.470547742760862,
+          "absolute_error": 3.3306690738754696e-16
+        },
+        {
+          "i": 25,
+          "j": 25,
+          "x": 0.5,
+          "y": 0.5,
+          "matrix_probability": 0.5,
+          "direct_probability": 0.5000000000000009,
+          "absolute_error": 8.881784197001252e-16
+        }
+      ],
+      "maximum_observed_error": 4.241106910107817e-10,
+      "tolerance": 1e-06,
+      "original_raw": {
+        "order": 128,
+        "raw_diagonal_error": 2.2775065167124353e-10,
+        "raw_symmetry_error": 4.5550130334248706e-10,
+        "raw_min": 0.026844663787997658,
+        "raw_max": 0.9731553362120016
+      },
+      "doubled_raw": {
+        "order": 256,
+        "raw_diagonal_error": 1.2754020062288873e-11,
+        "raw_symmetry_error": 2.5508040124577747e-11,
+        "raw_min": 0.02684466378799663,
+        "raw_max": 0.973155336212002
+      },
+      "interpretation": "Order doubling over the whole grid and independent adaptive quadrature at selected nodes; observed errors are diagnostics, not rigorous global error bounds. Direct Beta-draw selection matches the numerical kernel up to demand integration error."
+    },
+    "profiles": {
+      "oe": {
+        "label": "OE with real marginal",
+        "statuses": {
+          "verified": true,
+          "candidate_verified": true,
+          "dp_verified": true,
+          "stationary_verified": true,
+          "demand_verified": true
+        },
+        "source": {
+          "experiment": "oblivious_real_marginal",
+          "run": "rho_forgetting",
+          "case": "rho_0p6_n051",
+          "directory": "/home/natalia/Projects/LLM_Learning/oblivious_real_marginal/data/rho_forgetting",
+          "candidate_selection": "saved_selected",
+          "candidate_index": 0,
+          "candidate_count": 1,
+          "verified_candidate_count": 1,
+          "manifest": "/home/natalia/Projects/LLM_Learning/oblivious_real_marginal/data/rho_forgetting/manifest.json",
+          "case_json": "/home/natalia/Projects/LLM_Learning/oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p6_n051.json",
+          "case_npz": "/home/natalia/Projects/LLM_Learning/oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p6_n051.npz",
+          "manifest_sha256": "94969fcf4af5c902bf0d5163bbddaef60a2fc9a3d27aefd4fa2f8faf68a1c7df",
+          "case_json_sha256": "d40885c95115fc9244921bc5b54368594cbf2b34d231f809b2512f4153b6d9b3",
+          "case_npz_sha256": "aea5e67d535ce1dc266bd451ebf9d8ca5f2cc8d78ab283e3cf0bd291f8f325e7",
+          "saved_solver_source_sha256": {
+            "endogenous_p0/code/__init__.py": "6cf67451411cf1c0e1a14c319ecc1ee1dd7ff5f927d7a9428fa3f72790b3820a",
+            "endogenous_p0/code/core.py": "3334948ac90ea58e4e8d12a721431a30af44bc223ccb6b8f57d2e8ddffe00645",
+            "endogenous_p0/code/diagnostics.py": "22c282d9bc06f54c99c409e2060fecba8e776b7d6b0c2b8b25ba813190818149",
+            "endogenous_p0/code/run_experiment.py": "968960262f3b57026fc941ce693e66afc262b998b8407e61224627f2b0449bbe",
+            "endogenous_p0/code/test_experiment.py": "eec4f894f04a9340fc1c96b893a08d2e5bddf99afe4bfe10d2230d6ebba6cd0e",
+            "oblivious_real_marginal/code/__init__.py": "b0ded28944393479be618983c1d2cc084ae4ab2816226a93fedcb295a54ac60a",
+            "oblivious_real_marginal/code/diagnostics.py": "ead200b821c7612349ca20760eff6186618596413c609b5f6f9ad61782103d50",
+            "oblivious_real_marginal/code/model.py": "0b686151ba0ef90f06706055ba815f786428d88d96b1ac6a5fb1ddfa74980c09",
+            "oblivious_real_marginal/code/run_experiment.py": "982302027a023ddb67cbfb176cb3cd398d4ccda6875f5211bfc2bf1360cd6871",
+            "oblivious_real_marginal/code/step_by_step.py": "7ce019d77e0018685d50e0e9799d102318d1e34210ac870254869364ddf70877",
+            "oblivious_real_marginal/code/test_model.py": "8c40576efaeb431becc37fbd5ff67e7ede93ed5fbd8954635790e02ca9ff050d"
+          }
+        },
+        "stationary_residual_max": 2.6020852139652106e-18,
+        "stationary_residual_l1": 3.440190177529461e-16,
+        "transition_row_sum_error": 4.440892098500626e-16,
+        "stationary_tolerance": 1e-10,
+        "consistency_condition": "L1(mu_star - sum_A nu)",
+        "consistency_residual": 0.0,
+        "saved_consistency_residual": 0.0,
+        "consistency_tolerance": 1e-07,
+        "saved_marginal_l1_errors": {
+          "mu_a": 0.0,
+          "mu_b": 0.0
+        },
+        "marginal_symmetry_l1": 1.4925398156978575e-16,
+        "predicted": {
+          "mean_reputation_A": 0.34080989554925056,
+          "variance_reputation_A": 0.043762092007644006,
+          "mean_posterior_A": 0.411561053082917,
+          "market_share_A": 0.5,
+          "product2_conditional_A": 0.11989673585538371,
+          "product2_calendar_A": 0.059948367927691856,
+          "profit_A": 0.4390309792433849,
+          "mean_reputation_B": 0.34080989554925056,
+          "variance_reputation_B": 0.043762092007644,
+          "mean_posterior_B": 0.41156105308291707,
+          "market_share_B": 0.5,
+          "product2_conditional_B": 0.11989673585538373,
+          "product2_calendar_B": 0.05994836792769186,
+          "profit_B": 0.4390309792433849,
+          "correlation": -0.09199471617741035,
+          "product2_market": 0.11989673585538371,
+          "industry_profit": 0.8780619584867698,
+          "success_rate": 0.40395353113492266,
+          "failure_rate": 0.5960464688650773,
+          "expected_success_probability": 0.40395353113492266
+        }
+      },
+      "p0": {
+        "label": "Endogenous p\u2080",
+        "statuses": {
+          "verified": true,
+          "candidate_verified": true,
+          "dp_verified": true,
+          "stationary_verified": true,
+          "demand_verified": true
+        },
+        "source": {
+          "experiment": "endogenous_p0",
+          "run": "rho_forgetting_mixed",
+          "case": "rho_0p6_n051",
+          "directory": "/home/natalia/Projects/LLM_Learning/endogenous_p0/data/rho_forgetting_mixed",
+          "candidate_selection": "saved_selected",
+          "candidate_index": 0,
+          "candidate_count": 1,
+          "verified_candidate_count": 1,
+          "manifest": "/home/natalia/Projects/LLM_Learning/endogenous_p0/data/rho_forgetting_mixed/manifest.json",
+          "case_json": "/home/natalia/Projects/LLM_Learning/endogenous_p0/data/rho_forgetting_mixed/arrays/rho_0p6_n051.json",
+          "case_npz": "/home/natalia/Projects/LLM_Learning/endogenous_p0/data/rho_forgetting_mixed/arrays/rho_0p6_n051.npz",
+          "manifest_sha256": "112bfa11c5856c84b561af8863188ea053403c963a47613b7c3a5bc5cfc16769",
+          "case_json_sha256": "a4bfd0212316495db43699c1bc7b8d1c20b384f60a8a58249fd3d79ad38a5b93",
+          "case_npz_sha256": "0eb77b92c9d9c164ee6319ebd47c874cfe793ad19dddbc3f6d13f87f5964a6d1",
+          "saved_solver_source_sha256": {
+            "endogenous_p0/code/__init__.py": "6cf67451411cf1c0e1a14c319ecc1ee1dd7ff5f927d7a9428fa3f72790b3820a",
+            "endogenous_p0/code/core.py": "3334948ac90ea58e4e8d12a721431a30af44bc223ccb6b8f57d2e8ddffe00645",
+            "endogenous_p0/code/diagnostics.py": "22c282d9bc06f54c99c409e2060fecba8e776b7d6b0c2b8b25ba813190818149",
+            "endogenous_p0/code/run_experiment.py": "968960262f3b57026fc941ce693e66afc262b998b8407e61224627f2b0449bbe",
+            "endogenous_p0/code/test_experiment.py": "eec4f894f04a9340fc1c96b893a08d2e5bddf99afe4bfe10d2230d6ebba6cd0e"
+          }
+        },
+        "stationary_residual_max": 8.023096076392733e-18,
+        "stationary_residual_l1": 3.266031957617245e-16,
+        "transition_row_sum_error": 2.220446049250313e-16,
+        "stationary_tolerance": 1e-10,
+        "consistency_condition": "abs(p0_star - E_nu[m(X_B)])",
+        "consistency_residual": 0.0,
+        "saved_consistency_residual": 0.0,
+        "consistency_tolerance": 1e-07,
+        "saved_marginal_l1_errors": {
+          "mu_a": 0.0,
+          "mu_b": 0.0
+        },
+        "marginal_symmetry_l1": 1.8616428927933915e-16,
+        "predicted": {
+          "mean_reputation_A": 0.49997635605681484,
+          "variance_reputation_A": 0.03660340456378533,
+          "mean_posterior_A": 0.49998686447600826,
+          "market_share_A": 0.5,
+          "product2_conditional_A": 0.4510110027491212,
+          "product2_calendar_A": 0.2255055013745606,
+          "profit_A": 0.33969669917526363,
+          "mean_reputation_B": 0.4999763560568148,
+          "variance_reputation_B": 0.03660340456378534,
+          "mean_posterior_B": 0.49998686447600826,
+          "market_share_B": 0.5,
+          "product2_conditional_B": 0.45101100274912126,
+          "product2_calendar_B": 0.22550550137456063,
+          "profit_B": 0.33969669917526363,
+          "correlation": -0.0767391353768789,
+          "product2_market": 0.4510110027491212,
+          "industry_profit": 0.6793933983505273,
+          "success_rate": 0.5529549512371046,
+          "failure_rate": 0.4470450487628954,
+          "expected_success_probability": 0.5529549512371046
+        }
+      }
+    },
+    "current_numerical_source_sha256": {
+      "endogenous_p0/code/primitives.py": "e8a07e00220ab000c945d5a37ee562b9283bff4ceca8d525600e935e68334e11",
+      "endogenous_p0/code/game.py": "af7679fa58bd591f605d901de8e3f2c4044a73f476ec4339d9c5fe9e00fdb292",
+      "endogenous_p0/code/policy.py": "b77a2e2ea39b9250f6c3d99477ab09282775c1616bbfe8402d4ecfa88ad235be",
+      "endogenous_p0/code/core.py": "69859482c035d374328396105d3e10982e11886f017a82c4570d694414165813",
+      "endogenous_p0/code/run_experiment.py": "6ea76e941938484afa88c449b09b6ac8c8d0de03563a418bbbbc31c866ed330a",
+      "oblivious_real_marginal/code/model.py": "1728d77ffa9cb4b3a2f738b2461a7dfa4491c75c9c3bacb600db82db0ecfc142",
+      "equilibrium_comparison/inputs.py": "7e87de717c2b1707f8ba3f3c2eaf9810e554c2415e3e74278b91c84c37f930da"
+    },
+    "provenance_note": "Current files are hashed separately from the historical solver hashes saved in each source manifest. Loaded policies and stationary laws are checked under the current actual-game kernel; no equilibrium solver was run."
+  },
+  "parameters": {
+    "R": 1.0,
+    "c1": 0.05,
+    "c2": 0.65,
+    "p1": 0.35,
+    "p2": 0.8,
+    "gamma": 0.98,
+    "rho": 0.6
+  },
+  "grid": {
+    "__array__": "root/grid"
+  },
+  "profiles": {
+    "oe": {
+      "replications": [
+        {
+          "replication": 0,
+          "product2_market": 0.11995,
+          "seller_profit": 0.439015,
+          "success_rate": 0.40392
+        },
+        {
+          "replication": 1,
+          "product2_market": 0.11927,
+          "seller_profit": 0.4392189999999999,
+          "success_rate": 0.40493
+        },
+        {
+          "replication": 2,
+          "product2_market": 0.12106,
+          "seller_profit": 0.43868199999999996,
+          "success_rate": 0.40358
+        },
+        {
+          "replication": 3,
+          "product2_market": 0.12132,
+          "seller_profit": 0.438604,
+          "success_rate": 0.40334
+        },
+        {
+          "replication": 4,
+          "product2_market": 0.11957,
+          "seller_profit": 0.4391290000000001,
+          "success_rate": 0.40469
+        },
+        {
+          "replication": 5,
+          "product2_market": 0.12044,
+          "seller_profit": 0.43886800000000004,
+          "success_rate": 0.40419
+        },
+        {
+          "replication": 6,
+          "product2_market": 0.12019,
+          "seller_profit": 0.438943,
+          "success_rate": 0.40354
+        },
+        {
+          "replication": 7,
+          "product2_market": 0.11845,
+          "seller_profit": 0.439465,
+          "success_rate": 0.40369
+        },
+        {
+          "replication": 8,
+          "product2_market": 0.11913,
+          "seller_profit": 0.43926100000000007,
+          "success_rate": 0.40558
+        },
+        {
+          "replication": 9,
+          "product2_market": 0.12286,
+          "seller_profit": 0.43814200000000003,
+          "success_rate": 0.40119
+        },
+        {
+          "replication": 10,
+          "product2_market": 0.11982,
+          "seller_profit": 0.439054,
+          "success_rate": 0.40412
+        },
+        {
+          "replication": 11,
+          "product2_market": 0.11855,
+          "seller_profit": 0.439435,
+          "success_rate": 0.40669
+        },
+        {
+          "replication": 12,
+          "product2_market": 0.12016,
+          "seller_profit": 0.43895199999999995,
+          "success_rate": 0.4038
+        },
+        {
+          "replication": 13,
+          "product2_market": 0.12137,
+          "seller_profit": 0.438589,
+          "success_rate": 0.40223
+        },
+        {
+          "replication": 14,
+          "product2_market": 0.12073,
+          "seller_profit": 0.43878100000000003,
+          "success_rate": 0.40338
+        },
+        {
+          "replication": 15,
+          "product2_market": 0.12111,
+          "seller_profit": 0.438667,
+          "success_rate": 0.403
+        },
+        {
+          "replication": 16,
+          "product2_market": 0.11784,
+          "seller_profit": 0.43964800000000004,
+          "success_rate": 0.40611
+        },
+        {
+          "replication": 17,
+          "product2_market": 0.11922,
+          "seller_profit": 0.439234,
+          "success_rate": 0.405
+        },
+        {
+          "replication": 18,
+          "product2_market": 0.11889,
+          "seller_profit": 0.43933300000000003,
+          "success_rate": 0.40376
+        },
+        {
+          "replication": 19,
+          "product2_market": 0.1195,
+          "seller_profit": 0.43915,
+          "success_rate": 0.40332
+        }
+      ],
+      "summary": {
+        "product2_market": {
+          "mean": 0.11997150000000001,
+          "se": 0.00026997687522803637,
+          "ci_low": 0.11940643190601374,
+          "ci_high": 0.12053656809398627,
+          "n_valid": 20
+        },
+        "seller_profit": {
+          "mean": 0.43900854999999994,
+          "se": 8.099306256841207e-05,
+          "ci_low": 0.43883902957180404,
+          "ci_high": 0.43917807042819584,
+          "n_valid": 20
+        },
+        "success_rate": {
+          "mean": 0.404003,
+          "se": 0.0002831933503530955,
+          "ci_low": 0.4034102695056625,
+          "ci_high": 0.4045957304943375,
+          "n_valid": 20
+        }
+      },
+      "distribution": {
+        "grid": {
+          "__array__": "root/profiles/oe/distribution/grid"
+        },
+        "edges": {
+          "__array__": "root/profiles/oe/distribution/edges"
+        },
+        "joint": {
+          "__array__": "root/profiles/oe/distribution/joint"
+        },
+        "cdf": {
+          "__array__": "root/profiles/oe/distribution/cdf"
+        },
+        "cdf_low": {
+          "__array__": "root/profiles/oe/distribution/cdf_low"
+        },
+        "cdf_high": {
+          "__array__": "root/profiles/oe/distribution/cdf_high"
+        },
+        "cdf_replications": {
+          "__array__": "root/profiles/oe/distribution/cdf_replications"
+        },
+        "joint_replications": {
+          "__array__": "root/profiles/oe/distribution/joint_replications"
+        }
+      },
+      "policy": {
+        "__array__": "root/profiles/oe/policy"
+      },
+      "stationary_joint": {
+        "__array__": "root/profiles/oe/stationary_joint"
+      },
+      "stationary_cdf": {
+        "__array__": "root/profiles/oe/stationary_cdf"
+      },
+      "predicted": {
+        "product2_market": 0.11989673585538371,
+        "seller_profit": 0.4390309792433849,
+        "success_rate": 0.40395353113492266
+      },
+      "source": {
+        "experiment": "oblivious_real_marginal",
+        "run": "rho_forgetting",
+        "case": "rho_0p6_n051",
+        "directory": "/home/natalia/Projects/LLM_Learning/oblivious_real_marginal/data/rho_forgetting",
+        "candidate_selection": "saved_selected",
+        "candidate_index": 0,
+        "candidate_count": 1,
+        "verified_candidate_count": 1,
+        "manifest": "/home/natalia/Projects/LLM_Learning/oblivious_real_marginal/data/rho_forgetting/manifest.json",
+        "case_json": "/home/natalia/Projects/LLM_Learning/oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p6_n051.json",
+        "case_npz": "/home/natalia/Projects/LLM_Learning/oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p6_n051.npz",
+        "manifest_sha256": "94969fcf4af5c902bf0d5163bbddaef60a2fc9a3d27aefd4fa2f8faf68a1c7df",
+        "case_json_sha256": "d40885c95115fc9244921bc5b54368594cbf2b34d231f809b2512f4153b6d9b3",
+        "case_npz_sha256": "aea5e67d535ce1dc266bd451ebf9d8ca5f2cc8d78ab283e3cf0bd291f8f325e7",
+        "saved_solver_source_sha256": {
+          "endogenous_p0/code/__init__.py": "6cf67451411cf1c0e1a14c319ecc1ee1dd7ff5f927d7a9428fa3f72790b3820a",
+          "endogenous_p0/code/core.py": "3334948ac90ea58e4e8d12a721431a30af44bc223ccb6b8f57d2e8ddffe00645",
+          "endogenous_p0/code/diagnostics.py": "22c282d9bc06f54c99c409e2060fecba8e776b7d6b0c2b8b25ba813190818149",
+          "endogenous_p0/code/run_experiment.py": "968960262f3b57026fc941ce693e66afc262b998b8407e61224627f2b0449bbe",
+          "endogenous_p0/code/test_experiment.py": "eec4f894f04a9340fc1c96b893a08d2e5bddf99afe4bfe10d2230d6ebba6cd0e",
+          "oblivious_real_marginal/code/__init__.py": "b0ded28944393479be618983c1d2cc084ae4ab2816226a93fedcb295a54ac60a",
+          "oblivious_real_marginal/code/diagnostics.py": "ead200b821c7612349ca20760eff6186618596413c609b5f6f9ad61782103d50",
+          "oblivious_real_marginal/code/model.py": "0b686151ba0ef90f06706055ba815f786428d88d96b1ac6a5fb1ddfa74980c09",
+          "oblivious_real_marginal/code/run_experiment.py": "982302027a023ddb67cbfb176cb3cd398d4ccda6875f5211bfc2bf1360cd6871",
+          "oblivious_real_marginal/code/step_by_step.py": "7ce019d77e0018685d50e0e9799d102318d1e34210ac870254869364ddf70877",
+          "oblivious_real_marginal/code/test_model.py": "8c40576efaeb431becc37fbd5ff67e7ede93ed5fbd8954635790e02ca9ff050d"
+        }
+      },
+      "finite_window_expected": {
+        "product2_market": 0.11989673585536845,
+        "seller_profit": 0.43903097924340106,
+        "success_rate": 0.4039535311349158
+      },
+      "finite_window_joint_l1_from_stationary": 1.4199985450920603e-12
+    },
+    "p0": {
+      "replications": [
+        {
+          "replication": 0,
+          "product2_market": 0.45064,
+          "seller_profit": 0.33980799999999994,
+          "success_rate": 0.55305
+        },
+        {
+          "replication": 1,
+          "product2_market": 0.44997,
+          "seller_profit": 0.34000899999999995,
+          "success_rate": 0.554
+        },
+        {
+          "replication": 2,
+          "product2_market": 0.45188,
+          "seller_profit": 0.33943599999999996,
+          "success_rate": 0.55275
+        },
+        {
+          "replication": 3,
+          "product2_market": 0.44986,
+          "seller_profit": 0.34004199999999996,
+          "success_rate": 0.55364
+        },
+        {
+          "replication": 4,
+          "product2_market": 0.45067,
+          "seller_profit": 0.339799,
+          "success_rate": 0.55358
+        },
+        {
+          "replication": 5,
+          "product2_market": 0.45024,
+          "seller_profit": 0.33992799999999995,
+          "success_rate": 0.55307
+        },
+        {
+          "replication": 6,
+          "product2_market": 0.45056,
+          "seller_profit": 0.33983199999999997,
+          "success_rate": 0.55304
+        },
+        {
+          "replication": 7,
+          "product2_market": 0.45125,
+          "seller_profit": 0.339625,
+          "success_rate": 0.5531
+        },
+        {
+          "replication": 8,
+          "product2_market": 0.44867,
+          "seller_profit": 0.34039899999999995,
+          "success_rate": 0.55458
+        },
+        {
+          "replication": 9,
+          "product2_market": 0.45319,
+          "seller_profit": 0.33904300000000004,
+          "success_rate": 0.55187
+        },
+        {
+          "replication": 10,
+          "product2_market": 0.45115,
+          "seller_profit": 0.339655,
+          "success_rate": 0.55269
+        },
+        {
+          "replication": 11,
+          "product2_market": 0.44962,
+          "seller_profit": 0.3401139999999999,
+          "success_rate": 0.5537
+        },
+        {
+          "replication": 12,
+          "product2_market": 0.45188,
+          "seller_profit": 0.33943600000000007,
+          "success_rate": 0.55236
+        },
+        {
+          "replication": 13,
+          "product2_market": 0.45201,
+          "seller_profit": 0.33939699999999995,
+          "success_rate": 0.55248
+        },
+        {
+          "replication": 14,
+          "product2_market": 0.44999,
+          "seller_profit": 0.34000299999999994,
+          "success_rate": 0.55347
+        },
+        {
+          "replication": 15,
+          "product2_market": 0.45172,
+          "seller_profit": 0.33948400000000006,
+          "success_rate": 0.55233
+        },
+        {
+          "replication": 16,
+          "product2_market": 0.44901,
+          "seller_profit": 0.34029699999999996,
+          "success_rate": 0.55415
+        },
+        {
+          "replication": 17,
+          "product2_market": 0.4521,
+          "seller_profit": 0.33937,
+          "success_rate": 0.55291
+        },
+        {
+          "replication": 18,
+          "product2_market": 0.44979,
+          "seller_profit": 0.34006299999999995,
+          "success_rate": 0.55372
+        },
+        {
+          "replication": 19,
+          "product2_market": 0.451,
+          "seller_profit": 0.3397,
+          "success_rate": 0.55335
+        }
+      ],
+      "summary": {
+        "product2_market": {
+          "mean": 0.4507600000000001,
+          "se": 0.0002573866638675006,
+          "ci_low": 0.4502212835212415,
+          "ci_high": 0.4512987164787587,
+          "n_valid": 20
+        },
+        "seller_profit": {
+          "mean": 0.3397719999999999,
+          "se": 7.721599916024419e-05,
+          "ci_low": 0.33961038505637237,
+          "ci_high": 0.33993361494362745,
+          "n_valid": 20
+        },
+        "success_rate": {
+          "mean": 0.553192,
+          "se": 0.00015192553577675203,
+          "ci_low": 0.5528740161991405,
+          "ci_high": 0.5535099838008596,
+          "n_valid": 20
+        }
+      },
+      "distribution": {
+        "grid": {
+          "__array__": "root/profiles/p0/distribution/grid"
+        },
+        "edges": {
+          "__array__": "root/profiles/p0/distribution/edges"
+        },
+        "joint": {
+          "__array__": "root/profiles/p0/distribution/joint"
+        },
+        "cdf": {
+          "__array__": "root/profiles/p0/distribution/cdf"
+        },
+        "cdf_low": {
+          "__array__": "root/profiles/p0/distribution/cdf_low"
+        },
+        "cdf_high": {
+          "__array__": "root/profiles/p0/distribution/cdf_high"
+        },
+        "cdf_replications": {
+          "__array__": "root/profiles/p0/distribution/cdf_replications"
+        },
+        "joint_replications": {
+          "__array__": "root/profiles/p0/distribution/joint_replications"
+        }
+      },
+      "policy": {
+        "__array__": "root/profiles/p0/policy"
+      },
+      "stationary_joint": {
+        "__array__": "root/profiles/p0/stationary_joint"
+      },
+      "stationary_cdf": {
+        "__array__": "root/profiles/p0/stationary_cdf"
+      },
+      "predicted": {
+        "product2_market": 0.4510110027491212,
+        "seller_profit": 0.33969669917526363,
+        "success_rate": 0.5529549512371046
+      },
+      "source": {
+        "experiment": "endogenous_p0",
+        "run": "rho_forgetting_mixed",
+        "case": "rho_0p6_n051",
+        "directory": "/home/natalia/Projects/LLM_Learning/endogenous_p0/data/rho_forgetting_mixed",
+        "candidate_selection": "saved_selected",
+        "candidate_index": 0,
+        "candidate_count": 1,
+        "verified_candidate_count": 1,
+        "manifest": "/home/natalia/Projects/LLM_Learning/endogenous_p0/data/rho_forgetting_mixed/manifest.json",
+        "case_json": "/home/natalia/Projects/LLM_Learning/endogenous_p0/data/rho_forgetting_mixed/arrays/rho_0p6_n051.json",
+        "case_npz": "/home/natalia/Projects/LLM_Learning/endogenous_p0/data/rho_forgetting_mixed/arrays/rho_0p6_n051.npz",
+        "manifest_sha256": "112bfa11c5856c84b561af8863188ea053403c963a47613b7c3a5bc5cfc16769",
+        "case_json_sha256": "a4bfd0212316495db43699c1bc7b8d1c20b384f60a8a58249fd3d79ad38a5b93",
+        "case_npz_sha256": "0eb77b92c9d9c164ee6319ebd47c874cfe793ad19dddbc3f6d13f87f5964a6d1",
+        "saved_solver_source_sha256": {
+          "endogenous_p0/code/__init__.py": "6cf67451411cf1c0e1a14c319ecc1ee1dd7ff5f927d7a9428fa3f72790b3820a",
+          "endogenous_p0/code/core.py": "3334948ac90ea58e4e8d12a721431a30af44bc223ccb6b8f57d2e8ddffe00645",
+          "endogenous_p0/code/diagnostics.py": "22c282d9bc06f54c99c409e2060fecba8e776b7d6b0c2b8b25ba813190818149",
+          "endogenous_p0/code/run_experiment.py": "968960262f3b57026fc941ce693e66afc262b998b8407e61224627f2b0449bbe",
+          "endogenous_p0/code/test_experiment.py": "eec4f894f04a9340fc1c96b893a08d2e5bddf99afe4bfe10d2230d6ebba6cd0e"
+        }
+      },
+      "finite_window_expected": {
+        "product2_market": 0.45101100274902495,
+        "seller_profit": 0.33969669917522094,
+        "success_rate": 0.5529549512370613
+      },
+      "finite_window_joint_l1_from_stationary": 1.444690048370837e-12
+    }
+  },
+  "simulation_provenance": {
+    "kind": "existing_simulate_pair",
+    "metadata": {
+      "params": {
+        "R": 1.0,
+        "c1": 0.05,
+        "c2": 0.65,
+        "p1": 0.35,
+        "p2": 0.8,
+        "gamma": 0.98,
+        "rho": 0.6
+      },
+      "mode": "grid",
+      "seed": 20261017,
+      "periods": 100000,
+      "burn_in": 10000,
+      "replications": 20,
+      "total_periods": 110000,
+      "short_periods": 0,
+      "initial": [
+        0.5,
+        0.5
+      ],
+      "primary_window": [
+        10000,
+        110000
+      ],
+      "assignments": {
+        "oe": [
+          "oe",
+          "oe"
+        ],
+        "p0": [
+          "p0",
+          "p0"
+        ]
+      },
+      "uniform_channels": [
+        "theta_A",
+        "theta_B",
+        "product",
+        "success",
+        "projection"
+      ],
+      "random_generator": "numpy.random.PCG64; independent SeedSequence child per replication",
+      "common_random_numbers": "Same five uniforms per replication/time in every profile and mode",
+      "selection": "Independent actual Beta posterior draws; A iff theta_A > theta_B, ties B",
+      "transition": "Solver stochastic interpolation; selection matches finite kernel up to audited demand quadrature error",
+      "policy_extension": "Stored probabilities at grid nodes; mixed choices sampled without thresholding"
+    },
+    "replication_seeds": [
+      {
+        "entropy": 20261017,
+        "spawn_key": [
+          0
+        ]
+      },
+      {
+        "entropy": 20261017,
+        "spawn_key": [
+          1
+        ]
+      },
+      {
+        "entropy": 20261017,
+        "spawn_key": [
+          2
+        ]
+      },
+      {
+        "entropy": 20261017,
+        "spawn_key": [
+          3
+        ]
+      },
+      {
+        "entropy": 20261017,
+        "spawn_key": [
+          4
+        ]
+      },
+      {
+        "entropy": 20261017,
+        "spawn_key": [
+          5
+        ]
+      },
+      {
+        "entropy": 20261017,
+        "spawn_key": [
+          6
+        ]
+      },
+      {
+        "entropy": 20261017,
+        "spawn_key": [
+          7
+        ]
+      },
+      {
+        "entropy": 20261017,
+        "spawn_key": [
+          8
+        ]
+      },
+      {
+        "entropy": 20261017,
+        "spawn_key": [
+          9
+        ]
+      },
+      {
+        "entropy": 20261017,
+        "spawn_key": [
+          10
+        ]
+      },
+      {
+        "entropy": 20261017,
+        "spawn_key": [
+          11
+        ]
+      },
+      {
+        "entropy": 20261017,
+        "spawn_key": [
+          12
+        ]
+      },
+      {
+        "entropy": 20261017,
+        "spawn_key": [
+          13
+        ]
+      },
+      {
+        "entropy": 20261017,
+        "spawn_key": [
+          14
+        ]
+      },
+      {
+        "entropy": 20261017,
+        "spawn_key": [
+          15
+        ]
+      },
+      {
+        "entropy": 20261017,
+        "spawn_key": [
+          16
+        ]
+      },
+      {
+        "entropy": 20261017,
+        "spawn_key": [
+          17
+        ]
+      },
+      {
+        "entropy": 20261017,
+        "spawn_key": [
+          18
+        ]
+      },
+      {
+        "entropy": 20261017,
+        "spawn_key": [
+          19
+        ]
+      }
+    ]
+  },
+  "transient_validation": {
+    "method": "Repeated sparse propagation q_(t+1)=P.T @ q_t; expected pre-selection window law=sum(q_t)/length.",
+    "initial_state": [
+      0.5,
+      0.5
+    ],
+    "horizon": 110000,
+    "parameters": {
+      "R": 1.0,
+      "c1": 0.05,
+      "c2": 0.65,
+      "p1": 0.35,
+      "p2": 0.8,
+      "gamma": 0.98,
+      "rho": 0.6
+    },
+    "grid_points": 51,
+    "windows": {
+      "comparison": {
+        "start": 10000,
+        "length": 100000
+      }
+    },
+    "checkpoints": [
+      0,
+      10000,
+      110000
+    ],
+    "profiles": {
+      "oe": {
+        "label": "OE with real marginal",
+        "stationary_metrics": {
+          "mean_reputation_A": 0.34080989554925056,
+          "mean_reputation_B": 0.34080989554925056,
+          "mean_posterior_A": 0.411561053082917,
+          "mean_posterior_B": 0.41156105308291707,
+          "market_share_A": 0.5,
+          "market_share_B": 0.5,
+          "product2_calendar_A": 0.059948367927691856,
+          "product2_calendar_B": 0.05994836792769186,
+          "product2_market": 0.11989673585538371,
+          "profit_A": 0.4390309792433849,
+          "profit_B": 0.4390309792433849,
+          "industry_profit": 0.8780619584867698,
+          "success_rate": 0.40395353113492266,
+          "failure_rate": 0.5960464688650773,
+          "expected_success_probability": 0.40395353113492266,
+          "mean_ts_A": 0.411561053082917,
+          "mean_error_A": 0.0,
+          "rare_mass_le_0p2_A": 0.35153503145786547,
+          "rare_mass_le_0p3_A": 0.5373056748913119,
+          "rare_mass_le_0p4_A": 0.6354748192359505,
+          "mean_ts_B": 0.41156105308291707,
+          "mean_error_B": 0.0,
+          "rare_mass_le_0p2_B": 0.3515350314578655,
+          "rare_mass_le_0p3_B": 0.5373056748913119,
+          "rare_mass_le_0p4_B": 0.6354748192359505
+        },
+        "checkpoints": {
+          "0": {
+            "time": 0,
+            "probability_sum": 1.0,
+            "minimum_probability": 0.0,
+            "l1_distance_to_stationary": 1.9987056068354812,
+            "metrics": {
+              "mean_reputation_A": 0.5,
+              "mean_reputation_B": 0.5,
+              "mean_posterior_A": 0.5,
+              "mean_posterior_B": 0.5,
+              "market_share_A": 0.5,
+              "market_share_B": 0.5,
+              "product2_calendar_A": 0.0,
+              "product2_calendar_B": 0.0,
+              "product2_market": 0.0,
+              "profit_A": 0.475,
+              "profit_B": 0.475,
+              "industry_profit": 0.95,
+              "success_rate": 0.35,
+              "failure_rate": 0.65,
+              "expected_success_probability": 0.35,
+              "mean_ts_A": 0.5,
+              "mean_error_A": 0.15919010445074944,
+              "rare_mass_le_0p2_A": 0.0,
+              "rare_mass_le_0p3_A": 0.0,
+              "rare_mass_le_0p4_A": 0.0,
+              "mean_ts_B": 0.5,
+              "mean_error_B": 0.15919010445074944,
+              "rare_mass_le_0p2_B": 0.0,
+              "rare_mass_le_0p3_B": 0.0,
+              "rare_mass_le_0p4_B": 0.0
+            }
+          },
+          "10000": {
+            "time": 10000,
+            "probability_sum": 1.000000000000002,
+            "minimum_probability": 4.348113623117335e-09,
+            "l1_distance_to_stationary": 2.0556181642246464e-15,
+            "metrics": {
+              "mean_reputation_A": 0.34080989554925123,
+              "mean_reputation_B": 0.34080989554925123,
+              "mean_posterior_A": 0.4115610530829179,
+              "mean_posterior_B": 0.4115610530829179,
+              "market_share_A": 0.500000000000001,
+              "market_share_B": 0.500000000000001,
+              "product2_calendar_A": 0.05994836792769199,
+              "product2_calendar_B": 0.05994836792769199,
+              "product2_market": 0.11989673585538398,
+              "profit_A": 0.43903097924338574,
+              "profit_B": 0.4390309792433858,
+              "industry_profit": 0.8780619584867715,
+              "success_rate": 0.40395353113492277,
+              "failure_rate": 0.5960464688650773,
+              "expected_success_probability": 0.40395353113492277,
+              "mean_ts_A": 0.4115610530829179,
+              "mean_error_A": 6.661338147750939e-16,
+              "rare_mass_le_0p2_A": 0.35153503145786624,
+              "rare_mass_le_0p3_A": 0.537305674891313,
+              "rare_mass_le_0p4_A": 0.6354748192359516,
+              "mean_ts_B": 0.4115610530829179,
+              "mean_error_B": 6.661338147750939e-16,
+              "rare_mass_le_0p2_B": 0.35153503145786624,
+              "rare_mass_le_0p3_B": 0.537305674891313,
+              "rare_mass_le_0p4_B": 0.6354748192359517
+            }
+          },
+          "110000": {
+            "time": 110000,
+            "probability_sum": 1.000000000000002,
+            "minimum_probability": 4.348113623117335e-09,
+            "l1_distance_to_stationary": 2.0556181642246464e-15,
+            "metrics": {
+              "mean_reputation_A": 0.34080989554925123,
+              "mean_reputation_B": 0.34080989554925123,
+              "mean_posterior_A": 0.4115610530829179,
+              "mean_posterior_B": 0.4115610530829179,
+              "market_share_A": 0.500000000000001,
+              "market_share_B": 0.500000000000001,
+              "product2_calendar_A": 0.05994836792769199,
+              "product2_calendar_B": 0.05994836792769199,
+              "product2_market": 0.11989673585538398,
+              "profit_A": 0.43903097924338574,
+              "profit_B": 0.4390309792433858,
+              "industry_profit": 0.8780619584867715,
+              "success_rate": 0.40395353113492277,
+              "failure_rate": 0.5960464688650773,
+              "expected_success_probability": 0.40395353113492277,
+              "mean_ts_A": 0.4115610530829179,
+              "mean_error_A": 6.661338147750939e-16,
+              "rare_mass_le_0p2_A": 0.35153503145786624,
+              "rare_mass_le_0p3_A": 0.537305674891313,
+              "rare_mass_le_0p4_A": 0.6354748192359516,
+              "mean_ts_B": 0.4115610530829179,
+              "mean_error_B": 6.661338147750939e-16,
+              "rare_mass_le_0p2_B": 0.35153503145786624,
+              "rare_mass_le_0p3_B": 0.537305674891313,
+              "rare_mass_le_0p4_B": 0.6354748192359517
+            }
+          }
+        },
+        "windows": {
+          "comparison": {
+            "start": 10000,
+            "length": 100000,
+            "probability_sum": 1.0000000000000244,
+            "l1_distance_to_stationary": 1.4199985450920603e-12,
+            "expected_metrics": {
+              "mean_reputation_A": 0.3408098955492501,
+              "mean_reputation_B": 0.3408098955492501,
+              "mean_posterior_A": 0.41156105308292223,
+              "mean_posterior_B": 0.41156105308292223,
+              "market_share_A": 0.5000000000000122,
+              "market_share_B": 0.5000000000000122,
+              "product2_calendar_A": 0.059948367927684224,
+              "product2_calendar_B": 0.059948367927684224,
+              "product2_market": 0.11989673585536845,
+              "profit_A": 0.43903097924340106,
+              "profit_B": 0.4390309792434011,
+              "industry_profit": 0.8780619584868021,
+              "success_rate": 0.4039535311349158,
+              "failure_rate": 0.5960464688650842,
+              "expected_success_probability": 0.4039535311349158,
+              "mean_ts_A": 0.41156105308292223,
+              "mean_error_A": -4.440892098500626e-16,
+              "rare_mass_le_0p2_A": 0.35153503145789394,
+              "rare_mass_le_0p3_A": 0.5373056748913485,
+              "rare_mass_le_0p4_A": 0.6354748192359991,
+              "mean_ts_B": 0.41156105308292223,
+              "mean_error_B": -4.440892098500626e-16,
+              "rare_mass_le_0p2_B": 0.35153503145789394,
+              "rare_mass_le_0p3_B": 0.5373056748913486,
+              "rare_mass_le_0p4_B": 0.6354748192359991
+            }
+          }
+        },
+        "saved_stationarity_residual_max": 2.6020852139652106e-18,
+        "final_probability_sum": 1.000000000000002,
+        "final_minimum_probability": 4.348113623117335e-09,
+        "final_l1_distance_to_stationary": 2.0556181642246464e-15,
+        "elapsed_seconds": 2.56714244599425
+      },
+      "p0": {
+        "label": "Endogenous p\u2080",
+        "stationary_metrics": {
+          "mean_reputation_A": 0.49997635605681484,
+          "mean_reputation_B": 0.4999763560568148,
+          "mean_posterior_A": 0.49998686447600826,
+          "mean_posterior_B": 0.49998686447600826,
+          "market_share_A": 0.5,
+          "market_share_B": 0.5,
+          "product2_calendar_A": 0.2255055013745606,
+          "product2_calendar_B": 0.22550550137456063,
+          "product2_market": 0.4510110027491212,
+          "profit_A": 0.33969669917526363,
+          "profit_B": 0.33969669917526363,
+          "industry_profit": 0.6793933983505273,
+          "success_rate": 0.5529549512371046,
+          "failure_rate": 0.4470450487628954,
+          "expected_success_probability": 0.5529549512371046,
+          "mean_ts_A": 0.49998686447600826,
+          "mean_error_A": 0.0,
+          "rare_mass_le_0p2_A": 0.053765696129675966,
+          "rare_mass_le_0p3_A": 0.14744849983921887,
+          "rare_mass_le_0p4_A": 0.38788802324274785,
+          "mean_ts_B": 0.49998686447600826,
+          "mean_error_B": 0.0,
+          "rare_mass_le_0p2_B": 0.053765696129675966,
+          "rare_mass_le_0p3_B": 0.14744849983921887,
+          "rare_mass_le_0p4_B": 0.38788802324274785,
+          "p0_mean_error": 0.0,
+          "p0_ts_error": 0.0
+        },
+        "checkpoints": {
+          "0": {
+            "time": 0,
+            "probability_sum": 1.0,
+            "minimum_probability": 0.0,
+            "l1_distance_to_stationary": 1.999181401092485,
+            "metrics": {
+              "mean_reputation_A": 0.5,
+              "mean_reputation_B": 0.5,
+              "mean_posterior_A": 0.5,
+              "mean_posterior_B": 0.5,
+              "market_share_A": 0.5,
+              "market_share_B": 0.5,
+              "product2_calendar_A": 0.5,
+              "product2_calendar_B": 0.5,
+              "product2_market": 1.0,
+              "profit_A": 0.175,
+              "profit_B": 0.175,
+              "industry_profit": 0.35,
+              "success_rate": 0.8,
+              "failure_rate": 0.19999999999999996,
+              "expected_success_probability": 0.8,
+              "mean_ts_A": 0.5,
+              "mean_error_A": 2.3643943185158722e-05,
+              "rare_mass_le_0p2_A": 0.0,
+              "rare_mass_le_0p3_A": 0.0,
+              "rare_mass_le_0p4_A": 0.0,
+              "mean_ts_B": 0.5,
+              "mean_error_B": 2.3643943185214233e-05,
+              "rare_mass_le_0p2_B": 0.0,
+              "rare_mass_le_0p3_B": 0.0,
+              "rare_mass_le_0p4_B": 0.0,
+              "p0_mean_error": 1.3135523991736342e-05,
+              "p0_ts_error": 1.3135523991736342e-05
+            }
+          },
+          "10000": {
+            "time": 10000,
+            "probability_sum": 1.000000000000002,
+            "minimum_probability": 2.9141559066241204e-10,
+            "l1_distance_to_stationary": 1.9517777108128588e-15,
+            "metrics": {
+              "mean_reputation_A": 0.49997635605681573,
+              "mean_reputation_B": 0.4999763560568158,
+              "mean_posterior_A": 0.49998686447600926,
+              "mean_posterior_B": 0.49998686447600926,
+              "market_share_A": 0.500000000000001,
+              "market_share_B": 0.500000000000001,
+              "product2_calendar_A": 0.22550550137456105,
+              "product2_calendar_B": 0.22550550137456105,
+              "product2_market": 0.4510110027491221,
+              "profit_A": 0.3396966991752643,
+              "profit_B": 0.3396966991752643,
+              "industry_profit": 0.6793933983505286,
+              "success_rate": 0.5529549512371049,
+              "failure_rate": 0.4470450487628951,
+              "expected_success_probability": 0.5529549512371049,
+              "mean_ts_A": 0.49998686447600926,
+              "mean_error_A": 8.881784197001252e-16,
+              "rare_mass_le_0p2_A": 0.05376569612967608,
+              "rare_mass_le_0p3_A": 0.1474484998392192,
+              "rare_mass_le_0p4_A": 0.3878880232427486,
+              "mean_ts_B": 0.49998686447600926,
+              "mean_error_B": 9.992007221626409e-16,
+              "rare_mass_le_0p2_B": 0.05376569612967608,
+              "rare_mass_le_0p3_B": 0.1474484998392192,
+              "rare_mass_le_0p4_B": 0.3878880232427486,
+              "p0_mean_error": 9.992007221626409e-16,
+              "p0_ts_error": 9.992007221626409e-16
+            }
+          },
+          "110000": {
+            "time": 110000,
+            "probability_sum": 1.000000000000002,
+            "minimum_probability": 2.9141559066241204e-10,
+            "l1_distance_to_stationary": 1.9517777108128588e-15,
+            "metrics": {
+              "mean_reputation_A": 0.49997635605681573,
+              "mean_reputation_B": 0.4999763560568158,
+              "mean_posterior_A": 0.49998686447600926,
+              "mean_posterior_B": 0.49998686447600926,
+              "market_share_A": 0.500000000000001,
+              "market_share_B": 0.500000000000001,
+              "product2_calendar_A": 0.22550550137456105,
+              "product2_calendar_B": 0.22550550137456105,
+              "product2_market": 0.4510110027491221,
+              "profit_A": 0.3396966991752643,
+              "profit_B": 0.3396966991752643,
+              "industry_profit": 0.6793933983505286,
+              "success_rate": 0.5529549512371049,
+              "failure_rate": 0.4470450487628951,
+              "expected_success_probability": 0.5529549512371049,
+              "mean_ts_A": 0.49998686447600926,
+              "mean_error_A": 8.881784197001252e-16,
+              "rare_mass_le_0p2_A": 0.05376569612967608,
+              "rare_mass_le_0p3_A": 0.1474484998392192,
+              "rare_mass_le_0p4_A": 0.3878880232427486,
+              "mean_ts_B": 0.49998686447600926,
+              "mean_error_B": 9.992007221626409e-16,
+              "rare_mass_le_0p2_B": 0.05376569612967608,
+              "rare_mass_le_0p3_B": 0.1474484998392192,
+              "rare_mass_le_0p4_B": 0.3878880232427486,
+              "p0_mean_error": 9.992007221626409e-16,
+              "p0_ts_error": 9.992007221626409e-16
+            }
+          }
+        },
+        "windows": {
+          "comparison": {
+            "start": 10000,
+            "length": 100000,
+            "probability_sum": 0.9999999999998495,
+            "l1_distance_to_stationary": 1.444690048370837e-12,
+            "expected_metrics": {
+              "mean_reputation_A": 0.49997635605674684,
+              "mean_reputation_B": 0.49997635605674684,
+              "mean_posterior_A": 0.499986864475937,
+              "mean_posterior_B": 0.499986864475937,
+              "market_share_A": 0.49999999999992467,
+              "market_share_B": 0.49999999999992467,
+              "product2_calendar_A": 0.22550550137451247,
+              "product2_calendar_B": 0.22550550137451247,
+              "product2_market": 0.45101100274902495,
+              "profit_A": 0.3396966991752209,
+              "profit_B": 0.33969669917522094,
+              "industry_profit": 0.6793933983504419,
+              "success_rate": 0.5529549512370613,
+              "failure_rate": 0.4470450487629387,
+              "expected_success_probability": 0.5529549512370613,
+              "mean_ts_A": 0.499986864475937,
+              "mean_error_A": -6.800116025829084e-14,
+              "rare_mass_le_0p2_A": 0.05376569612968064,
+              "rare_mass_le_0p3_A": 0.14744849983922254,
+              "rare_mass_le_0p4_A": 0.38788802324265587,
+              "mean_ts_B": 0.499986864475937,
+              "mean_error_B": -6.794564910705958e-14,
+              "rare_mass_le_0p2_B": 0.05376569612968065,
+              "rare_mass_le_0p3_B": 0.14744849983922254,
+              "rare_mass_le_0p4_B": 0.38788802324265587,
+              "p0_mean_error": -7.127631818093505e-14,
+              "p0_ts_error": -7.127631818093505e-14
+            }
+          }
+        },
+        "saved_stationarity_residual_max": 8.023096076392733e-18,
+        "final_probability_sum": 1.000000000000002,
+        "final_minimum_probability": 2.9141559066241204e-10,
+        "final_l1_distance_to_stationary": 1.9517777108128588e-15,
+        "elapsed_seconds": 2.5246563500040793
+      }
+    },
+    "no_equilibrium_solved": true,
+    "numerical_scope": "Existing finite-grid transition matrices; selection integration error is documented in the original input audit. These are deterministic expectations, not Monte Carlo estimates or continuous-state equilibrium claims.",
+    "source_input_audit": {
+      "verified": true,
+      "parameters": {
+        "R": 1.0,
+        "c1": 0.05,
+        "c2": 0.65,
+        "p1": 0.35,
+        "p2": 0.8,
+        "gamma": 0.98,
+        "rho": 0.6
+      },
+      "n": 51,
+      "order": 128,
+      "state_definition": "Mature reputation x in [0,1]; Beta(1+x/(1-rho),1+(1-x)/(1-rho)); only the selected seller updates.",
+      "demand": {
+        "verified": true,
+        "order": 128,
+        "doubled_order": 256,
+        "doubled_order_max_difference": 4.0034853210357824e-10,
+        "independent_checks": [
+          {
+            "i": 0,
+            "j": 2,
+            "x": 0.0,
+            "y": 0.04,
+            "matrix_probability": 0.4625464037930901,
+            "direct_probability": 0.4625464042172008,
+            "absolute_error": 4.241106910107817e-10
+          },
+          {
+            "i": 0,
+            "j": 50,
+            "x": 0.0,
+            "y": 1.0,
+            "matrix_probability": 0.026844663787997658,
+            "direct_probability": 0.026844663788000548,
+            "absolute_error": 2.8900493109773606e-15
+          },
+          {
+            "i": 12,
+            "j": 38,
+            "x": 0.24,
+            "y": 0.76,
+            "matrix_probability": 0.1658560049985254,
+            "direct_probability": 0.16585600499852574,
+            "absolute_error": 3.3306690738754696e-16
+          },
+          {
+            "i": 24,
+            "j": 26,
+            "x": 0.48,
+            "y": 0.52,
+            "matrix_probability": 0.47054774276086164,
+            "direct_probability": 0.470547742760862,
+            "absolute_error": 3.3306690738754696e-16
+          },
+          {
+            "i": 25,
+            "j": 25,
+            "x": 0.5,
+            "y": 0.5,
+            "matrix_probability": 0.5,
+            "direct_probability": 0.5000000000000009,
+            "absolute_error": 8.881784197001252e-16
+          }
+        ],
+        "maximum_observed_error": 4.241106910107817e-10,
+        "tolerance": 1e-06,
+        "original_raw": {
+          "order": 128,
+          "raw_diagonal_error": 2.2775065167124353e-10,
+          "raw_symmetry_error": 4.5550130334248706e-10,
+          "raw_min": 0.026844663787997658,
+          "raw_max": 0.9731553362120016
+        },
+        "doubled_raw": {
+          "order": 256,
+          "raw_diagonal_error": 1.2754020062288873e-11,
+          "raw_symmetry_error": 2.5508040124577747e-11,
+          "raw_min": 0.02684466378799663,
+          "raw_max": 0.973155336212002
+        },
+        "interpretation": "Order doubling over the whole grid and independent adaptive quadrature at selected nodes; observed errors are diagnostics, not rigorous global error bounds. Direct Beta-draw selection matches the numerical kernel up to demand integration error."
+      },
+      "profiles": {
+        "oe": {
+          "label": "OE with real marginal",
+          "statuses": {
+            "verified": true,
+            "candidate_verified": true,
+            "dp_verified": true,
+            "stationary_verified": true,
+            "demand_verified": true
+          },
+          "source": {
+            "experiment": "oblivious_real_marginal",
+            "run": "rho_forgetting",
+            "case": "rho_0p6_n051",
+            "directory": "/home/natalia/Projects/LLM_Learning/oblivious_real_marginal/data/rho_forgetting",
+            "candidate_selection": "saved_selected",
+            "candidate_index": 0,
+            "candidate_count": 1,
+            "verified_candidate_count": 1,
+            "manifest": "/home/natalia/Projects/LLM_Learning/oblivious_real_marginal/data/rho_forgetting/manifest.json",
+            "case_json": "/home/natalia/Projects/LLM_Learning/oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p6_n051.json",
+            "case_npz": "/home/natalia/Projects/LLM_Learning/oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p6_n051.npz",
+            "manifest_sha256": "94969fcf4af5c902bf0d5163bbddaef60a2fc9a3d27aefd4fa2f8faf68a1c7df",
+            "case_json_sha256": "d40885c95115fc9244921bc5b54368594cbf2b34d231f809b2512f4153b6d9b3",
+            "case_npz_sha256": "aea5e67d535ce1dc266bd451ebf9d8ca5f2cc8d78ab283e3cf0bd291f8f325e7",
+            "saved_solver_source_sha256": {
+              "endogenous_p0/code/__init__.py": "6cf67451411cf1c0e1a14c319ecc1ee1dd7ff5f927d7a9428fa3f72790b3820a",
+              "endogenous_p0/code/core.py": "3334948ac90ea58e4e8d12a721431a30af44bc223ccb6b8f57d2e8ddffe00645",
+              "endogenous_p0/code/diagnostics.py": "22c282d9bc06f54c99c409e2060fecba8e776b7d6b0c2b8b25ba813190818149",
+              "endogenous_p0/code/run_experiment.py": "968960262f3b57026fc941ce693e66afc262b998b8407e61224627f2b0449bbe",
+              "endogenous_p0/code/test_experiment.py": "eec4f894f04a9340fc1c96b893a08d2e5bddf99afe4bfe10d2230d6ebba6cd0e",
+              "oblivious_real_marginal/code/__init__.py": "b0ded28944393479be618983c1d2cc084ae4ab2816226a93fedcb295a54ac60a",
+              "oblivious_real_marginal/code/diagnostics.py": "ead200b821c7612349ca20760eff6186618596413c609b5f6f9ad61782103d50",
+              "oblivious_real_marginal/code/model.py": "0b686151ba0ef90f06706055ba815f786428d88d96b1ac6a5fb1ddfa74980c09",
+              "oblivious_real_marginal/code/run_experiment.py": "982302027a023ddb67cbfb176cb3cd398d4ccda6875f5211bfc2bf1360cd6871",
+              "oblivious_real_marginal/code/step_by_step.py": "7ce019d77e0018685d50e0e9799d102318d1e34210ac870254869364ddf70877",
+              "oblivious_real_marginal/code/test_model.py": "8c40576efaeb431becc37fbd5ff67e7ede93ed5fbd8954635790e02ca9ff050d"
+            }
+          },
+          "stationary_residual_max": 2.6020852139652106e-18,
+          "stationary_residual_l1": 3.440190177529461e-16,
+          "transition_row_sum_error": 4.440892098500626e-16,
+          "stationary_tolerance": 1e-10,
+          "consistency_condition": "L1(mu_star - sum_A nu)",
+          "consistency_residual": 0.0,
+          "saved_consistency_residual": 0.0,
+          "consistency_tolerance": 1e-07,
+          "saved_marginal_l1_errors": {
+            "mu_a": 0.0,
+            "mu_b": 0.0
+          },
+          "marginal_symmetry_l1": 1.4925398156978575e-16,
+          "predicted": {
+            "mean_reputation_A": 0.34080989554925056,
+            "variance_reputation_A": 0.043762092007644006,
+            "mean_posterior_A": 0.411561053082917,
+            "market_share_A": 0.5,
+            "product2_conditional_A": 0.11989673585538371,
+            "product2_calendar_A": 0.059948367927691856,
+            "profit_A": 0.4390309792433849,
+            "mean_reputation_B": 0.34080989554925056,
+            "variance_reputation_B": 0.043762092007644,
+            "mean_posterior_B": 0.41156105308291707,
+            "market_share_B": 0.5,
+            "product2_conditional_B": 0.11989673585538373,
+            "product2_calendar_B": 0.05994836792769186,
+            "profit_B": 0.4390309792433849,
+            "correlation": -0.09199471617741035,
+            "product2_market": 0.11989673585538371,
+            "industry_profit": 0.8780619584867698,
+            "success_rate": 0.40395353113492266,
+            "failure_rate": 0.5960464688650773,
+            "expected_success_probability": 0.40395353113492266
+          }
+        },
+        "p0": {
+          "label": "Endogenous p\u2080",
+          "statuses": {
+            "verified": true,
+            "candidate_verified": true,
+            "dp_verified": true,
+            "stationary_verified": true,
+            "demand_verified": true
+          },
+          "source": {
+            "experiment": "endogenous_p0",
+            "run": "rho_forgetting_mixed",
+            "case": "rho_0p6_n051",
+            "directory": "/home/natalia/Projects/LLM_Learning/endogenous_p0/data/rho_forgetting_mixed",
+            "candidate_selection": "saved_selected",
+            "candidate_index": 0,
+            "candidate_count": 1,
+            "verified_candidate_count": 1,
+            "manifest": "/home/natalia/Projects/LLM_Learning/endogenous_p0/data/rho_forgetting_mixed/manifest.json",
+            "case_json": "/home/natalia/Projects/LLM_Learning/endogenous_p0/data/rho_forgetting_mixed/arrays/rho_0p6_n051.json",
+            "case_npz": "/home/natalia/Projects/LLM_Learning/endogenous_p0/data/rho_forgetting_mixed/arrays/rho_0p6_n051.npz",
+            "manifest_sha256": "112bfa11c5856c84b561af8863188ea053403c963a47613b7c3a5bc5cfc16769",
+            "case_json_sha256": "a4bfd0212316495db43699c1bc7b8d1c20b384f60a8a58249fd3d79ad38a5b93",
+            "case_npz_sha256": "0eb77b92c9d9c164ee6319ebd47c874cfe793ad19dddbc3f6d13f87f5964a6d1",
+            "saved_solver_source_sha256": {
+              "endogenous_p0/code/__init__.py": "6cf67451411cf1c0e1a14c319ecc1ee1dd7ff5f927d7a9428fa3f72790b3820a",
+              "endogenous_p0/code/core.py": "3334948ac90ea58e4e8d12a721431a30af44bc223ccb6b8f57d2e8ddffe00645",
+              "endogenous_p0/code/diagnostics.py": "22c282d9bc06f54c99c409e2060fecba8e776b7d6b0c2b8b25ba813190818149",
+              "endogenous_p0/code/run_experiment.py": "968960262f3b57026fc941ce693e66afc262b998b8407e61224627f2b0449bbe",
+              "endogenous_p0/code/test_experiment.py": "eec4f894f04a9340fc1c96b893a08d2e5bddf99afe4bfe10d2230d6ebba6cd0e"
+            }
+          },
+          "stationary_residual_max": 8.023096076392733e-18,
+          "stationary_residual_l1": 3.266031957617245e-16,
+          "transition_row_sum_error": 2.220446049250313e-16,
+          "stationary_tolerance": 1e-10,
+          "consistency_condition": "abs(p0_star - E_nu[m(X_B)])",
+          "consistency_residual": 0.0,
+          "saved_consistency_residual": 0.0,
+          "consistency_tolerance": 1e-07,
+          "saved_marginal_l1_errors": {
+            "mu_a": 0.0,
+            "mu_b": 0.0
+          },
+          "marginal_symmetry_l1": 1.8616428927933915e-16,
+          "predicted": {
+            "mean_reputation_A": 0.49997635605681484,
+            "variance_reputation_A": 0.03660340456378533,
+            "mean_posterior_A": 0.49998686447600826,
+            "market_share_A": 0.5,
+            "product2_conditional_A": 0.4510110027491212,
+            "product2_calendar_A": 0.2255055013745606,
+            "profit_A": 0.33969669917526363,
+            "mean_reputation_B": 0.4999763560568148,
+            "variance_reputation_B": 0.03660340456378534,
+            "mean_posterior_B": 0.49998686447600826,
+            "market_share_B": 0.5,
+            "product2_conditional_B": 0.45101100274912126,
+            "product2_calendar_B": 0.22550550137456063,
+            "profit_B": 0.33969669917526363,
+            "correlation": -0.0767391353768789,
+            "product2_market": 0.4510110027491212,
+            "industry_profit": 0.6793933983505273,
+            "success_rate": 0.5529549512371046,
+            "failure_rate": 0.4470450487628954,
+            "expected_success_probability": 0.5529549512371046
+          }
+        }
+      },
+      "current_numerical_source_sha256": {
+        "endogenous_p0/code/primitives.py": "e8a07e00220ab000c945d5a37ee562b9283bff4ceca8d525600e935e68334e11",
+        "endogenous_p0/code/game.py": "af7679fa58bd591f605d901de8e3f2c4044a73f476ec4339d9c5fe9e00fdb292",
+        "endogenous_p0/code/policy.py": "b77a2e2ea39b9250f6c3d99477ab09282775c1616bbfe8402d4ecfa88ad235be",
+        "endogenous_p0/code/core.py": "69859482c035d374328396105d3e10982e11886f017a82c4570d694414165813",
+        "endogenous_p0/code/run_experiment.py": "6ea76e941938484afa88c449b09b6ac8c8d0de03563a418bbbbc31c866ed330a",
+        "oblivious_real_marginal/code/model.py": "1728d77ffa9cb4b3a2f738b2461a7dfa4491c75c9c3bacb600db82db0ecfc142",
+        "equilibrium_comparison/inputs.py": "7e87de717c2b1707f8ba3f3c2eaf9810e554c2415e3e74278b91c84c37f930da"
+      },
+      "provenance_note": "Current files are hashed separately from the historical solver hashes saved in each source manifest. Loaded policies and stationary laws are checked under the current actual-game kernel; no equilibrium solver was run."
+    },
+    "validation_module_sha256": "e408f0bdacd9ea9257333d845072c7b29ceef14cd06a3d73e67de936295a4f37"
+  },
+  "elapsed_seconds": 29.31935607500054
+}

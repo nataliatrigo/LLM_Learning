@@ -1,0 +1,862 @@
+{
+  "status": "complete",
+  "started_utc": "2026-10-17T23:31:44.720846+00:00",
+  "configuration": {
+    "name": "rho095_n51",
+    "output": "/home/natalia/Projects/LLM_Learning/equilibrium_comparison/data",
+    "figures_output": "/home/natalia/Projects/LLM_Learning/equilibrium_comparison/figures",
+    "rho": 0.95,
+    "grid": 51,
+    "oe_run": "rho_forgetting",
+    "p0_run": "rho_forgetting_mixed",
+    "oe_candidate": null,
+    "p0_candidate": null,
+    "periods": 100000,
+    "burn_in": 10000,
+    "replications": 20,
+    "short_periods": 1000,
+    "seed": 20261017,
+    "modes": [
+      "grid",
+      "nearest",
+      "linear"
+    ],
+    "refinement_grids": [
+      21,
+      31
+    ],
+    "no_stability": false,
+    "compress_raw": false
+  },
+  "source_sha256": {
+    "endogenous_p0/code/__init__.py": "6cf67451411cf1c0e1a14c319ecc1ee1dd7ff5f927d7a9428fa3f72790b3820a",
+    "endogenous_p0/code/core.py": "69859482c035d374328396105d3e10982e11886f017a82c4570d694414165813",
+    "endogenous_p0/code/diagnostics.py": "b92049159a60199f1d05db587d218e5104b960d40a83a00241d7d98f23443b22",
+    "endogenous_p0/code/game.py": "af7679fa58bd591f605d901de8e3f2c4044a73f476ec4339d9c5fe9e00fdb292",
+    "endogenous_p0/code/policy.py": "b77a2e2ea39b9250f6c3d99477ab09282775c1616bbfe8402d4ecfa88ad235be",
+    "endogenous_p0/code/primitives.py": "e8a07e00220ab000c945d5a37ee562b9283bff4ceca8d525600e935e68334e11",
+    "endogenous_p0/code/reference_paths.py": "143ece8ab6f74c6a667456d7c1deb04d396bbe2db4afcfc5ee7c95abbaa0908a",
+    "endogenous_p0/code/run_experiment.py": "6ea76e941938484afa88c449b09b6ac8c8d0de03563a418bbbbc31c866ed330a",
+    "equilibrium_comparison/__init__.py": "2966f608e8201d9c372bcfd74cf81875636f5c1353f2b53c257444bfc74982cf",
+    "equilibrium_comparison/analysis.py": "4aa908fcb4aeb12dc9cf4f66b3e23466c21feded32d7f2c06cd864f12a263003",
+    "equilibrium_comparison/inputs.py": "7e87de717c2b1707f8ba3f3c2eaf9810e554c2415e3e74278b91c84c37f930da",
+    "equilibrium_comparison/reporting.py": "9cc7e47624412bfd335842dd7148f4f57e27a222bcbe23575306c80e7ca27209",
+    "equilibrium_comparison/run_experiment.py": "fc178a9baa6fc22c4c44670a266a101d8f846d381c5274b83194dac23273dc9b",
+    "equilibrium_comparison/simulation.py": "160e4628d06138f9be79e5f8b8060a7dbf0aa2eae1e9775390d049b745faa95a",
+    "oblivious_real_marginal/code/__init__.py": "b0ded28944393479be618983c1d2cc084ae4ab2816226a93fedcb295a54ac60a",
+    "oblivious_real_marginal/code/diagnostics.py": "41fa24ee1cd36da238493c2f4326795381ee8861775d8e8c59a62b0dbdfe5aa9",
+    "oblivious_real_marginal/code/model.py": "1728d77ffa9cb4b3a2f738b2461a7dfa4491c75c9c3bacb600db82db0ecfc142",
+    "oblivious_real_marginal/code/run_experiment.py": "7a2418c995978d7b7991ed967c16f63a81bd16d283f24ad933e3fe73324aa3c9",
+    "oblivious_real_marginal/code/step_by_step.py": "f197fb309f849abdc5898b8a6bf667b15e22cc37d2fdfd064dfbf3ae2c211517"
+  },
+  "completed": [
+    "n051_grid",
+    "n051_nearest",
+    "n051_linear",
+    "n021_grid",
+    "n021_nearest",
+    "n031_grid",
+    "n031_nearest"
+  ],
+  "input_audits": {
+    "51": {
+      "verified": true,
+      "parameters": {
+        "R": 1.0,
+        "c1": 0.05,
+        "c2": 0.65,
+        "p1": 0.35,
+        "p2": 0.8,
+        "gamma": 0.98,
+        "rho": 0.95
+      },
+      "n": 51,
+      "order": 128,
+      "state_definition": "Mature reputation x in [0,1]; Beta(1+x/(1-rho),1+(1-x)/(1-rho)); only the selected seller updates.",
+      "demand": {
+        "verified": true,
+        "order": 128,
+        "doubled_order": 256,
+        "doubled_order_max_difference": 4.6267206732508726e-09,
+        "independent_checks": [
+          {
+            "i": 0,
+            "j": 1,
+            "x": 0.0,
+            "y": 0.02,
+            "matrix_probability": 0.37635663557363463,
+            "direct_probability": 0.3763566404066095,
+            "absolute_error": 4.8329748536524164e-09
+          },
+          {
+            "i": 0,
+            "j": 50,
+            "x": 0.0,
+            "y": 1.0,
+            "matrix_probability": 1.857845555979915e-12,
+            "direct_probability": 1.8578455559807982e-12,
+            "absolute_error": 8.833222654557966e-25
+          },
+          {
+            "i": 12,
+            "j": 38,
+            "x": 0.24,
+            "y": 0.76,
+            "matrix_probability": 0.0005311132454867933,
+            "direct_probability": 0.0005311132454867957,
+            "absolute_error": 2.3852447794681098e-18
+          },
+          {
+            "i": 24,
+            "j": 26,
+            "x": 0.48,
+            "y": 0.52,
+            "matrix_probability": 0.4027094707800395,
+            "direct_probability": 0.40270947078003916,
+            "absolute_error": 3.3306690738754696e-16
+          },
+          {
+            "i": 25,
+            "j": 25,
+            "x": 0.5,
+            "y": 0.5,
+            "matrix_probability": 0.5,
+            "direct_probability": 0.5000000000000002,
+            "absolute_error": 2.220446049250313e-16
+          }
+        ],
+        "maximum_observed_error": 4.8329748536524164e-09,
+        "tolerance": 1e-06,
+        "original_raw": {
+          "order": 128,
+          "raw_diagonal_error": 4.488015514780841e-10,
+          "raw_symmetry_error": 4.832969691115352e-09,
+          "raw_min": 1.857845555979915e-12,
+          "raw_max": 0.9999999999981422
+        },
+        "doubled_raw": {
+          "order": 256,
+          "raw_diagonal_error": 1.1354361895143938e-11,
+          "raw_symmetry_error": 2.064037829541121e-10,
+          "raw_min": 1.8578455559818447e-12,
+          "raw_max": 0.9999999999981422
+        },
+        "interpretation": "Order doubling over the whole grid and independent adaptive quadrature at selected nodes; observed errors are diagnostics, not rigorous global error bounds. Direct Beta-draw selection matches the numerical kernel up to demand integration error."
+      },
+      "profiles": {
+        "oe": {
+          "label": "OE with real marginal",
+          "statuses": {
+            "verified": true,
+            "candidate_verified": true,
+            "dp_verified": true,
+            "stationary_verified": true,
+            "demand_verified": true
+          },
+          "source": {
+            "experiment": "oblivious_real_marginal",
+            "run": "rho_forgetting",
+            "case": "rho_0p95_n051",
+            "directory": "/home/natalia/Projects/LLM_Learning/oblivious_real_marginal/data/rho_forgetting",
+            "candidate_selection": "saved_selected",
+            "candidate_index": 0,
+            "candidate_count": 1,
+            "verified_candidate_count": 1,
+            "manifest": "/home/natalia/Projects/LLM_Learning/oblivious_real_marginal/data/rho_forgetting/manifest.json",
+            "case_json": "/home/natalia/Projects/LLM_Learning/oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p95_n051.json",
+            "case_npz": "/home/natalia/Projects/LLM_Learning/oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p95_n051.npz",
+            "manifest_sha256": "94969fcf4af5c902bf0d5163bbddaef60a2fc9a3d27aefd4fa2f8faf68a1c7df",
+            "case_json_sha256": "60326d4ed76e79baa24baa85970eb6c3d06b52e874f7ff582c0871742a87f60d",
+            "case_npz_sha256": "d02bdc59601078e5a2e4e225f156641b31401c144457f9c8d5e2b00234a39f01",
+            "saved_solver_source_sha256": {
+              "endogenous_p0/code/__init__.py": "6cf67451411cf1c0e1a14c319ecc1ee1dd7ff5f927d7a9428fa3f72790b3820a",
+              "endogenous_p0/code/core.py": "3334948ac90ea58e4e8d12a721431a30af44bc223ccb6b8f57d2e8ddffe00645",
+              "endogenous_p0/code/diagnostics.py": "22c282d9bc06f54c99c409e2060fecba8e776b7d6b0c2b8b25ba813190818149",
+              "endogenous_p0/code/run_experiment.py": "968960262f3b57026fc941ce693e66afc262b998b8407e61224627f2b0449bbe",
+              "endogenous_p0/code/test_experiment.py": "eec4f894f04a9340fc1c96b893a08d2e5bddf99afe4bfe10d2230d6ebba6cd0e",
+              "oblivious_real_marginal/code/__init__.py": "b0ded28944393479be618983c1d2cc084ae4ab2816226a93fedcb295a54ac60a",
+              "oblivious_real_marginal/code/diagnostics.py": "ead200b821c7612349ca20760eff6186618596413c609b5f6f9ad61782103d50",
+              "oblivious_real_marginal/code/model.py": "0b686151ba0ef90f06706055ba815f786428d88d96b1ac6a5fb1ddfa74980c09",
+              "oblivious_real_marginal/code/run_experiment.py": "982302027a023ddb67cbfb176cb3cd398d4ccda6875f5211bfc2bf1360cd6871",
+              "oblivious_real_marginal/code/step_by_step.py": "7ce019d77e0018685d50e0e9799d102318d1e34210ac870254869364ddf70877",
+              "oblivious_real_marginal/code/test_model.py": "8c40576efaeb431becc37fbd5ff67e7ede93ed5fbd8954635790e02ca9ff050d"
+            }
+          },
+          "stationary_residual_max": 1.3877787807814457e-17,
+          "stationary_residual_l1": 1.6242991676537792e-16,
+          "transition_row_sum_error": 3.3306690738754696e-16,
+          "stationary_tolerance": 1e-10,
+          "consistency_condition": "L1(mu_star - sum_A nu)",
+          "consistency_residual": 0.0,
+          "saved_consistency_residual": 0.0,
+          "consistency_tolerance": 1e-07,
+          "saved_marginal_l1_errors": {
+            "mu_a": 0.0,
+            "mu_b": 0.0
+          },
+          "marginal_symmetry_l1": 1.0794776001362138e-16,
+          "predicted": {
+            "mean_reputation_A": 0.6762650012502831,
+            "variance_reputation_A": 0.001851545188433996,
+            "mean_posterior_A": 0.6602409102275301,
+            "market_share_A": 0.5000000000000001,
+            "product2_conditional_A": 0.7452000292073151,
+            "product2_calendar_A": 0.3726000146036576,
+            "profit_A": 0.25143999123780547,
+            "mean_reputation_B": 0.6762650012502831,
+            "variance_reputation_B": 0.0018515451884339963,
+            "mean_posterior_B": 0.6602409102275303,
+            "market_share_B": 0.5000000000000001,
+            "product2_conditional_B": 0.7452000292073151,
+            "product2_calendar_B": 0.3726000146036576,
+            "profit_B": 0.25143999123780547,
+            "correlation": -0.0437594130497926,
+            "product2_market": 0.7452000292073152,
+            "industry_profit": 0.5028799824756109,
+            "success_rate": 0.6853400131432918,
+            "failure_rate": 0.31465998685670815,
+            "expected_success_probability": 0.6853400131432918
+          }
+        },
+        "p0": {
+          "label": "Endogenous p\u2080",
+          "statuses": {
+            "verified": true,
+            "candidate_verified": true,
+            "dp_verified": true,
+            "stationary_verified": true,
+            "demand_verified": true
+          },
+          "source": {
+            "experiment": "endogenous_p0",
+            "run": "rho_forgetting_mixed",
+            "case": "rho_0p95_n051",
+            "directory": "/home/natalia/Projects/LLM_Learning/endogenous_p0/data/rho_forgetting_mixed",
+            "candidate_selection": "saved_selected",
+            "candidate_index": 0,
+            "candidate_count": 1,
+            "verified_candidate_count": 1,
+            "manifest": "/home/natalia/Projects/LLM_Learning/endogenous_p0/data/rho_forgetting_mixed/manifest.json",
+            "case_json": "/home/natalia/Projects/LLM_Learning/endogenous_p0/data/rho_forgetting_mixed/arrays/rho_0p95_n051.json",
+            "case_npz": "/home/natalia/Projects/LLM_Learning/endogenous_p0/data/rho_forgetting_mixed/arrays/rho_0p95_n051.npz",
+            "manifest_sha256": "112bfa11c5856c84b561af8863188ea053403c963a47613b7c3a5bc5cfc16769",
+            "case_json_sha256": "6a263014531a0492742fcd49ff15d1953266c94ddb5f3f8a97ed91ac24173292",
+            "case_npz_sha256": "8499f6983a423279af5995d5350682f063418ff6ce1a87ddf0a02b056660095c",
+            "saved_solver_source_sha256": {
+              "endogenous_p0/code/__init__.py": "6cf67451411cf1c0e1a14c319ecc1ee1dd7ff5f927d7a9428fa3f72790b3820a",
+              "endogenous_p0/code/core.py": "3334948ac90ea58e4e8d12a721431a30af44bc223ccb6b8f57d2e8ddffe00645",
+              "endogenous_p0/code/diagnostics.py": "22c282d9bc06f54c99c409e2060fecba8e776b7d6b0c2b8b25ba813190818149",
+              "endogenous_p0/code/run_experiment.py": "968960262f3b57026fc941ce693e66afc262b998b8407e61224627f2b0449bbe",
+              "endogenous_p0/code/test_experiment.py": "eec4f894f04a9340fc1c96b893a08d2e5bddf99afe4bfe10d2230d6ebba6cd0e"
+            }
+          },
+          "stationary_residual_max": 6.938893903907228e-18,
+          "stationary_residual_l1": 1.4255857835068842e-16,
+          "transition_row_sum_error": 3.3306690738754696e-16,
+          "stationary_tolerance": 1e-10,
+          "consistency_condition": "abs(p0_star - E_nu[m(X_B)])",
+          "consistency_residual": 1.1879386363489175e-14,
+          "saved_consistency_residual": 1.1879386363489175e-14,
+          "consistency_tolerance": 1e-07,
+          "saved_marginal_l1_errors": {
+            "mu_a": 0.0,
+            "mu_b": 0.0
+          },
+          "marginal_symmetry_l1": 7.132749351896885e-17,
+          "predicted": {
+            "mean_reputation_A": 0.698522272944042,
+            "variance_reputation_A": 0.011481474255311782,
+            "mean_posterior_A": 0.6804747935854928,
+            "market_share_A": 0.4999999999999999,
+            "product2_conditional_A": 0.8433307221197157,
+            "product2_calendar_A": 0.42166536105985775,
+            "profit_A": 0.22200078336408519,
+            "mean_reputation_B": 0.698522272944042,
+            "variance_reputation_B": 0.011481474255311782,
+            "mean_posterior_B": 0.6804747935854928,
+            "market_share_B": 0.4999999999999999,
+            "product2_conditional_B": 0.8433307221197159,
+            "product2_calendar_B": 0.42166536105985786,
+            "profit_B": 0.2220007833640852,
+            "correlation": -0.08322037915654736,
+            "product2_market": 0.8433307221197156,
+            "industry_profit": 0.44400156672817037,
+            "success_rate": 0.7294988249538721,
+            "failure_rate": 0.2705011750461279,
+            "expected_success_probability": 0.7294988249538721
+          }
+        }
+      },
+      "current_numerical_source_sha256": {
+        "endogenous_p0/code/primitives.py": "e8a07e00220ab000c945d5a37ee562b9283bff4ceca8d525600e935e68334e11",
+        "endogenous_p0/code/game.py": "af7679fa58bd591f605d901de8e3f2c4044a73f476ec4339d9c5fe9e00fdb292",
+        "endogenous_p0/code/policy.py": "b77a2e2ea39b9250f6c3d99477ab09282775c1616bbfe8402d4ecfa88ad235be",
+        "endogenous_p0/code/core.py": "69859482c035d374328396105d3e10982e11886f017a82c4570d694414165813",
+        "endogenous_p0/code/run_experiment.py": "6ea76e941938484afa88c449b09b6ac8c8d0de03563a418bbbbc31c866ed330a",
+        "oblivious_real_marginal/code/model.py": "1728d77ffa9cb4b3a2f738b2461a7dfa4491c75c9c3bacb600db82db0ecfc142",
+        "equilibrium_comparison/inputs.py": "7e87de717c2b1707f8ba3f3c2eaf9810e554c2415e3e74278b91c84c37f930da"
+      },
+      "provenance_note": "Current files are hashed separately from the historical solver hashes saved in each source manifest. Loaded policies and stationary laws are checked under the current actual-game kernel; no equilibrium solver was run."
+    },
+    "21": {
+      "verified": true,
+      "parameters": {
+        "R": 1.0,
+        "c1": 0.05,
+        "c2": 0.65,
+        "p1": 0.35,
+        "p2": 0.8,
+        "gamma": 0.98,
+        "rho": 0.95
+      },
+      "n": 21,
+      "order": 128,
+      "state_definition": "Mature reputation x in [0,1]; Beta(1+x/(1-rho),1+(1-x)/(1-rho)); only the selected seller updates.",
+      "demand": {
+        "verified": true,
+        "order": 128,
+        "doubled_order": 256,
+        "doubled_order_max_difference": 2.461364445593972e-13,
+        "independent_checks": [
+          {
+            "i": 0,
+            "j": 20,
+            "x": 0.0,
+            "y": 1.0,
+            "matrix_probability": 1.857845555979915e-12,
+            "direct_probability": 1.8578455559807982e-12,
+            "absolute_error": 8.833222654557966e-25
+          },
+          {
+            "i": 1,
+            "j": 0,
+            "x": 0.05,
+            "y": 0.0,
+            "matrix_probability": 0.7560975609757191,
+            "direct_probability": 0.756097560975612,
+            "absolute_error": 1.071365218763276e-13
+          },
+          {
+            "i": 5,
+            "j": 15,
+            "x": 0.25,
+            "y": 0.75,
+            "matrix_probability": 0.0008392175747915682,
+            "direct_probability": 0.0008392175747915681,
+            "absolute_error": 1.0842021724855044e-19
+          },
+          {
+            "i": 9,
+            "j": 11,
+            "x": 0.45,
+            "y": 0.55,
+            "matrix_probability": 0.26886807873375973,
+            "direct_probability": 0.2688680787337608,
+            "absolute_error": 1.0547118733938987e-15
+          },
+          {
+            "i": 10,
+            "j": 10,
+            "x": 0.5,
+            "y": 0.5,
+            "matrix_probability": 0.5,
+            "direct_probability": 0.5000000000000002,
+            "absolute_error": 2.220446049250313e-16
+          }
+        ],
+        "maximum_observed_error": 2.461364445593972e-13,
+        "tolerance": 1e-06,
+        "original_raw": {
+          "order": 128,
+          "raw_diagonal_error": 2.042810365310288e-13,
+          "raw_symmetry_error": 4.085620730620576e-13,
+          "raw_min": 1.857845555979915e-12,
+          "raw_max": 0.9999999999981422
+        },
+        "doubled_raw": {
+          "order": 256,
+          "raw_diagonal_error": 2.866595849582154e-13,
+          "raw_symmetry_error": 5.733191699164308e-13,
+          "raw_min": 1.8578455559818447e-12,
+          "raw_max": 0.9999999999981422
+        },
+        "interpretation": "Order doubling over the whole grid and independent adaptive quadrature at selected nodes; observed errors are diagnostics, not rigorous global error bounds. Direct Beta-draw selection matches the numerical kernel up to demand integration error."
+      },
+      "profiles": {
+        "oe": {
+          "label": "OE with real marginal",
+          "statuses": {
+            "verified": true,
+            "candidate_verified": true,
+            "dp_verified": true,
+            "stationary_verified": true,
+            "demand_verified": true
+          },
+          "source": {
+            "experiment": "oblivious_real_marginal",
+            "run": "rho_forgetting",
+            "case": "rho_0p95_n021",
+            "directory": "/home/natalia/Projects/LLM_Learning/oblivious_real_marginal/data/rho_forgetting",
+            "candidate_selection": "saved_selected",
+            "candidate_index": 0,
+            "candidate_count": 1,
+            "verified_candidate_count": 1,
+            "manifest": "/home/natalia/Projects/LLM_Learning/oblivious_real_marginal/data/rho_forgetting/manifest.json",
+            "case_json": "/home/natalia/Projects/LLM_Learning/oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p95_n021.json",
+            "case_npz": "/home/natalia/Projects/LLM_Learning/oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p95_n021.npz",
+            "manifest_sha256": "94969fcf4af5c902bf0d5163bbddaef60a2fc9a3d27aefd4fa2f8faf68a1c7df",
+            "case_json_sha256": "c935e68d7ce59b80850a7c834a1562a77c3c8d1674acac0316e481d7890fb49a",
+            "case_npz_sha256": "746763ccfe2cffd57b150208d1a888d85f1ceae8b63ccc4a7e8597957e50cee3",
+            "saved_solver_source_sha256": {
+              "endogenous_p0/code/__init__.py": "6cf67451411cf1c0e1a14c319ecc1ee1dd7ff5f927d7a9428fa3f72790b3820a",
+              "endogenous_p0/code/core.py": "3334948ac90ea58e4e8d12a721431a30af44bc223ccb6b8f57d2e8ddffe00645",
+              "endogenous_p0/code/diagnostics.py": "22c282d9bc06f54c99c409e2060fecba8e776b7d6b0c2b8b25ba813190818149",
+              "endogenous_p0/code/run_experiment.py": "968960262f3b57026fc941ce693e66afc262b998b8407e61224627f2b0449bbe",
+              "endogenous_p0/code/test_experiment.py": "eec4f894f04a9340fc1c96b893a08d2e5bddf99afe4bfe10d2230d6ebba6cd0e",
+              "oblivious_real_marginal/code/__init__.py": "b0ded28944393479be618983c1d2cc084ae4ab2816226a93fedcb295a54ac60a",
+              "oblivious_real_marginal/code/diagnostics.py": "ead200b821c7612349ca20760eff6186618596413c609b5f6f9ad61782103d50",
+              "oblivious_real_marginal/code/model.py": "0b686151ba0ef90f06706055ba815f786428d88d96b1ac6a5fb1ddfa74980c09",
+              "oblivious_real_marginal/code/run_experiment.py": "982302027a023ddb67cbfb176cb3cd398d4ccda6875f5211bfc2bf1360cd6871",
+              "oblivious_real_marginal/code/step_by_step.py": "7ce019d77e0018685d50e0e9799d102318d1e34210ac870254869364ddf70877",
+              "oblivious_real_marginal/code/test_model.py": "8c40576efaeb431becc37fbd5ff67e7ede93ed5fbd8954635790e02ca9ff050d"
+            }
+          },
+          "stationary_residual_max": 6.938893903907228e-18,
+          "stationary_residual_l1": 2.750572642943283e-17,
+          "transition_row_sum_error": 2.220446049250313e-16,
+          "stationary_tolerance": 1e-10,
+          "consistency_condition": "L1(mu_star - sum_A nu)",
+          "consistency_residual": 0.0,
+          "saved_consistency_residual": 0.0,
+          "consistency_tolerance": 1e-07,
+          "saved_marginal_l1_errors": {
+            "mu_a": 0.0,
+            "mu_b": 0.0
+          },
+          "marginal_symmetry_l1": 3.6687114527951883e-17,
+          "predicted": {
+            "mean_reputation_A": 0.6326718501938746,
+            "variance_reputation_A": 0.004643524584905746,
+            "mean_posterior_A": 0.6206107729035224,
+            "market_share_A": 0.5,
+            "product2_conditional_A": 0.672670295746066,
+            "product2_calendar_A": 0.336335147873033,
+            "profit_A": 0.2731989112761802,
+            "mean_reputation_B": 0.6326718501938746,
+            "variance_reputation_B": 0.004643524584905746,
+            "mean_posterior_B": 0.6206107729035224,
+            "market_share_B": 0.49999999999999994,
+            "product2_conditional_B": 0.6726702957460661,
+            "product2_calendar_B": 0.336335147873033,
+            "profit_B": 0.2731989112761802,
+            "correlation": -0.08535986125089313,
+            "product2_market": 0.672670295746066,
+            "industry_profit": 0.5463978225523604,
+            "success_rate": 0.6527016330857297,
+            "failure_rate": 0.3472983669142703,
+            "expected_success_probability": 0.6527016330857297
+          }
+        },
+        "p0": {
+          "label": "Endogenous p\u2080",
+          "statuses": {
+            "verified": true,
+            "candidate_verified": true,
+            "dp_verified": true,
+            "stationary_verified": true,
+            "demand_verified": true
+          },
+          "source": {
+            "experiment": "endogenous_p0",
+            "run": "rho_forgetting_mixed",
+            "case": "rho_0p95_n021",
+            "directory": "/home/natalia/Projects/LLM_Learning/endogenous_p0/data/rho_forgetting_mixed",
+            "candidate_selection": "saved_selected",
+            "candidate_index": 0,
+            "candidate_count": 1,
+            "verified_candidate_count": 1,
+            "manifest": "/home/natalia/Projects/LLM_Learning/endogenous_p0/data/rho_forgetting_mixed/manifest.json",
+            "case_json": "/home/natalia/Projects/LLM_Learning/endogenous_p0/data/rho_forgetting_mixed/arrays/rho_0p95_n021.json",
+            "case_npz": "/home/natalia/Projects/LLM_Learning/endogenous_p0/data/rho_forgetting_mixed/arrays/rho_0p95_n021.npz",
+            "manifest_sha256": "112bfa11c5856c84b561af8863188ea053403c963a47613b7c3a5bc5cfc16769",
+            "case_json_sha256": "da155922b1f5724a6a3fd75a3d0e8dedbd6599cefdf90f57a1945d3636999239",
+            "case_npz_sha256": "f8de6d53fb76dafd2032a8fcba4076d3a11cd0cdab719bcae253c115726bc189",
+            "saved_solver_source_sha256": {
+              "endogenous_p0/code/__init__.py": "6cf67451411cf1c0e1a14c319ecc1ee1dd7ff5f927d7a9428fa3f72790b3820a",
+              "endogenous_p0/code/core.py": "3334948ac90ea58e4e8d12a721431a30af44bc223ccb6b8f57d2e8ddffe00645",
+              "endogenous_p0/code/diagnostics.py": "22c282d9bc06f54c99c409e2060fecba8e776b7d6b0c2b8b25ba813190818149",
+              "endogenous_p0/code/run_experiment.py": "968960262f3b57026fc941ce693e66afc262b998b8407e61224627f2b0449bbe",
+              "endogenous_p0/code/test_experiment.py": "eec4f894f04a9340fc1c96b893a08d2e5bddf99afe4bfe10d2230d6ebba6cd0e"
+            }
+          },
+          "stationary_residual_max": 6.938893903907228e-18,
+          "stationary_residual_l1": 8.166368566721614e-17,
+          "transition_row_sum_error": 3.3306690738754696e-16,
+          "stationary_tolerance": 1e-10,
+          "consistency_condition": "abs(p0_star - E_nu[m(X_B)])",
+          "consistency_residual": 0.0,
+          "saved_consistency_residual": 0.0,
+          "consistency_tolerance": 1e-07,
+          "saved_marginal_l1_errors": {
+            "mu_a": 0.0,
+            "mu_b": 0.0
+          },
+          "marginal_symmetry_l1": 1.6393311548526198e-16,
+          "predicted": {
+            "mean_reputation_A": 0.6309199501701209,
+            "variance_reputation_A": 0.023434289889919822,
+            "mean_posterior_A": 0.619018136518292,
+            "market_share_A": 0.49999999999999994,
+            "product2_conditional_A": 0.7533405696624025,
+            "product2_calendar_A": 0.3766702848312012,
+            "profit_A": 0.24899782910127924,
+            "mean_reputation_B": 0.630919950170121,
+            "variance_reputation_B": 0.023434289889919826,
+            "mean_posterior_B": 0.619018136518292,
+            "market_share_B": 0.4999999999999999,
+            "product2_conditional_B": 0.7533405696624024,
+            "product2_calendar_B": 0.3766702848312011,
+            "profit_B": 0.24899782910127927,
+            "correlation": -0.14357131531028822,
+            "product2_market": 0.7533405696624023,
+            "industry_profit": 0.49799565820255853,
+            "success_rate": 0.689003256348081,
+            "failure_rate": 0.310996743651919,
+            "expected_success_probability": 0.689003256348081
+          }
+        }
+      },
+      "current_numerical_source_sha256": {
+        "endogenous_p0/code/primitives.py": "e8a07e00220ab000c945d5a37ee562b9283bff4ceca8d525600e935e68334e11",
+        "endogenous_p0/code/game.py": "af7679fa58bd591f605d901de8e3f2c4044a73f476ec4339d9c5fe9e00fdb292",
+        "endogenous_p0/code/policy.py": "b77a2e2ea39b9250f6c3d99477ab09282775c1616bbfe8402d4ecfa88ad235be",
+        "endogenous_p0/code/core.py": "69859482c035d374328396105d3e10982e11886f017a82c4570d694414165813",
+        "endogenous_p0/code/run_experiment.py": "6ea76e941938484afa88c449b09b6ac8c8d0de03563a418bbbbc31c866ed330a",
+        "oblivious_real_marginal/code/model.py": "1728d77ffa9cb4b3a2f738b2461a7dfa4491c75c9c3bacb600db82db0ecfc142",
+        "equilibrium_comparison/inputs.py": "7e87de717c2b1707f8ba3f3c2eaf9810e554c2415e3e74278b91c84c37f930da"
+      },
+      "provenance_note": "Current files are hashed separately from the historical solver hashes saved in each source manifest. Loaded policies and stationary laws are checked under the current actual-game kernel; no equilibrium solver was run."
+    },
+    "31": {
+      "verified": true,
+      "parameters": {
+        "R": 1.0,
+        "c1": 0.05,
+        "c2": 0.65,
+        "p1": 0.35,
+        "p2": 0.8,
+        "gamma": 0.98,
+        "rho": 0.95
+      },
+      "n": 31,
+      "order": 128,
+      "state_definition": "Mature reputation x in [0,1]; Beta(1+x/(1-rho),1+(1-x)/(1-rho)); only the selected seller updates.",
+      "demand": {
+        "verified": true,
+        "order": 128,
+        "doubled_order": 256,
+        "doubled_order_max_difference": 6.163806132164495e-10,
+        "independent_checks": [
+          {
+            "i": 0,
+            "j": 1,
+            "x": 0.0,
+            "y": 0.03333333333333333,
+            "matrix_probability": 0.3107240012336436,
+            "direct_probability": 0.31072400186896054,
+            "absolute_error": 6.353169657025148e-10
+          },
+          {
+            "i": 0,
+            "j": 30,
+            "x": 0.0,
+            "y": 1.0,
+            "matrix_probability": 1.857845555979915e-12,
+            "direct_probability": 1.8578455559807982e-12,
+            "absolute_error": 8.833222654557966e-25
+          },
+          {
+            "i": 7,
+            "j": 23,
+            "x": 0.23333333333333334,
+            "y": 0.7666666666666666,
+            "matrix_probability": 0.00038736307803357656,
+            "direct_probability": 0.000387363078033575,
+            "absolute_error": 1.5720931501039814e-18
+          },
+          {
+            "i": 14,
+            "j": 16,
+            "x": 0.4666666666666667,
+            "y": 0.5333333333333333,
+            "matrix_probability": 0.3406628761911139,
+            "direct_probability": 0.34066287619111424,
+            "absolute_error": 3.3306690738754696e-16
+          },
+          {
+            "i": 15,
+            "j": 15,
+            "x": 0.5,
+            "y": 0.5,
+            "matrix_probability": 0.5,
+            "direct_probability": 0.5000000000000002,
+            "absolute_error": 2.220446049250313e-16
+          }
+        ],
+        "maximum_observed_error": 6.353169657025148e-10,
+        "tolerance": 1e-06,
+        "original_raw": {
+          "order": 128,
+          "raw_diagonal_error": 1.3731238368563936e-11,
+          "raw_symmetry_error": 6.353018111582287e-10,
+          "raw_min": 1.857845555979915e-12,
+          "raw_max": 0.9999999999981422
+        },
+        "doubled_raw": {
+          "order": 256,
+          "raw_diagonal_error": 2.866595849582154e-13,
+          "raw_symmetry_error": 1.904987279033321e-11,
+          "raw_min": 1.8578455559818447e-12,
+          "raw_max": 0.9999999999981422
+        },
+        "interpretation": "Order doubling over the whole grid and independent adaptive quadrature at selected nodes; observed errors are diagnostics, not rigorous global error bounds. Direct Beta-draw selection matches the numerical kernel up to demand integration error."
+      },
+      "profiles": {
+        "oe": {
+          "label": "OE with real marginal",
+          "statuses": {
+            "verified": true,
+            "candidate_verified": true,
+            "dp_verified": true,
+            "stationary_verified": true,
+            "demand_verified": true
+          },
+          "source": {
+            "experiment": "oblivious_real_marginal",
+            "run": "rho_forgetting",
+            "case": "rho_0p95_n031",
+            "directory": "/home/natalia/Projects/LLM_Learning/oblivious_real_marginal/data/rho_forgetting",
+            "candidate_selection": "saved_selected",
+            "candidate_index": 0,
+            "candidate_count": 1,
+            "verified_candidate_count": 1,
+            "manifest": "/home/natalia/Projects/LLM_Learning/oblivious_real_marginal/data/rho_forgetting/manifest.json",
+            "case_json": "/home/natalia/Projects/LLM_Learning/oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p95_n031.json",
+            "case_npz": "/home/natalia/Projects/LLM_Learning/oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p95_n031.npz",
+            "manifest_sha256": "94969fcf4af5c902bf0d5163bbddaef60a2fc9a3d27aefd4fa2f8faf68a1c7df",
+            "case_json_sha256": "cead05edbd73285c50b300c67abab07b11548f7f9a3f299721973c73e0975f2f",
+            "case_npz_sha256": "affbe0fbe30922890e0127c069fe6defb73f876fa15569cdf0e8acc5a8f7f083",
+            "saved_solver_source_sha256": {
+              "endogenous_p0/code/__init__.py": "6cf67451411cf1c0e1a14c319ecc1ee1dd7ff5f927d7a9428fa3f72790b3820a",
+              "endogenous_p0/code/core.py": "3334948ac90ea58e4e8d12a721431a30af44bc223ccb6b8f57d2e8ddffe00645",
+              "endogenous_p0/code/diagnostics.py": "22c282d9bc06f54c99c409e2060fecba8e776b7d6b0c2b8b25ba813190818149",
+              "endogenous_p0/code/run_experiment.py": "968960262f3b57026fc941ce693e66afc262b998b8407e61224627f2b0449bbe",
+              "endogenous_p0/code/test_experiment.py": "eec4f894f04a9340fc1c96b893a08d2e5bddf99afe4bfe10d2230d6ebba6cd0e",
+              "oblivious_real_marginal/code/__init__.py": "b0ded28944393479be618983c1d2cc084ae4ab2816226a93fedcb295a54ac60a",
+              "oblivious_real_marginal/code/diagnostics.py": "ead200b821c7612349ca20760eff6186618596413c609b5f6f9ad61782103d50",
+              "oblivious_real_marginal/code/model.py": "0b686151ba0ef90f06706055ba815f786428d88d96b1ac6a5fb1ddfa74980c09",
+              "oblivious_real_marginal/code/run_experiment.py": "982302027a023ddb67cbfb176cb3cd398d4ccda6875f5211bfc2bf1360cd6871",
+              "oblivious_real_marginal/code/step_by_step.py": "7ce019d77e0018685d50e0e9799d102318d1e34210ac870254869364ddf70877",
+              "oblivious_real_marginal/code/test_model.py": "8c40576efaeb431becc37fbd5ff67e7ede93ed5fbd8954635790e02ca9ff050d"
+            }
+          },
+          "stationary_residual_max": 2.7755575615628914e-17,
+          "stationary_residual_l1": 1.3656119499235128e-16,
+          "transition_row_sum_error": 2.220446049250313e-16,
+          "stationary_tolerance": 1e-10,
+          "consistency_condition": "L1(mu_star - sum_A nu)",
+          "consistency_residual": 0.0,
+          "saved_consistency_residual": 0.0,
+          "consistency_tolerance": 1e-07,
+          "saved_marginal_l1_errors": {
+            "mu_a": 0.0,
+            "mu_b": 0.0
+          },
+          "marginal_symmetry_l1": 6.12917275797948e-17,
+          "predicted": {
+            "mean_reputation_A": 0.6534785963082089,
+            "variance_reputation_A": 0.0021329261594789975,
+            "mean_posterior_A": 0.6395259966438259,
+            "market_share_A": 0.49999999999999983,
+            "product2_conditional_A": 0.6973137787381752,
+            "product2_calendar_A": 0.3486568893690875,
+            "profit_A": 0.2658058663785474,
+            "mean_reputation_B": 0.6534785963082088,
+            "variance_reputation_B": 0.002132926159478997,
+            "mean_posterior_B": 0.6395259966438259,
+            "market_share_B": 0.4999999999999999,
+            "product2_conditional_B": 0.6973137787381752,
+            "product2_calendar_B": 0.34865688936908756,
+            "profit_B": 0.2658058663785474,
+            "correlation": -0.049133794295811425,
+            "product2_market": 0.6973137787381751,
+            "industry_profit": 0.5316117327570948,
+            "success_rate": 0.6637912004321789,
+            "failure_rate": 0.3362087995678211,
+            "expected_success_probability": 0.6637912004321789
+          }
+        },
+        "p0": {
+          "label": "Endogenous p\u2080",
+          "statuses": {
+            "verified": true,
+            "candidate_verified": true,
+            "dp_verified": true,
+            "stationary_verified": true,
+            "demand_verified": true
+          },
+          "source": {
+            "experiment": "endogenous_p0",
+            "run": "rho_forgetting_mixed",
+            "case": "rho_0p95_n031",
+            "directory": "/home/natalia/Projects/LLM_Learning/endogenous_p0/data/rho_forgetting_mixed",
+            "candidate_selection": "saved_selected",
+            "candidate_index": 0,
+            "candidate_count": 1,
+            "verified_candidate_count": 1,
+            "manifest": "/home/natalia/Projects/LLM_Learning/endogenous_p0/data/rho_forgetting_mixed/manifest.json",
+            "case_json": "/home/natalia/Projects/LLM_Learning/endogenous_p0/data/rho_forgetting_mixed/arrays/rho_0p95_n031.json",
+            "case_npz": "/home/natalia/Projects/LLM_Learning/endogenous_p0/data/rho_forgetting_mixed/arrays/rho_0p95_n031.npz",
+            "manifest_sha256": "112bfa11c5856c84b561af8863188ea053403c963a47613b7c3a5bc5cfc16769",
+            "case_json_sha256": "b731235429d0ba11f86d25a1a3326ecb58106884d485c8521fbb84bde93f9d96",
+            "case_npz_sha256": "4225a7c5d7a76aff1e673a0e42d10b54c680ee6d59de9949821e060c78260f8e",
+            "saved_solver_source_sha256": {
+              "endogenous_p0/code/__init__.py": "6cf67451411cf1c0e1a14c319ecc1ee1dd7ff5f927d7a9428fa3f72790b3820a",
+              "endogenous_p0/code/core.py": "3334948ac90ea58e4e8d12a721431a30af44bc223ccb6b8f57d2e8ddffe00645",
+              "endogenous_p0/code/diagnostics.py": "22c282d9bc06f54c99c409e2060fecba8e776b7d6b0c2b8b25ba813190818149",
+              "endogenous_p0/code/run_experiment.py": "968960262f3b57026fc941ce693e66afc262b998b8407e61224627f2b0449bbe",
+              "endogenous_p0/code/test_experiment.py": "eec4f894f04a9340fc1c96b893a08d2e5bddf99afe4bfe10d2230d6ebba6cd0e"
+            }
+          },
+          "stationary_residual_max": 1.3877787807814457e-17,
+          "stationary_residual_l1": 1.6899342490704574e-16,
+          "transition_row_sum_error": 2.220446049250313e-16,
+          "stationary_tolerance": 1e-10,
+          "consistency_condition": "abs(p0_star - E_nu[m(X_B)])",
+          "consistency_residual": 4.54081217071689e-14,
+          "saved_consistency_residual": 4.54081217071689e-14,
+          "consistency_tolerance": 1e-07,
+          "saved_marginal_l1_errors": {
+            "mu_a": 0.0,
+            "mu_b": 0.0
+          },
+          "marginal_symmetry_l1": 6.84203572774773e-17,
+          "predicted": {
+            "mean_reputation_A": 0.678934543335357,
+            "variance_reputation_A": 0.012591750308384872,
+            "mean_posterior_A": 0.6626677666685066,
+            "market_share_A": 0.5,
+            "product2_conditional_A": 0.8050606891216442,
+            "product2_calendar_A": 0.4025303445608221,
+            "profit_A": 0.23348179326350682,
+            "mean_reputation_B": 0.6789345433353571,
+            "variance_reputation_B": 0.01259175030838487,
+            "mean_posterior_B": 0.6626677666685067,
+            "market_share_B": 0.5,
+            "product2_conditional_B": 0.8050606891216443,
+            "product2_calendar_B": 0.40253034456082215,
+            "profit_B": 0.2334817932635068,
+            "correlation": -0.08792602914764608,
+            "product2_market": 0.8050606891216443,
+            "industry_profit": 0.46696358652701364,
+            "success_rate": 0.7122773101047399,
+            "failure_rate": 0.28772268989526006,
+            "expected_success_probability": 0.7122773101047399
+          }
+        }
+      },
+      "current_numerical_source_sha256": {
+        "endogenous_p0/code/primitives.py": "e8a07e00220ab000c945d5a37ee562b9283bff4ceca8d525600e935e68334e11",
+        "endogenous_p0/code/game.py": "af7679fa58bd591f605d901de8e3f2c4044a73f476ec4339d9c5fe9e00fdb292",
+        "endogenous_p0/code/policy.py": "b77a2e2ea39b9250f6c3d99477ab09282775c1616bbfe8402d4ecfa88ad235be",
+        "endogenous_p0/code/core.py": "69859482c035d374328396105d3e10982e11886f017a82c4570d694414165813",
+        "endogenous_p0/code/run_experiment.py": "6ea76e941938484afa88c449b09b6ac8c8d0de03563a418bbbbc31c866ed330a",
+        "oblivious_real_marginal/code/model.py": "1728d77ffa9cb4b3a2f738b2461a7dfa4491c75c9c3bacb600db82db0ecfc142",
+        "equilibrium_comparison/inputs.py": "7e87de717c2b1707f8ba3f3c2eaf9810e554c2415e3e74278b91c84c37f930da"
+      },
+      "provenance_note": "Current files are hashed separately from the historical solver hashes saved in each source manifest. Loaded policies and stationary laws are checked under the current actual-game kernel; no equilibrium solver was run."
+    }
+  },
+  "finished_utc": "2026-10-17T23:36:27.630575+00:00",
+  "parameters": {
+    "R": 1.0,
+    "c1": 0.05,
+    "c2": 0.65,
+    "p1": 0.35,
+    "p2": 0.8,
+    "gamma": 0.98,
+    "rho": 0.95
+  },
+  "numerical_equilibria_unchanged": true,
+  "uncertainty": "Student-t intervals across independent replications; model differences paired by seed.",
+  "discounted_tail_bound_per_seller": 8.414836786079619e-08,
+  "post_run_updates": [
+    {
+      "time": "2026-10-17T23:39:24.921161+00:00",
+      "description": "Reporting identifies empirical estimates as post-burn-in and adds deterministic finite-horizon validation of saved kernels. Raw simulations and all numerical summary/checkpoint arrays preserved.",
+      "numerical_data_unchanged": true,
+      "reporting_source_sha256": {
+        "endogenous_p0/code/__init__.py": "6cf67451411cf1c0e1a14c319ecc1ee1dd7ff5f927d7a9428fa3f72790b3820a",
+        "endogenous_p0/code/core.py": "69859482c035d374328396105d3e10982e11886f017a82c4570d694414165813",
+        "endogenous_p0/code/diagnostics.py": "b92049159a60199f1d05db587d218e5104b960d40a83a00241d7d98f23443b22",
+        "endogenous_p0/code/game.py": "af7679fa58bd591f605d901de8e3f2c4044a73f476ec4339d9c5fe9e00fdb292",
+        "endogenous_p0/code/policy.py": "b77a2e2ea39b9250f6c3d99477ab09282775c1616bbfe8402d4ecfa88ad235be",
+        "endogenous_p0/code/primitives.py": "e8a07e00220ab000c945d5a37ee562b9283bff4ceca8d525600e935e68334e11",
+        "endogenous_p0/code/reference_paths.py": "143ece8ab6f74c6a667456d7c1deb04d396bbe2db4afcfc5ee7c95abbaa0908a",
+        "endogenous_p0/code/run_experiment.py": "6ea76e941938484afa88c449b09b6ac8c8d0de03563a418bbbbc31c866ed330a",
+        "equilibrium_comparison/__init__.py": "2966f608e8201d9c372bcfd74cf81875636f5c1353f2b53c257444bfc74982cf",
+        "equilibrium_comparison/analysis.py": "4aa908fcb4aeb12dc9cf4f66b3e23466c21feded32d7f2c06cd864f12a263003",
+        "equilibrium_comparison/inputs.py": "7e87de717c2b1707f8ba3f3c2eaf9810e554c2415e3e74278b91c84c37f930da",
+        "equilibrium_comparison/reporting.py": "ee0da15296d16b4b11c1eba0d5dd095f7a13048b36e2c9958db9fd8957b8ed0d",
+        "equilibrium_comparison/run_experiment.py": "d0031f2b63ed301563a268321468e98e5b98e60fb8c81e8a7d0c88653d58a10a",
+        "equilibrium_comparison/simulation.py": "160e4628d06138f9be79e5f8b8060a7dbf0aa2eae1e9775390d049b745faa95a",
+        "equilibrium_comparison/validate_transients.py": "e408f0bdacd9ea9257333d845072c7b29ceef14cd06a3d73e67de936295a4f37",
+        "oblivious_real_marginal/code/__init__.py": "b0ded28944393479be618983c1d2cc084ae4ab2816226a93fedcb295a54ac60a",
+        "oblivious_real_marginal/code/diagnostics.py": "41fa24ee1cd36da238493c2f4326795381ee8861775d8e8c59a62b0dbdfe5aa9",
+        "oblivious_real_marginal/code/model.py": "1728d77ffa9cb4b3a2f738b2461a7dfa4491c75c9c3bacb600db82db0ecfc142",
+        "oblivious_real_marginal/code/run_experiment.py": "7a2418c995978d7b7991ed967c16f63a81bd16d283f24ad933e3fe73324aa3c9",
+        "oblivious_real_marginal/code/step_by_step.py": "f197fb309f849abdc5898b8a6bf667b15e22cc37d2fdfd064dfbf3ae2c211517"
+      },
+      "superseded_figure_sha256": {
+        "equilibrium_comparison/figures/rho095_n51/07_customer_outcomes.pdf": "8384509950c25e0228c92bbb55c0de00cbf49fb5f456e9e88b5db48b7b33c886",
+        "equilibrium_comparison/figures/rho095_n51/13_grid_sensitivity.png": "0c91792b6ae0e8ce5426929f539d1e0db3d6f913aad63292fb07b6a01dc76b97",
+        "equilibrium_comparison/figures/rho095_n51/04_joint_stationary_distributions.png": "e337f7ace70621854b7c1a0ee6ee66a4af4778482c86207ba0fcd70d9bfddb77",
+        "equilibrium_comparison/figures/rho095_n51/06_seller_profits.pdf": "f0416b7036e1e2cad51e9a0208069edbc8417e154c6d284aa2f51e928ca27aef",
+        "equilibrium_comparison/figures/rho095_n51/03_stationary_marginal_distributions.png": "dff32fe320ffdff0df9ab2805d09ef6e6d8268f53fceb1cef2c6b6fa19558078",
+        "equilibrium_comparison/figures/rho095_n51/06_seller_profits.png": "cbb524029b4fb936717219bfe15386ec36ab69009f2698d2e1795c38a63b9fb1",
+        "equilibrium_comparison/figures/rho095_n51/01_product_policies.png": "1b214a3bbfc55607b1734aba663dc52e3378a278eeeb2b5cf5f42b8cec636781",
+        "equilibrium_comparison/figures/rho095_n51/12_profit_replication_distributions.pdf": "57105e227e766e124eee1e2f8627fbdf12b3c5b453a2698728dfce9e6bad8198",
+        "equilibrium_comparison/figures/rho095_n51/08_policy_disagreement.png": "93ad01e161b58c2bef77c3722d450890a3fa1ecf0c21bd769fa95fdcdc55e773",
+        "equilibrium_comparison/figures/rho095_n51/03_stationary_marginal_distributions.pdf": "f1cba2bccee697bc32569a711a9e6879ed7602a40325934f1810e6b960e9d24b",
+        "equilibrium_comparison/figures/rho095_n51/13_grid_sensitivity.pdf": "cf2b25ae9959c9984a14c1d809faa0efe9497328f4110b5714b2449f42baa991",
+        "equilibrium_comparison/figures/rho095_n51/04_joint_stationary_distributions.pdf": "7d7d8c6d255ac557fb1c464fdf7f58c49f10230ed42a9eac7780a3b75d007445",
+        "equilibrium_comparison/figures/rho095_n51/11_short_run_behavior.pdf": "c9f70c54164e881b99a626c6df448287d0d202a58f21909817be12cc6884b200",
+        "equilibrium_comparison/figures/rho095_n51/02_sample_reputation_trajectories.png": "ad37ae0f07a28a1162322552d31bd908f7b61b6241d2540ec234b9162a333165",
+        "equilibrium_comparison/figures/rho095_n51/10_paired_outcome_differences.pdf": "96c22853567a0a0816901eaa0ee75f970ad49ffe7e8fef6b44de5080af63f4da",
+        "equilibrium_comparison/figures/rho095_n51/07_customer_outcomes.png": "7e9c3ad210327a50b32d84f3fcb3a6b2bcc9e311922e87ae601483ec4c6f93fb",
+        "equilibrium_comparison/figures/rho095_n51/11_short_run_behavior.png": "684eed203598dcaf1ae1ffe501029ba6e7e865e7f093324b2bd4f63b69c747e7",
+        "equilibrium_comparison/figures/rho095_n51/12_profit_replication_distributions.png": "2d0988f503102458733e5ec109bac9a9700173edf9bd2b3d65c4e6b93da4cfcf",
+        "equilibrium_comparison/figures/rho095_n51/08_policy_disagreement.pdf": "bf7cda1d857b587d8dcac6c46cf73b6fbb7a9f8fc5c9f018b4c95af2b1d15183",
+        "equilibrium_comparison/figures/rho095_n51/09_consistency_diagnostics.png": "0fccd9528d440c40066fb846ef610b7de96563f43eadb4880a060fbc698283f1",
+        "equilibrium_comparison/figures/rho095_n51/02_sample_reputation_trajectories.pdf": "79202eceaa729fc29eff44cbd5dbcb7a4fed9088d44c7cb658c688acccab98ba",
+        "equilibrium_comparison/figures/rho095_n51/09_consistency_diagnostics.pdf": "b1e89efa9b9351cc6f3c53c4575a3b1302064f9d7d87f80b2f07c315ce15dc3f",
+        "equilibrium_comparison/figures/rho095_n51/05_product2_usage.pdf": "512973a238d94ec86a714ba722e493983406c9e5189cac9179990f8d3392934f",
+        "equilibrium_comparison/figures/rho095_n51/05_product2_usage.png": "7b9c2209d4e9a7a95cfa7ae86050a9f172d88753cca8e7a398e6b37f33873f41",
+        "equilibrium_comparison/figures/rho095_n51/01_product_policies.pdf": "b7c2a5789911d98e0dc082b26792f8d14f0d68cd2e079be754dfc952234b6f3f",
+        "equilibrium_comparison/figures/rho095_n51/10_paired_outcome_differences.png": "560b296128120b1757d46def923a43284a3c66ccac2a097e5d92b806f2b85969"
+      },
+      "transient_validation_sha256": "1aee5f0aacc284ab1f96df875b50c145d369058d6e856f591ec9df69263b1aa5"
+    }
+  ],
+  "transient_validation": "transient_validation.json",
+  "research_summary_es": "RESUMEN.txt",
+  "related_validation_runs": [
+    "rho095_n51_long_grid"
+  ],
+  "research_summary_sources_sha256": {
+    "rho095_n51/summary.csv": "21610a1e66a69a044c69582afbcd897c402730421c14a9715144e4dc2cb08d79",
+    "rho095_n51_long_grid/summary.csv": "762169b1f1b20ccc9e3bb859aa9181cfdb7f12c616b627503eecebef6077b01b",
+    "rho095_n51_long_grid/transient_validation.json": "682e423def84a79a6e61e8d35f8eb9d30f519152ab72638f6b508383feeb9b83",
+    "rho095_n51/rare_state_diagnostics.json": "ec716a3655d5b0d35a444d7fa602fac36c21b7c5b89fa6c8ad7005d47b46fae6"
+  }
+}

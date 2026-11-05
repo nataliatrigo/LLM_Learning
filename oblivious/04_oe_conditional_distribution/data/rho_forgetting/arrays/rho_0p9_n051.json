@@ -1,0 +1,2955 @@
+{
+  "rho": 0.9,
+  "n": 51,
+  "configuration": {
+    "n": 51,
+    "parameters": {
+      "R": 1.0,
+      "c1": 0.05,
+      "c2": 0.65,
+      "p1": 0.35,
+      "p2": 0.8,
+      "gamma": 0.98,
+      "rho": 0.9
+    },
+    "order": 128,
+    "tolerance": 1e-07,
+    "dp_tolerance": 1e-10,
+    "stationary_tolerance": 1e-11,
+    "stationary_stability_tolerance": 1e-07,
+    "closure": "Conditional rival distribution from actual joint calendar-time invariant law",
+    "strategy": "Symmetric mixed own-reputation policy",
+    "model": "Conditional OE",
+    "conditional_formula": "mu_i(j)=nu(i,j)/mu_A(i); d_i=sum_j D(i,j)*mu_i(j)",
+    "positive_mass_floor": 0.0,
+    "zero_mass_convention": "Unconditional rival marginal on exactly zero own-mass rows",
+    "damping": 0.35,
+    "picard_iterations": 20,
+    "max_evaluations": 1500
+  },
+  "status": "verified",
+  "initializations": [
+    {
+      "name": "product_1",
+      "policy": {
+        "__array__": "root/initializations/0/policy"
+      }
+    },
+    {
+      "name": "half",
+      "policy": {
+        "__array__": "root/initializations/1/policy"
+      }
+    },
+    {
+      "name": "previous_grid",
+      "policy": {
+        "__array__": "root/initializations/2/policy"
+      }
+    }
+  ],
+  "attempts": [
+    {
+      "start": "product_1",
+      "candidate": {
+        "grid": {
+          "__array__": "root/attempts/0/candidate/grid"
+        },
+        "policy": {
+          "__array__": "root/attempts/0/candidate/policy"
+        },
+        "value": {
+          "__array__": "root/attempts/0/candidate/value"
+        },
+        "advantage": {
+          "__array__": "root/attempts/0/candidate/advantage"
+        },
+        "nu": {
+          "__array__": "root/attempts/0/candidate/nu"
+        },
+        "mu_a": {
+          "__array__": "root/attempts/0/candidate/mu_a"
+        },
+        "mu_b": {
+          "__array__": "root/attempts/0/candidate/mu_b"
+        },
+        "mu": {
+          "__array__": "root/attempts/0/candidate/mu"
+        },
+        "demand": {
+          "__array__": "root/attempts/0/candidate/demand"
+        },
+        "conditional_mu": {
+          "__array__": "root/attempts/0/candidate/conditional_mu"
+        },
+        "actual_conditional_mu": {
+          "__array__": "root/attempts/0/candidate/actual_conditional_mu"
+        },
+        "conditional_demand": {
+          "__array__": "root/attempts/0/candidate/conditional_demand"
+        },
+        "actual_conditional_demand": {
+          "__array__": "root/attempts/0/candidate/actual_conditional_demand"
+        },
+        "conditioning_zero_rows": [],
+        "conditional_diagnostics": {
+          "verified": true,
+          "closure_weighted_l1": 0.0,
+          "closure_supported_row_l1_max": 0.0,
+          "closure_unsupported_row_l1_max": 0.0,
+          "row_normalization_error": 4.440892098500626e-16,
+          "integrated_rival_marginal_l1": 2.4436328906622465e-16,
+          "demand_consistency_max": 0.0,
+          "positive_rows": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50
+          ],
+          "zero_rows": [],
+          "minimum_positive_own_mass": 4.716053632460884e-14,
+          "off_path_convention": "Unconditional rival marginal on exactly zero own-mass rows",
+          "positive_mass_floor": 0.0,
+          "supplied_conjecture": false,
+          "independent_order_verified": true,
+          "independent_order_supported_row_l1_max": 1.6958576422886964e-15,
+          "independent_order_demand_max": 2.220446049250313e-16,
+          "independent_order_support_agrees": true,
+          "independent_order_joint_l1": 2.3721524107482526e-16,
+          "independent_order_method": "Reversed symmetric joint jump-chain positive GTH; conditional comparison on every positive row",
+          "certification": "Independent actual joint invariant law; rowwise conditional closure on every positive-mass row"
+        },
+        "conditional_residual": 0.0,
+        "marginal_residual": 2.4436328906622465e-16,
+        "verified": true,
+        "candidate_verified": true,
+        "status": "verified",
+        "failure_reasons": [],
+        "summary": {
+          "rho": 0.9,
+          "n": 51,
+          "model": "Conditional OE",
+          "verified": true,
+          "candidate_verified": true,
+          "marginal_l1": 2.4436328906622465e-16,
+          "marginal_residual": 2.4436328906622465e-16,
+          "conditional_residual": 0.0,
+          "conditional_weighted_l1": 0.0,
+          "stationary_residual": 1.92150846925438e-16,
+          "mixed_nodes": 0,
+          "mixed_indices": [],
+          "mixed_reputations": [],
+          "mixed_probabilities": [],
+          "mean_reputation": 0.6301255958473743,
+          "mean_posterior": 0.6084379965394786,
+          "dp": {
+            "verified": true,
+            "bellman_residual": 5.329070518200751e-15,
+            "policy_evaluation_residual": 5.329070518200751e-15,
+            "conditional_regret": 0.0,
+            "complementarity_residual": 0.0,
+            "mixed_indifference_residual": 0.0,
+            "best_response_gain_upper_bound": 5.329070518200746e-13,
+            "best_response_numerical_error_bound": 5.329070518200746e-13,
+            "iterations": 5
+          },
+          "stationary": {
+            "verified": true,
+            "residual": 1.92150846925438e-16,
+            "row_sum_error": 3.3306690738754696e-16,
+            "probability_sum": 0.9999999999999998,
+            "minimum_probability": 9.18488323038815e-30,
+            "stability_l1": 2.229770105078634e-15,
+            "stability_tolerance": 1e-07,
+            "methods": [
+              "sparse jump-chain, middle normalization",
+              "sparse jump-chain, reversed order and edge normalization",
+              "independent positive GTH elimination"
+            ],
+            "preliminary_failures": [],
+            "symmetric_lumping": true,
+            "lumping_error": 0.0,
+            "solved_states": 1326,
+            "full_states": 2601,
+            "selection": "symmetric invariant law",
+            "communicating_components": 1,
+            "reduced_communicating_components": 1,
+            "minimum_exit_rate": 0.35,
+            "exploratory": false,
+            "marginal_symmetry_l1": 1.882505496524513e-16,
+            "scope": "Finite numerical kernel; no mixing-time or continuous-state guarantee"
+          },
+          "conditional": {
+            "verified": true,
+            "closure_weighted_l1": 0.0,
+            "closure_supported_row_l1_max": 0.0,
+            "closure_unsupported_row_l1_max": 0.0,
+            "row_normalization_error": 4.440892098500626e-16,
+            "integrated_rival_marginal_l1": 2.4436328906622465e-16,
+            "demand_consistency_max": 0.0,
+            "positive_rows": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31,
+              32,
+              33,
+              34,
+              35,
+              36,
+              37,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              46,
+              47,
+              48,
+              49,
+              50
+            ],
+            "zero_rows": [],
+            "minimum_positive_own_mass": 4.716053632460884e-14,
+            "off_path_convention": "Unconditional rival marginal on exactly zero own-mass rows",
+            "positive_mass_floor": 0.0,
+            "supplied_conjecture": false,
+            "independent_order_verified": true,
+            "independent_order_supported_row_l1_max": 1.6958576422886964e-15,
+            "independent_order_demand_max": 2.220446049250313e-16,
+            "independent_order_support_agrees": true,
+            "independent_order_joint_l1": 2.3721524107482526e-16,
+            "independent_order_method": "Reversed symmetric joint jump-chain positive GTH; conditional comparison on every positive row",
+            "certification": "Independent actual joint invariant law; rowwise conditional closure on every positive-mass row"
+          }
+        },
+        "dp_diagnostics": {
+          "verified": true,
+          "bellman_residual": 5.329070518200751e-15,
+          "policy_evaluation_residual": 5.329070518200751e-15,
+          "conditional_regret": 0.0,
+          "complementarity_residual": 0.0,
+          "mixed_indifference_residual": 0.0,
+          "best_response_gain_upper_bound": 5.329070518200746e-13,
+          "best_response_numerical_error_bound": 5.329070518200746e-13,
+          "iterations": 5
+        },
+        "stationary_diagnostics": {
+          "verified": true,
+          "residual": 1.92150846925438e-16,
+          "row_sum_error": 3.3306690738754696e-16,
+          "probability_sum": 0.9999999999999998,
+          "minimum_probability": 9.18488323038815e-30,
+          "stability_l1": 2.229770105078634e-15,
+          "stability_tolerance": 1e-07,
+          "methods": [
+            "sparse jump-chain, middle normalization",
+            "sparse jump-chain, reversed order and edge normalization",
+            "independent positive GTH elimination"
+          ],
+          "preliminary_failures": [],
+          "symmetric_lumping": true,
+          "lumping_error": 0.0,
+          "solved_states": 1326,
+          "full_states": 2601,
+          "selection": "symmetric invariant law",
+          "communicating_components": 1,
+          "reduced_communicating_components": 1,
+          "minimum_exit_rate": 0.35,
+          "exploratory": false,
+          "marginal_symmetry_l1": 1.882505496524513e-16,
+          "scope": "Finite numerical kernel; no mixing-time or continuous-state guarantee"
+        },
+        "mixed_nodes": 0,
+        "mixed_indices": [],
+        "mixed_probabilities": [],
+        "history": [
+          {
+            "stage": "damped conditional best response",
+            "iteration": 0,
+            "damping": 0.35,
+            "conditional_regret": 2.807287356949639,
+            "policy_change_max": 0.35,
+            "stationary_residual": 1.5791409317226422e-14,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 1,
+            "damping": 0.35,
+            "conditional_regret": 1.6189246298613518,
+            "policy_change_max": 0.35,
+            "stationary_residual": 3.0161016985212614e-14,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 2,
+            "damping": 0.35,
+            "conditional_regret": 0.8883511688906212,
+            "policy_change_max": 0.35,
+            "stationary_residual": 1.0406605601404454e-14,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 3,
+            "damping": 0.35,
+            "conditional_regret": 0.5058352726766138,
+            "policy_change_max": 0.35,
+            "stationary_residual": 7.533652138413734e-15,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 4,
+            "damping": 0.35,
+            "conditional_regret": 0.29018584459946495,
+            "policy_change_max": 0.35,
+            "stationary_residual": 1.0184272777552327e-14,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 5,
+            "damping": 0.35,
+            "conditional_regret": 0.17135224709348762,
+            "policy_change_max": 0.35,
+            "stationary_residual": 6.729573649005855e-15,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 6,
+            "damping": 0.35,
+            "conditional_regret": 0.10250793310007267,
+            "policy_change_max": 0.35,
+            "stationary_residual": 8.199218844334063e-15,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 7,
+            "damping": 0.35,
+            "conditional_regret": 0.06180797683327577,
+            "policy_change_max": 0.22749999999999992,
+            "stationary_residual": 6.799699635045429e-15,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 8,
+            "damping": 0.35,
+            "conditional_regret": 0.03832406439250735,
+            "policy_change_max": 0.35,
+            "stationary_residual": 8.014736215020153e-15,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 9,
+            "damping": 0.35,
+            "conditional_regret": 0.023502268615295696,
+            "policy_change_max": 0.22749999999999992,
+            "stationary_residual": 1.5308623741762115e-14,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 10,
+            "damping": 0.35,
+            "conditional_regret": 0.014758629938522727,
+            "policy_change_max": 0.14787499999999998,
+            "stationary_residual": 6.2182821154591346e-15,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 11,
+            "damping": 0.35,
+            "conditional_regret": 0.009356802313376322,
+            "policy_change_max": 0.35,
+            "stationary_residual": 7.566290848229569e-15,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 12,
+            "damping": 0.35,
+            "conditional_regret": 0.0058336596312411615,
+            "policy_change_max": 0.22749999999999992,
+            "stationary_residual": 9.046621757492299e-15,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 13,
+            "damping": 0.35,
+            "conditional_regret": 0.039529908624570786,
+            "policy_change_max": 0.3487059779381434,
+            "stationary_residual": 1.1929605323437475e-14,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 14,
+            "damping": 0.35,
+            "conditional_regret": 0.027429783465312926,
+            "policy_change_max": 0.22665888565979325,
+            "stationary_residual": 1.7958216302837926e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 15,
+            "damping": 0.35,
+            "conditional_regret": 0.027357059358583423,
+            "policy_change_max": 0.14732827567886558,
+            "stationary_residual": 8.355545934169509e-15,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 16,
+            "damping": 0.35,
+            "conditional_regret": 0.02237622565204102,
+            "policy_change_max": 0.09576337919126265,
+            "stationary_residual": 4.337224451507634e-15,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 17,
+            "damping": 0.35,
+            "conditional_regret": 0.011304791156964346,
+            "policy_change_max": 0.062246196474320725,
+            "stationary_residual": 1.1487938739568378e-14,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 18,
+            "damping": 0.35,
+            "conditional_regret": 0.010868256635566365,
+            "policy_change_max": 0.35,
+            "stationary_residual": 4.010181013531912e-15,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 19,
+            "damping": 0.35,
+            "conditional_regret": 0.010832762438711467,
+            "policy_change_max": 0.22749999999999992,
+            "stationary_residual": 5.460280287473887e-15,
+            "evaluations": 1
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.3,
+            "equation_error": 1.468913960134266e-05,
+            "evaluations": 26,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last ten iterations."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.1,
+            "equation_error": 0.00030332692223000723,
+            "evaluations": 27,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last ten iterations."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.03,
+            "equation_error": 0.0019688217300292965,
+            "evaluations": 23,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last ten iterations."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.01,
+            "equation_error": 0.0583192797309352,
+            "evaluations": 43,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last ten iterations."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.003,
+            "equation_error": 2.772893026303791e-12,
+            "evaluations": 32,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.001,
+            "equation_error": 1.2029439944161169e-14,
+            "evaluations": 7,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.0003,
+            "equation_error": 3.3753402680246813e-18,
+            "evaluations": 2,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.0001,
+            "equation_error": 0.0,
+            "evaluations": 2,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.0,
+            "equation_error": 0.0,
+            "evaluations": 1,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          }
+        ],
+        "search_metadata": {
+          "evaluations": 183,
+          "exploratory_evaluations": 183,
+          "strong_polish_evaluations": 0,
+          "max_evaluations": 1500,
+          "attempts": 1,
+          "exploratory_signed_roundoff_calls": 137,
+          "exploratory_positive_fallback_calls": 34,
+          "exploratory_stationary_note": "Signed roundoff may be used only during root search when row conditioning is valid; final certificates use positive stationary laws and independent conditional-order checks",
+          "budget_interpretation": "Soft exploratory-call budget; root callbacks, final certification and up to 60 strong-polish evaluations may exceed it",
+          "method": "Damped conditional policy iteration followed by analytic conditional complementarity continuation",
+          "damping": 0.35,
+          "picard_iterations": 20,
+          "exhaustive": false,
+          "unique": false,
+          "scope": "Finite grid and numerical demand matrix; no continuous-state or MPE claim"
+        },
+        "converged": true
+      }
+    },
+    {
+      "start": "half",
+      "candidate": {
+        "grid": {
+          "__array__": "root/attempts/1/candidate/grid"
+        },
+        "policy": {
+          "__array__": "root/attempts/1/candidate/policy"
+        },
+        "value": {
+          "__array__": "root/attempts/1/candidate/value"
+        },
+        "advantage": {
+          "__array__": "root/attempts/1/candidate/advantage"
+        },
+        "nu": {
+          "__array__": "root/attempts/1/candidate/nu"
+        },
+        "mu_a": {
+          "__array__": "root/attempts/1/candidate/mu_a"
+        },
+        "mu_b": {
+          "__array__": "root/attempts/1/candidate/mu_b"
+        },
+        "mu": {
+          "__array__": "root/attempts/1/candidate/mu"
+        },
+        "demand": {
+          "__array__": "root/attempts/1/candidate/demand"
+        },
+        "conditional_mu": {
+          "__array__": "root/attempts/1/candidate/conditional_mu"
+        },
+        "actual_conditional_mu": {
+          "__array__": "root/attempts/1/candidate/actual_conditional_mu"
+        },
+        "conditional_demand": {
+          "__array__": "root/attempts/1/candidate/conditional_demand"
+        },
+        "actual_conditional_demand": {
+          "__array__": "root/attempts/1/candidate/actual_conditional_demand"
+        },
+        "conditioning_zero_rows": [],
+        "conditional_diagnostics": {
+          "verified": true,
+          "closure_weighted_l1": 0.0,
+          "closure_supported_row_l1_max": 0.0,
+          "closure_unsupported_row_l1_max": 0.0,
+          "row_normalization_error": 4.440892098500626e-16,
+          "integrated_rival_marginal_l1": 2.4436328906622465e-16,
+          "demand_consistency_max": 0.0,
+          "positive_rows": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50
+          ],
+          "zero_rows": [],
+          "minimum_positive_own_mass": 4.716053632460884e-14,
+          "off_path_convention": "Unconditional rival marginal on exactly zero own-mass rows",
+          "positive_mass_floor": 0.0,
+          "supplied_conjecture": false,
+          "independent_order_verified": true,
+          "independent_order_supported_row_l1_max": 1.6958576422886964e-15,
+          "independent_order_demand_max": 2.220446049250313e-16,
+          "independent_order_support_agrees": true,
+          "independent_order_joint_l1": 2.3721524107482526e-16,
+          "independent_order_method": "Reversed symmetric joint jump-chain positive GTH; conditional comparison on every positive row",
+          "certification": "Independent actual joint invariant law; rowwise conditional closure on every positive-mass row"
+        },
+        "conditional_residual": 0.0,
+        "marginal_residual": 2.4436328906622465e-16,
+        "verified": true,
+        "candidate_verified": true,
+        "status": "verified",
+        "failure_reasons": [],
+        "summary": {
+          "rho": 0.9,
+          "n": 51,
+          "model": "Conditional OE",
+          "verified": true,
+          "candidate_verified": true,
+          "marginal_l1": 2.4436328906622465e-16,
+          "marginal_residual": 2.4436328906622465e-16,
+          "conditional_residual": 0.0,
+          "conditional_weighted_l1": 0.0,
+          "stationary_residual": 1.92150846925438e-16,
+          "mixed_nodes": 0,
+          "mixed_indices": [],
+          "mixed_reputations": [],
+          "mixed_probabilities": [],
+          "mean_reputation": 0.6301255958473743,
+          "mean_posterior": 0.6084379965394786,
+          "dp": {
+            "verified": true,
+            "bellman_residual": 5.329070518200751e-15,
+            "policy_evaluation_residual": 5.329070518200751e-15,
+            "conditional_regret": 0.0,
+            "complementarity_residual": 0.0,
+            "mixed_indifference_residual": 0.0,
+            "best_response_gain_upper_bound": 5.329070518200746e-13,
+            "best_response_numerical_error_bound": 5.329070518200746e-13,
+            "iterations": 5
+          },
+          "stationary": {
+            "verified": true,
+            "residual": 1.92150846925438e-16,
+            "row_sum_error": 3.3306690738754696e-16,
+            "probability_sum": 0.9999999999999998,
+            "minimum_probability": 9.18488323038815e-30,
+            "stability_l1": 2.229770105078634e-15,
+            "stability_tolerance": 1e-07,
+            "methods": [
+              "sparse jump-chain, middle normalization",
+              "sparse jump-chain, reversed order and edge normalization",
+              "independent positive GTH elimination"
+            ],
+            "preliminary_failures": [],
+            "symmetric_lumping": true,
+            "lumping_error": 0.0,
+            "solved_states": 1326,
+            "full_states": 2601,
+            "selection": "symmetric invariant law",
+            "communicating_components": 1,
+            "reduced_communicating_components": 1,
+            "minimum_exit_rate": 0.35,
+            "exploratory": false,
+            "marginal_symmetry_l1": 1.882505496524513e-16,
+            "scope": "Finite numerical kernel; no mixing-time or continuous-state guarantee"
+          },
+          "conditional": {
+            "verified": true,
+            "closure_weighted_l1": 0.0,
+            "closure_supported_row_l1_max": 0.0,
+            "closure_unsupported_row_l1_max": 0.0,
+            "row_normalization_error": 4.440892098500626e-16,
+            "integrated_rival_marginal_l1": 2.4436328906622465e-16,
+            "demand_consistency_max": 0.0,
+            "positive_rows": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31,
+              32,
+              33,
+              34,
+              35,
+              36,
+              37,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              46,
+              47,
+              48,
+              49,
+              50
+            ],
+            "zero_rows": [],
+            "minimum_positive_own_mass": 4.716053632460884e-14,
+            "off_path_convention": "Unconditional rival marginal on exactly zero own-mass rows",
+            "positive_mass_floor": 0.0,
+            "supplied_conjecture": false,
+            "independent_order_verified": true,
+            "independent_order_supported_row_l1_max": 1.6958576422886964e-15,
+            "independent_order_demand_max": 2.220446049250313e-16,
+            "independent_order_support_agrees": true,
+            "independent_order_joint_l1": 2.3721524107482526e-16,
+            "independent_order_method": "Reversed symmetric joint jump-chain positive GTH; conditional comparison on every positive row",
+            "certification": "Independent actual joint invariant law; rowwise conditional closure on every positive-mass row"
+          }
+        },
+        "dp_diagnostics": {
+          "verified": true,
+          "bellman_residual": 5.329070518200751e-15,
+          "policy_evaluation_residual": 5.329070518200751e-15,
+          "conditional_regret": 0.0,
+          "complementarity_residual": 0.0,
+          "mixed_indifference_residual": 0.0,
+          "best_response_gain_upper_bound": 5.329070518200746e-13,
+          "best_response_numerical_error_bound": 5.329070518200746e-13,
+          "iterations": 5
+        },
+        "stationary_diagnostics": {
+          "verified": true,
+          "residual": 1.92150846925438e-16,
+          "row_sum_error": 3.3306690738754696e-16,
+          "probability_sum": 0.9999999999999998,
+          "minimum_probability": 9.18488323038815e-30,
+          "stability_l1": 2.229770105078634e-15,
+          "stability_tolerance": 1e-07,
+          "methods": [
+            "sparse jump-chain, middle normalization",
+            "sparse jump-chain, reversed order and edge normalization",
+            "independent positive GTH elimination"
+          ],
+          "preliminary_failures": [],
+          "symmetric_lumping": true,
+          "lumping_error": 0.0,
+          "solved_states": 1326,
+          "full_states": 2601,
+          "selection": "symmetric invariant law",
+          "communicating_components": 1,
+          "reduced_communicating_components": 1,
+          "minimum_exit_rate": 0.35,
+          "exploratory": false,
+          "marginal_symmetry_l1": 1.882505496524513e-16,
+          "scope": "Finite numerical kernel; no mixing-time or continuous-state guarantee"
+        },
+        "mixed_nodes": 0,
+        "mixed_indices": [],
+        "mixed_probabilities": [],
+        "history": [
+          {
+            "stage": "damped conditional best response",
+            "iteration": 0,
+            "damping": 0.35,
+            "conditional_regret": 0.6037518780054287,
+            "policy_change_max": 0.17500000000000004,
+            "stationary_residual": 8.614452175836999e-15,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 1,
+            "damping": 0.35,
+            "conditional_regret": 0.38344767092338605,
+            "policy_change_max": 0.23625000000000002,
+            "stationary_residual": 3.724425258135873e-15,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 2,
+            "damping": 0.35,
+            "conditional_regret": 0.24049956464572342,
+            "policy_change_max": 0.2760625,
+            "stationary_residual": 4.114044090644977e-15,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 3,
+            "damping": 0.35,
+            "conditional_regret": 0.1495807324345999,
+            "policy_change_max": 0.17944062500000002,
+            "stationary_residual": 8.751919882347065e-15,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 4,
+            "damping": 0.35,
+            "conditional_regret": 0.09467582652897621,
+            "policy_change_max": 0.31876140624999993,
+            "stationary_residual": 1.1849771895906146e-14,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 5,
+            "damping": 0.35,
+            "conditional_regret": 0.05913263721056561,
+            "policy_change_max": 0.2071949140625,
+            "stationary_residual": 8.742558153940607e-15,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 6,
+            "damping": 0.35,
+            "conditional_regret": 0.037369606693038016,
+            "policy_change_max": 0.134676694140625,
+            "stationary_residual": 5.419611759098815e-15,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 7,
+            "damping": 0.35,
+            "conditional_regret": 0.04000171047496908,
+            "policy_change_max": 0.34142110119140623,
+            "stationary_residual": 9.170728592317345e-15,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 8,
+            "damping": 0.35,
+            "conditional_regret": 0.04028976881429321,
+            "policy_change_max": 0.22192371577441405,
+            "stationary_residual": 9.07971104958153e-15,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 9,
+            "damping": 0.35,
+            "conditional_regret": 0.03422010593163116,
+            "policy_change_max": 0.14425041525336912,
+            "stationary_residual": 6.5454456433486505e-15,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 10,
+            "damping": 0.35,
+            "conditional_regret": 0.025165207878873032,
+            "policy_change_max": 0.09376276991468996,
+            "stationary_residual": 5.239568234437524e-15,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 11,
+            "damping": 0.35,
+            "conditional_regret": 0.017016833089016234,
+            "policy_change_max": 0.34846861294454845,
+            "stationary_residual": 1.0155648786620621e-14,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 12,
+            "damping": 0.35,
+            "conditional_regret": 0.01514123532618221,
+            "policy_change_max": 0.22650459841395643,
+            "stationary_residual": 7.312655538984964e-15,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 13,
+            "damping": 0.35,
+            "conditional_regret": 0.023302648484895848,
+            "policy_change_max": 0.34935298896907174,
+            "stationary_residual": 6.669317731890407e-15,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 14,
+            "damping": 0.35,
+            "conditional_regret": 0.02992602187248035,
+            "policy_change_max": 0.22707944282989662,
+            "stationary_residual": 1.0862019162951734e-14,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 15,
+            "damping": 0.35,
+            "conditional_regret": 0.02538697741899757,
+            "policy_change_max": 0.1476016378394328,
+            "stationary_residual": 1.790006698886147e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 16,
+            "damping": 0.35,
+            "conditional_regret": 0.019129987259088436,
+            "policy_change_max": 0.09594106459563131,
+            "stationary_residual": 2.0197887523945753e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 17,
+            "damping": 0.35,
+            "conditional_regret": 0.013557444107204027,
+            "policy_change_max": 0.06236169198716035,
+            "stationary_residual": 1.7338672856837347e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 18,
+            "damping": 0.35,
+            "conditional_regret": 0.01601317851649503,
+            "policy_change_max": 0.04053509979165423,
+            "stationary_residual": 7.8793113226544e-15,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 19,
+            "damping": 0.35,
+            "conditional_regret": 0.006241374887631499,
+            "policy_change_max": 0.02634781486457525,
+            "stationary_residual": 1.7432963122219192e-16,
+            "evaluations": 1
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.3,
+            "equation_error": 1.1590372566705476e-05,
+            "evaluations": 40,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.1,
+            "equation_error": 0.0005096490172288304,
+            "evaluations": 28,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last ten iterations."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.03,
+            "equation_error": 0.007466717922796753,
+            "evaluations": 20,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last ten iterations."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.01,
+            "equation_error": 0.030545107835753815,
+            "evaluations": 46,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last ten iterations."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.003,
+            "equation_error": 6.766809335090329e-14,
+            "evaluations": 21,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.001,
+            "equation_error": 9.259086553026208e-15,
+            "evaluations": 5,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.0003,
+            "equation_error": 3.3753402680246813e-18,
+            "evaluations": 2,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.0001,
+            "equation_error": 0.0,
+            "evaluations": 2,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.0,
+            "equation_error": 0.0,
+            "evaluations": 1,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          }
+        ],
+        "search_metadata": {
+          "evaluations": 185,
+          "exploratory_evaluations": 185,
+          "strong_polish_evaluations": 0,
+          "max_evaluations": 1500,
+          "attempts": 1,
+          "exploratory_signed_roundoff_calls": 119,
+          "exploratory_positive_fallback_calls": 41,
+          "exploratory_stationary_note": "Signed roundoff may be used only during root search when row conditioning is valid; final certificates use positive stationary laws and independent conditional-order checks",
+          "budget_interpretation": "Soft exploratory-call budget; root callbacks, final certification and up to 60 strong-polish evaluations may exceed it",
+          "method": "Damped conditional policy iteration followed by analytic conditional complementarity continuation",
+          "damping": 0.35,
+          "picard_iterations": 20,
+          "exhaustive": false,
+          "unique": false,
+          "scope": "Finite grid and numerical demand matrix; no continuous-state or MPE claim"
+        },
+        "converged": true
+      }
+    },
+    {
+      "start": "previous_grid",
+      "candidate": {
+        "grid": {
+          "__array__": "root/attempts/2/candidate/grid"
+        },
+        "policy": {
+          "__array__": "root/attempts/2/candidate/policy"
+        },
+        "value": {
+          "__array__": "root/attempts/2/candidate/value"
+        },
+        "advantage": {
+          "__array__": "root/attempts/2/candidate/advantage"
+        },
+        "nu": {
+          "__array__": "root/attempts/2/candidate/nu"
+        },
+        "mu_a": {
+          "__array__": "root/attempts/2/candidate/mu_a"
+        },
+        "mu_b": {
+          "__array__": "root/attempts/2/candidate/mu_b"
+        },
+        "mu": {
+          "__array__": "root/attempts/2/candidate/mu"
+        },
+        "demand": {
+          "__array__": "root/attempts/2/candidate/demand"
+        },
+        "conditional_mu": {
+          "__array__": "root/attempts/2/candidate/conditional_mu"
+        },
+        "actual_conditional_mu": {
+          "__array__": "root/attempts/2/candidate/actual_conditional_mu"
+        },
+        "conditional_demand": {
+          "__array__": "root/attempts/2/candidate/conditional_demand"
+        },
+        "actual_conditional_demand": {
+          "__array__": "root/attempts/2/candidate/actual_conditional_demand"
+        },
+        "conditioning_zero_rows": [],
+        "conditional_diagnostics": {
+          "verified": true,
+          "closure_weighted_l1": 0.0,
+          "closure_supported_row_l1_max": 0.0,
+          "closure_unsupported_row_l1_max": 0.0,
+          "row_normalization_error": 4.440892098500626e-16,
+          "integrated_rival_marginal_l1": 2.4436328906622465e-16,
+          "demand_consistency_max": 0.0,
+          "positive_rows": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50
+          ],
+          "zero_rows": [],
+          "minimum_positive_own_mass": 4.716053632460884e-14,
+          "off_path_convention": "Unconditional rival marginal on exactly zero own-mass rows",
+          "positive_mass_floor": 0.0,
+          "supplied_conjecture": false,
+          "independent_order_verified": true,
+          "independent_order_supported_row_l1_max": 1.6958576422886964e-15,
+          "independent_order_demand_max": 2.220446049250313e-16,
+          "independent_order_support_agrees": true,
+          "independent_order_joint_l1": 2.3721524107482526e-16,
+          "independent_order_method": "Reversed symmetric joint jump-chain positive GTH; conditional comparison on every positive row",
+          "certification": "Independent actual joint invariant law; rowwise conditional closure on every positive-mass row"
+        },
+        "conditional_residual": 0.0,
+        "marginal_residual": 2.4436328906622465e-16,
+        "verified": true,
+        "candidate_verified": true,
+        "status": "verified",
+        "failure_reasons": [],
+        "summary": {
+          "rho": 0.9,
+          "n": 51,
+          "model": "Conditional OE",
+          "verified": true,
+          "candidate_verified": true,
+          "marginal_l1": 2.4436328906622465e-16,
+          "marginal_residual": 2.4436328906622465e-16,
+          "conditional_residual": 0.0,
+          "conditional_weighted_l1": 0.0,
+          "stationary_residual": 1.92150846925438e-16,
+          "mixed_nodes": 0,
+          "mixed_indices": [],
+          "mixed_reputations": [],
+          "mixed_probabilities": [],
+          "mean_reputation": 0.6301255958473743,
+          "mean_posterior": 0.6084379965394786,
+          "dp": {
+            "verified": true,
+            "bellman_residual": 5.329070518200751e-15,
+            "policy_evaluation_residual": 5.329070518200751e-15,
+            "conditional_regret": 0.0,
+            "complementarity_residual": 0.0,
+            "mixed_indifference_residual": 0.0,
+            "best_response_gain_upper_bound": 5.329070518200746e-13,
+            "best_response_numerical_error_bound": 5.329070518200746e-13,
+            "iterations": 5
+          },
+          "stationary": {
+            "verified": true,
+            "residual": 1.92150846925438e-16,
+            "row_sum_error": 3.3306690738754696e-16,
+            "probability_sum": 0.9999999999999998,
+            "minimum_probability": 9.18488323038815e-30,
+            "stability_l1": 2.229770105078634e-15,
+            "stability_tolerance": 1e-07,
+            "methods": [
+              "sparse jump-chain, middle normalization",
+              "sparse jump-chain, reversed order and edge normalization",
+              "independent positive GTH elimination"
+            ],
+            "preliminary_failures": [],
+            "symmetric_lumping": true,
+            "lumping_error": 0.0,
+            "solved_states": 1326,
+            "full_states": 2601,
+            "selection": "symmetric invariant law",
+            "communicating_components": 1,
+            "reduced_communicating_components": 1,
+            "minimum_exit_rate": 0.35,
+            "exploratory": false,
+            "marginal_symmetry_l1": 1.882505496524513e-16,
+            "scope": "Finite numerical kernel; no mixing-time or continuous-state guarantee"
+          },
+          "conditional": {
+            "verified": true,
+            "closure_weighted_l1": 0.0,
+            "closure_supported_row_l1_max": 0.0,
+            "closure_unsupported_row_l1_max": 0.0,
+            "row_normalization_error": 4.440892098500626e-16,
+            "integrated_rival_marginal_l1": 2.4436328906622465e-16,
+            "demand_consistency_max": 0.0,
+            "positive_rows": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31,
+              32,
+              33,
+              34,
+              35,
+              36,
+              37,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              46,
+              47,
+              48,
+              49,
+              50
+            ],
+            "zero_rows": [],
+            "minimum_positive_own_mass": 4.716053632460884e-14,
+            "off_path_convention": "Unconditional rival marginal on exactly zero own-mass rows",
+            "positive_mass_floor": 0.0,
+            "supplied_conjecture": false,
+            "independent_order_verified": true,
+            "independent_order_supported_row_l1_max": 1.6958576422886964e-15,
+            "independent_order_demand_max": 2.220446049250313e-16,
+            "independent_order_support_agrees": true,
+            "independent_order_joint_l1": 2.3721524107482526e-16,
+            "independent_order_method": "Reversed symmetric joint jump-chain positive GTH; conditional comparison on every positive row",
+            "certification": "Independent actual joint invariant law; rowwise conditional closure on every positive-mass row"
+          }
+        },
+        "dp_diagnostics": {
+          "verified": true,
+          "bellman_residual": 5.329070518200751e-15,
+          "policy_evaluation_residual": 5.329070518200751e-15,
+          "conditional_regret": 0.0,
+          "complementarity_residual": 0.0,
+          "mixed_indifference_residual": 0.0,
+          "best_response_gain_upper_bound": 5.329070518200746e-13,
+          "best_response_numerical_error_bound": 5.329070518200746e-13,
+          "iterations": 5
+        },
+        "stationary_diagnostics": {
+          "verified": true,
+          "residual": 1.92150846925438e-16,
+          "row_sum_error": 3.3306690738754696e-16,
+          "probability_sum": 0.9999999999999998,
+          "minimum_probability": 9.18488323038815e-30,
+          "stability_l1": 2.229770105078634e-15,
+          "stability_tolerance": 1e-07,
+          "methods": [
+            "sparse jump-chain, middle normalization",
+            "sparse jump-chain, reversed order and edge normalization",
+            "independent positive GTH elimination"
+          ],
+          "preliminary_failures": [],
+          "symmetric_lumping": true,
+          "lumping_error": 0.0,
+          "solved_states": 1326,
+          "full_states": 2601,
+          "selection": "symmetric invariant law",
+          "communicating_components": 1,
+          "reduced_communicating_components": 1,
+          "minimum_exit_rate": 0.35,
+          "exploratory": false,
+          "marginal_symmetry_l1": 1.882505496524513e-16,
+          "scope": "Finite numerical kernel; no mixing-time or continuous-state guarantee"
+        },
+        "mixed_nodes": 0,
+        "mixed_indices": [],
+        "mixed_probabilities": [],
+        "history": [
+          {
+            "stage": "damped conditional best response",
+            "iteration": 0,
+            "damping": 0.35,
+            "conditional_regret": 0.02432022757325515,
+            "policy_change_max": 0.20999999999999902,
+            "stationary_residual": 1.7066669009301097e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 1,
+            "damping": 0.35,
+            "conditional_regret": 0.0197225811090721,
+            "policy_change_max": 0.3045,
+            "stationary_residual": 2.0105684181762034e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 2,
+            "damping": 0.35,
+            "conditional_regret": 0.014436401447484731,
+            "policy_change_max": 0.19792500000000002,
+            "stationary_residual": 1.5302953723202262e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 3,
+            "damping": 0.35,
+            "conditional_regret": 0.010716835421565353,
+            "policy_change_max": 0.12865125,
+            "stationary_residual": 1.2279739491680422e-14,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 4,
+            "damping": 0.35,
+            "conditional_regret": 0.006803542580997329,
+            "policy_change_max": 0.08362331249999999,
+            "stationary_residual": 1.103248390740352e-14,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 5,
+            "damping": 0.35,
+            "conditional_regret": 0.004537670575549019,
+            "policy_change_max": 0.054355153124999944,
+            "stationary_residual": 1.1606198201918366e-14,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 6,
+            "damping": 0.35,
+            "conditional_regret": 0.0041621800205198164,
+            "policy_change_max": 0.035330849531249986,
+            "stationary_residual": 1.2121941694488822e-14,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 7,
+            "damping": 0.35,
+            "conditional_regret": 0.001969695150146028,
+            "policy_change_max": 0.02296505219531253,
+            "stationary_residual": 1.4778887108266482e-14,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 8,
+            "damping": 0.35,
+            "conditional_regret": 0.002325471507491829,
+            "policy_change_max": 0.014927283926953083,
+            "stationary_residual": 1.6217650481856977e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 9,
+            "damping": 0.35,
+            "conditional_regret": 0.001534076228763892,
+            "policy_change_max": 0.009702734552519576,
+            "stationary_residual": 1.778516087090459e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 10,
+            "damping": 0.35,
+            "conditional_regret": 0.0009438445678262158,
+            "policy_change_max": 0.006306777459137658,
+            "stationary_residual": 8.686544485410787e-15,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 11,
+            "damping": 0.35,
+            "conditional_regret": 0.0003571645711437921,
+            "policy_change_max": 0.004099405348439555,
+            "stationary_residual": 1.2710771929362444e-14,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 12,
+            "damping": 0.35,
+            "conditional_regret": 0.00044795521147518447,
+            "policy_change_max": 0.002664613476485722,
+            "stationary_residual": 1.0151637802780695e-14,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 13,
+            "damping": 0.35,
+            "conditional_regret": 0.0002799608122632663,
+            "policy_change_max": 0.001731998759715636,
+            "stationary_residual": 1.4155417002724042e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 14,
+            "damping": 0.35,
+            "conditional_regret": 9.82949034648295e-05,
+            "policy_change_max": 0.001125799193815169,
+            "stationary_residual": 1.683281733668757e-14,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 15,
+            "damping": 0.35,
+            "conditional_regret": 0.00011860732822645964,
+            "policy_change_max": 0.0007317694759798599,
+            "stationary_residual": 2.1520731090603657e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 16,
+            "damping": 0.35,
+            "conditional_regret": 6.81953064581714e-05,
+            "policy_change_max": 0.00047565015938699773,
+            "stationary_residual": 8.364201041249656e-15,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 17,
+            "damping": 0.35,
+            "conditional_regret": 2.7028817640606384e-05,
+            "policy_change_max": 0.0003091726036015263,
+            "stationary_residual": 1.2549765897623861e-14,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 18,
+            "damping": 0.35,
+            "conditional_regret": 3.2619727555069367e-05,
+            "policy_change_max": 0.0002009621923410032,
+            "stationary_residual": 1.8458987769498798e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 19,
+            "damping": 0.35,
+            "conditional_regret": 1.1420010667784197e-05,
+            "policy_change_max": 0.00013062542502162433,
+            "stationary_residual": 1.7092848344255388e-14,
+            "evaluations": 1
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.3,
+            "equation_error": 1.4870338405414962e-05,
+            "evaluations": 25,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last ten iterations."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.1,
+            "equation_error": 0.0005376505109188079,
+            "evaluations": 20,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last ten iterations."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.03,
+            "equation_error": 4.218847493575595e-14,
+            "evaluations": 30,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.01,
+            "equation_error": 2.3914710489680857e-11,
+            "evaluations": 39,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.003,
+            "equation_error": 8.135714324453147e-13,
+            "evaluations": 25,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last ten iterations."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.001,
+            "equation_error": 2.828466627580184e-15,
+            "evaluations": 12,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.0003,
+            "equation_error": 3.3753402680246813e-18,
+            "evaluations": 2,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.0001,
+            "equation_error": 0.0,
+            "evaluations": 2,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.0,
+            "equation_error": 0.0,
+            "evaluations": 1,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          }
+        ],
+        "search_metadata": {
+          "evaluations": 176,
+          "exploratory_evaluations": 176,
+          "strong_polish_evaluations": 0,
+          "max_evaluations": 1500,
+          "attempts": 1,
+          "exploratory_signed_roundoff_calls": 102,
+          "exploratory_positive_fallback_calls": 56,
+          "exploratory_stationary_note": "Signed roundoff may be used only during root search when row conditioning is valid; final certificates use positive stationary laws and independent conditional-order checks",
+          "budget_interpretation": "Soft exploratory-call budget; root callbacks, final certification and up to 60 strong-polish evaluations may exceed it",
+          "method": "Damped conditional policy iteration followed by analytic conditional complementarity continuation",
+          "damping": 0.35,
+          "picard_iterations": 20,
+          "exhaustive": false,
+          "unique": false,
+          "scope": "Finite grid and numerical demand matrix; no continuous-state or MPE claim"
+        },
+        "converged": true
+      }
+    }
+  ],
+  "candidates": [
+    {
+      "grid": {
+        "__array__": "root/candidates/0/grid"
+      },
+      "policy": {
+        "__array__": "root/candidates/0/policy"
+      },
+      "value": {
+        "__array__": "root/candidates/0/value"
+      },
+      "advantage": {
+        "__array__": "root/candidates/0/advantage"
+      },
+      "nu": {
+        "__array__": "root/candidates/0/nu"
+      },
+      "mu_a": {
+        "__array__": "root/candidates/0/mu_a"
+      },
+      "mu_b": {
+        "__array__": "root/candidates/0/mu_b"
+      },
+      "mu": {
+        "__array__": "root/candidates/0/mu"
+      },
+      "demand": {
+        "__array__": "root/candidates/0/demand"
+      },
+      "conditional_mu": {
+        "__array__": "root/candidates/0/conditional_mu"
+      },
+      "actual_conditional_mu": {
+        "__array__": "root/candidates/0/actual_conditional_mu"
+      },
+      "conditional_demand": {
+        "__array__": "root/candidates/0/conditional_demand"
+      },
+      "actual_conditional_demand": {
+        "__array__": "root/candidates/0/actual_conditional_demand"
+      },
+      "conditioning_zero_rows": [],
+      "conditional_diagnostics": {
+        "verified": true,
+        "closure_weighted_l1": 0.0,
+        "closure_supported_row_l1_max": 0.0,
+        "closure_unsupported_row_l1_max": 0.0,
+        "row_normalization_error": 4.440892098500626e-16,
+        "integrated_rival_marginal_l1": 2.4436328906622465e-16,
+        "demand_consistency_max": 0.0,
+        "positive_rows": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50
+        ],
+        "zero_rows": [],
+        "minimum_positive_own_mass": 4.716053632460884e-14,
+        "off_path_convention": "Unconditional rival marginal on exactly zero own-mass rows",
+        "positive_mass_floor": 0.0,
+        "supplied_conjecture": false,
+        "independent_order_verified": true,
+        "independent_order_supported_row_l1_max": 1.6958576422886964e-15,
+        "independent_order_demand_max": 2.220446049250313e-16,
+        "independent_order_support_agrees": true,
+        "independent_order_joint_l1": 2.3721524107482526e-16,
+        "independent_order_method": "Reversed symmetric joint jump-chain positive GTH; conditional comparison on every positive row",
+        "certification": "Independent actual joint invariant law; rowwise conditional closure on every positive-mass row"
+      },
+      "conditional_residual": 0.0,
+      "marginal_residual": 2.4436328906622465e-16,
+      "verified": true,
+      "candidate_verified": true,
+      "status": "verified",
+      "failure_reasons": [],
+      "summary": {
+        "rho": 0.9,
+        "n": 51,
+        "model": "Conditional OE",
+        "verified": true,
+        "candidate_verified": true,
+        "marginal_l1": 2.4436328906622465e-16,
+        "marginal_residual": 2.4436328906622465e-16,
+        "conditional_residual": 0.0,
+        "conditional_weighted_l1": 0.0,
+        "stationary_residual": 1.92150846925438e-16,
+        "mixed_nodes": 0,
+        "mixed_indices": [],
+        "mixed_reputations": [],
+        "mixed_probabilities": [],
+        "mean_reputation": 0.6301255958473743,
+        "mean_posterior": 0.6084379965394786,
+        "dp": {
+          "verified": true,
+          "bellman_residual": 5.329070518200751e-15,
+          "policy_evaluation_residual": 5.329070518200751e-15,
+          "conditional_regret": 0.0,
+          "complementarity_residual": 0.0,
+          "mixed_indifference_residual": 0.0,
+          "best_response_gain_upper_bound": 5.329070518200746e-13,
+          "best_response_numerical_error_bound": 5.329070518200746e-13,
+          "iterations": 5
+        },
+        "stationary": {
+          "verified": true,
+          "residual": 1.92150846925438e-16,
+          "row_sum_error": 3.3306690738754696e-16,
+          "probability_sum": 0.9999999999999998,
+          "minimum_probability": 9.18488323038815e-30,
+          "stability_l1": 2.229770105078634e-15,
+          "stability_tolerance": 1e-07,
+          "methods": [
+            "sparse jump-chain, middle normalization",
+            "sparse jump-chain, reversed order and edge normalization",
+            "independent positive GTH elimination"
+          ],
+          "preliminary_failures": [],
+          "symmetric_lumping": true,
+          "lumping_error": 0.0,
+          "solved_states": 1326,
+          "full_states": 2601,
+          "selection": "symmetric invariant law",
+          "communicating_components": 1,
+          "reduced_communicating_components": 1,
+          "minimum_exit_rate": 0.35,
+          "exploratory": false,
+          "marginal_symmetry_l1": 1.882505496524513e-16,
+          "scope": "Finite numerical kernel; no mixing-time or continuous-state guarantee"
+        },
+        "conditional": {
+          "verified": true,
+          "closure_weighted_l1": 0.0,
+          "closure_supported_row_l1_max": 0.0,
+          "closure_unsupported_row_l1_max": 0.0,
+          "row_normalization_error": 4.440892098500626e-16,
+          "integrated_rival_marginal_l1": 2.4436328906622465e-16,
+          "demand_consistency_max": 0.0,
+          "positive_rows": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50
+          ],
+          "zero_rows": [],
+          "minimum_positive_own_mass": 4.716053632460884e-14,
+          "off_path_convention": "Unconditional rival marginal on exactly zero own-mass rows",
+          "positive_mass_floor": 0.0,
+          "supplied_conjecture": false,
+          "independent_order_verified": true,
+          "independent_order_supported_row_l1_max": 1.6958576422886964e-15,
+          "independent_order_demand_max": 2.220446049250313e-16,
+          "independent_order_support_agrees": true,
+          "independent_order_joint_l1": 2.3721524107482526e-16,
+          "independent_order_method": "Reversed symmetric joint jump-chain positive GTH; conditional comparison on every positive row",
+          "certification": "Independent actual joint invariant law; rowwise conditional closure on every positive-mass row"
+        }
+      },
+      "dp_diagnostics": {
+        "verified": true,
+        "bellman_residual": 5.329070518200751e-15,
+        "policy_evaluation_residual": 5.329070518200751e-15,
+        "conditional_regret": 0.0,
+        "complementarity_residual": 0.0,
+        "mixed_indifference_residual": 0.0,
+        "best_response_gain_upper_bound": 5.329070518200746e-13,
+        "best_response_numerical_error_bound": 5.329070518200746e-13,
+        "iterations": 5
+      },
+      "stationary_diagnostics": {
+        "verified": true,
+        "residual": 1.92150846925438e-16,
+        "row_sum_error": 3.3306690738754696e-16,
+        "probability_sum": 0.9999999999999998,
+        "minimum_probability": 9.18488323038815e-30,
+        "stability_l1": 2.229770105078634e-15,
+        "stability_tolerance": 1e-07,
+        "methods": [
+          "sparse jump-chain, middle normalization",
+          "sparse jump-chain, reversed order and edge normalization",
+          "independent positive GTH elimination"
+        ],
+        "preliminary_failures": [],
+        "symmetric_lumping": true,
+        "lumping_error": 0.0,
+        "solved_states": 1326,
+        "full_states": 2601,
+        "selection": "symmetric invariant law",
+        "communicating_components": 1,
+        "reduced_communicating_components": 1,
+        "minimum_exit_rate": 0.35,
+        "exploratory": false,
+        "marginal_symmetry_l1": 1.882505496524513e-16,
+        "scope": "Finite numerical kernel; no mixing-time or continuous-state guarantee"
+      },
+      "mixed_nodes": 0,
+      "mixed_indices": [],
+      "mixed_probabilities": [],
+      "history": [
+        {
+          "stage": "damped conditional best response",
+          "iteration": 0,
+          "damping": 0.35,
+          "conditional_regret": 2.807287356949639,
+          "policy_change_max": 0.35,
+          "stationary_residual": 1.5791409317226422e-14,
+          "evaluations": 1
+        },
+        {
+          "stage": "damped conditional best response",
+          "iteration": 1,
+          "damping": 0.35,
+          "conditional_regret": 1.6189246298613518,
+          "policy_change_max": 0.35,
+          "stationary_residual": 3.0161016985212614e-14,
+          "evaluations": 1
+        },
+        {
+          "stage": "damped conditional best response",
+          "iteration": 2,
+          "damping": 0.35,
+          "conditional_regret": 0.8883511688906212,
+          "policy_change_max": 0.35,
+          "stationary_residual": 1.0406605601404454e-14,
+          "evaluations": 1
+        },
+        {
+          "stage": "damped conditional best response",
+          "iteration": 3,
+          "damping": 0.35,
+          "conditional_regret": 0.5058352726766138,
+          "policy_change_max": 0.35,
+          "stationary_residual": 7.533652138413734e-15,
+          "evaluations": 1
+        },
+        {
+          "stage": "damped conditional best response",
+          "iteration": 4,
+          "damping": 0.35,
+          "conditional_regret": 0.29018584459946495,
+          "policy_change_max": 0.35,
+          "stationary_residual": 1.0184272777552327e-14,
+          "evaluations": 1
+        },
+        {
+          "stage": "damped conditional best response",
+          "iteration": 5,
+          "damping": 0.35,
+          "conditional_regret": 0.17135224709348762,
+          "policy_change_max": 0.35,
+          "stationary_residual": 6.729573649005855e-15,
+          "evaluations": 1
+        },
+        {
+          "stage": "damped conditional best response",
+          "iteration": 6,
+          "damping": 0.35,
+          "conditional_regret": 0.10250793310007267,
+          "policy_change_max": 0.35,
+          "stationary_residual": 8.199218844334063e-15,
+          "evaluations": 1
+        },
+        {
+          "stage": "damped conditional best response",
+          "iteration": 7,
+          "damping": 0.35,
+          "conditional_regret": 0.06180797683327577,
+          "policy_change_max": 0.22749999999999992,
+          "stationary_residual": 6.799699635045429e-15,
+          "evaluations": 1
+        },
+        {
+          "stage": "damped conditional best response",
+          "iteration": 8,
+          "damping": 0.35,
+          "conditional_regret": 0.03832406439250735,
+          "policy_change_max": 0.35,
+          "stationary_residual": 8.014736215020153e-15,
+          "evaluations": 1
+        },
+        {
+          "stage": "damped conditional best response",
+          "iteration": 9,
+          "damping": 0.35,
+          "conditional_regret": 0.023502268615295696,
+          "policy_change_max": 0.22749999999999992,
+          "stationary_residual": 1.5308623741762115e-14,
+          "evaluations": 1
+        },
+        {
+          "stage": "damped conditional best response",
+          "iteration": 10,
+          "damping": 0.35,
+          "conditional_regret": 0.014758629938522727,
+          "policy_change_max": 0.14787499999999998,
+          "stationary_residual": 6.2182821154591346e-15,
+          "evaluations": 1
+        },
+        {
+          "stage": "damped conditional best response",
+          "iteration": 11,
+          "damping": 0.35,
+          "conditional_regret": 0.009356802313376322,
+          "policy_change_max": 0.35,
+          "stationary_residual": 7.566290848229569e-15,
+          "evaluations": 1
+        },
+        {
+          "stage": "damped conditional best response",
+          "iteration": 12,
+          "damping": 0.35,
+          "conditional_regret": 0.0058336596312411615,
+          "policy_change_max": 0.22749999999999992,
+          "stationary_residual": 9.046621757492299e-15,
+          "evaluations": 1
+        },
+        {
+          "stage": "damped conditional best response",
+          "iteration": 13,
+          "damping": 0.35,
+          "conditional_regret": 0.039529908624570786,
+          "policy_change_max": 0.3487059779381434,
+          "stationary_residual": 1.1929605323437475e-14,
+          "evaluations": 1
+        },
+        {
+          "stage": "damped conditional best response",
+          "iteration": 14,
+          "damping": 0.35,
+          "conditional_regret": 0.027429783465312926,
+          "policy_change_max": 0.22665888565979325,
+          "stationary_residual": 1.7958216302837926e-16,
+          "evaluations": 1
+        },
+        {
+          "stage": "damped conditional best response",
+          "iteration": 15,
+          "damping": 0.35,
+          "conditional_regret": 0.027357059358583423,
+          "policy_change_max": 0.14732827567886558,
+          "stationary_residual": 8.355545934169509e-15,
+          "evaluations": 1
+        },
+        {
+          "stage": "damped conditional best response",
+          "iteration": 16,
+          "damping": 0.35,
+          "conditional_regret": 0.02237622565204102,
+          "policy_change_max": 0.09576337919126265,
+          "stationary_residual": 4.337224451507634e-15,
+          "evaluations": 1
+        },
+        {
+          "stage": "damped conditional best response",
+          "iteration": 17,
+          "damping": 0.35,
+          "conditional_regret": 0.011304791156964346,
+          "policy_change_max": 0.062246196474320725,
+          "stationary_residual": 1.1487938739568378e-14,
+          "evaluations": 1
+        },
+        {
+          "stage": "damped conditional best response",
+          "iteration": 18,
+          "damping": 0.35,
+          "conditional_regret": 0.010868256635566365,
+          "policy_change_max": 0.35,
+          "stationary_residual": 4.010181013531912e-15,
+          "evaluations": 1
+        },
+        {
+          "stage": "damped conditional best response",
+          "iteration": 19,
+          "damping": 0.35,
+          "conditional_regret": 0.010832762438711467,
+          "policy_change_max": 0.22749999999999992,
+          "stationary_residual": 5.460280287473887e-15,
+          "evaluations": 1
+        },
+        {
+          "attempt": 0,
+          "temperature": 0.3,
+          "equation_error": 1.468913960134266e-05,
+          "evaluations": 26,
+          "solver_success": false,
+          "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last ten iterations."
+        },
+        {
+          "attempt": 0,
+          "temperature": 0.1,
+          "equation_error": 0.00030332692223000723,
+          "evaluations": 27,
+          "solver_success": false,
+          "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last ten iterations."
+        },
+        {
+          "attempt": 0,
+          "temperature": 0.03,
+          "equation_error": 0.0019688217300292965,
+          "evaluations": 23,
+          "solver_success": false,
+          "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last ten iterations."
+        },
+        {
+          "attempt": 0,
+          "temperature": 0.01,
+          "equation_error": 0.0583192797309352,
+          "evaluations": 43,
+          "solver_success": false,
+          "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last ten iterations."
+        },
+        {
+          "attempt": 0,
+          "temperature": 0.003,
+          "equation_error": 2.772893026303791e-12,
+          "evaluations": 32,
+          "solver_success": true,
+          "solver_message": "The solution converged."
+        },
+        {
+          "attempt": 0,
+          "temperature": 0.001,
+          "equation_error": 1.2029439944161169e-14,
+          "evaluations": 7,
+          "solver_success": true,
+          "solver_message": "The solution converged."
+        },
+        {
+          "attempt": 0,
+          "temperature": 0.0003,
+          "equation_error": 3.3753402680246813e-18,
+          "evaluations": 2,
+          "solver_success": true,
+          "solver_message": "The solution converged."
+        },
+        {
+          "attempt": 0,
+          "temperature": 0.0001,
+          "equation_error": 0.0,
+          "evaluations": 2,
+          "solver_success": true,
+          "solver_message": "The solution converged."
+        },
+        {
+          "attempt": 0,
+          "temperature": 0.0,
+          "equation_error": 0.0,
+          "evaluations": 1,
+          "solver_success": true,
+          "solver_message": "The solution converged."
+        }
+      ],
+      "search_metadata": {
+        "evaluations": 183,
+        "exploratory_evaluations": 183,
+        "strong_polish_evaluations": 0,
+        "max_evaluations": 1500,
+        "attempts": 1,
+        "exploratory_signed_roundoff_calls": 137,
+        "exploratory_positive_fallback_calls": 34,
+        "exploratory_stationary_note": "Signed roundoff may be used only during root search when row conditioning is valid; final certificates use positive stationary laws and independent conditional-order checks",
+        "budget_interpretation": "Soft exploratory-call budget; root callbacks, final certification and up to 60 strong-polish evaluations may exceed it",
+        "method": "Damped conditional policy iteration followed by analytic conditional complementarity continuation",
+        "damping": 0.35,
+        "picard_iterations": 20,
+        "exhaustive": false,
+        "unique": false,
+        "scope": "Finite grid and numerical demand matrix; no continuous-state or MPE claim"
+      },
+      "converged": true
+    }
+  ],
+  "selected": {
+    "grid": {
+      "__array__": "root/selected/grid"
+    },
+    "policy": {
+      "__array__": "root/selected/policy"
+    },
+    "value": {
+      "__array__": "root/selected/value"
+    },
+    "advantage": {
+      "__array__": "root/selected/advantage"
+    },
+    "nu": {
+      "__array__": "root/selected/nu"
+    },
+    "mu_a": {
+      "__array__": "root/selected/mu_a"
+    },
+    "mu_b": {
+      "__array__": "root/selected/mu_b"
+    },
+    "mu": {
+      "__array__": "root/selected/mu"
+    },
+    "demand": {
+      "__array__": "root/selected/demand"
+    },
+    "conditional_mu": {
+      "__array__": "root/selected/conditional_mu"
+    },
+    "actual_conditional_mu": {
+      "__array__": "root/selected/actual_conditional_mu"
+    },
+    "conditional_demand": {
+      "__array__": "root/selected/conditional_demand"
+    },
+    "actual_conditional_demand": {
+      "__array__": "root/selected/actual_conditional_demand"
+    },
+    "conditioning_zero_rows": [],
+    "conditional_diagnostics": {
+      "verified": true,
+      "closure_weighted_l1": 0.0,
+      "closure_supported_row_l1_max": 0.0,
+      "closure_unsupported_row_l1_max": 0.0,
+      "row_normalization_error": 4.440892098500626e-16,
+      "integrated_rival_marginal_l1": 2.4436328906622465e-16,
+      "demand_consistency_max": 0.0,
+      "positive_rows": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50
+      ],
+      "zero_rows": [],
+      "minimum_positive_own_mass": 4.716053632460884e-14,
+      "off_path_convention": "Unconditional rival marginal on exactly zero own-mass rows",
+      "positive_mass_floor": 0.0,
+      "supplied_conjecture": false,
+      "independent_order_verified": true,
+      "independent_order_supported_row_l1_max": 1.6958576422886964e-15,
+      "independent_order_demand_max": 2.220446049250313e-16,
+      "independent_order_support_agrees": true,
+      "independent_order_joint_l1": 2.3721524107482526e-16,
+      "independent_order_method": "Reversed symmetric joint jump-chain positive GTH; conditional comparison on every positive row",
+      "certification": "Independent actual joint invariant law; rowwise conditional closure on every positive-mass row"
+    },
+    "conditional_residual": 0.0,
+    "marginal_residual": 2.4436328906622465e-16,
+    "verified": true,
+    "candidate_verified": true,
+    "status": "verified",
+    "failure_reasons": [],
+    "summary": {
+      "rho": 0.9,
+      "n": 51,
+      "model": "Conditional OE",
+      "verified": true,
+      "candidate_verified": true,
+      "marginal_l1": 2.4436328906622465e-16,
+      "marginal_residual": 2.4436328906622465e-16,
+      "conditional_residual": 0.0,
+      "conditional_weighted_l1": 0.0,
+      "stationary_residual": 1.92150846925438e-16,
+      "mixed_nodes": 0,
+      "mixed_indices": [],
+      "mixed_reputations": [],
+      "mixed_probabilities": [],
+      "mean_reputation": 0.6301255958473743,
+      "mean_posterior": 0.6084379965394786,
+      "dp": {
+        "verified": true,
+        "bellman_residual": 5.329070518200751e-15,
+        "policy_evaluation_residual": 5.329070518200751e-15,
+        "conditional_regret": 0.0,
+        "complementarity_residual": 0.0,
+        "mixed_indifference_residual": 0.0,
+        "best_response_gain_upper_bound": 5.329070518200746e-13,
+        "best_response_numerical_error_bound": 5.329070518200746e-13,
+        "iterations": 5
+      },
+      "stationary": {
+        "verified": true,
+        "residual": 1.92150846925438e-16,
+        "row_sum_error": 3.3306690738754696e-16,
+        "probability_sum": 0.9999999999999998,
+        "minimum_probability": 9.18488323038815e-30,
+        "stability_l1": 2.229770105078634e-15,
+        "stability_tolerance": 1e-07,
+        "methods": [
+          "sparse jump-chain, middle normalization",
+          "sparse jump-chain, reversed order and edge normalization",
+          "independent positive GTH elimination"
+        ],
+        "preliminary_failures": [],
+        "symmetric_lumping": true,
+        "lumping_error": 0.0,
+        "solved_states": 1326,
+        "full_states": 2601,
+        "selection": "symmetric invariant law",
+        "communicating_components": 1,
+        "reduced_communicating_components": 1,
+        "minimum_exit_rate": 0.35,
+        "exploratory": false,
+        "marginal_symmetry_l1": 1.882505496524513e-16,
+        "scope": "Finite numerical kernel; no mixing-time or continuous-state guarantee"
+      },
+      "conditional": {
+        "verified": true,
+        "closure_weighted_l1": 0.0,
+        "closure_supported_row_l1_max": 0.0,
+        "closure_unsupported_row_l1_max": 0.0,
+        "row_normalization_error": 4.440892098500626e-16,
+        "integrated_rival_marginal_l1": 2.4436328906622465e-16,
+        "demand_consistency_max": 0.0,
+        "positive_rows": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50
+        ],
+        "zero_rows": [],
+        "minimum_positive_own_mass": 4.716053632460884e-14,
+        "off_path_convention": "Unconditional rival marginal on exactly zero own-mass rows",
+        "positive_mass_floor": 0.0,
+        "supplied_conjecture": false,
+        "independent_order_verified": true,
+        "independent_order_supported_row_l1_max": 1.6958576422886964e-15,
+        "independent_order_demand_max": 2.220446049250313e-16,
+        "independent_order_support_agrees": true,
+        "independent_order_joint_l1": 2.3721524107482526e-16,
+        "independent_order_method": "Reversed symmetric joint jump-chain positive GTH; conditional comparison on every positive row",
+        "certification": "Independent actual joint invariant law; rowwise conditional closure on every positive-mass row"
+      }
+    },
+    "dp_diagnostics": {
+      "verified": true,
+      "bellman_residual": 5.329070518200751e-15,
+      "policy_evaluation_residual": 5.329070518200751e-15,
+      "conditional_regret": 0.0,
+      "complementarity_residual": 0.0,
+      "mixed_indifference_residual": 0.0,
+      "best_response_gain_upper_bound": 5.329070518200746e-13,
+      "best_response_numerical_error_bound": 5.329070518200746e-13,
+      "iterations": 5
+    },
+    "stationary_diagnostics": {
+      "verified": true,
+      "residual": 1.92150846925438e-16,
+      "row_sum_error": 3.3306690738754696e-16,
+      "probability_sum": 0.9999999999999998,
+      "minimum_probability": 9.18488323038815e-30,
+      "stability_l1": 2.229770105078634e-15,
+      "stability_tolerance": 1e-07,
+      "methods": [
+        "sparse jump-chain, middle normalization",
+        "sparse jump-chain, reversed order and edge normalization",
+        "independent positive GTH elimination"
+      ],
+      "preliminary_failures": [],
+      "symmetric_lumping": true,
+      "lumping_error": 0.0,
+      "solved_states": 1326,
+      "full_states": 2601,
+      "selection": "symmetric invariant law",
+      "communicating_components": 1,
+      "reduced_communicating_components": 1,
+      "minimum_exit_rate": 0.35,
+      "exploratory": false,
+      "marginal_symmetry_l1": 1.882505496524513e-16,
+      "scope": "Finite numerical kernel; no mixing-time or continuous-state guarantee"
+    },
+    "mixed_nodes": 0,
+    "mixed_indices": [],
+    "mixed_probabilities": [],
+    "history": [
+      {
+        "stage": "damped conditional best response",
+        "iteration": 0,
+        "damping": 0.35,
+        "conditional_regret": 2.807287356949639,
+        "policy_change_max": 0.35,
+        "stationary_residual": 1.5791409317226422e-14,
+        "evaluations": 1
+      },
+      {
+        "stage": "damped conditional best response",
+        "iteration": 1,
+        "damping": 0.35,
+        "conditional_regret": 1.6189246298613518,
+        "policy_change_max": 0.35,
+        "stationary_residual": 3.0161016985212614e-14,
+        "evaluations": 1
+      },
+      {
+        "stage": "damped conditional best response",
+        "iteration": 2,
+        "damping": 0.35,
+        "conditional_regret": 0.8883511688906212,
+        "policy_change_max": 0.35,
+        "stationary_residual": 1.0406605601404454e-14,
+        "evaluations": 1
+      },
+      {
+        "stage": "damped conditional best response",
+        "iteration": 3,
+        "damping": 0.35,
+        "conditional_regret": 0.5058352726766138,
+        "policy_change_max": 0.35,
+        "stationary_residual": 7.533652138413734e-15,
+        "evaluations": 1
+      },
+      {
+        "stage": "damped conditional best response",
+        "iteration": 4,
+        "damping": 0.35,
+        "conditional_regret": 0.29018584459946495,
+        "policy_change_max": 0.35,
+        "stationary_residual": 1.0184272777552327e-14,
+        "evaluations": 1
+      },
+      {
+        "stage": "damped conditional best response",
+        "iteration": 5,
+        "damping": 0.35,
+        "conditional_regret": 0.17135224709348762,
+        "policy_change_max": 0.35,
+        "stationary_residual": 6.729573649005855e-15,
+        "evaluations": 1
+      },
+      {
+        "stage": "damped conditional best response",
+        "iteration": 6,
+        "damping": 0.35,
+        "conditional_regret": 0.10250793310007267,
+        "policy_change_max": 0.35,
+        "stationary_residual": 8.199218844334063e-15,
+        "evaluations": 1
+      },
+      {
+        "stage": "damped conditional best response",
+        "iteration": 7,
+        "damping": 0.35,
+        "conditional_regret": 0.06180797683327577,
+        "policy_change_max": 0.22749999999999992,
+        "stationary_residual": 6.799699635045429e-15,
+        "evaluations": 1
+      },
+      {
+        "stage": "damped conditional best response",
+        "iteration": 8,
+        "damping": 0.35,
+        "conditional_regret": 0.03832406439250735,
+        "policy_change_max": 0.35,
+        "stationary_residual": 8.014736215020153e-15,
+        "evaluations": 1
+      },
+      {
+        "stage": "damped conditional best response",
+        "iteration": 9,
+        "damping": 0.35,
+        "conditional_regret": 0.023502268615295696,
+        "policy_change_max": 0.22749999999999992,
+        "stationary_residual": 1.5308623741762115e-14,
+        "evaluations": 1
+      },
+      {
+        "stage": "damped conditional best response",
+        "iteration": 10,
+        "damping": 0.35,
+        "conditional_regret": 0.014758629938522727,
+        "policy_change_max": 0.14787499999999998,
+        "stationary_residual": 6.2182821154591346e-15,
+        "evaluations": 1
+      },
+      {
+        "stage": "damped conditional best response",
+        "iteration": 11,
+        "damping": 0.35,
+        "conditional_regret": 0.009356802313376322,
+        "policy_change_max": 0.35,
+        "stationary_residual": 7.566290848229569e-15,
+        "evaluations": 1
+      },
+      {
+        "stage": "damped conditional best response",
+        "iteration": 12,
+        "damping": 0.35,
+        "conditional_regret": 0.0058336596312411615,
+        "policy_change_max": 0.22749999999999992,
+        "stationary_residual": 9.046621757492299e-15,
+        "evaluations": 1
+      },
+      {
+        "stage": "damped conditional best response",
+        "iteration": 13,
+        "damping": 0.35,
+        "conditional_regret": 0.039529908624570786,
+        "policy_change_max": 0.3487059779381434,
+        "stationary_residual": 1.1929605323437475e-14,
+        "evaluations": 1
+      },
+      {
+        "stage": "damped conditional best response",
+        "iteration": 14,
+        "damping": 0.35,
+        "conditional_regret": 0.027429783465312926,
+        "policy_change_max": 0.22665888565979325,
+        "stationary_residual": 1.7958216302837926e-16,
+        "evaluations": 1
+      },
+      {
+        "stage": "damped conditional best response",
+        "iteration": 15,
+        "damping": 0.35,
+        "conditional_regret": 0.027357059358583423,
+        "policy_change_max": 0.14732827567886558,
+        "stationary_residual": 8.355545934169509e-15,
+        "evaluations": 1
+      },
+      {
+        "stage": "damped conditional best response",
+        "iteration": 16,
+        "damping": 0.35,
+        "conditional_regret": 0.02237622565204102,
+        "policy_change_max": 0.09576337919126265,
+        "stationary_residual": 4.337224451507634e-15,
+        "evaluations": 1
+      },
+      {
+        "stage": "damped conditional best response",
+        "iteration": 17,
+        "damping": 0.35,
+        "conditional_regret": 0.011304791156964346,
+        "policy_change_max": 0.062246196474320725,
+        "stationary_residual": 1.1487938739568378e-14,
+        "evaluations": 1
+      },
+      {
+        "stage": "damped conditional best response",
+        "iteration": 18,
+        "damping": 0.35,
+        "conditional_regret": 0.010868256635566365,
+        "policy_change_max": 0.35,
+        "stationary_residual": 4.010181013531912e-15,
+        "evaluations": 1
+      },
+      {
+        "stage": "damped conditional best response",
+        "iteration": 19,
+        "damping": 0.35,
+        "conditional_regret": 0.010832762438711467,
+        "policy_change_max": 0.22749999999999992,
+        "stationary_residual": 5.460280287473887e-15,
+        "evaluations": 1
+      },
+      {
+        "attempt": 0,
+        "temperature": 0.3,
+        "equation_error": 1.468913960134266e-05,
+        "evaluations": 26,
+        "solver_success": false,
+        "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last ten iterations."
+      },
+      {
+        "attempt": 0,
+        "temperature": 0.1,
+        "equation_error": 0.00030332692223000723,
+        "evaluations": 27,
+        "solver_success": false,
+        "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last ten iterations."
+      },
+      {
+        "attempt": 0,
+        "temperature": 0.03,
+        "equation_error": 0.0019688217300292965,
+        "evaluations": 23,
+        "solver_success": false,
+        "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last ten iterations."
+      },
+      {
+        "attempt": 0,
+        "temperature": 0.01,
+        "equation_error": 0.0583192797309352,
+        "evaluations": 43,
+        "solver_success": false,
+        "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last ten iterations."
+      },
+      {
+        "attempt": 0,
+        "temperature": 0.003,
+        "equation_error": 2.772893026303791e-12,
+        "evaluations": 32,
+        "solver_success": true,
+        "solver_message": "The solution converged."
+      },
+      {
+        "attempt": 0,
+        "temperature": 0.001,
+        "equation_error": 1.2029439944161169e-14,
+        "evaluations": 7,
+        "solver_success": true,
+        "solver_message": "The solution converged."
+      },
+      {
+        "attempt": 0,
+        "temperature": 0.0003,
+        "equation_error": 3.3753402680246813e-18,
+        "evaluations": 2,
+        "solver_success": true,
+        "solver_message": "The solution converged."
+      },
+      {
+        "attempt": 0,
+        "temperature": 0.0001,
+        "equation_error": 0.0,
+        "evaluations": 2,
+        "solver_success": true,
+        "solver_message": "The solution converged."
+      },
+      {
+        "attempt": 0,
+        "temperature": 0.0,
+        "equation_error": 0.0,
+        "evaluations": 1,
+        "solver_success": true,
+        "solver_message": "The solution converged."
+      }
+    ],
+    "search_metadata": {
+      "evaluations": 183,
+      "exploratory_evaluations": 183,
+      "strong_polish_evaluations": 0,
+      "max_evaluations": 1500,
+      "attempts": 1,
+      "exploratory_signed_roundoff_calls": 137,
+      "exploratory_positive_fallback_calls": 34,
+      "exploratory_stationary_note": "Signed roundoff may be used only during root search when row conditioning is valid; final certificates use positive stationary laws and independent conditional-order checks",
+      "budget_interpretation": "Soft exploratory-call budget; root callbacks, final certification and up to 60 strong-polish evaluations may exceed it",
+      "method": "Damped conditional policy iteration followed by analytic conditional complementarity continuation",
+      "damping": 0.35,
+      "picard_iterations": 20,
+      "exhaustive": false,
+      "unique": false,
+      "scope": "Finite grid and numerical demand matrix; no continuous-state or MPE claim"
+    },
+    "converged": true
+  },
+  "selected_start": "product_1",
+  "demand_audit": {
+    "verified": true,
+    "tolerance": 1e-06,
+    "maximum_error": 3.6171028394704763e-09,
+    "doubled_order": 256,
+    "doubled_order_max_difference": 3.4301318452278906e-09,
+    "original_raw": {
+      "order": 128,
+      "raw_diagonal_error": 9.445573767585813e-10,
+      "raw_symmetry_error": 3.6171028394704763e-09,
+      "raw_min": 1.4175710770139057e-06,
+      "raw_max": 0.999998582428923
+    },
+    "doubled_raw": {
+      "order": 256,
+      "raw_diagonal_error": 3.736355669303748e-11,
+      "raw_symmetry_error": 1.871605093128892e-10,
+      "raw_min": 1.417571077014474e-06,
+      "raw_max": 0.999998582428923
+    },
+    "independent_checks": [
+      {
+        "x": 0.0,
+        "y": 1.0,
+        "matrix_probability": 1.4175710770139057e-06,
+        "direct_probability": 1.417571077013798e-06,
+        "reverse_probability": 0.999998582428923,
+        "matrix_error": 1.0778494253810972e-19,
+        "independent_symmetry_error": 0.0,
+        "independent_diagonal_error": null
+      },
+      {
+        "x": 0.24,
+        "y": 0.76,
+        "matrix_probability": 0.012224966709977842,
+        "direct_probability": 0.012224966709977853,
+        "reverse_probability": 0.9877750332900213,
+        "matrix_error": 1.0408340855860843e-17,
+        "independent_symmetry_error": 8.881784197001252e-16,
+        "independent_diagonal_error": null
+      },
+      {
+        "x": 0.48,
+        "y": 0.52,
+        "matrix_probability": 0.43261381145222605,
+        "direct_probability": 0.4326138114522259,
+        "reverse_probability": 0.5673861885477719,
+        "matrix_error": 1.6653345369377348e-16,
+        "independent_symmetry_error": 2.220446049250313e-15,
+        "independent_diagonal_error": null
+      },
+      {
+        "x": 0.8,
+        "y": 0.4,
+        "matrix_probability": 0.9597523219814241,
+        "direct_probability": 0.9597523219814232,
+        "reverse_probability": 0.04024767801857579,
+        "matrix_error": 8.881784197001252e-16,
+        "independent_symmetry_error": 9.992007221626409e-16,
+        "independent_diagonal_error": null
+      },
+      {
+        "x": 0.5,
+        "y": 0.5,
+        "matrix_probability": 0.5,
+        "direct_probability": 0.5,
+        "reverse_probability": 0.5,
+        "matrix_error": 0.0,
+        "independent_symmetry_error": 0.0,
+        "independent_diagonal_error": 0.0
+      }
+    ],
+    "independent_method": "Adaptive quadrature with stable scipy.stats.beta.pdf"
+  },
+  "elapsed_seconds": 298.59418029399967
+}

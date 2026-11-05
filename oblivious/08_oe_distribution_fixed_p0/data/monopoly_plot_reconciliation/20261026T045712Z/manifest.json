@@ -1,0 +1,162 @@
+{
+  "status": "complete",
+  "original_configuration": {
+    "seller": {
+      "p0": 0.5,
+      "p1": 0.35,
+      "p2": 0.8,
+      "c1": 0.05,
+      "c2": 0.6665,
+      "revenue": 1.0
+    },
+    "rho_linear": {
+      "start": 0.02,
+      "stop": 0.95,
+      "points": 48
+    },
+    "rho_tail": [
+      0.96,
+      0.97,
+      0.98,
+      0.985,
+      0.99,
+      0.9925,
+      0.995,
+      0.997,
+      0.998,
+      0.999,
+      0.9995,
+      0.9998,
+      0.9999
+    ],
+    "solver": {
+      "central_nodes": 2001,
+      "outer_nodes": 400,
+      "half_widths": 9.0,
+      "tolerance": 1e-09,
+      "max_iterations": 100000,
+      "action_tolerance": 1e-06,
+      "reachable_depth": 14
+    },
+    "root_refinement": {
+      "rho_tolerance": 5e-08,
+      "max_bisection_iterations": 32
+    },
+    "validation_pairs": [
+      [
+        0.2,
+        0.98
+      ],
+      [
+        0.8,
+        0.98
+      ],
+      [
+        0.95,
+        0.98
+      ],
+      [
+        0.999,
+        0.98
+      ],
+      [
+        0.99,
+        0.95
+      ],
+      [
+        0.9995,
+        0.99
+      ]
+    ],
+    "p0_comparison": {
+      "values": [
+        0.1,
+        0.3,
+        0.5,
+        0.7,
+        0.9
+      ]
+    },
+    "simulation": {
+      "enabled": true,
+      "rho": 0.7,
+      "rhos": [
+        0.1,
+        0.2,
+        0.3,
+        0.4,
+        0.5,
+        0.6,
+        0.7,
+        0.8,
+        0.9,
+        0.95,
+        0.99
+      ],
+      "paths": 20000,
+      "periods": 3000,
+      "seed": 20260809,
+      "bin_width": 25,
+      "confidence_level": 0.95,
+      "policy_nodes": 2001,
+      "terminal_gap": 1e-05,
+      "solver_tolerance": 1e-09
+    },
+    "rho_p0_comparative_statics": {
+      "p0_start": 0.1,
+      "p0_stop": 0.9,
+      "p0_points": 41,
+      "gamma": 0.98
+    },
+    "investment_window_sweeps": {
+      "c2": [
+        0.2,
+        0.3,
+        0.4,
+        0.5,
+        0.7,
+        0.8
+      ],
+      "p2": [
+        0.75,
+        0.8,
+        0.85
+      ]
+    }
+  },
+  "actual_seed": 20280809,
+  "changed_parameter": "Only c2 changes between the two control simulations",
+  "historical_count_reproduction_exact": true,
+  "source_sha256": {
+    "forgetting/outputs/policy_and_state_experiments/monte_carlo/data/rho_0.7/data/monte_carlo_calendar_by_period.csv": "695ccadeaec2ddc3ea56881459975ce6c04a2d4405abc304b3932ca02d07d314",
+    "forgetting/outputs/policy_and_state_experiments/monte_carlo/manifest.json": "1e5c7104e0a1c379265fe8623bf428b74b51564f8ea17c921f18f3989a563089",
+    "forgetting/outputs/policy_and_state_experiments/monte_carlo/data/rho_0.7/manifest.json": "bf5e87bb08b28b0c2afc4f818b55fa586bd2a30fee5bda92bc9af02053261307",
+    "forgetting/Code/model.py": "8b1f948f1d9009a021d1836b4f683f6224c65f724677bce591218a930cd28f7d",
+    "forgetting/Code/layers.py": "15f90619e7e368e381d56c930e672fa15b9671cdac58266a05873cef83538a70",
+    "forgetting/Code/simulation.py": "057fbe6ff8e5290690d2035adac4b278b98d543dc92d03b6b8ab6c2755f55041"
+  },
+  "results": [
+    {
+      "c2": 0.6665,
+      "p0": 0.5,
+      "rho": 0.7,
+      "policy_nodes": 2001,
+      "seed": 20280809,
+      "first_period": 2001,
+      "last_period": 3000,
+      "late_product2_calendar": 0.24599815,
+      "late_sale_rate": 0.51370615
+    },
+    {
+      "c2": 0.65,
+      "p0": 0.5,
+      "rho": 0.7,
+      "policy_nodes": 2001,
+      "seed": 20280809,
+      "first_period": 2001,
+      "last_period": 3000,
+      "late_product2_calendar": 0.25462209999999996,
+      "late_sale_rate": 0.5198251
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "configuration": {
+    "p0": 0.8,
+    "rho": 0.9,
+    "n": 151,
+    "parameters": {
+      "R": 1.0,
+      "c1": 0.05,
+      "c2": 0.65,
+      "p1": 0.35,
+      "p2": 0.8,
+      "gamma": 0.98,
+      "rho": 0.9
+    }
+  },
+  "monopoly": {
+    "grid": {
+      "__array__": "root/monopoly/grid"
+    },
+    "policy": {
+      "__array__": "root/monopoly/policy"
+    },
+    "value": {
+      "__array__": "root/monopoly/value"
+    },
+    "demand": {
+      "__array__": "root/monopoly/demand"
+    },
+    "advantage": {
+      "__array__": "root/monopoly/advantage"
+    },
+    "mu": {
+      "__array__": "root/monopoly/mu"
+    },
+    "sale_stationary": {
+      "__array__": "root/monopoly/sale_stationary"
+    },
+    "verified": true,
+    "diagnostics": {
+      "conditional_regret": 0.0,
+      "bellman_residual": 2.6645352591003757e-15,
+      "original_value_max_difference": 1.4672707493446069e-12,
+      "original_bellman_residual": 9.414691248821327e-14,
+      "stationary_residual": 5.334366204565312e-17,
+      "independent_stationary_l1": 7.122459345832555e-16,
+      "sale_law_l1": 5.802840062840866e-16,
+      "sale_time": {
+        "sale_stationary": {
+          "__array__": "root/monopoly/diagnostics/sale_time/sale_stationary"
+        },
+        "generated_quality": 0.7051174757174231,
+        "mean_reputation_at_sale": 0.7051174757174231,
+        "quality_reputation_difference": 0.0,
+        "stationary_residual": 1.3271530098246194e-16,
+        "stationary_verified": true,
+        "stability_l1": 1.8040962882251089e-16,
+        "row_sum_error": 2.220446049250313e-16,
+        "minimum_exit_rate": 0.35,
+        "method": "Sale-time embedded chain; independent positive GTH elimination in both state orders",
+        "scope": "Finite numerical kernel for own-reputation policies; final actual-game joint law is checked separately"
+      }
+    }
+  },
+  "outcomes": [
+    {
+      "p0": 0.8,
+      "rho": 0.9,
+      "n": 151,
+      "model": "monopoly",
+      "verified": true,
+      "sale_rate": 0.000159433376850271,
+      "outside_rate": 0.9998405666231497,
+      "product2_calendar": 0.0001258168407381619,
+      "product2_conditional": 0.7891499460387177,
+      "profit_calendar": 7.597160356486025e-05,
+      "value_initial": 0.5519349901202896
+    }
+  ],
+  "grid_stability": {
+    "p0": 0.8,
+    "rho": 0.9,
+    "model": "monopoly",
+    "coarse_n": 101,
+    "fine_n": 151,
+    "passed": false,
+    "product2_conditional_absolute_change": 0.01029708852395872,
+    "product2_calendar_absolute_change": 1.0827185868177305e-05,
+    "sale_rate_absolute_change": 1.1793609260658485e-05,
+    "outside_rate_absolute_change": 1.1793609260735138e-05,
+    "profit_calendar_relative_change": 0.06196548520527222,
+    "value_initial_relative_change": 0.00023367888073516163
+  },
+  "numerical_sources": {
+    "oblivious/08_oe_distribution_fixed_p0/code/run_experiment.py": "c77347060319c79d93af049c3bf9310a413d0eef8b97c978aa140622c5f3c814",
+    "oblivious/08_oe_distribution_fixed_p0/code/model.py": "dec4058cdc1623608d560d75e64b84b1733d70a817d75b8195b352281db136e5",
+    "forgetting/Code/model.py": "8b1f948f1d9009a021d1836b4f683f6224c65f724677bce591218a930cd28f7d",
+    "oblivious/01_oe_distribution/code/model.py": "35155f12067386f8ce5812c94a8ba3d2f109a1aec71ef696fe0a4b2ea2863dcc",
+    "oblivious/03_oe_following_monopoly/code/event_chain.py": "e32ed9b6323ffe3ebf0448df96dfe4cd76765044339a9d90b4c0930813d08f3a",
+    "oblivious/02_oe_p0/code/primitives.py": "e8a07e00220ab000c945d5a37ee562b9283bff4ceca8d525600e935e68334e11",
+    "oblivious/02_oe_p0/code/policy.py": "b77a2e2ea39b9250f6c3d99477ab09282775c1616bbfe8402d4ecfa88ad235be",
+    "oblivious/02_oe_p0/code/game.py": "af7679fa58bd591f605d901de8e3f2c4044a73f476ec4339d9c5fe9e00fdb292",
+    "oblivious/02_oe_p0/code/core.py": "325c4bd21094eb33c284137503c5e397e6f1bdad4981e3f9282dc8a524c79a61",
+    "oblivious/02_oe_p0/code/positive_stationary.py": "886efe856552f90e702134b9695c623f4c71d26cfeda68655217ccd4f524cab1",
+    "oblivious/02_oe_p0/code/positive_stationary.cpp": "15d1761182e1fbfa2034d40d7d928ff21f12c52911f54d7fe3d08a5e65c6bf7a"
+  },
+  "reference_input_sha256": {
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_sweep/p0_0p8/rho_0p9/arrays/rho_0p9_n101_marginal.json": "a36a7edfbf0da6164bc1261140878d4328bc479743e80445adeea5948af5fb42",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_sweep/p0_0p8/rho_0p9/arrays/rho_0p9_n101_marginal.npz": "050d6b89916a187703dff0eb4771b5016bbe925e577b2215a2aef3ba0b4e5d8b"
+  },
+  "reason": "Failure of one verified monopoly metric is sufficient to exclude this rho from a common comparison requiring all models and all p0 to pass. No competitive n151 outcome is inferred."
+}

@@ -1,0 +1,57 @@
+{
+  "rhos": [
+    0.6,
+    0.7,
+    0.8,
+    0.9,
+    0.95,
+    0.97,
+    0.99,
+    0.999
+  ],
+  "grid": 51,
+  "models": {
+    "oe": {
+      "label": "OE distribution",
+      "color": "#009E73",
+      "linestyle": "-"
+    },
+    "p0": {
+      "label": "OE p0",
+      "color": "#D55E00",
+      "linestyle": "--"
+    },
+    "monopoly": {
+      "label": "Following monopoly",
+      "color": "#7B3294",
+      "linestyle": ":"
+    }
+  },
+  "parameters": {
+    "R": 1.0,
+    "c1": 0.05,
+    "c2": 0.65,
+    "p1": 0.35,
+    "p2": 0.8,
+    "gamma": 0.98
+  },
+  "simulation": {
+    "periods": 100000,
+    "burn_in": 10000,
+    "replications": 20,
+    "seed": 20261017,
+    "mode": "grid"
+  },
+  "initial": [
+    0.5,
+    0.5
+  ],
+  "following_monopoly_public_name": "OE quality",
+  "definitions": {
+    "policy": "alpha(x) = P(product 2 | seller selected, own reputation x).",
+    "product2_market": "sum_ij nu_ij [D_ij alpha_i + D_ji alpha_j]; share of all purchases.",
+    "seller_profit": "Mean profit of A and B per calendar period, including unselected periods: 0.5 * [R-c1-(c2-c1)*product2_market].",
+    "uncertainty": "Pointwise 95% Student-t intervals across 20 independent path means; initialization bias is excluded.",
+    "optimality": "Saved selected policies are verified for each model's own decision problem on the common finite grid; this is not an MPE certificate."
+  }
+}

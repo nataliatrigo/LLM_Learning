@@ -1,0 +1,46 @@
+[2026-10-22T21:55:57.921713+00:00] conditional fixed p0=.5, rho=0.97, n=51
+  auditing outside demand
+  conditional start=same_grid_marginal
+    local exact complementarity, residual=0.00018
+    conditional iteration 1, regret=0.0732
+    conditional iteration 2, regret=0.0263
+    conditional iteration 3, regret=0.00778
+    conditional iteration 4, regret=0.00152
+    conditional iteration 5, regret=0.105
+    conditional iteration 6, regret=0.00773
+    conditional iteration 7, regret=0.0229
+    conditional iteration 8, regret=0.00399
+    conditional iteration 9, regret=0.00329
+    conditional iteration 10, regret=0.0205
+    conditional iteration 11, regret=0.00597
+    conditional iteration 12, regret=0.00114
+    conditional iteration 13, regret=0.111
+    conditional iteration 14, regret=0.00891
+    conditional iteration 15, regret=0.0221
+    conditional iteration 16, regret=0.00372
+    conditional iteration 17, regret=0.0035
+    conditional iteration 18, regret=0.0204
+    conditional iteration 19, regret=0.00592
+    conditional iteration 20, regret=0.00113
+    continuation 1, temperature=0.3, residual=4.62e-14
+    continuation 1, temperature=0.1, residual=1.07e-06
+    continuation 1, temperature=0.03, residual=7.07e-08
+    continuation 1, temperature=0.01, residual=3.33e-05
+    continuation 1, temperature=0.003, residual=9.06e-06
+    continuation 1, temperature=0.001, residual=0.000166
+    continuation 1, temperature=0.0003, residual=7.36e-05
+    continuation 1, temperature=0.0001, residual=0.0101
+    continuation 1, temperature=0, residual=0.000209
+    continuation 2, temperature=0.3, residual=4.88e-15
+    continuation 2, temperature=0.1, residual=5.16e-06
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/natalia/Projects/LLM_Learning/oblivious/08_oe_distribution_fixed_p0/code/conditional_run.py", line 217, in <module>
+    main()
+  File "/home/natalia/Projects/LLM_Learning/oblivious/08_oe_distribution_fixed_p0/code/conditional_run.py", line 163, in main
+    competition = solve_case(experiment, reference, previous, args.max_evaluations)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/oblivious/08_oe_distribution_fixed_p0/code/conditional_run.py", line 102, in solve_case
+    raise ArithmeticError('No certified Conditional OE solution: '+json.dumps(attempts))
+ArithmeticError: No certified Conditional OE solution: [{"initialization": "same_grid_marginal", "verified": false, "dp": {"verified": false, "bellman_residual": 0.02572437228067406, "policy_evaluation_residual": 3.552713678800501e-15, "conditional_regret": 0.027735381068823308, "complementarity_residual": 0.16247674393051276, "mixed_indifference_residual": 0.5999999924619197, "best_response_gain_upper_bound": 0.583880573538913, "best_response_numerical_error_bound": 5.329070518200746e-13, "iterations": 4}, "conditional": {"verified": true, "closure_weighted_l1": 0.0, "closure_supported_row_l1_max": 0.0, "closure_unsupported_row_l1_max": 0.0, "row_normalization_error": 3.3306690738754696e-16, "integrated_rival_marginal_l1": 1.644502027461034e-16, "demand_consistency_max": 0.0, "positive_rows": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50], "zero_rows": [], "minimum_positive_own_mass": 1.54394259020899e-15, "off_path_convention": "Unconditional rival marginal on exactly zero own-mass rows", "positive_mass_floor": 0.0, "supplied_conjecture": false, "independent_order_verified": true, "independent_order_supported_row_l1_max": 8.287846604082448e-16, "independent_order_demand_max": 2.220446049250313e-16, "independent_order_support_agrees": true, "independent_order_joint_l1": 3.5433999442031094e-16, "independent_order_method": "Reversed symmetric joint jump-chain positive GTH; conditional comparison on every positive row", "certification": "Independent actual joint invariant law; rowwise conditional closure on every positive-mass row"}, "search": {"evaluations": 466, "exploratory_evaluations": 466, "strong_polish_evaluations": 0, "max_evaluations": 400, "attempts": 3, "exploratory_signed_roundoff_calls": 0, "exploratory_positive_fallback_calls": 25, "exploratory_stationary_note": "Signed roundoff may be used only during root search when row conditioning is valid; final certificates use positive stationary laws and independent conditional-order checks", "budget_interpretation": "Soft optional local exploratory budget plus unchanged original budget on fallback; final certification and strong polish are additional", "method": "Damped conditional policy iteration followed by analytic conditional complementarity continuation", "damping": 0.35, "picard_iterations": 20, "exhaustive": false, "unique": false, "scope": "Finite grid and numerical demand matrix; no continuous-state or MPE claim", "prefer_local": true, "local_attempted": true, "local_verified": false, "fallback_used": true, "local_exploratory_evaluations": 63, "local_strong_polish_evaluations": 0, "local_certifications": 0, "local_max_evaluations": 150, "local_signed_roundoff_calls": 0, "local_positive_fallback_calls": 3}}]

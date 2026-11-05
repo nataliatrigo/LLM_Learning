@@ -1,0 +1,193 @@
+{
+  "status": "complete",
+  "source_config": "/home/natalia/Projects/LLM_Learning/Fluid base model/config.json",
+  "config": {
+    "primitives": {
+      "p0": 0.5,
+      "p1": 0.35,
+      "p2": 0.8,
+      "c1": 0.05,
+      "c2": 0.65,
+      "revenue": 1.0,
+      "gamma": 0.98
+    },
+    "solver": {
+      "mesh_steps": [
+        0.5,
+        0.25,
+        0.125
+      ],
+      "report_n": 100.0,
+      "truncation_tolerance": 1e-06,
+      "action_tolerance": 1e-08
+    },
+    "p0_comparison": {
+      "values": [
+        0.1,
+        0.3,
+        0.5,
+        0.7,
+        0.9
+      ]
+    },
+    "simulation": {
+      "horizon": 80.0,
+      "dt": 0.05,
+      "initial_states": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          2.0,
+          8.0
+        ],
+        [
+          8.0,
+          2.0
+        ],
+        [
+          10.0,
+          10.0
+        ]
+      ],
+      "check_time_refinement": true
+    }
+  },
+  "quick": false,
+  "workers": 4,
+  "reuse_hjb": true,
+  "scenario_directories": [
+    "p0_0.1",
+    "p0_0.3",
+    "p0_0.5",
+    "p0_0.7",
+    "p0_0.9"
+  ],
+  "elapsed_seconds": 218.05244986000025,
+  "value_monotonicity_checks": [
+    {
+      "lower_p0": 0.1,
+      "higher_p0": 0.3,
+      "retained_states": 321201,
+      "maximum_positive_value_increase": 0.0,
+      "violations_above_tolerance": 0,
+      "tolerance": 1e-10
+    },
+    {
+      "lower_p0": 0.3,
+      "higher_p0": 0.5,
+      "retained_states": 321201,
+      "maximum_positive_value_increase": 0.0,
+      "violations_above_tolerance": 0,
+      "tolerance": 1e-10
+    },
+    {
+      "lower_p0": 0.5,
+      "higher_p0": 0.7,
+      "retained_states": 321201,
+      "maximum_positive_value_increase": 0.0,
+      "violations_above_tolerance": 0,
+      "tolerance": 1e-10
+    },
+    {
+      "lower_p0": 0.7,
+      "higher_p0": 0.9,
+      "retained_states": 321201,
+      "maximum_positive_value_increase": 0.0,
+      "violations_above_tolerance": 0,
+      "tolerance": 1e-10
+    }
+  ],
+  "files": [
+    "case_summary.csv",
+    "figures/initial_value_and_policy.png",
+    "figures/policy_nx_comparison.png",
+    "figures/policy_sf_comparison.png",
+    "figures/trajectories_p0_comparison.png",
+    "manifest.json",
+    "origin_path_endpoints.csv",
+    "p0_0.1/data/mesh_h_0.25.npz",
+    "p0_0.1/data/mesh_h_0.5.npz",
+    "p0_0.1/data/solution.npz",
+    "p0_0.1/data/switching_regions.csv",
+    "p0_0.1/data/trajectories.csv",
+    "p0_0.1/data/trajectory_diagnostics.csv",
+    "p0_0.1/data/trajectory_summary.csv",
+    "p0_0.1/diagnostics.json",
+    "p0_0.1/effective_config.json",
+    "p0_0.1/figures/policy_nx.png",
+    "p0_0.1/figures/policy_sf.png",
+    "p0_0.1/figures/switching_advantage.png",
+    "p0_0.1/figures/trajectories.png",
+    "p0_0.1/figures/value_and_demand.png",
+    "p0_0.1/run.log",
+    "p0_0.1/summary.md",
+    "p0_0.3/data/mesh_h_0.25.npz",
+    "p0_0.3/data/mesh_h_0.5.npz",
+    "p0_0.3/data/solution.npz",
+    "p0_0.3/data/switching_regions.csv",
+    "p0_0.3/data/trajectories.csv",
+    "p0_0.3/data/trajectory_diagnostics.csv",
+    "p0_0.3/data/trajectory_summary.csv",
+    "p0_0.3/diagnostics.json",
+    "p0_0.3/effective_config.json",
+    "p0_0.3/figures/policy_nx.png",
+    "p0_0.3/figures/policy_sf.png",
+    "p0_0.3/figures/switching_advantage.png",
+    "p0_0.3/figures/trajectories.png",
+    "p0_0.3/figures/value_and_demand.png",
+    "p0_0.3/run.log",
+    "p0_0.3/summary.md",
+    "p0_0.5/data/mesh_h_0.25.npz",
+    "p0_0.5/data/mesh_h_0.5.npz",
+    "p0_0.5/data/solution.npz",
+    "p0_0.5/data/switching_regions.csv",
+    "p0_0.5/data/trajectories.csv",
+    "p0_0.5/data/trajectory_diagnostics.csv",
+    "p0_0.5/data/trajectory_summary.csv",
+    "p0_0.5/diagnostics.json",
+    "p0_0.5/effective_config.json",
+    "p0_0.5/figures/policy_nx.png",
+    "p0_0.5/figures/policy_sf.png",
+    "p0_0.5/figures/switching_advantage.png",
+    "p0_0.5/figures/trajectories.png",
+    "p0_0.5/figures/value_and_demand.png",
+    "p0_0.5/run.log",
+    "p0_0.5/summary.md",
+    "p0_0.7/data/mesh_h_0.25.npz",
+    "p0_0.7/data/mesh_h_0.5.npz",
+    "p0_0.7/data/solution.npz",
+    "p0_0.7/data/switching_regions.csv",
+    "p0_0.7/data/trajectories.csv",
+    "p0_0.7/data/trajectory_diagnostics.csv",
+    "p0_0.7/data/trajectory_summary.csv",
+    "p0_0.7/diagnostics.json",
+    "p0_0.7/effective_config.json",
+    "p0_0.7/figures/policy_nx.png",
+    "p0_0.7/figures/policy_sf.png",
+    "p0_0.7/figures/switching_advantage.png",
+    "p0_0.7/figures/trajectories.png",
+    "p0_0.7/figures/value_and_demand.png",
+    "p0_0.7/run.log",
+    "p0_0.7/summary.md",
+    "p0_0.9/data/mesh_h_0.25.npz",
+    "p0_0.9/data/mesh_h_0.5.npz",
+    "p0_0.9/data/solution.npz",
+    "p0_0.9/data/switching_regions.csv",
+    "p0_0.9/data/trajectories.csv",
+    "p0_0.9/data/trajectory_diagnostics.csv",
+    "p0_0.9/data/trajectory_summary.csv",
+    "p0_0.9/diagnostics.json",
+    "p0_0.9/effective_config.json",
+    "p0_0.9/figures/policy_nx.png",
+    "p0_0.9/figures/policy_sf.png",
+    "p0_0.9/figures/switching_advantage.png",
+    "p0_0.9/figures/trajectories.png",
+    "p0_0.9/figures/value_and_demand.png",
+    "p0_0.9/run.log",
+    "p0_0.9/summary.md",
+    "summary.md",
+    "trajectory_summary.csv"
+  ]
+}

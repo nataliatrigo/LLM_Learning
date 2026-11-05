@@ -1,0 +1,127 @@
+{
+  "scheme": "semi-Lagrangian exponential frozen demand",
+  "equation": "V(n,S)=max_i a*(1-c_i)+b*I[V(n+dn,S+p_i*dn)]",
+  "a": "D/delta*(1-exp(-delta*dn/D))",
+  "b": "exp(-delta*dn/D)",
+  "normalization": {
+    "R": 1,
+    "c1": 0
+  },
+  "unique_calibrations": 1880,
+  "total_solves_including_refinements": 2060,
+  "phases": {
+    "extremes": {
+      "count": 800,
+      "p0_values": [
+        0.001,
+        0.01,
+        0.05,
+        0.2,
+        0.5,
+        0.8,
+        0.95,
+        0.99,
+        0.999
+      ],
+      "dn": 1,
+      "dS": 0.25,
+      "max_physical_n": 80.0,
+      "cutoff_n": 400.0,
+      "sections_with_at_least_3_nodes": 64000,
+      "nodes_checked": 10432000,
+      "max_nominal_components": 1,
+      "nominal_three_point_candidates": 0,
+      "strict_wide_candidates": 0,
+      "max_value_bracket_width": 111.31294088965285,
+      "tail_bracket_below_1e-6_count": 584,
+      "directory": "extremes_nominal"
+    },
+    "scaled_costs": {
+      "count": 1080,
+      "p0_values": [
+        0.001,
+        0.01,
+        0.05,
+        0.2,
+        0.5,
+        0.8,
+        0.95,
+        0.99,
+        0.999
+      ],
+      "dn": 1,
+      "dS": 0.25,
+      "max_physical_n": 80.0,
+      "cutoff_n": 360.0,
+      "sections_with_at_least_3_nodes": 86400,
+      "nodes_checked": 14083200,
+      "max_nominal_components": 1,
+      "nominal_three_point_candidates": 0,
+      "strict_wide_candidates": 0,
+      "max_value_bracket_width": 5.222489107836736e-12,
+      "tail_bracket_below_1e-6_count": 1080,
+      "directory": "scaled_nominal"
+    },
+    "refined_dn_0.5": {
+      "count": 180,
+      "p0_values": [
+        0.001,
+        0.01,
+        0.05,
+        0.2,
+        0.5,
+        0.8,
+        0.95,
+        0.99,
+        0.999
+      ],
+      "dn": 0.5,
+      "dS": 0.125,
+      "max_physical_n": 80.0,
+      "cutoff_n": 360.0,
+      "sections_with_at_least_3_nodes": 28800,
+      "nodes_checked": 9302400,
+      "max_nominal_components": 1,
+      "nominal_three_point_candidates": 0,
+      "strict_wide_candidates": 0,
+      "max_value_bracket_width": 9.592326932761353e-14,
+      "tail_bracket_below_1e-6_count": 180,
+      "directory": "refined_h05_nominal"
+    }
+  },
+  "ranges": {
+    "p0": [
+      0.001,
+      0.999
+    ],
+    "p1": [
+      0.0,
+      0.9999870165022721
+    ],
+    "p2": [
+      1.354201522031993e-05,
+      1.0
+    ],
+    "cost": [
+      3.7068265339258775e-09,
+      0.999999
+    ],
+    "delta": [
+      0.0032114905656857318,
+      31.307700731613853
+    ]
+  },
+  "delta_p_range": [
+    1.2983497727936388e-05,
+    1.0
+  ],
+  "strict_gap_tolerance": 1e-06,
+  "nominal_gap_tolerance": 0,
+  "min_strict_run_width_S": 0.5,
+  "limitations": [
+    "Finite parameter search is not a proof of interval geometry.",
+    "The terminal bracket bounds only this numerical scheme; it does not bound continuum discretization error.",
+    "Small-delta extreme cases may have a wide terminal bracket and are exploratory.",
+    "Floating-point terminal brackets are diagnostics, not outward-rounded certificates."
+  ]
+}

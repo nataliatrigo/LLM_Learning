@@ -1,0 +1,1 @@
+Archived previous candidate-selection rule. It gave priority to a pure-selector iteration limit. The active experiment uses the mixed-strategy selection rule shared with OE p0. These files are historical results, not the active experiment.

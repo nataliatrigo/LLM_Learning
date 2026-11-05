@@ -1,0 +1,35 @@
+[2026-10-22T21:35:40.220618+00:00] refine rho=0.6, n=101, previous n=51
+  auditing demand
+  solving/certifying monopoly
+  competition start=verified_grid_51
+    local exact complementarity, residual=0
+  CERTIFIED in 222.8s; monopoly: P2=0.446052, profit=0.324744; competition: P2=0.492178, profit=0.241358
+  refinement comparison: [{"rho": 0.6, "model": "monopoly", "coarse_n": 51, "fine_n": 101, "passed": true, "product2_conditional_absolute_difference": 0.004958897491959491, "product2_calendar_absolute_difference": 0.003358388132179202, "sale_rate_absolute_difference": 0.0022137253676491886, "outside_rate_absolute_difference": 0.0022137253676491886, "profit_calendar_relative_difference": 0.00027100183168268576, "value_initial_relative_difference": 0.0002194588356719842}, {"rho": 0.6, "model": "competition", "coarse_n": 51, "fine_n": 101, "passed": true, "product2_conditional_absolute_difference": 0.0023696398081244907, "product2_calendar_absolute_difference": 0.0010887084285992887, "sale_rate_absolute_difference": 0.00043498653029888645, "outside_rate_absolute_difference": 0.0008699730605978839, "profit_calendar_relative_difference": 0.0009943237334294243, "value_initial_relative_difference": 0.0008879102993892156}]
+[2026-10-22T21:39:23.082788+00:00] refine rho=0.6, n=151, previous n=101
+  auditing demand
+  solving/certifying monopoly
+  competition start=verified_grid_101
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/natalia/Projects/LLM_Learning/oblivious/08_oe_distribution_fixed_p0/code/refine_case.py", line 194, in <module>
+    main()
+  File "/home/natalia/Projects/LLM_Learning/oblivious/08_oe_distribution_fixed_p0/code/refine_case.py", line 146, in main
+    competition = solve_competition(experiment, monopoly,
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/oblivious/08_oe_distribution_fixed_p0/code/run_experiment.py", line 145, in solve_competition
+    candidate = experiment.solve(initial_policy=policy,
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/oblivious/08_oe_distribution_fixed_p0/code/model.py", line 342, in solve
+    return self._solve_prefer_local(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/oblivious/01_oe_distribution/code/model.py", line 245, in _solve_prefer_local
+    data = engine.calculate(alpha)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/oblivious/08_oe_distribution_fixed_p0/code/model.py", line 260, in calculate
+    lu = splu(linear.tocsc())
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/.venv/lib/python3.12/site-packages/scipy/sparse/linalg/_dsolve/linsolve.py", line 433, in splu
+    return _superlu.gstrf(N, A.nnz, A.data, indices, indptr,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

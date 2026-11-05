@@ -1,0 +1,1588 @@
+{
+  "parameters": {
+    "R": 1,
+    "c1": 0.05,
+    "c2": 0.65,
+    "p1": 0.35,
+    "p2": 0.8,
+    "gamma": 0.98
+  },
+  "order": 128,
+  "source_sha256": {
+    "oblivious/11_fluid_oblivious_initial_conditions/code/reversal_thresholds.py": "1fdc2840f1a1c4679840a5d5036bca0adab7774fcc9707a051f81185f6217f06",
+    "oblivious/10_fluid_oblivious/code/model.py": "76f8ef0fba99c7c628c65bc003220dfd9b5f77e97e4df27a7668f72a9a3f5979",
+    "forgetting/Code/fluid_convergence/numerics.py": "096fee94d4c63152e9611bc6e819c58879e1283d73f88579ccf63fd28be8d192",
+    "forgetting/Code/model.py": "8b1f948f1d9009a021d1836b4f683f6224c65f724677bce591218a930cd28f7d",
+    "oblivious/02_oe_p0/code/primitives.py": "e8a07e00220ab000c945d5a37ee562b9283bff4ceca8d525600e935e68334e11"
+  },
+  "protocol": {
+    "hjb": "same solve_fluid upwind Howard equations, root interpolation and stopping criterion",
+    "competition_conjecture": 0.35,
+    "initialization": "native n2001 seed then interpolate prior Hamiltonian gaps; independently compare native zero initial policy at n4001,16001,32001",
+    "quadrature": "original positive Jacobi rows; exact mirrored event partition; chunked",
+    "quadrature_check": "order128 versus256 on257 uniform states plus p1,p2 and two thresholds at n128001",
+    "spatial_caution": "thresholds are interpolated grid-policy switches, not certified real intervals",
+    "selection": "first repelling policy switch in (p1,p2)",
+    "endpoint_selection": "product1 at the repelling tie"
+  },
+  "cases": [
+    {
+      "p0": 0.8,
+      "rho": 0.9,
+      "grids": [
+        {
+          "n": 4001,
+          "threshold_monopoly": 0.5300781889008309,
+          "threshold_competition": 0.5301157623094999,
+          "monopoly_policy": {
+            "roots": [
+              0.5300781889008309,
+              0.8579995552919223
+            ],
+            "products": [
+              1,
+              2,
+              1
+            ],
+            "root_kinds": [
+              "repelling",
+              "crossing"
+            ],
+            "intervals": [
+              {
+                "lo": 0.0,
+                "hi": 0.5300781889008309,
+                "product": 1
+              },
+              {
+                "lo": 0.5300781889008309,
+                "hi": 0.8579995552919223,
+                "product": 2
+              },
+              {
+                "lo": 0.8579995552919223,
+                "hi": 1.0,
+                "product": 1
+              }
+            ],
+            "holding_points": []
+          },
+          "competition_policy": {
+            "roots": [
+              0.5301157623094999,
+              0.8580641061863059
+            ],
+            "products": [
+              1,
+              2,
+              1
+            ],
+            "root_kinds": [
+              "repelling",
+              "crossing"
+            ],
+            "intervals": [
+              {
+                "lo": 0.0,
+                "hi": 0.5301157623094999,
+                "product": 1
+              },
+              {
+                "lo": 0.5301157623094999,
+                "hi": 0.8580641061863059,
+                "product": 2
+              },
+              {
+                "lo": 0.8580641061863059,
+                "hi": 1.0,
+                "product": 1
+              }
+            ],
+            "holding_points": []
+          },
+          "diagnostics": {
+            "n": 4001,
+            "h": 0.00025,
+            "order": 128,
+            "conjecture": 0.35,
+            "hjb_residual_monopoly": 4.98212582300539e-13,
+            "hjb_residual_competition": 5.621891840945636e-13,
+            "demand_seconds": 1.122549882002204,
+            "max_demand_reduction": 6.407270670094611e-05,
+            "quadrature_checked": false,
+            "warm_start": true,
+            "iterations_monopoly": 2,
+            "iterations_competition": 1,
+            "interval_width": 3.7573408668944985e-05,
+            "elapsed_seconds": 1.123891671999445,
+            "native_initialization_validation": {
+              "monopoly": {
+                "value_max_absolute_difference": 0.0,
+                "gap_max_absolute_difference": 0.0,
+                "root_max_absolute_difference": 0.0,
+                "policy_differences": 0,
+                "native_hjb_residual": 4.98212582300539e-13,
+                "native_iterations": 240
+              },
+              "competition": {
+                "value_max_absolute_difference": 0.0,
+                "gap_max_absolute_difference": 0.0,
+                "root_max_absolute_difference": 0.0,
+                "policy_differences": 0,
+                "native_hjb_residual": 5.621891840945636e-13,
+                "native_iterations": 240
+              }
+            }
+          }
+        },
+        {
+          "n": 16001,
+          "threshold_monopoly": 0.5301167896214077,
+          "threshold_competition": 0.5301526173621958,
+          "monopoly_policy": {
+            "roots": [
+              0.5301167896214077,
+              0.8579942325668685
+            ],
+            "products": [
+              1,
+              2,
+              1
+            ],
+            "root_kinds": [
+              "repelling",
+              "crossing"
+            ],
+            "intervals": [
+              {
+                "lo": 0.0,
+                "hi": 0.5301167896214077,
+                "product": 1
+              },
+              {
+                "lo": 0.5301167896214077,
+                "hi": 0.8579942325668685,
+                "product": 2
+              },
+              {
+                "lo": 0.8579942325668685,
+                "hi": 1.0,
+                "product": 1
+              }
+            ],
+            "holding_points": []
+          },
+          "competition_policy": {
+            "roots": [
+              0.5301526173621958,
+              0.8579976208821468
+            ],
+            "products": [
+              1,
+              2,
+              1
+            ],
+            "root_kinds": [
+              "repelling",
+              "crossing"
+            ],
+            "intervals": [
+              {
+                "lo": 0.0,
+                "hi": 0.5301526173621958,
+                "product": 1
+              },
+              {
+                "lo": 0.5301526173621958,
+                "hi": 0.8579976208821468,
+                "product": 2
+              },
+              {
+                "lo": 0.8579976208821468,
+                "hi": 1.0,
+                "product": 1
+              }
+            ],
+            "holding_points": []
+          },
+          "diagnostics": {
+            "n": 16001,
+            "h": 6.25e-05,
+            "order": 128,
+            "conjecture": 0.35,
+            "hjb_residual_monopoly": 2.6774138461860275e-12,
+            "hjb_residual_competition": 2.453731662299674e-12,
+            "demand_seconds": 4.711818083000253,
+            "max_demand_reduction": 6.407270670094611e-05,
+            "quadrature_checked": false,
+            "warm_start": true,
+            "iterations_monopoly": 1,
+            "iterations_competition": 2,
+            "interval_width": 3.5827740788030304e-05,
+            "elapsed_seconds": 4.715197846999217,
+            "native_initialization_validation": {
+              "monopoly": {
+                "value_max_absolute_difference": 0.0,
+                "gap_max_absolute_difference": 0.0,
+                "root_max_absolute_difference": 0.0,
+                "policy_differences": 0,
+                "native_hjb_residual": 2.6774138461860275e-12,
+                "native_iterations": 953
+              },
+              "competition": {
+                "value_max_absolute_difference": 0.0,
+                "gap_max_absolute_difference": 0.0,
+                "root_max_absolute_difference": 0.0,
+                "policy_differences": 0,
+                "native_hjb_residual": 2.453731662299674e-12,
+                "native_iterations": 953
+              }
+            }
+          }
+        },
+        {
+          "n": 32001,
+          "threshold_monopoly": 0.5301233699172683,
+          "threshold_competition": 0.530155940150398,
+          "monopoly_policy": {
+            "roots": [
+              0.5301233699172683,
+              0.8579684493383737
+            ],
+            "products": [
+              1,
+              2,
+              1
+            ],
+            "root_kinds": [
+              "repelling",
+              "crossing"
+            ],
+            "intervals": [
+              {
+                "lo": 0.0,
+                "hi": 0.5301233699172683,
+                "product": 1
+              },
+              {
+                "lo": 0.5301233699172683,
+                "hi": 0.8579684493383737,
+                "product": 2
+              },
+              {
+                "lo": 0.8579684493383737,
+                "hi": 1.0,
+                "product": 1
+              }
+            ],
+            "holding_points": []
+          },
+          "competition_policy": {
+            "roots": [
+              0.530155940150398,
+              0.8579945083253041
+            ],
+            "products": [
+              1,
+              2,
+              1
+            ],
+            "root_kinds": [
+              "repelling",
+              "crossing"
+            ],
+            "intervals": [
+              {
+                "lo": 0.0,
+                "hi": 0.530155940150398,
+                "product": 1
+              },
+              {
+                "lo": 0.530155940150398,
+                "hi": 0.8579945083253041,
+                "product": 2
+              },
+              {
+                "lo": 0.8579945083253041,
+                "hi": 1.0,
+                "product": 1
+              }
+            ],
+            "holding_points": []
+          },
+          "diagnostics": {
+            "n": 32001,
+            "h": 3.125e-05,
+            "order": 128,
+            "conjecture": 0.35,
+            "hjb_residual_monopoly": 5.069888953102009e-12,
+            "hjb_residual_competition": 5.0258408546000055e-12,
+            "demand_seconds": 9.794575452000572,
+            "max_demand_reduction": 6.407270695996115e-05,
+            "quadrature_checked": false,
+            "warm_start": true,
+            "iterations_monopoly": 2,
+            "iterations_competition": 1,
+            "interval_width": 3.257023312974727e-05,
+            "elapsed_seconds": 9.800505545001215,
+            "native_initialization_validation": {
+              "monopoly": {
+                "value_max_absolute_difference": 0.0,
+                "gap_max_absolute_difference": 0.0,
+                "root_max_absolute_difference": 0.0,
+                "policy_differences": 0,
+                "native_hjb_residual": 5.069888953102009e-12,
+                "native_iterations": 1904
+              },
+              "competition": {
+                "value_max_absolute_difference": 0.0,
+                "gap_max_absolute_difference": 0.0,
+                "root_max_absolute_difference": 0.0,
+                "policy_differences": 0,
+                "native_hjb_residual": 5.0258408546000055e-12,
+                "native_iterations": 1904
+              }
+            }
+          }
+        },
+        {
+          "n": 64001,
+          "threshold_monopoly": 0.5301280755554664,
+          "threshold_competition": 0.5301616952578363,
+          "monopoly_policy": {
+            "roots": [
+              0.5301280755554664,
+              0.8579680430519455
+            ],
+            "products": [
+              1,
+              2,
+              1
+            ],
+            "root_kinds": [
+              "repelling",
+              "crossing"
+            ],
+            "intervals": [
+              {
+                "lo": 0.0,
+                "hi": 0.5301280755554664,
+                "product": 1
+              },
+              {
+                "lo": 0.5301280755554664,
+                "hi": 0.8579680430519455,
+                "product": 2
+              },
+              {
+                "lo": 0.8579680430519455,
+                "hi": 1.0,
+                "product": 1
+              }
+            ],
+            "holding_points": []
+          },
+          "competition_policy": {
+            "roots": [
+              0.5301616952578363,
+              0.8579830938699917
+            ],
+            "products": [
+              1,
+              2,
+              1
+            ],
+            "root_kinds": [
+              "repelling",
+              "crossing"
+            ],
+            "intervals": [
+              {
+                "lo": 0.0,
+                "hi": 0.5301616952578363,
+                "product": 1
+              },
+              {
+                "lo": 0.5301616952578363,
+                "hi": 0.8579830938699917,
+                "product": 2
+              },
+              {
+                "lo": 0.8579830938699917,
+                "hi": 1.0,
+                "product": 1
+              }
+            ],
+            "holding_points": []
+          },
+          "diagnostics": {
+            "n": 64001,
+            "h": 1.5625e-05,
+            "order": 128,
+            "conjecture": 0.35,
+            "hjb_residual_monopoly": 1.1234735364240578e-11,
+            "hjb_residual_competition": 1.155875395397743e-11,
+            "demand_seconds": 19.116408457000944,
+            "max_demand_reduction": 6.407270729802406e-05,
+            "quadrature_checked": false,
+            "warm_start": true,
+            "iterations_monopoly": 2,
+            "iterations_competition": 2,
+            "interval_width": 3.361970236992473e-05,
+            "elapsed_seconds": 19.136980453000433
+          }
+        },
+        {
+          "n": 128001,
+          "threshold_monopoly": 0.5301302253528427,
+          "threshold_competition": 0.5301630596249673,
+          "monopoly_policy": {
+            "roots": [
+              0.5301302253528427,
+              0.857966954700232
+            ],
+            "products": [
+              1,
+              2,
+              1
+            ],
+            "root_kinds": [
+              "repelling",
+              "crossing"
+            ],
+            "intervals": [
+              {
+                "lo": 0.0,
+                "hi": 0.5301302253528427,
+                "product": 1
+              },
+              {
+                "lo": 0.5301302253528427,
+                "hi": 0.857966954700232,
+                "product": 2
+              },
+              {
+                "lo": 0.857966954700232,
+                "hi": 1.0,
+                "product": 1
+              }
+            ],
+            "holding_points": []
+          },
+          "competition_policy": {
+            "roots": [
+              0.5301630596249673,
+              0.8579765494407697
+            ],
+            "products": [
+              1,
+              2,
+              1
+            ],
+            "root_kinds": [
+              "repelling",
+              "crossing"
+            ],
+            "intervals": [
+              {
+                "lo": 0.0,
+                "hi": 0.5301630596249673,
+                "product": 1
+              },
+              {
+                "lo": 0.5301630596249673,
+                "hi": 0.8579765494407697,
+                "product": 2
+              },
+              {
+                "lo": 0.8579765494407697,
+                "hi": 1.0,
+                "product": 1
+              }
+            ],
+            "holding_points": []
+          },
+          "diagnostics": {
+            "n": 128001,
+            "h": 7.8125e-06,
+            "order": 128,
+            "conjecture": 0.35,
+            "hjb_residual_monopoly": 2.1717516673902537e-11,
+            "hjb_residual_competition": 2.2197826909930995e-11,
+            "demand_seconds": 37.51846550200207,
+            "max_demand_reduction": 6.407270729802406e-05,
+            "quadrature_checked": true,
+            "warm_start": true,
+            "iterations_monopoly": 1,
+            "iterations_competition": 2,
+            "interval_width": 3.283427212463774e-05,
+            "quadrature_check_states": 261,
+            "quadrature_check_order": 256,
+            "quadrature_max_absolute_difference": 1.1102230246251565e-16,
+            "quadrature_max_relative_difference": 3.1257047426524305e-14,
+            "elapsed_seconds": 37.85286698600248
+          }
+        }
+      ],
+      "historical_n4001_validation": {
+        "monopoly_error": 0.0,
+        "competition_error": 0.0,
+        "demand_max_absolute_error": 0.0,
+        "demand_validation": "prior independent full comparison against original FixedRivalDemand n4001 was elementwise identical"
+      },
+      "finest_three_intersection": {
+        "lo": 0.5301302253528427,
+        "hi": 0.530155940150398,
+        "lo_included": false,
+        "hi_included": true,
+        "width": 2.5714797555309588e-05,
+        "example": 0.5301430827516204,
+        "min_margin": 1.2857398777654794e-05,
+        "grids": [
+          32001,
+          64001,
+          128001
+        ]
+      }
+    },
+    {
+      "p0": 0.9,
+      "rho": 0.7,
+      "grids": [
+        {
+          "n": 4001,
+          "threshold_monopoly": 0.4639363390294317,
+          "threshold_competition": 0.4642445810714726,
+          "monopoly_policy": {
+            "roots": [
+              0.4639363390294317,
+              0.8589700565928557
+            ],
+            "products": [
+              1,
+              2,
+              1
+            ],
+            "root_kinds": [
+              "repelling",
+              "crossing"
+            ],
+            "intervals": [
+              {
+                "lo": 0.0,
+                "hi": 0.4639363390294317,
+                "product": 1
+              },
+              {
+                "lo": 0.4639363390294317,
+                "hi": 0.8589700565928557,
+                "product": 2
+              },
+              {
+                "lo": 0.8589700565928557,
+                "hi": 1.0,
+                "product": 1
+              }
+            ],
+            "holding_points": []
+          },
+          "competition_policy": {
+            "roots": [
+              0.4642445810714726,
+              0.8589663046831004
+            ],
+            "products": [
+              1,
+              2,
+              1
+            ],
+            "root_kinds": [
+              "repelling",
+              "crossing"
+            ],
+            "intervals": [
+              {
+                "lo": 0.0,
+                "hi": 0.4642445810714726,
+                "product": 1
+              },
+              {
+                "lo": 0.4642445810714726,
+                "hi": 0.8589663046831004,
+                "product": 2
+              },
+              {
+                "lo": 0.8589663046831004,
+                "hi": 1.0,
+                "product": 1
+              }
+            ],
+            "holding_points": []
+          },
+          "diagnostics": {
+            "n": 4001,
+            "h": 0.00025,
+            "order": 128,
+            "conjecture": 0.35,
+            "hjb_residual_monopoly": 1.9859808242372878e-13,
+            "hjb_residual_competition": 1.9009793739144243e-13,
+            "demand_seconds": 1.070683726000425,
+            "max_demand_reduction": 0.00024879761457674565,
+            "quadrature_checked": false,
+            "warm_start": true,
+            "iterations_monopoly": 1,
+            "iterations_competition": 2,
+            "interval_width": 0.0003082420420408849,
+            "elapsed_seconds": 1.0721839249999903,
+            "native_initialization_validation": {
+              "monopoly": {
+                "value_max_absolute_difference": 0.0,
+                "gap_max_absolute_difference": 0.0,
+                "root_max_absolute_difference": 0.0,
+                "policy_differences": 0,
+                "native_hjb_residual": 1.9859808242372878e-13,
+                "native_iterations": 384
+              },
+              "competition": {
+                "value_max_absolute_difference": 0.0,
+                "gap_max_absolute_difference": 0.0,
+                "root_max_absolute_difference": 0.0,
+                "policy_differences": 0,
+                "native_hjb_residual": 1.9009793739144243e-13,
+                "native_iterations": 384
+              }
+            }
+          }
+        },
+        {
+          "n": 16001,
+          "threshold_monopoly": 0.4639296799720477,
+          "threshold_competition": 0.4642944406527182,
+          "monopoly_policy": {
+            "roots": [
+              0.4639296799720477,
+              0.8588677914418898
+            ],
+            "products": [
+              1,
+              2,
+              1
+            ],
+            "root_kinds": [
+              "repelling",
+              "crossing"
+            ],
+            "intervals": [
+              {
+                "lo": 0.0,
+                "hi": 0.4639296799720477,
+                "product": 1
+              },
+              {
+                "lo": 0.4639296799720477,
+                "hi": 0.8588677914418898,
+                "product": 2
+              },
+              {
+                "lo": 0.8588677914418898,
+                "hi": 1.0,
+                "product": 1
+              }
+            ],
+            "holding_points": []
+          },
+          "competition_policy": {
+            "roots": [
+              0.4642944406527182,
+              0.8588633904482674
+            ],
+            "products": [
+              1,
+              2,
+              1
+            ],
+            "root_kinds": [
+              "repelling",
+              "crossing"
+            ],
+            "intervals": [
+              {
+                "lo": 0.0,
+                "hi": 0.4642944406527182,
+                "product": 1
+              },
+              {
+                "lo": 0.4642944406527182,
+                "hi": 0.8588633904482674,
+                "product": 2
+              },
+              {
+                "lo": 0.8588633904482674,
+                "hi": 1.0,
+                "product": 1
+              }
+            ],
+            "holding_points": []
+          },
+          "diagnostics": {
+            "n": 16001,
+            "h": 6.25e-05,
+            "order": 128,
+            "conjecture": 0.35,
+            "hjb_residual_monopoly": 8.340897417191684e-13,
+            "hjb_residual_competition": 8.271716644969729e-13,
+            "demand_seconds": 4.743493930000113,
+            "max_demand_reduction": 0.00024879761457674565,
+            "quadrature_checked": false,
+            "warm_start": true,
+            "iterations_monopoly": 2,
+            "iterations_competition": 2,
+            "interval_width": 0.00036476068067048395,
+            "elapsed_seconds": 4.748894684002153,
+            "native_initialization_validation": {
+              "monopoly": {
+                "value_max_absolute_difference": 0.0,
+                "gap_max_absolute_difference": 0.0,
+                "root_max_absolute_difference": 0.0,
+                "policy_differences": 0,
+                "native_hjb_residual": 8.340897417191684e-13,
+                "native_iterations": 1531
+              },
+              "competition": {
+                "value_max_absolute_difference": 0.0,
+                "gap_max_absolute_difference": 0.0,
+                "root_max_absolute_difference": 0.0,
+                "policy_differences": 0,
+                "native_hjb_residual": 8.271716644969729e-13,
+                "native_iterations": 1529
+              }
+            }
+          }
+        },
+        {
+          "n": 32001,
+          "threshold_monopoly": 0.46393251635201954,
+          "threshold_competition": 0.4642916854135081,
+          "monopoly_policy": {
+            "roots": [
+              0.46393251635201954,
+              0.8588429603299391
+            ],
+            "products": [
+              1,
+              2,
+              1
+            ],
+            "root_kinds": [
+              "repelling",
+              "crossing"
+            ],
+            "intervals": [
+              {
+                "lo": 0.0,
+                "hi": 0.46393251635201954,
+                "product": 1
+              },
+              {
+                "lo": 0.46393251635201954,
+                "hi": 0.8588429603299391,
+                "product": 2
+              },
+              {
+                "lo": 0.8588429603299391,
+                "hi": 1.0,
+                "product": 1
+              }
+            ],
+            "holding_points": []
+          },
+          "competition_policy": {
+            "roots": [
+              0.4642916854135081,
+              0.8588410430414088
+            ],
+            "products": [
+              1,
+              2,
+              1
+            ],
+            "root_kinds": [
+              "repelling",
+              "crossing"
+            ],
+            "intervals": [
+              {
+                "lo": 0.0,
+                "hi": 0.4642916854135081,
+                "product": 1
+              },
+              {
+                "lo": 0.4642916854135081,
+                "hi": 0.8588410430414088,
+                "product": 2
+              },
+              {
+                "lo": 0.8588410430414088,
+                "hi": 1.0,
+                "product": 1
+              }
+            ],
+            "holding_points": []
+          },
+          "diagnostics": {
+            "n": 32001,
+            "h": 3.125e-05,
+            "order": 128,
+            "conjecture": 0.35,
+            "hjb_residual_monopoly": 1.7842116672994734e-12,
+            "hjb_residual_competition": 1.7602239110736662e-12,
+            "demand_seconds": 22.341508205001446,
+            "max_demand_reduction": 0.00024879761457674565,
+            "quadrature_checked": false,
+            "warm_start": true,
+            "iterations_monopoly": 2,
+            "iterations_competition": 2,
+            "interval_width": 0.0003591690614885845,
+            "elapsed_seconds": 22.353251469001407,
+            "native_initialization_validation": {
+              "monopoly": {
+                "value_max_absolute_difference": 0.0,
+                "gap_max_absolute_difference": 0.0,
+                "root_max_absolute_difference": 0.0,
+                "policy_differences": 0,
+                "native_hjb_residual": 1.7842116672994734e-12,
+                "native_iterations": 3059
+              },
+              "competition": {
+                "value_max_absolute_difference": 0.0,
+                "gap_max_absolute_difference": 0.0,
+                "root_max_absolute_difference": 0.0,
+                "policy_differences": 0,
+                "native_hjb_residual": 1.7602239110736662e-12,
+                "native_iterations": 3057
+              }
+            }
+          }
+        },
+        {
+          "n": 64001,
+          "threshold_monopoly": 0.4639337366163987,
+          "threshold_competition": 0.46429319281194736,
+          "monopoly_policy": {
+            "roots": [
+              0.4639337366163987,
+              0.8588421885920526
+            ],
+            "products": [
+              1,
+              2,
+              1
+            ],
+            "root_kinds": [
+              "repelling",
+              "crossing"
+            ],
+            "intervals": [
+              {
+                "lo": 0.0,
+                "hi": 0.4639337366163987,
+                "product": 1
+              },
+              {
+                "lo": 0.4639337366163987,
+                "hi": 0.8588421885920526,
+                "product": 2
+              },
+              {
+                "lo": 0.8588421885920526,
+                "hi": 1.0,
+                "product": 1
+              }
+            ],
+            "holding_points": []
+          },
+          "competition_policy": {
+            "roots": [
+              0.46429319281194736,
+              0.8588280792802779
+            ],
+            "products": [
+              1,
+              2,
+              1
+            ],
+            "root_kinds": [
+              "repelling",
+              "crossing"
+            ],
+            "intervals": [
+              {
+                "lo": 0.0,
+                "hi": 0.46429319281194736,
+                "product": 1
+              },
+              {
+                "lo": 0.46429319281194736,
+                "hi": 0.8588280792802779,
+                "product": 2
+              },
+              {
+                "lo": 0.8588280792802779,
+                "hi": 1.0,
+                "product": 1
+              }
+            ],
+            "holding_points": []
+          },
+          "diagnostics": {
+            "n": 64001,
+            "h": 1.5625e-05,
+            "order": 128,
+            "conjecture": 0.35,
+            "hjb_residual_monopoly": 2.9575300541928584e-12,
+            "hjb_residual_competition": 3.0183355814727975e-12,
+            "demand_seconds": 16.56956435900065,
+            "max_demand_reduction": 0.00024879761457674565,
+            "quadrature_checked": false,
+            "warm_start": true,
+            "iterations_monopoly": 1,
+            "iterations_competition": 2,
+            "interval_width": 0.0003594561955486686,
+            "elapsed_seconds": 16.583704824999586
+          }
+        },
+        {
+          "n": 128001,
+          "threshold_monopoly": 0.463933736085671,
+          "threshold_competition": 0.46429325461996884,
+          "monopoly_policy": {
+            "roots": [
+              0.463933736085671,
+              0.8588358349372793
+            ],
+            "products": [
+              1,
+              2,
+              1
+            ],
+            "root_kinds": [
+              "repelling",
+              "crossing"
+            ],
+            "intervals": [
+              {
+                "lo": 0.0,
+                "hi": 0.463933736085671,
+                "product": 1
+              },
+              {
+                "lo": 0.463933736085671,
+                "hi": 0.8588358349372793,
+                "product": 2
+              },
+              {
+                "lo": 0.8588358349372793,
+                "hi": 1.0,
+                "product": 1
+              }
+            ],
+            "holding_points": []
+          },
+          "competition_policy": {
+            "roots": [
+              0.46429325461996884,
+              0.8588279403092135
+            ],
+            "products": [
+              1,
+              2,
+              1
+            ],
+            "root_kinds": [
+              "repelling",
+              "crossing"
+            ],
+            "intervals": [
+              {
+                "lo": 0.0,
+                "hi": 0.46429325461996884,
+                "product": 1
+              },
+              {
+                "lo": 0.46429325461996884,
+                "hi": 0.8588279403092135,
+                "product": 2
+              },
+              {
+                "lo": 0.8588279403092135,
+                "hi": 1.0,
+                "product": 1
+              }
+            ],
+            "holding_points": []
+          },
+          "diagnostics": {
+            "n": 128001,
+            "h": 7.8125e-06,
+            "order": 128,
+            "conjecture": 0.35,
+            "hjb_residual_monopoly": 5.477486519911423e-12,
+            "hjb_residual_competition": 5.885417153628225e-12,
+            "demand_seconds": 33.36981204100084,
+            "max_demand_reduction": 0.00024879761457674565,
+            "quadrature_checked": true,
+            "warm_start": true,
+            "iterations_monopoly": 2,
+            "iterations_competition": 1,
+            "interval_width": 0.0003595185342978313,
+            "quadrature_check_states": 261,
+            "quadrature_check_order": 256,
+            "quadrature_max_absolute_difference": 5.551115123125783e-17,
+            "quadrature_max_relative_difference": 4.4733097162445245e-15,
+            "elapsed_seconds": 33.688804328001424
+          }
+        }
+      ],
+      "historical_n4001_validation": {
+        "monopoly_error": 0.0,
+        "competition_error": 0.0,
+        "demand_max_absolute_error": 0.0,
+        "demand_validation": "prior independent full comparison against original FixedRivalDemand n4001 was elementwise identical"
+      },
+      "finest_three_intersection": {
+        "lo": 0.4639337366163987,
+        "hi": 0.4642916854135081,
+        "lo_included": false,
+        "hi_included": true,
+        "width": 0.00035794879710943084,
+        "example": 0.46411271101495344,
+        "min_margin": 0.00017897439855471542,
+        "grids": [
+          32001,
+          64001,
+          128001
+        ]
+      }
+    },
+    {
+      "p0": 0.9,
+      "rho": 0.8,
+      "grids": [
+        {
+          "n": 4001,
+          "threshold_monopoly": 0.6457603994912462,
+          "threshold_competition": 0.645796590288578,
+          "monopoly_policy": {
+            "roots": [
+              0.6457603994912462,
+              0.90471271819981
+            ],
+            "products": [
+              1,
+              2,
+              1
+            ],
+            "root_kinds": [
+              "repelling",
+              "crossing"
+            ],
+            "intervals": [
+              {
+                "lo": 0.0,
+                "hi": 0.6457603994912462,
+                "product": 1
+              },
+              {
+                "lo": 0.6457603994912462,
+                "hi": 0.90471271819981,
+                "product": 2
+              },
+              {
+                "lo": 0.90471271819981,
+                "hi": 1.0,
+                "product": 1
+              }
+            ],
+            "holding_points": []
+          },
+          "competition_policy": {
+            "roots": [
+              0.645796590288578,
+              0.9047121001682669
+            ],
+            "products": [
+              1,
+              2,
+              1
+            ],
+            "root_kinds": [
+              "repelling",
+              "crossing"
+            ],
+            "intervals": [
+              {
+                "lo": 0.0,
+                "hi": 0.645796590288578,
+                "product": 1
+              },
+              {
+                "lo": 0.645796590288578,
+                "hi": 0.9047121001682669,
+                "product": 2
+              },
+              {
+                "lo": 0.9047121001682669,
+                "hi": 1.0,
+                "product": 1
+              }
+            ],
+            "holding_points": []
+          },
+          "diagnostics": {
+            "n": 4001,
+            "h": 0.00025,
+            "order": 128,
+            "conjecture": 0.35,
+            "hjb_residual_monopoly": 1.8141044222375058e-13,
+            "hjb_residual_competition": 1.766226054300546e-13,
+            "demand_seconds": 1.032247949999146,
+            "max_demand_reduction": 4.6771235502618413e-05,
+            "quadrature_checked": false,
+            "warm_start": true,
+            "iterations_monopoly": 2,
+            "iterations_competition": 2,
+            "interval_width": 3.6190797331858704e-05,
+            "elapsed_seconds": 1.0339824709990353,
+            "native_initialization_validation": {
+              "monopoly": {
+                "value_max_absolute_difference": 0.0,
+                "gap_max_absolute_difference": 0.0,
+                "root_max_absolute_difference": 0.0,
+                "policy_differences": 0,
+                "native_hjb_residual": 1.8141044222375058e-13,
+                "native_iterations": 203
+              },
+              "competition": {
+                "value_max_absolute_difference": 0.0,
+                "gap_max_absolute_difference": 0.0,
+                "root_max_absolute_difference": 0.0,
+                "policy_differences": 0,
+                "native_hjb_residual": 1.766226054300546e-13,
+                "native_iterations": 203
+              }
+            }
+          }
+        },
+        {
+          "n": 16001,
+          "threshold_monopoly": 0.6457493181147415,
+          "threshold_competition": 0.6458021632695125,
+          "monopoly_policy": {
+            "roots": [
+              0.6457493181147415,
+              0.904620630967828
+            ],
+            "products": [
+              1,
+              2,
+              1
+            ],
+            "root_kinds": [
+              "repelling",
+              "crossing"
+            ],
+            "intervals": [
+              {
+                "lo": 0.0,
+                "hi": 0.6457493181147415,
+                "product": 1
+              },
+              {
+                "lo": 0.6457493181147415,
+                "hi": 0.904620630967828,
+                "product": 2
+              },
+              {
+                "lo": 0.904620630967828,
+                "hi": 1.0,
+                "product": 1
+              }
+            ],
+            "holding_points": []
+          },
+          "competition_policy": {
+            "roots": [
+              0.6458021632695125,
+              0.904620237090766
+            ],
+            "products": [
+              1,
+              2,
+              1
+            ],
+            "root_kinds": [
+              "repelling",
+              "crossing"
+            ],
+            "intervals": [
+              {
+                "lo": 0.0,
+                "hi": 0.6458021632695125,
+                "product": 1
+              },
+              {
+                "lo": 0.6458021632695125,
+                "hi": 0.904620237090766,
+                "product": 2
+              },
+              {
+                "lo": 0.904620237090766,
+                "hi": 1.0,
+                "product": 1
+              }
+            ],
+            "holding_points": []
+          },
+          "diagnostics": {
+            "n": 16001,
+            "h": 6.25e-05,
+            "order": 128,
+            "conjecture": 0.35,
+            "hjb_residual_monopoly": 7.399775237004746e-13,
+            "hjb_residual_competition": 7.465833506969943e-13,
+            "demand_seconds": 4.179854271002114,
+            "max_demand_reduction": 4.6771235502618413e-05,
+            "quadrature_checked": false,
+            "warm_start": true,
+            "iterations_monopoly": 2,
+            "iterations_competition": 2,
+            "interval_width": 5.284515477099738e-05,
+            "elapsed_seconds": 4.184061985000881,
+            "native_initialization_validation": {
+              "monopoly": {
+                "value_max_absolute_difference": 0.0,
+                "gap_max_absolute_difference": 0.0,
+                "root_max_absolute_difference": 0.0,
+                "policy_differences": 0,
+                "native_hjb_residual": 7.399775237004746e-13,
+                "native_iterations": 809
+              },
+              "competition": {
+                "value_max_absolute_difference": 0.0,
+                "gap_max_absolute_difference": 0.0,
+                "root_max_absolute_difference": 0.0,
+                "policy_differences": 0,
+                "native_hjb_residual": 7.465833506969943e-13,
+                "native_iterations": 809
+              }
+            }
+          }
+        },
+        {
+          "n": 32001,
+          "threshold_monopoly": 0.6457437509275185,
+          "threshold_competition": 0.6457987178648534,
+          "monopoly_policy": {
+            "roots": [
+              0.6457437509275185,
+              0.9046157671697006
+            ],
+            "products": [
+              1,
+              2,
+              1
+            ],
+            "root_kinds": [
+              "repelling",
+              "crossing"
+            ],
+            "intervals": [
+              {
+                "lo": 0.0,
+                "hi": 0.6457437509275185,
+                "product": 1
+              },
+              {
+                "lo": 0.6457437509275185,
+                "hi": 0.9046157671697006,
+                "product": 2
+              },
+              {
+                "lo": 0.9046157671697006,
+                "hi": 1.0,
+                "product": 1
+              }
+            ],
+            "holding_points": []
+          },
+          "competition_policy": {
+            "roots": [
+              0.6457987178648534,
+              0.9046145008431127
+            ],
+            "products": [
+              1,
+              2,
+              1
+            ],
+            "root_kinds": [
+              "repelling",
+              "crossing"
+            ],
+            "intervals": [
+              {
+                "lo": 0.0,
+                "hi": 0.6457987178648534,
+                "product": 1
+              },
+              {
+                "lo": 0.6457987178648534,
+                "hi": 0.9046145008431127,
+                "product": 2
+              },
+              {
+                "lo": 0.9046145008431127,
+                "hi": 1.0,
+                "product": 1
+              }
+            ],
+            "holding_points": []
+          },
+          "diagnostics": {
+            "n": 32001,
+            "h": 3.125e-05,
+            "order": 128,
+            "conjecture": 0.35,
+            "hjb_residual_monopoly": 1.5779183515363115e-12,
+            "hjb_residual_competition": 1.779160152537429e-12,
+            "demand_seconds": 8.205560364000121,
+            "max_demand_reduction": 4.6771235502618413e-05,
+            "quadrature_checked": false,
+            "warm_start": true,
+            "iterations_monopoly": 1,
+            "iterations_competition": 1,
+            "interval_width": 5.496693733497704e-05,
+            "elapsed_seconds": 8.209729546000744,
+            "native_initialization_validation": {
+              "monopoly": {
+                "value_max_absolute_difference": 0.0,
+                "gap_max_absolute_difference": 0.0,
+                "root_max_absolute_difference": 0.0,
+                "policy_differences": 0,
+                "native_hjb_residual": 1.5779183515363115e-12,
+                "native_iterations": 1616
+              },
+              "competition": {
+                "value_max_absolute_difference": 0.0,
+                "gap_max_absolute_difference": 0.0,
+                "root_max_absolute_difference": 0.0,
+                "policy_differences": 0,
+                "native_hjb_residual": 1.779160152537429e-12,
+                "native_iterations": 1616
+              }
+            }
+          }
+        },
+        {
+          "n": 64001,
+          "threshold_monopoly": 0.645742330709805,
+          "threshold_competition": 0.6457998733835751,
+          "monopoly_policy": {
+            "roots": [
+              0.645742330709805,
+              0.9046069006040246
+            ],
+            "products": [
+              1,
+              2,
+              1
+            ],
+            "root_kinds": [
+              "repelling",
+              "crossing"
+            ],
+            "intervals": [
+              {
+                "lo": 0.0,
+                "hi": 0.645742330709805,
+                "product": 1
+              },
+              {
+                "lo": 0.645742330709805,
+                "hi": 0.9046069006040246,
+                "product": 2
+              },
+              {
+                "lo": 0.9046069006040246,
+                "hi": 1.0,
+                "product": 1
+              }
+            ],
+            "holding_points": []
+          },
+          "competition_policy": {
+            "roots": [
+              0.6457998733835751,
+              0.9046061798716745
+            ],
+            "products": [
+              1,
+              2,
+              1
+            ],
+            "root_kinds": [
+              "repelling",
+              "crossing"
+            ],
+            "intervals": [
+              {
+                "lo": 0.0,
+                "hi": 0.6457998733835751,
+                "product": 1
+              },
+              {
+                "lo": 0.6457998733835751,
+                "hi": 0.9046061798716745,
+                "product": 2
+              },
+              {
+                "lo": 0.9046061798716745,
+                "hi": 1.0,
+                "product": 1
+              }
+            ],
+            "holding_points": []
+          },
+          "diagnostics": {
+            "n": 64001,
+            "h": 1.5625e-05,
+            "order": 128,
+            "conjecture": 0.35,
+            "hjb_residual_monopoly": 2.9971650161719765e-12,
+            "hjb_residual_competition": 2.7398083801699613e-12,
+            "demand_seconds": 16.90836532100002,
+            "max_demand_reduction": 4.6771235502618413e-05,
+            "quadrature_checked": false,
+            "warm_start": true,
+            "iterations_monopoly": 2,
+            "iterations_competition": 2,
+            "interval_width": 5.754267377011679e-05,
+            "elapsed_seconds": 16.927626541997597
+          }
+        },
+        {
+          "n": 128001,
+          "threshold_monopoly": 0.6457432249010886,
+          "threshold_competition": 0.6457997082586775,
+          "monopoly_policy": {
+            "roots": [
+              0.6457432249010886,
+              0.9046013689269914
+            ],
+            "products": [
+              1,
+              2,
+              1
+            ],
+            "root_kinds": [
+              "repelling",
+              "crossing"
+            ],
+            "intervals": [
+              {
+                "lo": 0.0,
+                "hi": 0.6457432249010886,
+                "product": 1
+              },
+              {
+                "lo": 0.6457432249010886,
+                "hi": 0.9046013689269914,
+                "product": 2
+              },
+              {
+                "lo": 0.9046013689269914,
+                "hi": 1.0,
+                "product": 1
+              }
+            ],
+            "holding_points": []
+          },
+          "competition_policy": {
+            "roots": [
+              0.6457997082586775,
+              0.9046010445768483
+            ],
+            "products": [
+              1,
+              2,
+              1
+            ],
+            "root_kinds": [
+              "repelling",
+              "crossing"
+            ],
+            "intervals": [
+              {
+                "lo": 0.0,
+                "hi": 0.6457997082586775,
+                "product": 1
+              },
+              {
+                "lo": 0.6457997082586775,
+                "hi": 0.9046010445768483,
+                "product": 2
+              },
+              {
+                "lo": 0.9046010445768483,
+                "hi": 1.0,
+                "product": 1
+              }
+            ],
+            "holding_points": []
+          },
+          "diagnostics": {
+            "n": 128001,
+            "h": 7.8125e-06,
+            "order": 128,
+            "conjecture": 0.35,
+            "hjb_residual_monopoly": 5.734121510947432e-12,
+            "hjb_residual_competition": 5.690281579262546e-12,
+            "demand_seconds": 33.215272344998084,
+            "max_demand_reduction": 4.6771235502618413e-05,
+            "quadrature_checked": true,
+            "warm_start": true,
+            "iterations_monopoly": 2,
+            "iterations_competition": 2,
+            "interval_width": 5.6483357588899e-05,
+            "quadrature_check_states": 261,
+            "quadrature_check_order": 256,
+            "quadrature_max_absolute_difference": 5.551115123125783e-17,
+            "quadrature_max_relative_difference": 7.219585558499001e-15,
+            "elapsed_seconds": 33.53868077899824
+          }
+        }
+      ],
+      "historical_n4001_validation": {
+        "monopoly_error": 0.0,
+        "competition_error": 0.0,
+        "demand_max_absolute_error": 0.0,
+        "demand_validation": "prior independent full comparison against original FixedRivalDemand n4001 was elementwise identical"
+      },
+      "finest_three_intersection": {
+        "lo": 0.6457437509275185,
+        "hi": 0.6457987178648534,
+        "lo_included": false,
+        "hi_included": true,
+        "width": 5.496693733497704e-05,
+        "example": 0.6457712343961859,
+        "min_margin": 2.748346866748852e-05,
+        "grids": [
+          32001,
+          64001,
+          128001
+        ]
+      }
+    }
+  ],
+  "complete": true
+}

@@ -1,0 +1,433 @@
+{
+  "configuration": {
+    "seller": {
+      "p0": 0.5,
+      "p1": 0.35,
+      "p2": 0.8,
+      "c1": 0.05,
+      "c2": 0.65,
+      "revenue": 1.0,
+      "gamma": 0.98
+    },
+    "rho_values": [
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9,
+      0.95,
+      0.99
+    ],
+    "additional_interaction_rhos": [
+      0.97,
+      0.999
+    ],
+    "p0_values": [
+      0.1,
+      0.3,
+      0.5,
+      0.7,
+      0.9
+    ],
+    "mapping": "round-half-up of 1/(1-rho); match total mature evidence",
+    "solver": {
+      "exact_max_n": 20,
+      "tolerance": 1e-10,
+      "action_tolerance": 1e-08,
+      "large_prefix": {
+        "33": 10,
+        "100": 12,
+        "1000": 6
+      },
+      "refinement_prefix": {
+        "33": 8,
+        "100": 10,
+        "1000": 4
+      }
+    },
+    "calendar": {
+      "n_paths": 20000,
+      "max_periods": 3000,
+      "seed": 20260809,
+      "bin_width": 25,
+      "confidence_level": 0.95
+    },
+    "interaction": {
+      "paths": 20,
+      "interactions": 20000,
+      "seed": 4298606458669971020,
+      "cases": [
+        [
+          0.5,
+          1
+        ],
+        [
+          0.5,
+          2
+        ],
+        [
+          0.5,
+          3
+        ],
+        [
+          0.5,
+          5
+        ],
+        [
+          0.5,
+          10
+        ],
+        [
+          0.5,
+          20
+        ],
+        [
+          0.5,
+          100
+        ],
+        [
+          0.5,
+          1000
+        ],
+        [
+          0.1,
+          20
+        ],
+        [
+          0.1,
+          33
+        ],
+        [
+          0.1,
+          100
+        ]
+      ]
+    },
+    "long_interaction": {
+      "p0": 0.5,
+      "n": 20,
+      "paths": 100,
+      "interactions": 200000,
+      "burn_in": 20000,
+      "block_size": 10000,
+      "seed": 20260809
+    }
+  },
+  "stage": "figures",
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "numpy": "2.4.6",
+  "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+  "source_sha256": {
+    "code/__init__.py": "31ca6112dca135d7bcdba1ac3b9fca7b50052df1aa8b22ab86767e8e34be208f",
+    "code/audit_outputs.py": "6488626e2aed68c106eac3aaa2b47bbb0a846420f65f911d29f4b96389acf16a",
+    "code/figures.py": "d1afd6c01fe0552a823f73fc014a939e4f2d5f33bac33053dcd18d5ee9f59b13",
+    "code/large_window.py": "7fd263c667674762748929e6dbe68bbac405395a1cd8eeb7a7be7c57b3a07f71",
+    "code/model.py": "094da6a8cb7c482cc2060f24601f7a55bca8c1dc674fd9335f165b7672c6a67b",
+    "code/refinement.py": "a8b57dca039c174d008f0a4c2614ef51de628f285b9a35d33da639e5e16635cf",
+    "code/run_experiment.py": "7df9af6b232a7dd453b0e22c978fa94705495bc341f09a1de623433acd04f87c",
+    "code/simulation.py": "1b28599416b47ae67887c5ca58ef1752f0905bf8900882003ad022cbbe14bc56",
+    "code/summarize.py": "8f860af3a10f53d5d03860de969d5633e6a5a05424dfe467835bb31df61208a4",
+    "code/test_large_window.py": "22b446f48de5115c6cb0f3f7313576a5d0beb26b6bfcbbb145dc6a92efc84b3c",
+    "code/test_model.py": "5a68ed4b47c9e2fbd05d3c4ff6caa6ad86284b108c3e0ff35680fdec22127311",
+    "code/test_simulation.py": "a6bc4f99c726c4c5082475f5c88da282005276e2306463e1a7a92d2fb8ad282e",
+    "../forgetting/Code/model.py": "8b1f948f1d9009a021d1836b4f683f6224c65f724677bce591218a930cd28f7d",
+    "code/config.json": "5a7946b793b2c9081a446ff6044d165111c50afe6b64649cd3007956a5015917"
+  },
+  "policy_cases": [
+    [
+      0.1,
+      1
+    ],
+    [
+      0.1,
+      2
+    ],
+    [
+      0.1,
+      3
+    ],
+    [
+      0.1,
+      5
+    ],
+    [
+      0.1,
+      10
+    ],
+    [
+      0.1,
+      20
+    ],
+    [
+      0.1,
+      33
+    ],
+    [
+      0.1,
+      100
+    ],
+    [
+      0.3,
+      1
+    ],
+    [
+      0.3,
+      2
+    ],
+    [
+      0.3,
+      3
+    ],
+    [
+      0.3,
+      5
+    ],
+    [
+      0.3,
+      10
+    ],
+    [
+      0.3,
+      20
+    ],
+    [
+      0.3,
+      100
+    ],
+    [
+      0.5,
+      1
+    ],
+    [
+      0.5,
+      2
+    ],
+    [
+      0.5,
+      3
+    ],
+    [
+      0.5,
+      5
+    ],
+    [
+      0.5,
+      10
+    ],
+    [
+      0.5,
+      20
+    ],
+    [
+      0.5,
+      100
+    ],
+    [
+      0.5,
+      1000
+    ],
+    [
+      0.7,
+      1
+    ],
+    [
+      0.7,
+      2
+    ],
+    [
+      0.7,
+      3
+    ],
+    [
+      0.7,
+      5
+    ],
+    [
+      0.7,
+      10
+    ],
+    [
+      0.7,
+      20
+    ],
+    [
+      0.7,
+      100
+    ],
+    [
+      0.9,
+      1
+    ],
+    [
+      0.9,
+      2
+    ],
+    [
+      0.9,
+      3
+    ],
+    [
+      0.9,
+      5
+    ],
+    [
+      0.9,
+      10
+    ],
+    [
+      0.9,
+      20
+    ],
+    [
+      0.9,
+      100
+    ]
+  ],
+  "calendar_cases": [
+    [
+      0.1,
+      1
+    ],
+    [
+      0.1,
+      2
+    ],
+    [
+      0.1,
+      3
+    ],
+    [
+      0.1,
+      5
+    ],
+    [
+      0.1,
+      10
+    ],
+    [
+      0.1,
+      20
+    ],
+    [
+      0.1,
+      100
+    ],
+    [
+      0.3,
+      1
+    ],
+    [
+      0.3,
+      2
+    ],
+    [
+      0.3,
+      3
+    ],
+    [
+      0.3,
+      5
+    ],
+    [
+      0.3,
+      10
+    ],
+    [
+      0.3,
+      20
+    ],
+    [
+      0.3,
+      100
+    ],
+    [
+      0.5,
+      1
+    ],
+    [
+      0.5,
+      2
+    ],
+    [
+      0.5,
+      3
+    ],
+    [
+      0.5,
+      5
+    ],
+    [
+      0.5,
+      10
+    ],
+    [
+      0.5,
+      20
+    ],
+    [
+      0.5,
+      100
+    ],
+    [
+      0.7,
+      1
+    ],
+    [
+      0.7,
+      2
+    ],
+    [
+      0.7,
+      3
+    ],
+    [
+      0.7,
+      5
+    ],
+    [
+      0.7,
+      10
+    ],
+    [
+      0.7,
+      20
+    ],
+    [
+      0.7,
+      100
+    ],
+    [
+      0.9,
+      1
+    ],
+    [
+      0.9,
+      2
+    ],
+    [
+      0.9,
+      3
+    ],
+    [
+      0.9,
+      5
+    ],
+    [
+      0.9,
+      10
+    ],
+    [
+      0.9,
+      20
+    ],
+    [
+      0.9,
+      100
+    ]
+  ],
+  "note": "n<=20 exhaustive FIFO; larger n approximate planning with actual FIFO execution and explicit error diagnostics"
+}

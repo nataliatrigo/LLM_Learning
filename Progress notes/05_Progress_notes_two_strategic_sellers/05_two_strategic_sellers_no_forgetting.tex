@@ -1,0 +1,580 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Pb}{\mathbb P}
+\newcommand{\Ind}[1]{\mathbf 1\{#1\}}
+\newcommand{\Bfun}{\mathcal B}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\allowdisplaybreaks[1]
+\title{Two Strategic Sellers without Forgetting}
+\author{Analytical progress note}
+\date{October 3, 2026}
+
+\begin{document}
+\maketitle
+
+This note extends the paper's cumulative-learning model by replacing the
+known outside option with a second long-lived strategic seller. It derives
+customer demand, state transitions, policy evaluation, best responses, and
+the equilibrium product-choice conditions. A finite-horizon benchmark is
+specified analytically; no numerical experiments are undertaken.
+
+\paragraph{Notation.}
+We retain the paper's $p_i,c_i,R,\gamma$, its selection, product, and outcome
+variables $y_t,i_t,u_t$, and its discounted continuation gap $G$.
+Following the previous progress notes, $U$ denotes a value under a fixed
+policy and $V$ an optimized value. Thus $U_j^\sigma$ will evaluate a fixed
+policy pair, whereas $V_j^{\sigma_{-j}}$ will denote a best-response value.
+The pointwise product-choice gain is $a_j$, extending $a_\rho$ in the
+previous notes. The symbol $\pi_t^j$ remains period profit; a deterministic
+product rule will be denoted by $i_j^H$ in the finite-horizon benchmark.
+Seller subscripts distinguish the two copies of the original objects.
+
+\section{Environment and information}
+
+There is one customer and two long-lived strategic sellers, $A$ and $B$.
+They have the same products and discount factor:
+\begin{equation}\label{eq:primitives}
+0<p_1<p_2\leq1,\qquad 0\leq c_1<c_2<R,\qquad \gamma\in(0,1).
+\end{equation}
+Product $i\in\{1,2\}$ costs $c_i$ and generates success with actual
+probability $p_i$. The selected seller receives revenue $R$ and incurs
+the cost of its chosen product, regardless of the realized outcome.
+The unselected seller receives zero and incurs no product cost.
+
+As in the paper, $y_t\in\{A,B\}$ is the seller selected in period $t$,
+$i_t\in\{1,2\}$ is that seller's hidden product choice, and
+$u_t\in\{0,1\}$ is the outcome, with $u_t=1$ representing success.
+Periods are indexed by $t=1,2,\ldots$. Seller $j$'s period profit is
+\begin{equation}\label{eq:profit}
+\pi_t^j=\Ind{y_t=j}(R-c_{i_t}),\qquad j\in\{A,B\},
+\end{equation}
+where $\Ind{\cdot}$ is the indicator of an event. There is only one
+realized product choice $i_t$ in each period.
+
+Both sellers observe the customer's selections and the outcomes generated
+by either seller. They know the primitives and correctly anticipate each
+other's equilibrium policy functions. Product choice is private, but the
+joint observation state is public to both sellers.
+
+The customer observes outcomes and their source, but does not observe the
+selected seller's product choice. She follows a specified learning and
+choice rule: separately for each seller $j$, she treats outcomes as if
+they were independent Bernoulli observations with a fixed unknown success
+probability $\theta_j$. This is her statistical representation of that
+seller's perceived performance or reputation. It is not a claim that the
+seller's actual success probability is constant under its strategy.
+She does not infer the sellers' strategies or reconstruct hidden product
+choices from equilibrium behavior.
+
+\section{Timing, state, and customer beliefs}
+
+\subsection{Timing within a period}
+
+The order of events is as follows.
+\begin{enumerate}
+\item The customer independently draws one sample from her current belief
+about each seller.
+\item She selects the seller with the higher sample.
+\item Only the selected seller privately chooses product $1$ or $2$.
+\item An outcome is generated with the chosen product's actual success
+probability:
+\begin{equation}\label{eq:actual-outcome}
+\Pb(u_t=1\mid y_t=j,i_t=i,\text{past observations})=p_i.
+\end{equation}
+\item The selected seller's success or failure count increases by one.
+\end{enumerate}
+The customer's samples determine selection only. They are not the
+probabilities used to generate $u_t$. In particular, sellers do not pay
+for a product before the customer chooses a seller.
+
+\subsection{Cumulative counts and perceived parameters}
+
+For seller $j$, let $S_{j,t}$ and $F_{j,t}$ count the successes and
+failures observed before period $t$:
+\begin{equation}\label{eq:counts}
+S_{j,t}=\sum_{\tau=1}^{t-1}\Ind{y_\tau=j,u_\tau=1},
+\qquad
+F_{j,t}=\sum_{\tau=1}^{t-1}\Ind{y_\tau=j,u_\tau=0}.
+\end{equation}
+At a generic decision state, suppress the time index and write
+\begin{equation}\label{eq:state}
+z=(S_A,F_A,S_B,F_B)\in\mathbb N_0^4,
+\qquad z_0=(0,0,0,0),
+\end{equation}
+where $\mathbb N_0$ is the set of nonnegative integers and $z_0$ denotes
+the zero-count initial condition. These are ordinary cumulative counts:
+there is no forgetting, normalization, or reduction to posterior means.
+
+Starting from independent $\operatorname{Beta}(1,1)$ priors, the customer
+maintains independent belief distributions
+\begin{equation}\label{eq:beliefs}
+\theta_A\mid z\sim\operatorname{Beta}(1+S_A,1+F_A),\qquad
+\theta_B\mid z\sim\operatorname{Beta}(1+S_B,1+F_B).
+\end{equation}
+Indeed, in her representation the likelihood for seller $j$ is
+proportional to $\theta_j^{S_j}(1-\theta_j)^{F_j}$; multiplying by its
+uniform prior and normalizing gives \eqref{eq:beliefs}. Each new outcome
+updates only the belief associated with its source. The perceived
+parameters $\theta_j$ and the actual product probabilities $p_i$ have
+different roles and must not be identified.
+
+\section{Thompson-sampling demand}
+
+Let $\widetilde\theta_A$ and $\widetilde\theta_B$ be the independent
+samples from \eqref{eq:beliefs}. Extending the paper's demand notation,
+\begin{equation}\label{eq:demand-definition}
+D_A(z)=\Pb(\widetilde\theta_A>\widetilde\theta_B\mid z),
+\qquad D_B(z)=1-D_A(z).
+\end{equation}
+At every finite state both Beta distributions are continuous, so a tie
+has probability zero. Both selection probabilities are strictly between
+zero and one because the belief densities are positive on $(0,1)$.
+
+For $x\in(0,1)$, define seller $j$'s belief density and cumulative
+distribution function by
+\begin{equation}\label{eq:density-cdf}
+f_j(x\mid z)=\frac{x^{S_j}(1-x)^{F_j}}{\Bfun(1+S_j,1+F_j)},
+\qquad H_j(x\mid z)=\int_0^x f_j(b\mid z)\,db.
+\end{equation}
+Here $\Bfun(\alpha,\beta)=\int_0^1 x^{\alpha-1}(1-x)^{\beta-1}\,dx$
+is the Beta function, for positive parameters $\alpha,\beta$.
+The letter $H$ for the CDF keeps $F_j$ reserved for failure counts.
+
+Condition first on $A$'s sample being $a$. Independence makes the
+conditional chance that $B$'s sample is smaller equal to $H_B(a\mid z)$.
+Integrating over $A$'s sample gives
+\begin{equation}\label{eq:demand-integral}
+\begin{aligned}
+D_A(z)
+&=\int_0^1\Pb(\widetilde\theta_B<a\mid z)f_A(a\mid z)\,da\\
+&=\int_0^1 f_A(a\mid z)H_B(a\mid z)\,da\\
+&=\int_0^1\int_0^a f_A(a\mid z)f_B(b\mid z)\,db\,da.
+\end{aligned}
+\end{equation}
+Alternatively, conditional on $B$'s sample being $b$, $A$ wins with
+probability $1-H_A(b\mid z)$. Thus the equivalent expression is
+\begin{equation}\label{eq:demand-condition-b}
+D_A(z)=\int_0^1 f_B(b\mid z)[1-H_A(b\mid z)]\,db.
+\end{equation}
+
+\paragraph{Three elementary checks.}
+At the initial state both beliefs are uniform. After one success for $A$,
+its density is $2a$; after one failure it is $2(1-a)$. In all three cases
+$B$'s CDF is $H_B(a)=a$, so
+\begin{equation}\label{eq:demand-checks}
+\begin{aligned}
+D_A(0,0,0,0)&=\int_0^1 a\,da=\frac12,\\
+D_A(1,0,0,0)&=\int_0^1 2a^2\,da=\frac23,\\
+D_A(0,1,0,0)&=\int_0^1 2(1-a)a\,da=\frac13.
+\end{aligned}
+\end{equation}
+These are direct integral calculations, independent of any seller policy.
+
+\paragraph{Comparison with the known outside option.}
+$B$'s posterior mean is
+$\E[\theta_B\mid z]=(1+S_B)/(2+S_B+F_B)$, where $\E$ denotes
+expectation. Replacing the paper's known $p_0$ by this mean would give
+$1-H_A(\E[\theta_B\mid z]\mid z)$. Actual demand in
+\eqref{eq:demand-condition-b} is instead the average of
+$1-H_A(b\mid z)$ over $B$'s entire belief distribution. These operations
+are generally different.
+
+For example, at $z=(2,0,0,0)$, $A$ has a $\operatorname{Beta}(3,1)$
+belief and $B$ a uniform belief. Exactly,
+\begin{equation*}
+D_A(2,0,0,0)=\int_0^1 3a^3\,da=\frac34,
+\qquad
+1-H_A(1/2\mid z)=1-(1/2)^3=\frac78.
+\end{equation*}
+Thus even this simple state rules out substitution of the posterior mean.
+If $B$'s belief were instead concentrated at a known $p_0$, its draw would
+equal $p_0$ with probability one, and the comparison would reduce to
+\begin{equation}\label{eq:outside-demand}
+\Pb(\widetilde\theta_A>p_0\mid z)
+=\int_{p_0}^1 f_A(a\mid z)\,da=D(S_A,F_A),
+\end{equation}
+the paper's original demand. This recovers the demand comparison; the
+two-seller game has a different continuation structure.
+
+At a given state, demand is determined by the customer's two belief
+distributions, not directly by the sellers' current product policies.
+Product choice takes place after selection and is hidden. Policies affect
+future demand through the outcomes they generate and the resulting counts.
+
+\section{State transitions and calendar time}
+
+The superscripts $s$ and $f$ denote success and failure. The four possible
+state updates are
+\begin{equation}\label{eq:transitions}
+\begin{aligned}
+T_A^s z&=(S_A+1,F_A,S_B,F_B),\\
+T_A^f z&=(S_A,F_A+1,S_B,F_B),\\
+T_B^s z&=(S_A,F_A,S_B+1,F_B),\\
+T_B^f z&=(S_A,F_A,S_B,F_B+1).
+\end{aligned}
+\end{equation}
+Define the total number of observations and the individual counts by
+\begin{equation}\label{eq:layers}
+n(z)=S_A+F_A+S_B+F_B,\qquad n_j(z)=S_j+F_j.
+\end{equation}
+For every $j\in\{A,B\}$ and $o\in\{s,f\}$,
+\begin{equation}\label{eq:layer-increment}
+n(T_j^o z)=n(z)+1.
+\end{equation}
+Starting from $z_0$, exactly one seller is selected and one outcome is
+observed each period. Hence $n$ counts completed calendar periods: before
+period $t$, $n=t-1$. In contrast, $n_j$ counts only periods in which
+seller $j$ was selected. A large $n=n_A+n_B$ need not imply that both
+individual counts are large.
+
+When $B$ is selected, $A$'s own counts stay fixed, but the joint state
+changes to $T_B^s z$ or $T_B^f z$. These changes can affect both future
+demand and both sellers' subsequent product choices. Therefore $A$'s
+unselected branch cannot be written as $\gamma D_B(z)V_A(z)$.
+There is no unchanged-joint-state continuation term. The original
+outside-option denominator $1-\gamma[1-D(S,F)]$ came from rearranging
+such a self-loop and has no corresponding justification here.
+
+\section{Policies and fixed-policy evaluation}
+
+\subsection{Product policies and actual outcome probabilities}
+
+A stationary Markov product policy for seller $j$ is a function
+$\sigma_j:\mathbb N_0^4\to[0,1]$, with
+\begin{equation}\label{eq:policy}
+\sigma_j(z)=\Pb(i_t=2\mid y_t=j,z).
+\end{equation}
+This probability is the seller's endogenous product policy, conditional
+on being selected. It is neither demand nor a customer belief.
+A deterministic policy is the special case $\sigma_j(z)\in\{0,1\}$
+at every state; it need not prescribe the same product at different states.
+
+Under this policy, the actual success probability conditional on selection
+and the expected product cost are respectively
+\begin{equation}\label{eq:policy-outcomes}
+\begin{aligned}
+q_j(z)&=(1-\sigma_j(z))p_1+\sigma_j(z)p_2
+       =p_1+\sigma_j(z)(p_2-p_1),\\
+\bar c_j(z)&=(1-\sigma_j(z))c_1+\sigma_j(z)c_2
+       =c_1+\sigma_j(z)(c_2-c_1).
+\end{aligned}
+\end{equation}
+These are averages over the selected seller's product randomization.
+Conditional on its realized product $i$, success still occurs with
+probability $p_i$. In particular, $q_j(z)$ is not $\theta_j$, a Thompson
+sample, or a posterior mean.
+
+Let $\sigma=(\sigma_A,\sigma_B)$ be a fixed pair of policies. The
+transition probabilities before customer selection are
+\begin{equation}\label{eq:transition-probabilities}
+\Pb(z'=T_k^s z\mid z,\sigma)=D_k(z)q_k(z),\qquad
+\Pb(z'=T_k^f z\mid z,\sigma)=D_k(z)[1-q_k(z)],
+\end{equation}
+for $k\in\{A,B\}$, where $z'$ is next period's state. The four
+probabilities sum to $D_A(z)+D_B(z)=1$.
+
+\subsection{Discounted profits and the evaluation equation}
+
+For each $j\in\{A,B\}$, the objective is to maximize
+\begin{equation}\label{eq:objective}
+\E\left[\sum_{t=1}^{\infty}\gamma^{t-1}
+\Ind{y_t=j}(R-c_{i_t})\right]
+\end{equation}
+by choosing its own product strategy, taking the customer's rule and
+the other seller's strategy as given. Discounting is by calendar period,
+including periods when the other seller serves the customer.
+
+For a fixed pair $\sigma$, define its evaluation value before customer
+selection by
+\begin{equation}\label{eq:fixed-value}
+U_j^\sigma(z)=\E_z^\sigma\left[
+\sum_{t=1}^{\infty}\gamma^{t-1}\Ind{y_t=j}(R-c_{i_t})\right].
+\end{equation}
+The subscript $z$ starts the continuation problem at state $z$; the
+superscript specifies that both policies are followed thereafter.
+The expectation averages over customer samples, product randomization,
+and actual outcomes. Since period profit lies between zero and $R-c_1$,
+\begin{equation}\label{eq:value-bound}
+0\leq U_j^\sigma(z)\leq\frac{R-c_1}{1-\gamma}.
+\end{equation}
+
+Separating current profit from next period's value and conditioning on
+the selected seller gives
+\begin{equation}\label{eq:policy-evaluation}
+\boxed{\begin{aligned}
+U_j^\sigma(z)={}&D_j(z)[R-\bar c_j(z)]\\
+&+\gamma\sum_{k\in\{A,B\}}D_k(z)
+\left[q_k(z)U_j^\sigma(T_k^s z)
++(1-q_k(z))U_j^\sigma(T_k^f z)\right].
+\end{aligned}}
+\end{equation}
+If $j$ is selected, it earns its expected current margin and continues
+after an update to its own counts. If the other seller is selected,
+$j$ earns zero now, but its continuation value changes with that
+seller's outcome. Both branches are discounted by $\gamma$ because
+both consume one calendar period. In every continuation term the value
+belongs to seller $j$, even when the outcome comes from seller $k\ne j$.
+
+\section{Best responses and equilibrium product choice}
+
+\subsection{Best response to a fixed opposing policy}
+
+Hold $B$'s entire function $\sigma_B$ fixed. Write $V_A^{\sigma_B}(z)$
+for $A$'s optimal value before selection when it can choose its product
+strategy at every future opportunity. In contrast to $U_A^\sigma$,
+this value optimizes $A$'s policy. Formally,
+\begin{equation}\label{eq:best-response-value}
+V_j^{\sigma_{-j}}(z)=\sup_{\tau_j}
+\E_z^{\tau_j,\sigma_{-j}}\left[
+\sum_{t=1}^{\infty}\gamma^{t-1}\Ind{y_t=j}(R-c_{i_t})\right],
+\end{equation}
+where $-j$ denotes the other seller and $\tau_j$ ranges over admissible
+product strategies for $j$, including history-dependent deviations.
+With the opposing Markov policy fixed, the public state contains all
+information relevant to rewards and future transitions, so the
+best-response problem admits the following Markov Bellman formulation.
+
+If $A$ is selected, it compares its two current products using its own
+optimal continuation value. If $B$ is selected, $B$ uses the fixed
+$\sigma_B(z)$, with success probability $q_B(z)$. Consequently,
+\begin{equation}\label{eq:br-a}
+\begin{aligned}
+V_A^{\sigma_B}(z)={}&D_A(z)\max_{i\in\{1,2\}}
+\Bigl\{R-c_i+\gamma\bigl[p_iV_A^{\sigma_B}(T_A^s z)
++(1-p_i)V_A^{\sigma_B}(T_A^f z)\bigr]\Bigr\}\\
+&+\gamma D_B(z)\bigl[q_B(z)V_A^{\sigma_B}(T_B^s z)
++(1-q_B(z))V_A^{\sigma_B}(T_B^f z)\bigr].
+\end{aligned}
+\end{equation}
+Analogously, holding $\sigma_A$ fixed gives
+\begin{equation}\label{eq:br-b}
+\begin{aligned}
+V_B^{\sigma_A}(z)={}&D_B(z)\max_{i\in\{1,2\}}
+\Bigl\{R-c_i+\gamma\bigl[p_iV_B^{\sigma_A}(T_B^s z)
++(1-p_i)V_B^{\sigma_A}(T_B^f z)\bigr]\Bigr\}\\
+&+\gamma D_A(z)\bigl[q_A(z)V_B^{\sigma_A}(T_A^s z)
++(1-q_A(z))V_B^{\sigma_A}(T_A^f z)\bigr].
+\end{aligned}
+\end{equation}
+The maximum is inside the selected seller's branch because product
+choice occurs only after selection. Randomizing cannot improve on the
+larger of the two conditional values; it is optimal only at a tie.
+
+When $A$ deviates, the function $\sigma_B$ remains fixed, but $B$ applies
+it to whichever states the deviation generates. For example,
+$\sigma_B(T_A^s z)$ and $\sigma_B(T_A^f z)$ can differ. Neither $B$'s
+realized future products nor the future state trajectory is frozen.
+
+For a fixed opposing policy, let $\mathcal T_j^{\sigma_{-j}}$ denote
+the Bellman operator on the right-hand side of the corresponding
+equation. For any bounded functions $v,w$, let
+$\|v-w\|_\infty=\sup_z|v(z)-w(z)|$. Probability weights sum to one,
+and taking a maximum cannot increase the largest difference between
+the two product values, so
+\begin{equation}\label{eq:contraction}
+\|\mathcal T_j^{\sigma_{-j}}v-\mathcal T_j^{\sigma_{-j}}w\|_\infty
+\leq\gamma\|v-w\|_\infty.
+\end{equation}
+The bounded-function space is complete, hence this contraction gives
+a unique bounded best-response value for each fixed opposing policy.
+The finite product set permits a maximizing stationary selector.
+The same probability argument gives a unique bounded evaluation value
+for each fixed pair in \eqref{eq:policy-evaluation}. These statements
+do not imply uniqueness of optimal products at ties or uniqueness of
+the coupled game equilibrium.
+
+\subsection{The future value difference and product choice}
+
+For a candidate equilibrium pair $\sigma$, abbreviate its evaluated
+values as $V_j=U_j^\sigma$; optimality of these candidate values will
+be imposed below. As in the paper, define
+\begin{equation}\label{eq:increments}
+\Delta p=p_2-p_1>0,\qquad \Delta c=c_2-c_1>0.
+\end{equation}
+Conditional on seller $j$ being selected, choosing product $i$ now and
+following the candidate policies thereafter has value
+\begin{equation}\label{eq:conditional-q}
+Q_j^i(z)=R-c_i+\gamma\left[
+p_iV_j(T_j^s z)+(1-p_i)V_j(T_j^f z)\right].
+\end{equation}
+The conditional gain $a_j(z)$ from product $2$ rather than product $1$
+is obtained by explicit subtraction:
+\begin{equation}\label{eq:gain}
+\begin{aligned}
+a_j(z)&=Q_j^2(z)-Q_j^1(z)\\
+&=\left\{R-c_2+\gamma[p_2V_j(T_j^s z)+(1-p_2)V_j(T_j^f z)]\right\}\\
+&\quad-\left\{R-c_1+\gamma[p_1V_j(T_j^s z)+(1-p_1)V_j(T_j^f z)]\right\}\\
+&=-(c_2-c_1)+\gamma\left[(p_2-p_1)V_j(T_j^s z)
++(p_1-p_2)V_j(T_j^f z)\right]\\
+&=-\Delta c+\gamma\Delta p
+\left[V_j(T_j^s z)-V_j(T_j^f z)\right].
+\end{aligned}
+\end{equation}
+Product $2$ sacrifices $\Delta c$ in current margin and shifts
+probability $\Delta p$ from the failure successor to the success
+successor. The bracket is the future value difference for seller $j$.
+Retaining the paper's discounting convention, its continuation gap is
+\begin{equation}\label{eq:gap}
+G_j(z)=\gamma\left[V_j(T_j^s z)-V_j(T_j^f z)\right],
+\qquad a_j(z)=-\Delta c+\Delta p\,G_j(z).
+\end{equation}
+Both continuation values allow the two sellers to respond to the new
+joint state. The formula by itself establishes neither a sign nor a
+monotonicity property for this future value difference.
+
+To see the cancellation before selection explicitly, define $C_j(z)$
+as seller $j$'s discounted continuation contribution when the other
+seller is selected:
+\begin{equation*}
+C_j(z)=\gamma D_{-j}(z)\left[
+q_{-j}(z)V_j(T_{-j}^s z)+(1-q_{-j}(z))V_j(T_{-j}^f z)\right].
+\end{equation*}
+The two before-selection values for a one-period product deviation
+differ by
+\begin{equation}\label{eq:unselected-cancellation}
+\bigl[D_j(z)Q_j^2(z)+C_j(z)\bigr]
+-\bigl[D_j(z)Q_j^1(z)+C_j(z)\bigr]=D_j(z)a_j(z).
+\end{equation}
+The unselected branch cancels because seller $j$ makes no product
+choice in that branch. Current demand is identical under the two
+choices because selection precedes the hidden product choice. Since
+$D_j(z)>0$, the conditional and before-selection gains have the same
+sign. Demand still matters for the levels of all continuation values.
+
+\subsection{Stationary Markov perfect equilibrium}
+
+A stationary Markov perfect equilibrium is a policy pair
+$\sigma=(\sigma_A,\sigma_B)$ that is mutually optimal at every state:
+each seller's policy is a best response to the other's entire policy
+function, including at states off the equilibrium path. Equivalently,
+\begin{equation}\label{eq:mpe-values}
+U_A^\sigma(z)=V_A^{\sigma_B}(z),\qquad
+U_B^\sigma(z)=V_B^{\sigma_A}(z)\qquad\text{for every }z.
+\end{equation}
+``Stationary'' means the policy depends on the current state rather
+than separately on calendar time. It does not mean constant products,
+constant beliefs, or constant market shares. In this cumulative-count
+model the state also records elapsed time through $n(z)$.
+
+Using the evaluated candidate values in \eqref{eq:gain}, the equilibrium
+product-choice conditions for each $j\in\{A,B\}$ are
+\begin{equation}\label{eq:equilibrium-policy}
+\sigma_j(z)=
+\begin{cases}
+1,&a_j(z)>0,\\
+0,&a_j(z)<0,\\
+\text{any number in }[0,1],&a_j(z)=0.
+\end{cases}
+\end{equation}
+In the paper's terminology, product $2$ is optimal exactly when
+$G_j(z)\geq\Delta c/\Delta p$, with strict preference when the
+inequality is strict. This is a product-choice condition, not an
+assumption that the equilibrium policy has a threshold in a count or
+a posterior mean.
+
+Conditions \eqref{eq:equilibrium-policy} must hold together with
+\eqref{eq:policy-evaluation} for \emph{both} sellers at \emph{every}
+state. They are sufficient as well as necessary: if evaluation and
+the maximizing product conditions hold, each evaluated value satisfies
+its own best-response Bellman equation. Uniqueness of that fixed-
+opponent value then gives \eqref{eq:mpe-values}. At indifference,
+any mixture is locally maximizing for the given continuation values;
+changing a mixture in a policy pair still requires consistent
+reevaluation of both sellers' values.
+
+The sellers have symmetric primitives and initial beliefs, but their
+realized counts need not be equal. No equality of reputations, constant
+policy, symmetry restriction on equilibrium, or equilibrium uniqueness
+is imposed. The separate best-response contractions do not establish
+uniqueness of a mutually optimal policy pair.
+
+\section{An exact finite-horizon benchmark}
+
+For a separate finite-horizon game, let the positive integer $H$ be the
+total number of periods from $z_0$. Write $V_j^H(z)$ for seller $j$'s
+equilibrium value before selection with $H-n(z)$ periods remaining,
+discounted relative to the current period. The horizon $H$ is fixed
+throughout the recursion. Set
+\begin{equation}\label{eq:terminal}
+V_j^H(z)=0\quad\text{when }n(z)=H,\qquad j\in\{A,B\}.
+\end{equation}
+Work backwards through layers $n=H-1,H-2,\ldots,0$. At any state on
+layer $n$, all four successors lie on layer $n+1$, so both sellers'
+continuation values there are already determined.
+
+Conditional on seller $j$ being selected, define
+\begin{equation}\label{eq:finite-q}
+Q_j^{H,i}(z)=R-c_i+\gamma\left[
+p_iV_j^H(T_j^s z)+(1-p_i)V_j^H(T_j^f z)\right],
+\qquad i\in\{1,2\}.
+\end{equation}
+For $A$ and $B$ separately, choose the product rule
+\begin{equation}\label{eq:finite-policy}
+i_j^H(z)\in\argmax_{i\in\{1,2\}}Q_j^{H,i}(z),\qquad
+i_j^H(z)=1\ \text{if }Q_j^{H,1}(z)=Q_j^{H,2}(z).
+\end{equation}
+Having chosen \emph{both} products, calculate \emph{both} current
+values using those same choices:
+\begin{equation}\label{eq:finite-evaluation}
+\begin{aligned}
+V_j^H(z)={}&D_j(z)[R-c_{i_j^H(z)}]\\
+&+\gamma\sum_{k\in\{A,B\}}D_k(z)
+\left[p_{i_k^H(z)}V_j^H(T_k^s z)
++(1-p_{i_k^H(z)})V_j^H(T_k^f z)\right],
+\quad j\in\{A,B\}.
+\end{aligned}
+\end{equation}
+Thus $B$'s selected product affects $A$'s current value through the
+branch where $B$ serves the customer, and conversely for $A$'s product
+and $B$'s value. Each seller maximizes its own conditional value,
+not the other seller's or their sum.
+
+This recursion constructs a pure-strategy Markov equilibrium by backward
+induction. At the terminal layer there are no further decisions.
+Given equilibrium continuation play on the next layer, only the
+selected seller acts at the current state, and its maximizing product
+is optimal conditional on selection. The other seller has no current
+decision in that branch. Applying this argument at every state and
+layer gives sequentially optimal play throughout the finite game.
+With continuation values fixed, a generic simultaneous $2$-by-$2$
+Nash solver is therefore unnecessary. Choosing product $1$ at exact
+indifference makes the recursion definite and selects an equilibrium;
+it does not establish uniqueness of equilibrium in the game.
+
+In the final decision period, $n(z)=H-1$, both successor values in
+\eqref{eq:finite-q} vanish. Hence, for each seller,
+\begin{equation}\label{eq:final-product}
+Q_j^{H,2}(z)-Q_j^{H,1}(z)
+=(R-c_2)-(R-c_1)=-\Delta c<0.
+\end{equation}
+Both sellers therefore prescribe product $1$ whenever selected, and
+$V_j^H(z)=D_j(z)(R-c_1)$ on this layer. This is a terminal-period
+result for the finite-horizon game. It does not establish eventual
+extinction of product $2$ in the original infinite-horizon model.
+No convergence of finite-horizon equilibrium policies to a particular
+infinite-horizon equilibrium is asserted here.
+
+\section{What is established and what remains open}
+
+The belief rule and timing directly imply the demand integrals, the
+four state transitions, the fixed-policy and best-response equations,
+and the product-choice condition in terms of the future value difference.
+Backward induction gives the stated finite-horizon equilibrium and its
+final-period use of product $1$. These are analytical consequences
+of the specified model.
+
+Characterizing the infinite-horizon equilibrium policy pair, the shape
+of its product-choice regions, possible multiplicity, and long-run
+product use or market shares requires further equilibrium analysis.
+In particular, the present derivation establishes neither threshold
+policies nor extinction or persistence of product $2$. Numerical
+analysis, when undertaken separately, may investigate these questions;
+it would not by itself turn observed patterns into general results.
+
+\end{document}

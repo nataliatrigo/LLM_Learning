@@ -1,0 +1,292 @@
+<div id="fluid-forgetting-trajectory" lang="en">
+  <style>
+    #fluid-forgetting-trajectory { position: relative; color: var(--foreground, #202833); background: var(--background, #ffffff); font-family: system-ui, sans-serif; line-height: 1.45; }
+    #fluid-forgetting-trajectory .form-label { display: block; margin-bottom: 5px; }
+    #fluid-forgetting-trajectory .form-select { display: block; width: 100%; padding: 7px 9px; color: inherit; background: var(--background, #ffffff); border: 1px solid var(--border, #cbd1da); border-radius: 4px; font: inherit; }
+    #fluid-forgetting-trajectory .form-range { width: 100%; }
+    #fluid-forgetting-trajectory .btn { padding: 8px 14px; border: 1px solid var(--border, #cbd1da); border-radius: 4px; background: var(--primary, #2956a3); color: var(--primary-foreground, #ffffff); font: inherit; cursor: pointer; }
+    #fluid-forgetting-trajectory button:focus-visible, #fluid-forgetting-trajectory select:focus-visible, #fluid-forgetting-trajectory input:focus-visible { outline: 2px solid var(--ring, #2956a3); outline-offset: 3px; }
+    #fluid-forgetting-trajectory .text-small { font-size: .875rem; }
+    #fluid-forgetting-trajectory .text-muted { color: var(--muted-foreground, #596575); }
+    #fluid-forgetting-trajectory .tabular-nums { font-variant-numeric: tabular-nums; }
+    #fluid-forgetting-trajectory .ff-controls { display: flex; flex-wrap: wrap; gap: 16px; align-items: end; margin-bottom: 12px; }
+    #fluid-forgetting-trajectory .ff-time { flex: 1 1 230px; }
+    #fluid-forgetting-trajectory .ff-rho { flex: 0 1 160px; }
+    #fluid-forgetting-trajectory .ff-chart { width: 100%; min-width: 0; }
+    #fluid-forgetting-trajectory .ff-legend { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 8px 0; }
+    #fluid-forgetting-trajectory .ff-legend button { background: transparent; border: 0; padding: 4px 0; color: var(--foreground, #202833); font: inherit; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; }
+    #fluid-forgetting-trajectory .ff-legend button[aria-pressed="false"] { opacity: .45; }
+    #fluid-forgetting-trajectory .ff-swatch { display: inline-block; width: 20px; height: 3px; }
+    #fluid-forgetting-trajectory .ff-chart svg { display: block; overflow: visible; }
+    #fluid-forgetting-trajectory .ff-chart text { fill: var(--foreground, #202833); font-size: 12px; font-weight: 400; }
+    #fluid-forgetting-trajectory .ff-chart .domain, #fluid-forgetting-trajectory .ff-chart .tick line { stroke: var(--border, #cbd1da); }
+    #fluid-forgetting-trajectory .ff-tooltip { position: absolute; pointer-events: none; z-index: 2; padding: 9px 12px; background: var(--popover, #ffffff); color: var(--popover-foreground, #202833); border: 1px solid var(--border, #cbd1da); border-radius: 4px; }
+    #fluid-forgetting-trajectory .ff-tooltip table { border-collapse: collapse; }
+    #fluid-forgetting-trajectory .ff-tooltip td { padding: 2px 5px; }
+    #fluid-forgetting-trajectory .ff-tooltip td:last-child { text-align: right; }
+    #fluid-forgetting-trajectory .ff-status { margin-top: 8px; min-height: 22px; }
+    #fluid-forgetting-trajectory .ff-params { margin: 4px 0 12px; }
+  </style>
+  <h3>Fluid monopoly trajectories with forgetting</h3>
+  <div class="ff-params text-small text-muted" id="ff-params"></div>
+  <div class="ff-controls">
+    <label class="form-label ff-rho">Retention ρ
+      <select class="form-select" id="ff-rho" aria-label="Memory retention rho"></select>
+    </label>
+    <div class="ff-time">
+      <label class="form-label" for="ff-time">Calendar time: <span id="ff-time-value" class="tabular-nums"></span></label>
+      <input id="ff-time" class="form-range" type="range" min="0" max="300" step="0.5" value="300">
+    </div>
+    <button class="btn btn-primary" id="ff-play" type="button">Play</button>
+  </div>
+  <div class="ff-chart" id="ff-trajectories"></div>
+  <div class="ff-legend" id="ff-legend" aria-label="Trajectories by initial state"></div>
+  <div class="ff-chart" id="ff-phase"></div>
+  <div id="ff-status" class="ff-status text-small" aria-live="polite"></div>
+  <div class="tooltip ff-tooltip" role="tooltip" id="ff-tooltip" hidden></div>
+  <script type="application/json" id="ff-trajectory-data">__TRAJECTORY_DATA__</script>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+  <script>
+    (() => {
+      const root = document.getElementById('fluid-forgetting-trajectory');
+      const data = JSON.parse(root.querySelector('#ff-trajectory-data').textContent);
+      const parameters = data.parameters;
+      root.querySelector('#ff-params').textContent = `Mature boundary · p₀ = ${parameters.p0.toFixed(2)} · p₁ = ${parameters.p1.toFixed(2)} · p₂ = ${parameters.p2.toFixed(2)} · c₁ = ${parameters.c1.toFixed(2)} · c₂ = ${parameters.c2.toFixed(2)} · R = ${parameters.revenue.toFixed(2)} · γ = ${parameters.gamma.toFixed(2)}`;
+      const rhoInput = root.querySelector('#ff-rho');
+      const timeInput = root.querySelector('#ff-time');
+      const timeValue = root.querySelector('#ff-time-value');
+      const play = root.querySelector('#ff-play');
+      const legend = root.querySelector('#ff-legend');
+      const chart = root.querySelector('#ff-trajectories');
+      const phase = root.querySelector('#ff-phase');
+      const tooltip = root.querySelector('#ff-tooltip');
+      const status = root.querySelector('#ff-status');
+      if (typeof d3 === 'undefined') {
+        status.textContent = 'The chart could not load. Figures and data are saved in the experiment folder.';
+        status.setAttribute('role', 'alert');
+        return;
+      }
+      const palette = ['#0072b2', '#009e73', '#e69f00', '#cc79a7', '#d55e00', '#56b4e9'];
+      const colors = data.initial_states.map((_, i) => `var(--viz-series-${i % 6 + 1}, ${palette[i % palette.length]})`);
+      const hidden = new Set();
+      let current = data.cases.find(c => c.rho === 0.95) || data.cases[0];
+      let time = data.horizon;
+      let playing = false;
+      let animation = 0;
+      let lastFrame = 0;
+      let pinned = false;
+      let trajectoryScale;
+      let stateScale;
+      let chartHeight;
+      const f = d3.format('.3f');
+      const timeFormat = d3.format('.1f');
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const numericExtent = (values, fraction = .04) => {
+        const [lo, hi] = d3.extent(values);
+        const pad = Math.max(hi - lo, .01) * fraction;
+        return [lo - pad, hi + pad];
+      };
+      data.cases.forEach(c => {
+        const option = document.createElement('option');
+        option.value = String(c.rho);
+        option.textContent = c.rho.toFixed(2);
+        rhoInput.appendChild(option);
+      });
+      timeInput.max = String(data.horizon);
+      timeInput.step = String(data.times[1] - data.times[0]);
+      function restore(saved) {
+        const state = saved?.modelContent;
+        if (!state || state.experiment !== 'fluid-forgetting-trajectories') return;
+        current = data.cases.find(c => c.rho === state.rho) || current;
+        if (Number.isFinite(state.time)) time = Math.max(0, Math.min(data.horizon, state.time));
+        hidden.clear();
+        (saved.privateContent?.hidden || []).forEach(i => { if (Number.isInteger(i) && i >= 0 && i < data.initial_states.length) hidden.add(i); });
+      }
+      restore(window.openai?.widgetState);
+      function save() {
+        window.openai?.setWidgetState?.({
+          modelContent: {experiment:'fluid-forgetting-trajectories', rho:current.rho, time, initial_states:data.initial_states.filter((_, i) => !hidden.has(i)), p0:data.parameters.p0, horizon:data.horizon},
+          privateContent: {hidden:[...hidden]}
+        })?.catch(() => {});
+      }
+      const sample = (values, t) => {
+        const i = Math.min(data.times.length - 2, Math.max(0, d3.bisector(v => v).right(data.times, t) - 1));
+        const a = (t - data.times[i]) / (data.times[i + 1] - data.times[i]);
+        return values[i] + (values[i + 1] - values[i]) * a;
+      };
+      function intervalAt(x) {
+        return current.intervals.find(a => x >= a.lo && x <= a.hi) || current.intervals[current.intervals.length - 1];
+      }
+      function buildLegend() {
+        legend.replaceChildren();
+        current.paths.forEach((path, i) => {
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'cursor-interaction';
+          button.setAttribute('aria-pressed', String(!hidden.has(i)));
+          const swatch = document.createElement('span');
+          swatch.className = 'ff-swatch';
+          swatch.style.background = colors[i];
+          swatch.style.height = i % 2 ? '2px' : '3px';
+          button.append(swatch, document.createTextNode(`x(0) = ${path.x0.toFixed(1)}`));
+          button.addEventListener('click', () => {
+            hidden.has(i) ? hidden.delete(i) : hidden.add(i);
+            button.setAttribute('aria-pressed', String(!hidden.has(i)));
+            draw(); save();
+          });
+          legend.append(button);
+        });
+      }
+      function updateValues() {
+        rhoInput.value = String(current.rho);
+        timeInput.value = String(time);
+        timeValue.textContent = timeFormat(time);
+        play.textContent = playing ? 'Pause' : 'Play';
+        const holding = current.holding_points.map(p => `x* = ${f(p.x)} (mix: ${(100 * p.alpha).toFixed(1)}% product 2)`);
+        status.textContent = holding.length ? `Holding state: ${holding.join('; ')}.` : 'This policy has no holding threshold.';
+      }
+      function fitLabels(svg) {
+        const nodes = [...svg.node().querySelectorAll('.tick text, .axis-title, .ff-annotation')];
+        const boxes = nodes.map(node => ({node, box:node.getBoundingClientRect()}));
+        for (let i = 0; i < boxes.length; i++) {
+          for (let j = i + 1; j < boxes.length; j++) {
+            const a = boxes[i], b = boxes[j];
+            const overlap = a.box.left < b.box.right + 4 && a.box.right + 4 > b.box.left && a.box.top < b.box.bottom + 4 && a.box.bottom + 4 > b.box.top;
+            if (!overlap) continue;
+            if (a.node.classList.contains('ff-annotation')) a.node.style.visibility = 'hidden';
+            else if (b.node.classList.contains('ff-annotation')) b.node.style.visibility = 'hidden';
+          }
+        }
+      }
+      function hideHover() {
+        tooltip.hidden = true;
+        d3.select(chart).selectAll('[data-chart-hover-guide], [data-chart-hover-marker]').attr('visibility', 'hidden');
+      }
+      function hoverAt(t, event) {
+        const svg = d3.select(chart).select('svg');
+        const x = trajectoryScale(t);
+        svg.select('[data-chart-hover-guide]').attr('x1', x).attr('x2', x).attr('visibility', 'visible');
+        svg.selectAll('[data-chart-hover-marker]').each(function(path, i) {
+          d3.select(this).attr('cx', x).attr('cy', stateScale(sample(path.x, t))).attr('visibility', hidden.has(i) ? 'hidden' : 'visible');
+        });
+        const rows = current.paths.flatMap((path, i) => hidden.has(i) ? [] : [`<tr><td>x(0) = ${path.x0.toFixed(1)}</td><td>${f(sample(path.x, t))}</td></tr>`]).join('');
+        tooltip.innerHTML = `<div class="tabular-nums">t = ${timeFormat(t)}</div><table class="tabular-nums">${rows}</table>`;
+        tooltip.hidden = false;
+        const bounds = root.getBoundingClientRect();
+        const overlay = chart.getBoundingClientRect();
+        const px = event ? event.clientX - bounds.left : x;
+        const py = event ? event.clientY - bounds.top : overlay.top - bounds.top + chartHeight / 2;
+        tooltip.style.left = `${Math.max(0, Math.min(bounds.width - tooltip.offsetWidth, px + 12))}px`;
+        tooltip.style.top = `${Math.max(0, py - tooltip.offsetHeight - 12)}px`;
+      }
+      function drawTrajectory() {
+        chart.replaceChildren();
+        const width = Math.max(280, chart.getBoundingClientRect().width);
+        const height = width < 430 ? 310 : 340;
+        chartHeight = height;
+        const margin = {left:68, right:18, top:16, bottom:52};
+        const xs = data.times;
+        const x = d3.scaleLinear().domain(d3.extent(xs)).range([margin.left + 4, width - margin.right - 4]);
+        const y = d3.scaleLinear().domain(numericExtent(current.paths.flatMap(p => p.x).concat(current.roots, [data.parameters.p1, data.parameters.p2]))).range([height - margin.bottom - 4, margin.top + 4]);
+        trajectoryScale = x; stateScale = y;
+        const svg = d3.select(chart).append('svg').attr('viewBox', `0 0 ${width} ${height}`).attr('width', width).attr('height', height).attr('role', 'img').attr('aria-label', `State x trajectories in calendar time with rho ${current.rho}, from ${current.paths.length} initial states.`);
+        svg.append('title').text(`State trajectories, ρ = ${current.rho}`);
+        svg.append('desc').text('Curves show x(t); horizontal lines mark product switching thresholds. The time control moves along each trajectory.');
+        svg.append('rect').attr('data-chart-frame', '').attr('x', margin.left).attr('y', margin.top).attr('width', width - margin.left - margin.right).attr('height', height - margin.top - margin.bottom).attr('fill', 'none').attr('stroke', 'var(--border, #cbd1da)');
+        const ticks = width < 430 ? 4 : 6;
+        svg.append('g').attr('transform', `translate(0,${height - margin.bottom})`).call(d3.axisBottom(x).ticks(ticks).tickSizeOuter(0));
+        svg.append('g').attr('transform', `translate(${margin.left},0)`).call(d3.axisLeft(y).ticks(5).tickFormat(d3.format('.2f')).tickSizeOuter(0));
+        svg.append('text').attr('class', 'axis-title').attr('data-axis', 'x').attr('x', (margin.left + width - margin.right) / 2).attr('y', height - 10).attr('text-anchor', 'middle').text('Calendar time t');
+        svg.append('text').attr('class', 'axis-title').attr('data-axis', 'y').attr('transform', `translate(16,${(margin.top + height - margin.bottom) / 2}) rotate(-90)`).attr('text-anchor', 'middle').text('Normalized state x');
+        const clipId = 'ff-trajectory-clip';
+        svg.append('defs').append('clipPath').attr('id', clipId).append('rect').attr('x', margin.left).attr('y', margin.top).attr('width', width - margin.left - margin.right).attr('height', height - margin.top - margin.bottom);
+        const marks = svg.append('g').attr('clip-path', `url(#${clipId})`);
+        current.roots.forEach(r => {
+          marks.append('line').attr('x1', margin.left).attr('x2', width - margin.right).attr('y1', y(r)).attr('y2', y(r)).attr('stroke', 'var(--muted-foreground, #596575)').attr('stroke-dasharray', '4 5').attr('opacity', .65);
+        });
+        current.paths.forEach((path, i) => {
+          if (hidden.has(i)) return;
+          const points = xs.map((t, j) => ({t, x:path.x[j]}));
+          const line = d3.line().x(p => x(p.t)).y(p => y(p.x));
+          marks.append('path').attr('d', line(points)).attr('fill', 'none').attr('stroke', colors[i]).attr('stroke-width', 2).attr('stroke-dasharray', i % 2 ? '7 3' : null).attr('data-trajectory', i);
+          marks.append('circle').attr('cx', x(time)).attr('cy', y(sample(path.x, time))).attr('r', 4).attr('fill', colors[i]);
+        });
+        marks.append('line').attr('x1', x(time)).attr('x2', x(time)).attr('y1', margin.top).attr('y2', height - margin.bottom).attr('stroke', 'var(--foreground, #202833)').attr('opacity', .6).attr('stroke-width', 1);
+        marks.append('line').attr('data-chart-hover-guide', '').attr('y1', margin.top).attr('y2', height - margin.bottom).attr('stroke', 'var(--muted-foreground, #596575)').attr('visibility', 'hidden');
+        marks.selectAll('[data-chart-hover-marker]').data(current.paths).join('circle').attr('data-chart-hover-marker', '').attr('r', 4).attr('fill', (_, i) => colors[i]).attr('visibility', 'hidden');
+        svg.append('rect').attr('data-chart-hit', '').attr('data-chart-hover-overlay', 'cross-series').attr('x', margin.left).attr('y', margin.top).attr('width', width - margin.left - margin.right).attr('height', height - margin.top - margin.bottom).attr('fill', 'transparent')
+          .on('pointermove', function(event) { if (!pinned) hoverAt(Math.max(0, Math.min(data.horizon, x.invert(d3.pointer(event, svg.node())[0]))), event); })
+          .on('pointerleave', () => { if (!pinned) hideHover(); })
+          .on('click', function(event) { pinned = !pinned; if (pinned) hoverAt(Math.max(0, Math.min(data.horizon, x.invert(d3.pointer(event, svg.node())[0]))), event); else hideHover(); });
+        fitLabels(svg);
+      }
+      function drawPhase() {
+        phase.replaceChildren();
+        const width = Math.max(280, phase.getBoundingClientRect().width);
+        const height = 134;
+        const left = 68, right = width - 18;
+        const domain = numericExtent(current.intervals.flatMap(a => [a.lo, a.hi]).concat(current.paths.flatMap(p => p.x)), .01);
+        const scale = d3.scaleLinear().domain(domain).range([left + 6, right - 6]);
+        const svg = d3.select(phase).append('svg').attr('viewBox', `0 0 ${width} ${height}`).attr('width', width).attr('height', height).attr('role', 'img').attr('aria-label', 'Phase line: arrows show the direction of state movement and dots mark the current state.');
+        svg.append('title').text('Direction of movement in state space');
+        svg.append('text').attr('x', left).attr('y', 15).text('Direction of movement');
+        svg.append('line').attr('x1', left).attr('x2', right).attr('y1', 62).attr('y2', 62).attr('stroke', 'var(--border, #cbd1da)');
+        const critical = [...new Set([...current.intervals.flatMap(a => [a.lo, a.hi]), data.parameters.p1, data.parameters.p2])].sort((a,b) => a-b);
+        for (let j = 0; j < critical.length - 1; j++) {
+          const a = critical[j], b = critical[j + 1], mid = (a + b) / 2;
+          const product = intervalAt(mid)?.product || 1;
+          const p = product === 1 ? data.parameters.p1 : data.parameters.p2;
+          if (Math.abs(scale(b) - scale(a)) < 20 || Math.abs(p - mid) < 1e-8) continue;
+          const center = scale(mid), direction = Math.sign(p - mid);
+          const length = Math.min(12, Math.abs(scale(b) - scale(a)) / 3);
+          const tip = center + direction * length / 2;
+          svg.append('path').attr('d', `M ${center - direction * length / 2} 62 H ${tip} M ${tip - direction * 4} 58 L ${tip} 62 L ${tip - direction * 4} 66`).attr('fill', 'none').attr('stroke', 'var(--foreground, #202833)').attr('stroke-width', 1.4);
+        }
+        current.roots.forEach(r => {
+          const holding = current.holding_points.some(p => Math.abs(p.x - r) < 1e-7);
+          svg.append('line').attr('x1', scale(r)).attr('x2', scale(r)).attr('y1', 46).attr('y2', 76).attr('stroke', 'var(--muted-foreground, #596575)').attr('stroke-dasharray', holding ? null : '3 3');
+          svg.append('text').attr('class', 'ff-annotation').attr('x', scale(r)).attr('y', 38).attr('text-anchor', 'middle').text(`${holding ? 'Holding' : 'Threshold'} ${f(r)}`);
+        });
+        [data.parameters.p1, data.parameters.p2].forEach((p, i) => {
+          if (intervalAt(p)?.product !== i + 1 || current.roots.some(r => Math.abs(r - p) < 1e-7)) return;
+          svg.append('circle').attr('cx', scale(p)).attr('cy', 62).attr('r', 5).attr('fill', 'var(--background, #ffffff)').attr('stroke', 'var(--foreground, #202833)').attr('stroke-width', 1.4);
+          svg.append('text').attr('class', 'ff-annotation').attr('x', scale(p)).attr('y', 38).attr('text-anchor', 'middle').text(`Equilibrium ${f(p)}`);
+        });
+        const axis = svg.append('g').attr('transform', 'translate(0,84)').call(d3.axisBottom(scale).ticks(width < 430 ? 4 : 6).tickSizeOuter(0));
+        axis.select('.domain').remove();
+        svg.append('text').attr('class', 'axis-title').attr('data-axis', 'x').attr('x', (left + right) / 2).attr('y', 127).attr('text-anchor', 'middle').text('Normalized state x');
+        current.paths.forEach((path, i) => {
+          if (hidden.has(i)) return;
+          svg.append('circle').attr('cx', scale(sample(path.x, time))).attr('cy', 62).attr('r', 4 + (i % 2)).attr('fill', colors[i]).attr('data-tooltip', `x(0) = ${path.x0.toFixed(1)}; x(${timeFormat(time)}) = ${f(sample(path.x, time))}`);
+        });
+        fitLabels(svg);
+      }
+      function draw() { hideHover(); updateValues(); drawTrajectory(); drawPhase(); }
+      function stop() { playing = false; cancelAnimationFrame(animation); play.textContent = 'Play'; }
+      function step(now) {
+        if (!playing) return;
+        if (!lastFrame) lastFrame = now;
+        const elapsed = now - lastFrame;
+        if (elapsed > 60) {
+          time = Math.min(data.horizon, time + elapsed * data.horizon / 16000);
+          lastFrame = now; draw();
+        }
+        if (time >= data.horizon) { stop(); save(); }
+        else animation = requestAnimationFrame(step);
+      }
+      play.addEventListener('click', () => {
+        pinned = false;
+        if (playing) { stop(); save(); return; }
+        if (reduced.matches) { time = Math.min(data.horizon, time >= data.horizon ? 0 : time + data.horizon / 10); draw(); save(); return; }
+        if (time >= data.horizon) time = 0;
+        playing = true; lastFrame = 0; draw(); animation = requestAnimationFrame(step);
+      });
+      rhoInput.addEventListener('change', () => { stop(); pinned = false; current = data.cases.find(c => c.rho === Number(rhoInput.value)); buildLegend(); draw(); save(); });
+      timeInput.addEventListener('input', () => { stop(); pinned = false; time = Number(timeInput.value); draw(); });
+      timeInput.addEventListener('change', save);
+      window.addEventListener('openai:set_globals', event => { if (event.detail?.globals?.widgetState) { stop(); restore(event.detail.globals.widgetState); buildLegend(); draw(); } });
+      new ResizeObserver(() => draw()).observe(chart);
+      buildLegend(); draw();
+    })();
+  </script>
+</div>

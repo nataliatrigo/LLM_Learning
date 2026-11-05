@@ -1,0 +1,74 @@
+usage: multi_p0_run.py [-h] --p0 P0 --rho {0.6,0.7,0.8,0.9,0.95,0.97}
+                       [--grids GRIDS [GRIDS ...]] [--order ORDER] [--tol TOL]
+                       [--dp-tol DP_TOL] [--max-evaluations MAX_EVALUATIONS]
+                       [--resume]
+multi_p0_run.py: error: unrecognized arguments: --name p0_sweep
+[2026-10-23T00:25:12.194087+00:00] p0=0.1, rho=0.7, n=51, marginal
+  fresh demand audit
+  fresh monopoly solve
+  fresh proposal certificate: historical_p0_0p5_proposal
+  fresh proposal certificate: fresh_monopoly
+  exact local solve: historical_p0_0p5_proposal
+    local exact complementarity, residual=0.000892
+    continuation 1, temperature=0.3, residual=6.51e-13
+    continuation 1, temperature=0.1, residual=6.99e-14
+    continuation 1, temperature=0.03, residual=1.21e-13
+    continuation 1, temperature=0.01, residual=4.91e-14
+    continuation 1, temperature=0.003, residual=3.46e-14
+    continuation 1, temperature=0.001, residual=1.89e-14
+    continuation 1, temperature=0.0003, residual=1.92e-19
+    continuation 1, temperature=0.0001, residual=0
+    continuation 1, temperature=0, residual=0
+  fresh actual joint discounted evaluation
+  CERTIFIED rho_0p7_n051_marginal in 22.6s: [{"rho": 0.7, "n": 51, "p0": 0.1, "model": "monopoly", "verified": true, "product2_conditional": 0.0, "product2_calendar": 0.0, "sale_rate": 0.9053296184842171, "profit_calendar": 0.8600631375600064, "value_initial": 43.33264297829659, "perceived_value_initial": 43.33264297829659, "outside_rate": 0.09467038151578289, "industry_profit_calendar": 0.8600631375600064, "sale_law_l1": 2.1551228683580614e-16, "sale_weighted_reputation": 0.3500000000000001, "sale_weighted_quality": 0.35, "seller_sales_symmetry_l1": 0.0, "mixed_nodes": 0}, {"rho": 0.7, "n": 51, "p0": 0.1, "model": "competition", "verified": true, "product2_conditional": 0.2419668929624212, "product2_calendar": 0.1207711248710234, "sale_rate": 0.49912251792967327, "profit_calendar": 0.4017037171105755, "value_initial": 20.351720456513313, "perceived_value_initial": 20.58158760539185, "outside_rate": 0.001754964140653564, "industry_profit_calendar": 0.803407434221151, "sale_law_l1": 2.130281509597461e-16, "sale_weighted_reputation": 0.4588851018330895, "sale_weighted_quality": 0.4588851018330895, "seller_sales_symmetry_l1": 1.004827244393896e-16, "mixed_nodes": 0}]
+[2026-10-23T00:25:35.015745+00:00] p0=0.1, rho=0.7, n=51, conditional
+  fresh demand audit
+  fresh proposal certificate: historical_p0_0p5_proposal
+  fresh proposal certificate: fresh_same_p0_same_grid_marginal
+  exact local solve: historical_p0_0p5_proposal
+    local exact complementarity, residual=0
+  fresh actual joint discounted evaluation
+  CERTIFIED rho_0p7_n051_conditional in 12.3s: [{"rho": 0.7, "n": 51, "p0": 0.1, "model": "conditional_competition", "verified": true, "product2_conditional": 0.3098277982781532, "product2_calendar": 0.15474632320908568, "sale_rate": 0.49945913203746656, "profit_calendar": 0.3816383815101417, "value_initial": 19.21045765992136, "perceived_value_initial": 19.373254983714947, "outside_rate": 0.0010817359250670756, "industry_profit_calendar": 0.7632767630202834, "sale_law_l1": 1.6452381508685345e-16, "sale_weighted_reputation": 0.4894225092251689, "sale_weighted_quality": 0.48942250922516894, "seller_sales_symmetry_l1": 8.401764802440728e-17, "mixed_nodes": 0}]
+[2026-10-23T00:25:51.324032+00:00] p0=0.1, rho=0.7, n=101, marginal
+  fresh demand audit
+  fresh monopoly solve
+  fresh proposal certificate: same_p0_previous_grid
+  fresh proposal certificate: historical_p0_0p5_proposal
+[2026-10-23T00:34:05.664959+00:00] p0=0.1, rho=0.7, n=101, marginal
+  fresh demand audit
+  fresh monopoly solve
+  exploratory proposal screen: fresh_monopoly
+    search regret=0.479, complementarity=0.479, full_certificate=False
+  exploratory proposal screen: same_p0_previous_grid
+    search regret=0.000247, complementarity=0.000493, full_certificate=False
+  exploratory proposal screen: historical_p0_0p5_proposal
+    search regret=0.0821, complementarity=0.0821, full_certificate=False
+  unchanged exact local solve: same_p0_previous_grid
+    local exact complementarity, residual=0
+[2026-10-23T00:36:49.524981+00:00] p0=0.1, rho=0.7, n=101, marginal
+  fresh demand audit
+  fresh monopoly solve
+  exploratory proposal screen: fresh_monopoly
+    search regret=0.479, complementarity=0.479, full_certificate=False
+  exploratory proposal screen: same_p0_previous_grid
+    search regret=0.000247, complementarity=0.000493, full_certificate=False
+  exploratory proposal screen: historical_p0_0p5_proposal
+    search regret=0.0821, complementarity=0.0821, full_certificate=False
+  unchanged exact local solve: same_p0_previous_grid
+    local exact complementarity, residual=0
+  fresh actual joint discounted evaluation
+  CERTIFIED rho_0p7_n101_marginal in 300.6s: [{"rho": 0.7, "n": 101, "p0": 0.1, "model": "monopoly", "verified": true, "product2_conditional": 0.0, "product2_calendar": 0.0, "sale_rate": 0.9055535434981112, "profit_calendar": 0.8602758663232056, "value_initial": 43.34218023748261, "perceived_value_initial": 43.34218023748261, "outside_rate": 0.09444645650188876, "industry_profit_calendar": 0.8602758663232056, "sale_law_l1": 4.0987458449514604e-16, "sale_weighted_reputation": 0.35, "sale_weighted_quality": 0.35, "seller_sales_symmetry_l1": 0.0, "mixed_nodes": 0}, {"rho": 0.7, "n": 101, "p0": 0.1, "model": "competition", "verified": true, "product2_conditional": 0.2485490374133012, "product2_calendar": 0.12406733136363096, "sale_rate": 0.49916641261146744, "profit_calendar": 0.3997676931627155, "value_initial": 20.249562332132154, "perceived_value_initial": 20.4690778663679, "outside_rate": 0.0016671747770651251, "industry_profit_calendar": 0.799535386325431, "sale_law_l1": 2.5217813289584806e-16, "sale_weighted_reputation": 0.4618470668359856, "sale_weighted_quality": 0.46184706683598553, "seller_sales_symmetry_l1": 1.8250301583461203e-16, "mixed_nodes": 0}]
+[2026-10-23T00:41:47.990217+00:00] p0=0.1, rho=0.7, n=101, conditional
+  fresh demand audit
+  exploratory proposal screen: fresh_same_p0_same_grid_marginal
+    search regret=0.0166, complementarity=0.0166, full_certificate=False
+  exploratory proposal screen: same_p0_previous_grid
+    search regret=0.000591, complementarity=0.00118, full_certificate=False
+  exploratory proposal screen: historical_p0_0p5_proposal
+    search regret=0.0736, complementarity=0.0736, full_certificate=False
+  unchanged exact local solve: same_p0_previous_grid
+    local exact complementarity, residual=0
+  fresh actual joint discounted evaluation
+  CERTIFIED rho_0p7_n101_conditional in 455.5s: [{"rho": 0.7, "n": 101, "p0": 0.1, "model": "conditional_competition", "verified": true, "product2_conditional": 0.30250115208656186, "product2_calendar": 0.15107885248024927, "sale_rate": 0.4994323209619297, "profit_calendar": 0.3838133934256837, "value_initial": 19.316497016834397, "perceived_value_initial": 19.49665209275585, "outside_rate": 0.0011353580761403969, "industry_profit_calendar": 0.7676267868513674, "sale_law_l1": 3.1318427140607526e-16, "sale_weighted_reputation": 0.48612551843895285, "sale_weighted_quality": 0.4861255184389528, "seller_sales_symmetry_l1": 1.2994308786462702e-16, "mixed_nodes": 0}]
+complete_grid_checks_passed
+complete_grid_checks_passed

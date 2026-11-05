@@ -1,0 +1,52 @@
+iteration 0 regret 0.027449049032990072 bad [48, 70] mixed [48, 70] weights [0.9585165727855545, 0.25]
+call 5 a48 0.9588196823400565 a70 0.25 adv48 -0.028696340607850424 adv70 0.0013664720218514725
+call 10 a48 1.0 a70 0.0 adv48 -0.0084267877062153 adv70 0.000648019333584493
+call 15 a48 1.0 a70 0.0 adv48 -0.0084267877062153 adv70 0.000648019333584493
+call 20 a48 0.9583694738843387 a70 0.10684076497849687 adv48 -0.011917794908773205 adv70 0.0007732136357830877
+call 25 a48 0.9584573953064707 a70 0.0 adv48 1.2198253048101293e-05 adv70 0.0003679142259913615
+call 30 a48 0.9584574032870365 a70 0.0 adv48 1.2196607978909313e-05 adv70 0.000367914280528181
+call 35 a48 0.9584574032874583 a70 0.0 adv48 1.2196607894310318e-05 adv70 0.0003679142805312896
+face [48, 70] x [0.9584574032870365, -0.2211926779756877] residual [1.2196607978909313e-05, 0.000367914280528181] success False
+iteration 1 regret 0.000367914280528181 bad [48, 70] mixed [48] weights [0.9584574032870365]
+call 40 a48 0.9587604941305004 a70 0.0001 adv48 -6.126062499556273e-05 adv70 0.00037035214456659915
+call 45 a48 0.9584574032870365 a70 0.00010003162277660168 adv48 1.2054309304065924e-06 adv70 0.00036828131623678484
+call 50 a48 0.9595567506589221 a70 0.0 adv48 -0.0002143283679243435 adv70 0.0003754239192130804
+face [48, 70] x [0.9584700709806763, -0.008327332119578224] residual [9.585373427545285e-06, 0.000368000843960381] success False
+iteration 2 regret 0.000368000843960381 bad [48, 70] mixed [48] weights [0.9584700709806763]
+call 55 a48 0.9584700709806763 a70 0.0001 adv48 -1.4022795249424291e-06 adv70 0.00036836776354332024
+call 60 a48 1.0 a70 0.0 adv48 -0.0084267877062153 adv70 0.000648019333584493
+call 65 a48 1.0 a70 0.0 adv48 -0.0084267877062153 adv70 0.000648019333584493
+call 70 a48 0.9584727128360165 a70 0.0 adv48 9.04080180130773e-06 adv70 0.0003680188967228881
+call 75 a48 0.958457401505303 a70 0.0 adv48 1.2196975256228981e-05 adv70 0.00036791426835225405
+call 80 a48 0.9584574032878032 a70 0.0 adv48 1.2196607821035599e-05 adv70 0.00036791428053206676
+call 85 a48 0.9584574032874081 a70 0.0 adv48 1.2196607903747214e-05 adv70 0.00036791428052895814
+face [48, 70] x [0.9584574032878032, -0.006220478498285517] residual [1.2196607821035599e-05, 0.00036791428053206676] success False
+iteration 3 regret 0.00036791428053206676 bad [48, 70] mixed [48] weights [0.9584574032878032]
+call 90 a48 0.9587604941312672 a70 0.0001 adv48 -6.126062515288133e-05 adv70 0.0003703521445728164
+call 95 a48 0.9584574032878032 a70 0.00010003162277660168 adv48 1.2054307710895884e-06 adv70 0.00036828131624222493
+Traceback (most recent call last):
+  File "/tmp/conditional_positive_two_face097.py", line 37, in <module>
+    solved=root(face,np.clip(alpha[active],1e-4,1-1e-4),method='hybr',options={'xtol':1e-10,'eps':1e-7,'maxfev':80,'factor':.3})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/.venv/lib/python3.12/site-packages/scipy/optimize/_root.py", line 254, in root
+    sol = _root_hybr(_wrapped_fun, x0, args=args, jac=jac, **options)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/.venv/lib/python3.12/site-packages/scipy/optimize/_minpack_py.py", line 250, in _root_hybr
+    retval = _minpack._hybrd(func, x0, args, 1, xtol, maxfev,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/.venv/lib/python3.12/site-packages/scipy/optimize/_root.py", line 216, in _wrapped_fun
+    return fun(*fargs)
+           ^^^^^^^^^^^
+  File "/tmp/conditional_positive_two_face097.py", line 36, in face
+    return response(trial)[active]
+           ^^^^^^^^^^^^^^^
+  File "/tmp/conditional_positive_two_face097.py", line 17, in response
+    inv=checked_joint_stationary(e.game,P,force_positive=True)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/oblivious/02_oe_p0/code/core.py", line 130, in checked_joint_stationary
+    positive = _positive_invariant(jump, rates)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/oblivious/02_oe_p0/code/positive_stationary.py", line 122, in positive_invariant
+    status = function(n, np.ascontiguousarray(reduced.indptr, dtype=np.int64),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

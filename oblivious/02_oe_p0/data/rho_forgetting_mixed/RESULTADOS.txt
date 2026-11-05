@@ -1,0 +1,113 @@
+EXPERIMENTO OE p0 CON ESTRATEGIAS MIXTAS
+
+Cada política asigna una probabilidad al producto 2. La mezcla interior exige indiferencia.
+Los extremos 0 y 1 siguen siendo admisibles dentro del espacio de estrategias mixtas.
+Se verifican consistencia escalar, optimalidad mixta y estacionariedad conjunta; esto no certifica MPE.
+La búsqueda finita no demuestra unicidad ni que se hayan encontrado todos los puntos fijos.
+
+Resultados por rho y tamaño de grilla:
+rho | puntos | candidatos verificados | candidatos con mezcla interior | |F-p0| seleccionado | p0 seleccionado | estados con mezcla
+0.6 | 21 | 1 | 0 | 0 | 0.498541073 | 0
+0.6 | 31 | 3 | 1 | 0 | 0.502760114 | 1
+0.6 | 51 | 1 | 0 | 0 | 0.499986864 | 0
+0.7 | 21 | 1 | 0 | 0 | 0.533609928 | 0
+0.7 | 31 | 3 | 1 | 2.22044605e-16 | 0.540564004 | 1
+0.7 | 51 | 3 | 1 | 1.11022302e-16 | 0.529006695 | 1
+0.8 | 21 | 3 | 1 | 8.32667268e-15 | 0.576940682 | 1
+0.8 | 31 | 1 | 0 | 0 | 0.590277797 | 0
+0.8 | 51 | 1 | 0 | 0 | 0.588873511 | 0
+0.9 | 21 | 1 | 0 | 0 | 0.656639907 | 0
+0.9 | 31 | 1 | 0 | 0 | 0.665966561 | 0
+0.9 | 51 | 1 | 0 | 0 | 0.669680532 | 0
+0.95 | 21 | 1 | 0 | 0 | 0.619018137 | 0
+0.95 | 31 | 1 | 1 | 4.54081217e-14 | 0.662667767 | 1
+0.95 | 51 | 1 | 1 | 1.18793864e-14 | 0.680474794 | 1
+0.97 | 21 | 1 | 1 | 3.55160346e-13 | 0.506782353 | 1
+0.97 | 31 | 1 | 1 | 1.83852933e-13 | 0.581377435 | 1
+0.97 | 51 | 1 | 1 | 2.59792188e-14 | 0.639605010 | 1
+0.99 | 21 | 1 | 0 | 0 | 0.210240590 | 0
+0.99 | 31 | 1 | 0 | 0 | 0.279224799 | 0
+0.99 | 51 | 3 | 2 | 1.66533454e-16 | 0.434271313 | 1
+0.999 | 21 | 1 | 0 | 0 | 0.175648703 | 0
+0.999 | 31 | 1 | 0 | 0 | 0.175648703 | 0
+0.999 | 51 | 1 | 0 | 0 | 0.175648825 | 0
+
+Simulaciones y diagnóstico de demanda:
+Los intervalos son del 95%, calculados entre trayectorias independientes.
+La igualdad del promedio TS y el promedio posterior no basta para verificar el punto fijo.
+rho=0.6, n=51, candidato=0: punto fijo verificado
+  p0=0.499986864; F=0.499986864
+  TS medio B=0.500919284; media posterior B=0.500791819
+  IC95 de TS menos media posterior B=[-0.0008841309111758329, 0.0011390612075899706]
+  Error absoluto de demanda fija vs condicional, ponderado por reputación=0.0395429387
+  Ganancia media descontada por desviación (A,B)=[0.4135495207636075, 0.4135495207635922]
+rho=0.7, n=51, candidato=0: punto fijo verificado
+  p0=0.528997429; F=0.528997429
+  TS medio B=0.529202928; media posterior B=0.529131013
+  IC95 de TS menos media posterior B=[-0.00048279442087181845, 0.0006266242321255923]
+  Error absoluto de demanda fija vs condicional, ponderado por reputación=0.0372989904
+  Ganancia media descontada por desviación (A,B)=[0.30941116290791904, 0.3094111629079205]
+rho=0.7, n=51, candidato=1: punto fijo verificado
+  p0=0.529006695; F=0.529006695
+  TS medio B=0.528483481; media posterior B=0.528589439
+  IC95 de TS menos media posterior B=[-0.0006895704075829791, 0.0004776548860704857]
+  Error absoluto de demanda fija vs condicional, ponderado por reputación=0.0372995573
+  Ganancia media descontada por desviación (A,B)=[0.30950838068498454, 0.3095083806849867]
+rho=0.7, n=51, candidato=2: punto fijo verificado
+  p0=0.536604045; F=0.536604045
+  TS medio B=0.535770018; media posterior B=0.536113458
+  IC95 de TS menos media posterior B=[-0.0006567186303050865, -3.0161943509686353e-05]
+  Error absoluto de demanda fija vs condicional, ponderado por reputación=0.0377001186
+  Ganancia media descontada por desviación (A,B)=[0.3826296313231664, 0.3826296313232008]
+rho=0.8, n=51, candidato=0: punto fijo verificado
+  p0=0.588873511; F=0.588873511
+  TS medio B=0.587893010; media posterior B=0.588286525
+  IC95 de TS menos media posterior B=[-0.0007049718181979104, -8.205757200254409e-05]
+  Error absoluto de demanda fija vs condicional, ponderado por reputación=0.0400673315
+  Ganancia media descontada por desviación (A,B)=[0.27482659926215924, 0.27482659926215647]
+rho=0.9, n=51, candidato=0: punto fijo verificado
+  p0=0.669680532; F=0.669680532
+  TS medio B=0.669732624; media posterior B=0.669737985
+  IC95 de TS menos media posterior B=[-0.0002396130992757547, 0.0002288904939217581]
+  Error absoluto de demanda fija vs condicional, ponderado por reputación=0.0487343701
+  Ganancia media descontada por desviación (A,B)=[0.18694767979804672, 0.1869476797972165]
+rho=0.95, n=51, candidato=0: punto fijo verificado
+  p0=0.680474794; F=0.680474794
+  TS medio B=0.676981106; media posterior B=0.676897412
+  IC95 de TS menos media posterior B=[-0.0003544248751098815, 0.0005218117695549764]
+  Error absoluto de demanda fija vs condicional, ponderado por reputación=0.0712437035
+  Ganancia media descontada por desviación (A,B)=[0.7120745055747181, 0.7120745055719231]
+rho=0.97, n=51, candidato=0: punto fijo verificado
+  p0=0.639605010; F=0.639605010
+  TS medio B=0.677597182; media posterior B=0.677407711
+  IC95 de TS menos media posterior B=[-0.0001234236763856539, 0.0005023644339806443]
+  Error absoluto de demanda fija vs condicional, ponderado por reputación=0.121012885
+  Ganancia media descontada por desviación (A,B)=[1.5062932126393378, 1.5062932126394946]
+rho=0.99, n=51, candidato=0: punto fijo verificado
+  p0=0.434271313; F=0.434271313
+  TS medio B=0.476830805; media posterior B=0.476800214
+  IC95 de TS menos media posterior B=[-8.591761816273606e-05, 0.00014710062962893533]
+  Error absoluto de demanda fija vs condicional, ponderado por reputación=0.181039051
+  Ganancia media descontada por desviación (A,B)=[1.507259134643472, 1.507259134644999]
+rho=0.99, n=51, candidato=1: punto fijo verificado
+  p0=0.437935732; F=0.437935729
+  TS medio B=0.489701704; media posterior B=0.489663440
+  IC95 de TS menos media posterior B=[-0.00010167008766236796, 0.00017819782405428683]
+  Error absoluto de demanda fija vs condicional, ponderado por reputación=0.194087396
+  Ganancia media descontada por desviación (A,B)=[1.7016293069236894, 1.7016293069236417]
+rho=0.99, n=51, candidato=2: punto fijo verificado
+  p0=0.446960489; F=0.446960489
+  TS medio B=0.431246912; media posterior B=0.431130525
+  IC95 de TS menos media posterior B=[-2.9463326251864553e-05, 0.0002622368017886384]
+  Error absoluto de demanda fija vs condicional, ponderado por reputación=0.196698388
+  Ganancia media descontada por desviación (A,B)=[1.6141601522197462, 1.614160152220586]
+rho=0.999, n=51, candidato=0: punto fijo verificado
+  p0=0.175648825; F=0.175648825
+  TS medio B=0.175465270; media posterior B=0.175453157
+  IC95 de TS menos media posterior B=[-2.8285093354529806e-05, 5.251296242114554e-05]
+  Error absoluto de demanda fija vs condicional, ponderado por reputación=0.00198735631
+  Ganancia media descontada por desviación (A,B)=[0.0, 0.0]
+
+Para rho altos, el promedio de una simulación puede depender fuertemente de su trayectoria.
+La invariancia numérica no demuestra rapidez de convergencia ni precisión en el modelo continuo.
+Los fallos de búsqueda y saltos de política están guardados en arrays/*.json.

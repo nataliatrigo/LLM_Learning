@@ -1,0 +1,484 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\Pb}{\mathbb P}
+\DeclareMathOperator{\Beta}{Beta}
+\DeclareMathOperator{\BR}{BR}
+\allowdisplaybreaks[1]
+\title{Two-Seller Competition: Oblivious equilibrium}
+\author{Progress note --- transcription of handwritten notes}
+\date{\today}
+
+\begin{document}
+\maketitle
+In this note we present four different models of competition where the sellers don't observe the full state. We restrict this note to the forgetting case. 
+
+\section{Elements of the model}
+
+\begin{itemize}
+\item Two symmetric providers, indexed by $j\in\{A,B\}$.
+\item Two products, indexed by $i\in\{1,2\}$.
+\item Success probabilities: $0<p_1<p_2<1$.
+\item Costs: $c_1<c_2$.
+\item Revenue: $R>c_2$.
+\end{itemize}
+
+\section{Customer beliefs.}
+Recall that in the forgetting model, past observations are discounted by a factor $\rho$ whenever a new outcome is observed. Thus, after $k$ interactions with the seller, the total effective information satisfies
+$$
+S_k+F_k=\rho(S_{k-1}+F_{k-1})+1,
+$$
+with \(S_0+F_0=0\). Iterating this expression yields
+$$
+S_k+F_k=1+\rho+\cdots+\rho^{k-1}
+=\frac{1-\rho^k}{1-\rho} \quad \to 1/(1-\rho)\quad\text{as }k\to\infty.
+$$
+
+To study the limiting behavior, we normalize the state as 
+$$x_s=(1-\rho)S_k$$ 
+$$x_f=(1-\rho)F_k$$
+
+Since $x_s+x_f=1-\rho^k\to1$, we focus on the limiting boundary $x_s+x_f=1$, which can be represented by a single variable $x=x_s$, with $x_f=1-x$. Then $x\in [0,1]$ when $\rho \in [1/2,1)$. 
+
+For each seller we will call this normalized state variable $x_j$ for $j\in\{A,B\}$ that will represent the proportion of successes for provider $j$ in the long run. The customer observes the state
+$$
+x=(x_A,x_B),
+$$
+Her beliefs are
+\begin{align}
+\theta_A\mid x_A&\sim\Beta(1+\frac{x_A}{1-\rho},1+\frac{1-x_A}{1-\rho}),\\
+\theta_B\mid x_B&\sim\Beta(1+\frac{x_B}{1-\rho},1+\frac{1-x_B}{1-\rho}).
+\end{align}
+
+
+\paragraph{Customer choice.}
+The customer uses Thompson sampling (TS), drawing independently from the
+two belief distributions and choosing
+\begin{equation}
+y_t=
+\begin{cases}
+A,&\widetilde\theta_A>\widetilde\theta_B,\\
+B,&\widetilde\theta_B>\widetilde\theta_A.
+\end{cases}
+\end{equation}
+Thus the selection probabilities are
+\begin{equation}
+D_A(x_A,x_B)=\Pb(\widetilde\theta_A>\widetilde\theta_B\mid x_A,x_B),
+\qquad D_B(x_A,x_B)=1-D_A(x_A,x_B).
+\end{equation}
+
+\section{Timing, state transitions, and strategies}
+
+\paragraph{Timing.}
+\begin{enumerate}
+    \item The customer observes $x=(x_A,x_B)$, while each
+    seller $j$ observes only its own reputation $x_j$.
+    
+    \item The customer chooses a seller using Thompson sampling.
+    
+    \item The selected seller chooses a product $i\in\{1,2\}$
+    according to its strategy $\sigma_j(\cdot\mid x_j)$
+    and receives profit $R-c_i$.
+    
+    \item The customer observes the outcome, but not the product.
+    
+    \item The selected seller's reputation is updated, while
+    the other seller's reputation remains unchanged.
+\end{enumerate}
+
+\paragraph{State transitions.}
+Superscripts $s$ and $f$ denote success and failure,
+respectively. The state transitions are
+\begin{equation}
+\begin{aligned}
+T_A^s(x)&=(\rho x_A+1-\rho,x_B),\\
+T_A^f(x)&=(\rho x_A,x_B),\\
+T_B^s(x)&=(x_A,\rho x_B+1-\rho),\\
+T_B^f(x)&=(x_A,\rho x_B).
+\end{aligned}
+\end{equation}
+
+\paragraph{Strategies.}
+We consider stationary mixed strategies that depend only
+on the seller's own reputation. For each seller $j\in\{A,B\}$,
+a strategy is a mapping
+\begin{equation}
+\sigma_j:[0,1]\rightarrow\Delta(\{1,2\}),
+\end{equation}
+where $\sigma_j(i\mid x_j)$ denotes the probability that
+seller $j$ chooses product $i$ when selected at reputation
+$x_j$.
+
+\section{Oblivious equilibrium: Distribution}
+
+\paragraph{Oblivious approximation:}
+Suppose that each seller $j\in\{A,B\}$ assumes that
+its competitor's reputation follows a stationary distribution
+$\mu_{-j}$ on $[0,1]$.
+
+Instead of observing the competitor's current reputation,
+seller $j$ computes its expected demand by averaging over
+this distribution:
+\begin{equation}
+d_j(x_j;\mu_{-j})
+=
+\int_0^1 D(x_j,y)\,\mu_{-j}(dy).
+\end{equation}
+
+Thus, each seller's demand depends only on its own reputation
+and the conjectured distribution of its competitor.
+When optimizing, the seller treats this distribution as fixed.
+
+\paragraph{Seller's problem:}
+Let $U_j(x_j)$ denote seller $j$'s optimal expected discounted
+profit before customer selection. Given the conjectured distribution $\mu_{-j}$, the Bellman equation is
+\begin{equation}
+\begin{aligned}
+U_j(x_j) ={}& \gamma[1-d_j(x_j;\mu_{-j})]U_j(x_j)\\ &+ d_j(x_j;\mu_{-j})
+\max_{i\in\{1,2\}}\Big\{ R-c_i\\
+&\qquad+\gamma\left[ p_i U_j(T_\rho^s(x_j)) + (1-p_i)U_j(T_\rho^f(x_j))
+\right] \Big\}.
+\end{aligned}
+\end{equation}
+
+If the seller is not selected, it receives no profit and its reputation remains unchanged. If selected, it chooses a product to maximize its current profit and expected future value.
+
+\paragraph{Stationary distribution:}
+Given a strategy $\sigma_j$ and a conjectured distribution
+$\mu_{-j}$, the probability of success conditional on
+seller $j$ being selected is
+\begin{equation}
+p_{\sigma_j}(x_j) = \sigma_j(1\mid x_j)p_1 + \sigma_j(2\mid x_j)p_2.
+\end{equation}
+
+Given a strategy profile $\sigma=(\sigma_A,\sigma_B)$,
+let $P^\sigma(x,C)$ denote the probability that the
+joint reputation state belongs to a measurable set
+$C\subseteq[0,1]^2$ in the next period, given the
+current state $x=(x_A,x_B)$. The transition probabilities are
+\begin{equation}
+\begin{aligned}
+P^\sigma(x,C)
+={}&D(x_A,x_B)
+\Big[
+p_{\sigma_A}(x_A)\mathbf{1}\{T_A^s(x)\in C\} + (1-p_{\sigma_A}(x_A))
+\mathbf{1}\{T_A^f(x)\in C\}\Big]\\
+&+[1-D(x_A,x_B)]\Big[p_{\sigma_B}(x_B)\mathbf{1}\{T_B^s(x)\in C\}+(1-p_{\sigma_B}(x_B))\mathbf{1}\{T_B^f(x)\in C\}
+\Big]
+\end{aligned}
+\end{equation}
+
+\paragraph{Oblivious equilibrium:}
+An oblivious equilibrium is a mixed strategy $\sigma^*$,
+a reputation distribution $\mu^*$, and a joint stationary
+distribution $\nu^*$ satisfying the following conditions.
+
+\textit{Optimality:}
+\begin{equation}
+\begin{aligned}
+\operatorname{supp}\sigma^*(\cdot\mid x)
+\subseteq
+\arg\max_{i\in\{1,2\}}
+\Big\{
+R-c_i
++\gamma\big[
+&p_iU_{\mu^*}(T_\rho^s(x))\\
+&+(1-p_i)U_{\mu^*}(T_\rho^f(x))
+\big]
+\Big\}.
+\end{aligned}
+\end{equation}
+
+\textit{Consistency:}
+\begin{equation}
+\begin{aligned}
+\nu^*&=\nu^*P^{\sigma^*},\\
+\mu^*(C)&=\nu^*(C\times[0,1])
+=\nu^*([0,1]\times C),
+\qquad \forall C\subseteq[0,1]
+\text{ measurable}.
+\end{aligned}
+\end{equation}
+
+Here $P^{\sigma^*}$ denotes the joint transition kernel
+of the actual two-seller game when both sellers follow
+$\sigma^*$.
+
+The first condition requires each seller to choose only
+optimal products given the conjectured distribution $\mu^*$.
+The second requires this distribution to coincide with the
+marginal distributions generated when both sellers follow
+$\sigma^*$ in the actual game.
+
+\section{Oblivious equilibrium: Fixed quality}
+
+\paragraph{Seller's conjecture:}
+Suppose that each seller $j\in\{A,B\}$ represents its
+competitor by a fixed probability $p_{0,j}\in(0,1)$,
+corresponding to the long-run average of the competitor's
+Thompson sampling draws.
+
+Instead of considering the competitor's reputation
+distribution, seller $j$ computes its expected demand as
+\begin{equation}
+d(x_j;p_{0,j}) = \mathbb{P}(\widetilde{\theta}_j>p_{0,j}\mid x_j).
+\end{equation}
+
+Thus, each seller faces the original problem with an
+outside option of fixed quality $p_{0,j}$. When optimizing,
+the seller treats this probability as fixed.
+
+
+\paragraph{Seller's problem:}
+Let $U_{p_{0,j}}(x_j)$ denote seller $j$'s optimal expected
+discounted profit before customer selection, given
+$p_{0,j}$.
+
+The Bellman equation is
+\begin{equation}
+\begin{aligned}
+U_{p_{0,j}}(x_j) ={}& \gamma[1-d(x_j;p_{0,j})]U_{p_{0,j}}(x_j)\\
+& + d(x_j;p_{0,j}) \max_{i\in\{1,2\}} \Big\{ R-c_i\\
+&\qquad+ \gamma\left[ p_iU_{p_{0,j}}(T_\rho^s(x_j)) + (1-p_i)U_{p_{0,j}}(T_\rho^f(x_j)) \right] \Big\}.
+\end{aligned}
+\end{equation}
+
+
+\paragraph{Oblivious equilibrium:}
+We consider a symmetric equilibrium in which both sellers
+use the same mixed strategy $\sigma^*$ and the same
+conjectured probability $p_0^*$. An oblivious equilibrium is a triple
+$(\sigma^*,p_0^*,\nu^*)$ satisfying the following conditions.
+
+\textit{Optimality.}
+\begin{equation}
+\begin{aligned}
+\operatorname{supp}\sigma^*(\cdot\mid x)
+\subseteq
+\arg\max_{i\in\{1,2\}}
+\Big\{
+R-c_i
++\gamma\big[
+&p_iU_{p_0^*}(T_\rho^s(x))\\
+&+(1-p_i)U_{p_0^*}(T_\rho^f(x))
+\big]
+\Big\}.
+\end{aligned}
+\end{equation}
+
+\textit{Consistency.}
+\begin{equation}
+\begin{aligned}
+\nu^*&=\nu^*P^{\sigma^*},\\
+p_0^*
+&=
+\int_{[0,1]^2}
+\frac{1-\rho+x_A}{3-2\rho}
+\,\nu^*(dx_A,dx_B)\\
+&=
+\int_{[0,1]^2}
+\frac{1-\rho+x_B}{3-2\rho}
+\,\nu^*(dx_A,dx_B).
+\end{aligned}
+\end{equation}
+
+Here $P^{\sigma^*}$ denotes the joint transition kernel
+of the actual two-seller game when both sellers follow
+$\sigma^*$.
+
+The optimality condition requires each seller to assign positive probability only to products that maximize its expected discounted profit given $p_0^*$. The consistency condition requires the joint reputation distribution to be stationary and $p_0^*$ to coincide with the long-run average of the competitor's Thompson sampling draws.
+
+
+
+\section{Oblivious equilibrium: Average success probability}
+
+\paragraph{Seller's conjecture:}
+Suppose that each seller $j\in\{A,B\}$ represents its
+competitor by a fixed probability $p_{0,j}\in[p_1,p_2]$,
+corresponding to the competitor's long-run success rate
+among its sales.
+
+Instead of considering the competitor's reputation
+distribution, seller $j$ computes its expected demand as
+\begin{equation}
+d(x_j;p_{0,j}) = \mathbb{P}(\widetilde{\theta}_j>p_{0,j}\mid x_j).
+\end{equation}
+
+Thus, each seller faces the original forgetting monopoly
+problem with an outside option of fixed quality $p_{0,j}$.
+When optimizing, the seller treats this probability as fixed. Unlike the
+previous model, $p_{0,j}$ represents the competitor's
+average probability of success among its sales, rather
+than the average of its Thompson sampling draws.
+
+\paragraph{Seller's problem:}
+Let $U_{p_{0,j}}(x_j)$ denote seller $j$'s optimal expected
+discounted profit before customer selection, given
+$p_{0,j}$.
+
+The Bellman equation is
+\begin{equation}
+\begin{aligned}
+U_{p_{0,j}}(x_j) ={}& \gamma[1-d(x_j;p_{0,j})]U_{p_{0,j}}(x_j)\\
+& + d(x_j;p_{0,j}) \max_{i\in\{1,2\}} \Big\{ R-c_i\\
+&\qquad+ \gamma\left[ p_iU_{p_{0,j}}(T_\rho^s(x_j)) + (1-p_i)U_{p_{0,j}}(T_\rho^f(x_j)) \right] \Big\}.
+\end{aligned}
+\end{equation}
+
+The seller solves the same problem as in the fixed-quality
+model. The difference is the consistency condition used
+to determine $p_{0,j}$.
+
+\paragraph{Oblivious equilibrium:}
+We consider a symmetric equilibrium in which both sellers
+use the same mixed strategy $\sigma^*$ and the same
+conjectured probability $p_0^*$. An oblivious equilibrium is a triple
+$(\sigma^*,p_0^*,\nu^*)$ satisfying the following conditions.
+
+\textit{Optimality.}
+\begin{equation}
+\begin{aligned}
+\operatorname{supp}\sigma^*(\cdot\mid x)
+\subseteq
+\arg\max_{i\in\{1,2\}}
+\Big\{
+R-c_i
++\gamma\big[
+&p_iU_{p_0^*}(T_\rho^s(x))\\
+&+(1-p_i)U_{p_0^*}(T_\rho^f(x))
+\big]
+\Big\}.
+\end{aligned}
+\end{equation}
+
+\textit{Consistency.}
+\begin{equation}
+\begin{aligned}
+\nu^*&=\nu^*P^{\sigma^*},\\
+p_0^*
+&=
+\frac{\displaystyle\int_{[0,1]^2}
+D_B(x_A,x_B)\,p_{\sigma^*}(x_B)\,\nu^*(dx_A,dx_B)}
+{\displaystyle\int_{[0,1]^2}
+D_B(x_A,x_B)\,\nu^*(dx_A,dx_B)}\\
+&=
+\frac{\displaystyle\int_{[0,1]^2}
+D_A(x_A,x_B)\,p_{\sigma^*}(x_A)\,\nu^*(dx_A,dx_B)}
+{\displaystyle\int_{[0,1]^2}
+D_A(x_A,x_B)\,\nu^*(dx_A,dx_B)}.
+\end{aligned}
+\end{equation}
+
+Here $P^{\sigma^*}$ denotes the joint transition kernel
+of the actual two-seller game when both sellers follow
+$\sigma^*$, and $p_{\sigma^*}(x)$ is the probability of
+success conditional on being selected at reputation $x$.
+
+The optimality condition requires each seller to assign
+positive probability only to products that maximize its
+expected discounted profit given $p_0^*$. The consistency
+condition requires the joint reputation distribution to
+be stationary and $p_0^*$ to coincide with the competitor's
+success rate among its sales in the actual game. Weighting
+by the selection probability and dividing by the seller's
+purchase frequency makes this an average among sales.
+The probability $p_0^*$ is generated by the strategy and
+does not represent an intrinsic quality of the seller.
+
+\section{Oblivious equilibrium: Conditional distribution}
+
+\paragraph{Seller's conjecture:}
+Suppose that each seller $j\in\{A,B\}$ assumes that
+its competitor's reputation follows a conditional distribution
+$\kappa_j(\cdot\mid x_j)$ on $[0,1]$, indexed by the
+seller's own reputation $x_j$ before customer selection.
+
+Seller $j$ computes its expected demand as
+\begin{equation}
+d_j(x_j;\kappa_j)
+=
+\int_0^1 D(x_j,y)\,\kappa_j(dy\mid x_j).
+\end{equation}
+
+The seller uses its own reputation as information about
+its competitor, without observing the competitor's current
+state. When optimizing, it holds the entire kernel $\kappa_j$
+fixed, using its prescribed conditional law at each future
+own state.
+
+\paragraph{Seller's problem:}
+Let $U_{\kappa_j}(x_j)$ denote seller $j$'s optimal expected
+discounted profit before customer selection, given $\kappa_j$.
+The Bellman equation is
+\begin{equation}
+\begin{aligned}
+U_{\kappa_j}(x_j) ={}& \gamma[1-d_j(x_j;\kappa_j)]U_{\kappa_j}(x_j)\\
+&+d_j(x_j;\kappa_j)\max_{i\in\{1,2\}}\Big\{R-c_i\\
+&\qquad+\gamma\left[p_iU_{\kappa_j}(T_\rho^s(x_j))
++(1-p_i)U_{\kappa_j}(T_\rho^f(x_j))\right]\Big\}.
+\end{aligned}
+\end{equation}
+
+\paragraph{Oblivious equilibrium:}
+We consider a symmetric equilibrium in which both sellers
+use the same mixed strategy $\sigma^*$ and the same
+conjectured conditional kernel $\kappa^*$.
+A conditional oblivious equilibrium is a triple
+$(\sigma^*,\kappa^*,\nu^*)$, where $\nu^*$ is a symmetric
+joint reputation distribution with common marginal $\mu^*$,
+satisfying the following conditions.
+
+\textit{Optimality.}
+\begin{equation}
+\begin{aligned}
+\operatorname{supp}\sigma^*(\cdot\mid x)
+\subseteq
+\arg\max_{i\in\{1,2\}}
+\Big\{
+R-c_i
++\gamma\big[
+&p_iU_{\kappa^*}(T_\rho^s(x))\\
+&+(1-p_i)U_{\kappa^*}(T_\rho^f(x))
+\big]
+\Big\}.
+\end{aligned}
+\end{equation}
+
+\textit{Consistency.}
+\begin{equation}
+\begin{aligned}
+\nu^*&=\nu^*P^{\sigma^*},\\
+\mu^*(C)&=\nu^*(C\times[0,1])
+=\nu^*([0,1]\times C),\\
+\nu^*(C\times E)
+&=\int_C\kappa^*(E\mid x)\,\mu^*(dx),
+\qquad C,E\subseteq[0,1]\text{ measurable}.
+\end{aligned}
+\end{equation}
+
+Here $P^{\sigma^*}$ denotes the joint transition kernel
+of the actual two-seller game when both sellers follow
+$\sigma^*$. The last condition requires the conjectured
+kernel to coincide with the conditional distribution
+generated by this joint stationary law, $\mu^*$-almost
+everywhere.
+
+On a finite reputation grid, this means
+$\kappa^*(y\mid x)=\nu^*(x,y)/\mu^*(x)$ whenever $\mu^*(x)>0$.
+At zero-mass grid states, we complete the conjecture using
+the unconditional marginal $\mu^*$ and require optimality
+under that completion.
+
+The optimality condition requires each seller to choose
+only optimal products given $\kappa^*$. Unlike the distribution
+model, consistency is imposed on the conditional law for
+$\mu^*$-almost every own state, rather than only on the
+unconditional marginal. The policy still depends only on
+own reputation; the seller does not observe the full joint
+state or track a belief based on the entire history of play.
+
+\end{document}

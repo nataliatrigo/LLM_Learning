@@ -1,0 +1,370 @@
+{
+  "inputs": {
+    "p0": 0.1,
+    "rho": 0.6,
+    "parameters": {
+      "R": 1.0,
+      "c1": 0.05,
+      "c2": 0.65,
+      "p1": 0.35,
+      "p2": 0.8,
+      "gamma": 0.98
+    },
+    "initial_states": [
+      0.1,
+      0.3,
+      0.5,
+      0.55,
+      0.7,
+      0.9
+    ],
+    "horizon": 3000.0,
+    "samples": 3001,
+    "bin_width": 25,
+    "rtol": 1e-09,
+    "atol": 1e-11,
+    "max_step": 10,
+    "check_rtol": 1e-11,
+    "check_atol": 1e-13,
+    "check_max_step": 5.0,
+    "demand_order": 256
+  },
+  "source_sha256": {
+    "code/sweep_initial_conditions.py": "5dee184287f821b700815176d7a6e2b4a454fcf0fdacbda0cc004fc50f1496c9",
+    "code/trajectories.py": "8dea00527396bdd4bdf7ca74bc74f259f66b1a0aae4bb3faad34977a9737e4d9",
+    "code/compare_initial_conditions.py": "31c60424e6451331889248204ea2d226201ea432bc0094392e3a536da212600c",
+    "data/checkpoints/p0_0p1_rho_0p6.json.gz": "ea04a4950abe2f0b78d2a96caeb7a8ac3dc35707e0e98e4bc4b6be71004c3174"
+  },
+  "policy_nodes": 4001,
+  "policy_count": 1,
+  "path_count": 6,
+  "maximum_ode_refinement_change": 7.961912240617153e-10,
+  "maximum_common_start_baseline_change": 5.551115123125783e-17,
+  "maximum_symmetry_error": 0.0,
+  "policies": [
+    {
+      "rival_conjecture": 0.35225096843293846,
+      "policy": {
+        "roots": [
+          0.35225096843293846
+        ],
+        "products": [
+          2,
+          1
+        ],
+        "root_kinds": [
+          "attractive"
+        ],
+        "intervals": [
+          {
+            "lo": 0.0,
+            "hi": 0.35225096843293846,
+            "product": 2
+          },
+          {
+            "lo": 0.35225096843293846,
+            "hi": 1.0,
+            "product": 1
+          }
+        ],
+        "holding_points": [
+          {
+            "x": 0.35225096843293846,
+            "alpha": 0.005002152073196628
+          }
+        ]
+      }
+    }
+  ],
+  "runs": [
+    {
+      "rival_conjecture": 0.35225096843293846,
+      "x0": 0.1,
+      "diagnostics": {
+        "initial_reputations": [
+          0.1,
+          0.1
+        ],
+        "initial_state": "Mature normalized boundary, not empty history",
+        "horizon": 3000.0,
+        "samples": 3001,
+        "bin_width": 25.0,
+        "nfev": 4636,
+        "selection": "Actual joint Thompson demand at (x_A(t),x_B(t)); fixed conjecture affects policy only",
+        "calibration": "lambda=-log(rho); continuous calendar time",
+        "rho": 0.6,
+        "p0": 0.1,
+        "invariant_interval_error": 0.0,
+        "symmetry_error": 0.0,
+        "maximum_selection_partition_error": 1.1102230246251565e-16,
+        "own_product2_given_sale": 0.005584023871157347,
+        "own_product2_per_calendar_time": 0.0027842450814782537,
+        "customer_product2_per_calendar_time": 0.005568490162956507,
+        "value_initial_a": 22.850538637675744,
+        "value_initial_b": 22.850538637675744,
+        "discounted_profit_tail_bound": 2.3594865462738147e-25,
+        "events": 2,
+        "metrics": "Conditional mix: integral(D_A*alpha_A)/integral(D_A). Calendar rate: integral(D_A*alpha_A)/T."
+      },
+      "events": [
+        {
+          "time": 1.7733924921791737,
+          "seller": "A",
+          "x": 0.35225096843293846,
+          "kind": "attractive",
+          "product_before": 2,
+          "alpha_after": 0.005002152073196628
+        },
+        {
+          "time": 1.7733924921791737,
+          "seller": "B",
+          "x": 0.35225096843293846,
+          "kind": "attractive",
+          "product_before": 2,
+          "alpha_after": 0.005002152073196628
+        }
+      ]
+    },
+    {
+      "rival_conjecture": 0.35225096843293846,
+      "x0": 0.3,
+      "diagnostics": {
+        "initial_reputations": [
+          0.3,
+          0.3
+        ],
+        "initial_state": "Mature normalized boundary, not empty history",
+        "horizon": 3000.0,
+        "samples": 3001,
+        "bin_width": 25.0,
+        "nfev": 4594,
+        "selection": "Actual joint Thompson demand at (x_A(t),x_B(t)); fixed conjecture affects policy only",
+        "calibration": "lambda=-log(rho); continuous calendar time",
+        "rho": 0.6,
+        "p0": 0.1,
+        "invariant_interval_error": 0.0,
+        "symmetry_error": 0.0,
+        "maximum_selection_partition_error": 1.1102230246251565e-16,
+        "own_product2_given_sale": 0.005145878594325747,
+        "own_product2_per_calendar_time": 0.002565797740786111,
+        "customer_product2_per_calendar_time": 0.005131595481572222,
+        "value_initial_a": 23.243729129467212,
+        "value_initial_b": 23.243729129467212,
+        "discounted_profit_tail_bound": 2.3594865462738147e-25,
+        "events": 2,
+        "metrics": "Conditional mix: integral(D_A*alpha_A)/integral(D_A). Calendar rate: integral(D_A*alpha_A)/T."
+      },
+      "events": [
+        {
+          "time": 0.4337938645892926,
+          "seller": "A",
+          "x": 0.35225096843293846,
+          "kind": "attractive",
+          "product_before": 2,
+          "alpha_after": 0.005002152073196628
+        },
+        {
+          "time": 0.4337938645892926,
+          "seller": "B",
+          "x": 0.35225096843293846,
+          "kind": "attractive",
+          "product_before": 2,
+          "alpha_after": 0.005002152073196628
+        }
+      ]
+    },
+    {
+      "rival_conjecture": 0.35225096843293846,
+      "x0": 0.5,
+      "diagnostics": {
+        "initial_reputations": [
+          0.5,
+          0.5
+        ],
+        "initial_state": "Mature normalized boundary, not empty history",
+        "horizon": 3000.0,
+        "samples": 3001,
+        "bin_width": 25.0,
+        "nfev": 4669,
+        "selection": "Actual joint Thompson demand at (x_A(t),x_B(t)); fixed conjecture affects policy only",
+        "calibration": "lambda=-log(rho); continuous calendar time",
+        "rho": 0.6,
+        "p0": 0.1,
+        "invariant_interval_error": 0.0,
+        "symmetry_error": 0.0,
+        "maximum_selection_partition_error": 2.220446049250313e-16,
+        "own_product2_given_sale": 0.0049746622135451,
+        "own_product2_per_calendar_time": 0.002480437734984965,
+        "customer_product2_per_calendar_time": 0.00496087546996993,
+        "value_initial_a": 23.398746336852547,
+        "value_initial_b": 23.398746336852547,
+        "discounted_profit_tail_bound": 2.3594865462738147e-25,
+        "events": 2,
+        "metrics": "Conditional mix: integral(D_A*alpha_A)/integral(D_A). Calendar rate: integral(D_A*alpha_A)/T."
+      },
+      "events": [
+        {
+          "time": 16.474553682649578,
+          "seller": "A",
+          "x": 0.35225096843293846,
+          "kind": "attractive",
+          "product_before": 1,
+          "alpha_after": 0.005002152073196628
+        },
+        {
+          "time": 16.474553682649578,
+          "seller": "B",
+          "x": 0.35225096843293846,
+          "kind": "attractive",
+          "product_before": 1,
+          "alpha_after": 0.005002152073196628
+        }
+      ]
+    },
+    {
+      "rival_conjecture": 0.35225096843293846,
+      "x0": 0.55,
+      "diagnostics": {
+        "initial_reputations": [
+          0.55,
+          0.55
+        ],
+        "initial_state": "Mature normalized boundary, not empty history",
+        "horizon": 3000.0,
+        "samples": 3001,
+        "bin_width": 25.0,
+        "nfev": 4669,
+        "selection": "Actual joint Thompson demand at (x_A(t),x_B(t)); fixed conjecture affects policy only",
+        "calibration": "lambda=-log(rho); continuous calendar time",
+        "rho": 0.6,
+        "p0": 0.1,
+        "invariant_interval_error": 0.0,
+        "symmetry_error": 0.0,
+        "maximum_selection_partition_error": 2.220446049250313e-16,
+        "own_product2_given_sale": 0.004972778978283606,
+        "own_product2_per_calendar_time": 0.0024795010235851705,
+        "customer_product2_per_calendar_time": 0.004959002047170341,
+        "value_initial_a": 23.401121374523754,
+        "value_initial_b": 23.401121374523754,
+        "discounted_profit_tail_bound": 2.3594865462738147e-25,
+        "events": 2,
+        "metrics": "Conditional mix: integral(D_A*alpha_A)/integral(D_A). Calendar rate: integral(D_A*alpha_A)/T."
+      },
+      "events": [
+        {
+          "time": 17.601250901339995,
+          "seller": "A",
+          "x": 0.35225096843293846,
+          "kind": "attractive",
+          "product_before": 1,
+          "alpha_after": 0.005002152073196628
+        },
+        {
+          "time": 17.601250901339995,
+          "seller": "B",
+          "x": 0.35225096843293846,
+          "kind": "attractive",
+          "product_before": 1,
+          "alpha_after": 0.005002152073196628
+        }
+      ]
+    },
+    {
+      "rival_conjecture": 0.35225096843293846,
+      "x0": 0.7,
+      "diagnostics": {
+        "initial_reputations": [
+          0.7,
+          0.7
+        ],
+        "initial_state": "Mature normalized boundary, not empty history",
+        "horizon": 3000.0,
+        "samples": 3001,
+        "bin_width": 25.0,
+        "nfev": 4699,
+        "selection": "Actual joint Thompson demand at (x_A(t),x_B(t)); fixed conjecture affects policy only",
+        "calibration": "lambda=-log(rho); continuous calendar time",
+        "rho": 0.6,
+        "p0": 0.1,
+        "invariant_interval_error": 0.0,
+        "symmetry_error": 0.0,
+        "maximum_selection_partition_error": 2.220446049250313e-16,
+        "own_product2_given_sale": 0.004969115613352451,
+        "own_product2_per_calendar_time": 0.0024776792768959424,
+        "customer_product2_per_calendar_time": 0.004955358553791885,
+        "value_initial_a": 23.40581196880209,
+        "value_initial_b": 23.40581196880209,
+        "discounted_profit_tail_bound": 2.3594865462738147e-25,
+        "events": 2,
+        "metrics": "Conditional mix: integral(D_A*alpha_A)/integral(D_A). Calendar rate: integral(D_A*alpha_A)/T."
+      },
+      "events": [
+        {
+          "time": 19.792488168616376,
+          "seller": "A",
+          "x": 0.35225096843293846,
+          "kind": "attractive",
+          "product_before": 1,
+          "alpha_after": 0.005002152073196628
+        },
+        {
+          "time": 19.792488168616376,
+          "seller": "B",
+          "x": 0.35225096843293846,
+          "kind": "attractive",
+          "product_before": 1,
+          "alpha_after": 0.005002152073196628
+        }
+      ]
+    },
+    {
+      "rival_conjecture": 0.35225096843293846,
+      "x0": 0.9,
+      "diagnostics": {
+        "initial_reputations": [
+          0.9,
+          0.9
+        ],
+        "initial_state": "Mature normalized boundary, not empty history",
+        "horizon": 3000.0,
+        "samples": 3001,
+        "bin_width": 25.0,
+        "nfev": 4699,
+        "selection": "Actual joint Thompson demand at (x_A(t),x_B(t)); fixed conjecture affects policy only",
+        "calibration": "lambda=-log(rho); continuous calendar time",
+        "rho": 0.6,
+        "p0": 0.1,
+        "invariant_interval_error": 0.0,
+        "symmetry_error": 0.0,
+        "maximum_selection_partition_error": 1.1102230246251565e-16,
+        "own_product2_given_sale": 0.004966156834809222,
+        "own_product2_per_calendar_time": 0.0024762080376397977,
+        "customer_product2_per_calendar_time": 0.004952416075279595,
+        "value_initial_a": 23.40952461036839,
+        "value_initial_b": 23.40952461036839,
+        "discounted_profit_tail_bound": 2.3594865462738147e-25,
+        "events": 2,
+        "metrics": "Conditional mix: integral(D_A*alpha_A)/integral(D_A). Calendar rate: integral(D_A*alpha_A)/T."
+      },
+      "events": [
+        {
+          "time": 21.56212733206618,
+          "seller": "A",
+          "x": 0.35225096843293846,
+          "kind": "attractive",
+          "product_before": 1,
+          "alpha_after": 0.005002152073196628
+        },
+        {
+          "time": 21.56212733206618,
+          "seller": "B",
+          "x": 0.35225096843293846,
+          "kind": "attractive",
+          "product_before": 1,
+          "alpha_after": 0.005002152073196628
+        }
+      ]
+    }
+  ],
+  "interpretation": "Symmetric mature starts under saved optimal policies and actual joint-state demand. Phase-line limits are distinct from finite-horizon terminal states. A destination different from the optimization conjecture is not a new verified equilibrium."
+}

@@ -1,0 +1,336 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Pb}{\mathbb P}
+\newcommand{\Ind}[1]{\mathbf 1\{#1\}}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\title{Fluid model forgetting case}
+\author{Standalone theoretical note}
+\date{}
+\begin{document}
+\maketitle
+
+This note presents a proposition where we can characterize the region where there is at least one threshold if the set is non empty.
+
+Recall from the previous note 
+
+\paragraph{Model and notation.}
+Fix $\rho\in(0,1)$, $\gamma\in(0,1)$, $p_0\in(0,1)$,
+$0<p_1<p_2<1$, and $0\leq c_1<c_2<R$.
+Write $\Delta c=c_2-c_1$ and $\Delta p=p_2-p_1$.
+As in the manuscript, the normalized state space and outcome transitions are
+\begin{align*}
+\mathcal Z&=\{(x_s,x_f):x_s\geq0,\ x_f\geq0,\ x_s+x_f\leq1\},\\
+T_\rho^s(x_s,x_f)&=(\rho x_s+1-\rho,\rho x_f),\\
+T_\rho^f(x_s,x_f)&=(\rho x_s,\rho x_f+1-\rho).
+\end{align*}
+
+
+\begin{proposition}[Characterization of positive advantage]
+\label{prop:positive-characterization}
+Let $U^{1}_\rho$ be the value of always choosing product~1.
+For $\rho\in(0,1)$, we have $\mathcal A_\rho>0$ if and only if
+\begin{equation}
+\max_{z\in\mathcal K_\rho}
+\left[U_\rho^1(T_\rho^s z)-U_\rho^1(T_\rho^f z)\right]
+>\frac{\Delta c}{\gamma\Delta p}.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Conditional on a purchase from seller~$A$, let
+\begin{equation*}
+Q_\rho^i(z)
+=R-c_i+\gamma\left[p_iU_\rho^1(T_\rho^s z)
++(1-p_i)U_\rho^1(T_\rho^f z)\right],
+\qquad i\in\{1,2\}.
+\end{equation*}
+This is the value of choosing product~$i$ for the current purchase and
+product~1 thereafter. Subtracting the two expressions gives
+\begin{equation*}
+Q_\rho^2(z)-Q_\rho^1(z)
+=-\Delta c+\gamma\Delta p
+\left[U_\rho^1(T_\rho^s z)-U_\rho^1(T_\rho^f z)\right].
+\end{equation*}
+Define
+\begin{equation*}
+\mathcal A_\rho^1
+=\max_{z\in\mathcal K_\rho}
+\left\{-\Delta c+\gamma\Delta p
+\left[U_\rho^1(T_\rho^s z)-U_\rho^1(T_\rho^f z)\right]\right\}.
+\end{equation*}
+The fixed-policy operator is a contraction preserving continuity,
+so $U_\rho^1$ is continuous and this maximum exists.
+We first show that $\mathcal A_\rho>0$ if and only if
+$\mathcal A_\rho^1>0$, by proving that their nonpositivity conditions
+are equivalent.
+
+Suppose $\mathcal A_\rho^1\leq0$. Then
+$ Q_\rho^1(z)\geq Q_\rho^2(z)$ at every
+$z\in\mathcal K_\rho$. By the fixed-policy Bellman equation,
+\begin{equation*}
+U_\rho^1(z)
+=\frac{D_\rho(z)}{1-\gamma[1-D_\rho(z)]}Q_\rho^1(z)
+=\frac{D_\rho(z)}{1-\gamma[1-D_\rho(z)]}
+\max_{i\in\{1,2\}} Q_\rho^i(z).
+\end{equation*}
+Thus $U_\rho^1$ also satisfies the optimal Bellman equation on
+$\mathcal K_\rho$. Since this set is invariant under both transitions,
+the Bellman operator restricted to it is a contraction. Uniqueness
+therefore gives $U_\rho^1=V_\rho$ on $\mathcal K_\rho$, and hence
+$\mathcal A_\rho=\mathcal A_\rho^1\leq0$.
+
+Conversely, suppose $\mathcal A_\rho\leq0$. Product~1 then maximizes
+the Bellman expression evaluated at $V_\rho$ at every state in
+$\mathcal K_\rho$. Consequently, $V_\rho$ satisfies the Bellman equation
+for always choosing product~1 on this invariant set. Uniqueness of
+the fixed-policy value gives $V_\rho=U_\rho^1$ there, and hence
+$\mathcal A_\rho^1=\mathcal A_\rho\leq0$.
+
+We have proved $\mathcal A_\rho\leq0$ if and only if
+$\mathcal A_\rho^1\leq0$. Taking negations gives the desired equivalence
+of strict positivity. Finally, since $\Delta c$ and $\gamma\Delta p>0$
+do not depend on $z$,
+\begin{equation*}
+\mathcal A_\rho^1
+=-\Delta c+\gamma\Delta p\max_{z\in\mathcal K_\rho}
+\left[U_\rho^1(T_\rho^s z)-U_\rho^1(T_\rho^f z)\right].
+\end{equation*}
+Therefore $\mathcal A_\rho^1>0$ is equivalent to the inequality
+in the statement.
+\end{proof}
+
+Now we can think about the information that the fix policy of using product 2 gives us. Only because it is easier to read let's have the following notation
+\begin{align}
+    a_\rho(z) &= -\Delta c + \gamma \Delta p \left[V_\rho(T_\rho^s z)-V_\rho(T_\rho^f z)\right] \\
+    a^1_\rho(z) &= -\Delta c + \gamma \Delta p\left[U_\rho^1(T_\rho^s z)-U_\rho^1(T_\rho^f z)\right] \\
+    a^2_\rho(z) &= -\Delta c + \gamma \Delta p\left[U_\rho^2(T_\rho^s z)-U_\rho^2(T_\rho^f z)\right]
+\end{align}
+
+Then $\mathcal A_\rho = \max_{z\in\mathcal K_\rho} a_\rho(z)$ and $\mathcal A_\rho^1 = \max_{z\in\mathcal K_\rho} a^1 _\rho(z)$. We define 
+\begin{equation}
+    \mathcal A_\rho^2 = \min_{z\in\mathcal K_\rho} a^2_\rho(z)
+\end{equation}
+
+We can characterize the region where there exist at least one threshold thinking about the intersection of states where there is used of product 2 based on conditions determined over $\mathcal A_\rho^1$ and $\mathcal A_\rho^2$. 
+
+\begin{proposition}
+\label{prop:interior-indifference}
+For $\rho\in(\frac12,1)$, if $\mathcal A_\rho^1>0$ and
+$\mathcal A_\rho^2<0$, then there exists $z^*\in\mathcal K_\rho$
+such that $a_\rho(z^*)=0$.
+\end{proposition}
+
+\begin{proof}
+By proposition \ref{prop:positive-characterization} we have that $\mathcal A_\rho^1>0$ implies that there exist $z_1 \in \mathcal K_\rho$ such that $a_\rho(z_1)>0$. 
+We can prove that $\mathcal A_\rho^2<0 \iff \min_{z\in\mathcal K_\rho} a_\rho(z) <0 $. Indeed, suppose that $\mathcal A_\rho^2\ge0$ then, for all $z \in \mathcal K_\rho$
+\begin{equation}
+    -\Delta c + \gamma \Delta p\left[U_\rho^2(T_\rho^s z)-U_\rho^2(T_\rho^f z)\right] \ge 0 
+\end{equation}
+Hence, product~2 maximizes the Bellman expression evaluated at
+$U_\rho^2$ at every state in $\mathcal K_\rho$. By the fixed-policy
+Bellman equation,
+\begin{align*}
+U_\rho^2(z)
+&=\frac{D_\rho(z)}{1-\gamma[1-D_\rho(z)]}
+\left\{R-c_2+\gamma\left[p_2U_\rho^2(T_\rho^s z)
++(1-p_2)U_\rho^2(T_\rho^f z)\right]\right\}\\
+&=\frac{D_\rho(z)}{1-\gamma[1-D_\rho(z)]}
+\max_{i\in\{1,2\}}
+\left\{R-c_i+\gamma\left[p_iU_\rho^2(T_\rho^s z)
++(1-p_i)U_\rho^2(T_\rho^f z)\right]\right\}.
+\end{align*}
+Thus $U_\rho^2$ also satisfies the optimal Bellman equation on
+$\mathcal K_\rho$. Since this set is invariant under both transitions,
+the Bellman operator restricted to it is a contraction. Uniqueness
+therefore gives $U_\rho^2=V_\rho$ on $\mathcal K_\rho$.
+Both successor states remain in this set, so $a_\rho^2=a_\rho$ there,
+and hence
+\begin{equation*}
+\min_{z\in\mathcal K_\rho}a_\rho(z)
+=\min_{z\in\mathcal K_\rho}a_\rho^2(z)
+=\mathcal A_\rho^2\geq0.
+\end{equation*}
+
+Conversely, suppose $\min_{z\in\mathcal K_\rho}a_\rho(z)\geq0$.
+Then $a_\rho(z)\geq0$ at every state in $\mathcal K_\rho$, so
+product~2 maximizes the Bellman expression evaluated at $V_\rho$.
+Consequently,
+\begin{equation*}
+V_\rho(z)
+=\frac{D_\rho(z)}{1-\gamma[1-D_\rho(z)]}
+\left\{R-c_2+\gamma\left[p_2V_\rho(T_\rho^s z)
++(1-p_2)V_\rho(T_\rho^f z)\right]\right\}.
+\end{equation*}
+Thus $V_\rho$ satisfies the Bellman equation for always choosing
+product~2 on this invariant set. Uniqueness of the fixed-policy value
+gives $V_\rho=U_\rho^2$ there. Therefore $a_\rho=a_\rho^2$ on
+$\mathcal K_\rho$, and
+\begin{equation*}
+\mathcal A_\rho^2
+=\min_{z\in\mathcal K_\rho}a_\rho^2(z)
+=\min_{z\in\mathcal K_\rho}a_\rho(z)\geq0.
+\end{equation*}
+
+We have proved that $\mathcal A_\rho^2\geq0$ if and only if
+$\min_{z\in\mathcal K_\rho}a_\rho(z)\geq0$. Taking negations gives
+\begin{equation*}
+\mathcal A_\rho^2<0
+\quad\Longleftrightarrow\quad
+\min_{z\in\mathcal K_\rho}a_\rho(z)<0.
+\end{equation*}
+Since $\mathcal A_\rho^2<0$, there exists $z_2\in\mathcal K_\rho$
+such that $a_\rho(z_2)<0$. Together with $a_\rho(z_1)>0$, this gives
+two states at which $a_\rho$ has opposite signs.
+
+Since $\rho>1/2$, the set $\mathcal K_\rho$ is the segment
+$\{(x_s,1-x_s):x_s\in[0,1]\}$. We can therefore write
+$z_1=(x_1,1-x_1)$ and $z_2=(x_2,1-x_2)$, with $x_1,x_2\in[0,1]$.
+Then
+\begin{equation*}
+a_\rho(x_2,1-x_2)<0<a_\rho(x_1,1-x_1).
+\end{equation*}
+Since $x\mapsto a_\rho(x,1-x)$ is continuous on $[0,1]$,
+the intermediate value theorem therefore gives
+\begin{equation*}
+x^*\in\bigl(\min\{x_1,x_2\},\max\{x_1,x_2\}\bigr)\subseteq(0,1)
+\end{equation*}
+such that
+\begin{equation*}
+a_\rho(x^*,1-x^*)=0.
+\end{equation*}
+Thus $z^*=(x^*,1-x^*)\in\mathcal K_\rho$ satisfies $a_\rho(z^*)=0$.
+At this state, both products give the same Bellman value and are
+therefore optimal.
+\end{proof}
+
+
+\paragraph{A cost interval for an interior indifference state.}
+For $i\in\{1,2\}$, let
+\begin{equation}
+H_\rho^i(z)
+=\E_z^i\left[\sum_{t=1}^{\infty}\gamma^{t-1}\Ind{y_t=A}\right]
+\end{equation}
+be the expected discounted number of purchases from seller~$A$ when
+product~$i$ is always used. Here $t$ counts calendar periods, and
+$\E_z^i$ denotes expectation starting from $z$ under this fixed policy.
+
+\begin{proposition}[Cost region with both products strictly optimal at some states]
+\label{prop:cost-region}
+Fix $\rho\in(1/2,1)$, $\gamma\in(0,1)$, $p_0\in(0,1)$,
+$0<p_1<p_2<1$, and $0\leq c_1<R$. Define
+\begin{align*}
+\underline c_2
+&=\frac{
+ c_1+\gamma\Delta p\,R
+ \displaystyle\min_{z\in\mathcal K_\rho}
+ \left[H_\rho^2(T_\rho^s z)-H_\rho^2(T_\rho^f z)\right]
+}{
+ 1+\gamma\Delta p
+ \displaystyle\min_{z\in\mathcal K_\rho}
+ \left[H_\rho^2(T_\rho^s z)-H_\rho^2(T_\rho^f z)\right]
+},\\[1ex]
+\overline c_2
+&=c_1+\gamma\Delta p\,(R-c_1)
+\max_{z\in\mathcal K_\rho}
+\left[H_\rho^1(T_\rho^s z)-H_\rho^1(T_\rho^f z)\right].
+\end{align*}
+These bounds do not depend on $c_2$. For any $c_2\in(c_1,R)$,
+\begin{equation}
+\mathcal A_\rho^1>0\ \text{and}\ \mathcal A_\rho^2<0
+\quad\Longleftrightarrow\quad
+\underline c_2<c_2<\overline c_2.
+\end{equation}
+Thus $(\underline c_2,\overline c_2)\cap(c_1,R)$ is exactly the cost
+region where each product is strictly optimal at some state in
+$\mathcal K_\rho$. For every cost in this region, there exists
+$x^*\in(0,1)$ such that $a_\rho(x^*,1-x^*)=0$.
+\end{proposition}
+
+\begin{proof}
+Under the fixed policy of always choosing product~$i$, the distribution
+of purchases and outcomes does not depend on costs. Moreover,
+\begin{equation*}
+0\leq H_\rho^i(z)
+\leq\sum_{t=1}^{\infty}\gamma^{t-1}
+=\frac{1}{1-\gamma}<\infty.
+\end{equation*}
+Since each purchase gives the constant profit $R-c_i$, we have
+\begin{equation*}
+U_\rho^i(z)=(R-c_i)H_\rho^i(z),\qquad i\in\{1,2\}.
+\end{equation*}
+In particular, both $H_\rho^1$ and $H_\rho^2$ are independent of $c_2$.
+
+We first check that the denominator defining $\underline c_2$ is
+positive. Conditioning on the first calendar period gives
+\begin{equation*}
+H_\rho^i(z)
+=\frac{D_\rho(z)}{1-\gamma[1-D_\rho(z)]}
+\left\{1+\gamma\left[p_iH_\rho^i(T_\rho^s z)
++(1-p_i)H_\rho^i(T_\rho^f z)\right]\right\}.
+\end{equation*}
+On the boundary, demand $D_\rho(x,1-x)$ and both successor coordinates
+are increasing in $x$. Iteration of this fixed-policy equation from
+zero therefore shows that $H_\rho^i(x,1-x)$ is nondecreasing.
+It follows that
+\begin{equation*}
+H_\rho^2(T_\rho^s z)-H_\rho^2(T_\rho^f z)\geq0,
+\qquad z\in\mathcal K_\rho,
+\end{equation*}
+so the denominator defining $\underline c_2$ is at least one.
+The same fixed-policy operator is a contraction preserving
+continuity, so the extrema in the definitions exist.
+
+Using $\Delta c=c_2-c_1$ and the factorization of $U_\rho^1$, we obtain
+\begin{align*}
+\mathcal A_\rho^1
+&=c_1-c_2+\gamma\Delta p\,(R-c_1)
+\max_{z\in\mathcal K_\rho}
+\left[H_\rho^1(T_\rho^s z)-H_\rho^1(T_\rho^f z)\right]\\
+&=\overline c_2-c_2.
+\end{align*}
+Hence $\mathcal A_\rho^1>0$ if and only if $c_2<\overline c_2$.
+
+Similarly, the factorization of $U_\rho^2$ gives
+\begin{equation*}
+\mathcal A_\rho^2
+=c_1-c_2+\gamma\Delta p\,(R-c_2)
+\min_{z\in\mathcal K_\rho}
+\left[H_\rho^2(T_\rho^s z)-H_\rho^2(T_\rho^f z)\right].
+\end{equation*}
+Collecting the terms containing $c_2$, the condition
+$\mathcal A_\rho^2<0$ is equivalent to
+\begin{align*}
+&c_1+\gamma\Delta p\,R
+\min_{z\in\mathcal K_\rho}
+\left[H_\rho^2(T_\rho^s z)-H_\rho^2(T_\rho^f z)\right]\\
+&\qquad<c_2\left\{1+\gamma\Delta p
+\min_{z\in\mathcal K_\rho}
+\left[H_\rho^2(T_\rho^s z)-H_\rho^2(T_\rho^f z)\right]\right\}.
+\end{align*}
+Dividing by the positive expression in braces gives
+$\mathcal A_\rho^2<0$ if and only if $c_2>\underline c_2$.
+Combining the two inequalities proves the stated equivalence.
+
+By Proposition~\ref{prop:positive-characterization} and the equivalence
+proved in Proposition~\ref{prop:interior-indifference}, these conditions
+hold exactly when $a_\rho$ is positive at some state and negative at
+another. Proposition~\ref{prop:interior-indifference} then gives the
+interior indifference state.
+\end{proof}
+
+\paragraph{Remark.}
+The remaining parameters are arbitrary within the assumptions, but they
+determine the two cost bounds. The admissible cost region is their open
+interval intersected with $(c_1,R)$, whenever this intersection is
+nonempty. The proposition establishes the existence of an interior
+indifference state; it does not determine the number or ordering of
+policy switches.
+
+\end{document}

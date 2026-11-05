@@ -1,0 +1,288 @@
+\documentclass[10pt]{beamer}
+\usepackage[utf8]{inputenc}
+
+\usetheme{Madrid}
+\usecolortheme{default}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{amsmath,amssymb,amsthm,microtype}
+\usepackage{tikz}
+\graphicspath{{../OverleafPaper/figures/}{OverleafPaper/figures/}{../forgetting/outputs/test/monte_carlo/figures/}{forgetting/outputs/test/monte_carlo/figures/}{../forgetting/outputs/test/first_2000/figures/individual_states/p0_0.5/}{forgetting/outputs/test/first_2000/figures/individual_states/p0_0.5/}{../forgetting/outputs/test/first_2000/figures/state_distributions/p0_0.5/}{forgetting/outputs/test/first_2000/figures/state_distributions/p0_0.5/}}
+
+\title{Weekly report}
+\author{Natalia Trigo Tomasevich}
+\date{October 19, 2026}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}{This week}
+    \begin{itemize}[<+->]
+        \item Competition model
+        \item Oblivious equilibrium 
+        \item Simulations 
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Elements of the model}
+    \begin{itemize}
+        \item Two symmetric providers, indexed by $j\in\{A,B\}$
+        \item Two products, indexed by $i\in\{1,2\}$
+        \item Success probabilities: $0<p_1<p_2<1$
+        \item Costs: $c_1<c_2$
+        \item Revenue: $R>c_2$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Customer's beliefs}
+    For the competition model, the customer observes the state $x_A,x_B$, where $x_j$ is the fraction of successes over the interactions with provider $j$. The customer has a belied about each provider $j$
+    \begin{align}
+        \theta_A\mid x_A&\sim\operatorname{Beta}(1+\frac{x_A}{1-\rho},1+\frac{1-x_A}{1-\rho}),\\
+        \theta_B\mid x_B&\sim\operatorname{Beta}(1+\frac{x_B}{1-\rho},1+\frac{1-x_B}{1-\rho})
+    \end{align}
+\end{frame}
+
+\begin{frame}{Customer's choice}
+    The customer uses Thompson sampling (TS), drawing independently from the
+    two belief distributions and choosing
+    \begin{equation}
+        y_t=
+        \begin{cases}
+            A,&\widetilde\theta_A>\widetilde\theta_B,\\
+            B,&\widetilde\theta_B>\widetilde\theta_A.
+        \end{cases}
+    \end{equation}
+    Thus the selection probabilities are
+    \begin{equation}
+        \begin{aligned}
+            D_A(x_A,x_B)&=\mathbb{P}(\widetilde\theta_A>\widetilde\theta_B\mid x_A,x_B),\\
+            D_B(x_A,x_B)&=1-D_A(x_A,x_B).
+        \end{aligned}
+    \end{equation}
+\end{frame}
+
+\begin{frame}{State transitions}
+    Superscripts $s$ and $f$ denote success and failure,
+    respectively. The state transitions are
+    \begin{equation}
+        \begin{aligned}
+            T_A^s(x)&=(\rho x_A+1-\rho,x_B),\\
+            T_A^f(x)&=(\rho x_A,x_B),\\
+            T_B^s(x)&=(x_A,\rho x_B+1-\rho),\\
+            T_B^f(x)&=(x_A,\rho x_B).
+        \end{aligned}
+    \end{equation}
+\end{frame}
+
+\begin{frame}{Strategies}
+    We consider stationary mixed strategies that depend only
+    on the seller's own reputation. For each seller $j\in\{A,B\}$,
+    a strategy is a mapping
+    \begin{equation}
+        \sigma_j:[0,1]\rightarrow\Delta(\{1,2\}),
+    \end{equation}
+    where $\sigma_j(i\mid x_j)$ denotes the probability that
+    seller $j$ chooses product $i$ when selected at reputation
+    $x_j$.
+\end{frame}
+
+\begin{frame}{Distribution-Based Oblivious Equilibrium}
+    Suppose that seller $A$ assumes that its competito's reputation follows a stationary distribution $\mu_B$ on $[0,1]$. Seller $A$ computes its expected demand as 
+    \begin{equation}
+        d_j(x_A;\mu_{B}) =\int_0^1 D(x_A,y)\,\mu_{B}(dy)
+    \end{equation}
+    The seller's problem becomes 
+    \begin{equation}
+        \begin{aligned}
+            U_A(x_A) ={}& \gamma[1-d_A(x_A;\mu_{B})]U_A(x_A)\\ &+ d_A(x_A;\mu_{B})
+            \max_{i\in\{1,2\}}\Big\{ R-c_i\\
+            &\qquad+\gamma\left[ p_i U_A(T_\rho^s(x_A)) + (1-p_i)U_A(T_\rho^f(x_A))
+            \right] \Big\}.
+        \end{aligned}
+    \end{equation}
+\end{frame}
+
+\begin{frame}{Distribution-Based Oblivious Equilibrium}
+    \begin{itemize}
+        \item Given the conjectured distribution $\mu_B$, each seller solves its Bellman equation and obtains an optimal strategy $\sigma$.
+        \item We require this distribution to be consistent with the reputations generated when both sellers follow $\sigma$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Joint transition probability kernel}
+    We define the joint transition probability kernel as
+    \[
+        P^\sigma(x,C)=\mathbb{P}(x_{t+1}\in C\mid x_t=x,\sigma),
+    \]
+    which is equivalent to
+    \begin{equation}
+        \begin{aligned}
+            P^\sigma(x,C)
+            ={}&D(x_A,x_B)\Big[
+                p_{\sigma_A}(x_A)\mathbf{1}\{T_A^s(x)\in C\}\\
+            &\qquad +(1-p_{\sigma_A}(x_A))\mathbf{1}\{T_A^f(x)\in C\}\Big]\\
+            &+[1-D(x_A,x_B)]\Big[
+                p_{\sigma_B}(x_B)\mathbf{1}\{T_B^s(x)\in C\}\\
+            &\qquad +(1-p_{\sigma_B}(x_B))\mathbf{1}\{T_B^f(x)\in C\}\Big].
+        \end{aligned}
+    \end{equation}
+\end{frame}
+
+\begin{frame}{Distribution-Based Oblivious Equilibrium}
+    A symmetric oblivious equilibrium is a triple
+    $(\sigma^*,\mu^*,\nu^*)$ satisfying:
+
+    \medskip
+    \textbf{1. Optimality}
+        \begin{equation*}
+            \begin{aligned}
+            \operatorname{supp}\sigma^*(\cdot\mid x)
+            \subseteq
+            \arg\max_{i\in\{1,2\}}
+            \Big\{
+            R-c_i+\gamma\big[
+            &p_iU_{\mu^*}(T_\rho^s(x))\\
+            &+(1-p_i)U_{\mu^*}(T_\rho^f(x))
+            \big]
+            \Big\},
+            \quad \forall x\in[0,1].
+            \end{aligned}
+        \end{equation*}
+
+    \medskip
+    \textbf{2. Consistency}
+        \begin{equation*}
+            \begin{aligned}
+            \nu^*&=\nu^*P^{\sigma^*},\\
+            \mu^*(C)&=\nu^*(C\times[0,1])
+            =\nu^*([0,1]\times C),
+            \quad \forall C\subseteq[0,1]\text{ measurable}.
+            \end{aligned}
+        \end{equation*}
+\end{frame}
+
+\begin{frame}{Mean-Draw Oblivious Equilibrium}
+    Suppose that seller $A$ represents its competitor
+    by the long-run average of seller $B$'s
+    Thompson sampling draws:
+    \begin{equation}
+        p_{B,0}
+        =
+        \lim_{T\to\infty}
+        \frac{1}{T}
+        \sum_{t=1}^{T}\widetilde{\theta}_{B,t}.
+    \end{equation}
+
+    Under stationarity and ergodicity, the time average
+    coincides with the stationary expectation almost surely.
+    Since
+    \begin{equation}
+    \mathbb{E}[\widetilde{\theta}_{B,t}\mid x_{B,t}]
+    =
+    \frac{1-\rho+x_{B,t}}{3-2\rho},
+    \end{equation}
+    we obtain
+    \begin{equation}
+    \begin{aligned}
+    p_{B,0}
+    &=\mathbb{E}_{\nu}[\widetilde{\theta}_B]\\
+    &=\int_{[0,1]^2}
+    \frac{1-\rho+x_B}{3-2\rho}
+    \,\nu(dx_A,dx_B).
+    \end{aligned}
+    \end{equation}
+        
+\end{frame}
+
+\begin{frame}{Mean-Draw Oblivious Equilibrium}
+    Seller $A$ computes its expected demand as 
+    \begin{equation}
+        d_j(x_A;p_{B,0}) = \mathbb{P}(\tilde{\theta_A}>p_{B,0} \mid x_A)
+    \end{equation}
+    The seller's problem becomes 
+    \begin{equation}
+        \begin{aligned}
+            U_{p_{0,j}}(x_j) ={}& \gamma[1-d(x_j;p_{0,j})]U_{p_{0,j}}(x_j)\\
+            & + d(x_j;p_{0,j}) \max_{i\in\{1,2\}} \Big\{ R-c_i\\
+            &\qquad+ \gamma\left[ p_iU_{p_{0,j}}(T_\rho^s(x_j)) + (1-p_i)U_{p_{0,j}}(T_\rho^f(x_j)) \right] \Big\}.
+        \end{aligned}
+    \end{equation}
+\end{frame}
+
+\begin{frame}{Mean-Draw Oblivious Equilibrium}
+
+    A symmetric oblivious equilibrium is a triple
+    $(\sigma^*,p_0^*,\nu^*)$ satisfying:
+
+    \medskip
+    \textbf{1. Optimality}
+    \begin{equation*}
+        \begin{aligned}
+            \operatorname{supp}\sigma^*(\cdot\mid x)
+            \subseteq
+            \arg\max_{i\in\{1,2\}}
+            \Big\{
+            R-c_i+\gamma\big[
+            &p_iU_{p_0^*}(T_\rho^s(x))\\
+            &+(1-p_i)U_{p_0^*}(T_\rho^f(x))
+            \big]
+            \Big\},
+            \quad \forall x\in[0,1].
+            \end{aligned}
+            \end{equation*}
+
+            \medskip
+            \textbf{2. Consistency}
+            \begin{equation*}
+            \begin{aligned}
+            \nu^*&=\nu^*P^{\sigma^*},\\[6pt]
+            p_0^*
+            &=
+            \int_{[0,1]^2}
+            \frac{1-\rho+x_j}{3-2\rho}
+            \,\nu^*(dx_A,dx_B),
+            \quad j\in\{A,B\}.
+        \end{aligned}
+    \end{equation*}
+
+\end{frame}
+
+\begin{frame}{Mean-Draw: Temporal Consistency}
+    The optimality condition is unchanged. For a symmetric profile
+    $\sigma^*$, consistency uses the expected occupation law over a
+    finite window:
+
+    \medskip
+    \begin{equation*}
+        \begin{aligned}
+            \bar{\nu}_{b,T}^{\,\sigma^*}
+            &=\frac{1}{T}\sum_{t=b}^{b+T-1}
+            \nu_0\left(P^{\sigma^*}\right)^t,\\[8pt]
+            p_0^*
+            &=\int_{[0,1]^2}
+            \frac{1-\rho+x_j}{3-2\rho}
+            \,\bar{\nu}_{b,T}^{\,\sigma^*}(dx_A,dx_B),
+            \quad j\in\{A,B\}.
+        \end{aligned}
+    \end{equation*}
+
+    \medskip
+    \textbf{Experiment}
+    \[
+        \nu_0=\delta_{(0.5,\,0.5)},\qquad
+        b=10\,000,\qquad T=100\,000.
+    \]
+    States are measured before selection. We discard the first $b$
+    periods and average the next $T$ periods.
+
+    \medskip
+    The average law $\bar{\nu}_{b,T}^{\,\sigma^*}$ need not be stationary.
+\end{frame}
+
+\begin{frame}{Simulations}
+    go to vscode, there are too many plots 
+\end{frame}
+
+\end{document}

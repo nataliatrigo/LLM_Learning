@@ -1,0 +1,149 @@
+{
+  "configuration": {
+    "n": 7,
+    "sellers": 2,
+    "closure": "marginal",
+    "p0": 0.5,
+    "parameters": {
+      "R": 1.0,
+      "c1": 0.05,
+      "c2": 0.65,
+      "p1": 0.35,
+      "p2": 0.8,
+      "gamma": 0.98,
+      "rho": 0.6
+    },
+    "order": 256,
+    "tolerance": 1e-07,
+    "strategy": "Symmetric mixed own-reputation policy; action after selection",
+    "marginal_belief": "Joint calendar-time distribution of all rivals, independent of focal state",
+    "conditional_belief": "Actual joint rival distribution conditional on own calendar-time state",
+    "outside_event": "No seller sells; all reputations freeze",
+    "forgetting_clock": "Own observations only",
+    "initial_reputations": 0.5,
+    "scope": "Finite-grid oblivious equilibrium; not full-state MPE or uniqueness proof"
+  },
+  "summary": {
+    "p0": 0.5,
+    "rho": 0.6,
+    "n": 7,
+    "sellers": 2,
+    "closure": "marginal",
+    "verified": true,
+    "product2_conditional": 0.503178849305674,
+    "sale_rate": 0.36279270835788874,
+    "outside_rate": 0.2744145832842223,
+    "product2_calendar": 0.18254961752801144,
+    "profit_calendar": 0.23512330242318744,
+    "value_initial": 11.917744743198176,
+    "perceived_value_initial": 12.04824116427724
+  },
+  "diagnostics": {
+    "conditional_regret": 0.0,
+    "bellman_residual": 1.7763568394002505e-15,
+    "optimal_value_difference": 0.0,
+    "actual_value_residual": 9.816147894525784e-12,
+    "actual_value_error_bound": 4.908073947262888e-10,
+    "actual_value_iterations": 1184,
+    "sale_law_l1": 1.0581813203458523e-16,
+    "market_partition_error": 2.220446049250313e-16,
+    "seller_sale_rate_symmetry": 5.551115123125783e-17,
+    "stationary": {
+      "verified": true,
+      "probability_sum": 1.0,
+      "minimum_probability": 0.00016254686676339664,
+      "minimum_exit_rate": 0.13517135623730953,
+      "maximum_exit_rate": 0.8272065638656999,
+      "exit_rate_dynamic_range": 6.119688274884508,
+      "residual": 1.9165983904112505e-16,
+      "rate_weighted_residual": 1.954545466448243e-16,
+      "row_sum_error": 2.220446049250313e-16,
+      "stability_l1": 2.9891453895425357e-16,
+      "independent_calendar_l1": 2.844404399515721e-16,
+      "independent_jump_l1": 2.9891453895425357e-16,
+      "tolerance": 1e-11,
+      "stability_tolerance": 1e-07,
+      "methods": [
+        "sparse jump solve, original order and middle anchor",
+        "sparse jump solve, reversed order and edge anchor",
+        "positive GTH",
+        "positive GTH, reversed order"
+      ],
+      "preliminary_failures": [],
+      "positive_iteration": null,
+      "solved_states": 28,
+      "communicating_components": 1,
+      "elapsed_seconds": 0.002417698997305706,
+      "scope": "Finite numerical kernel and independent numerical stability checks; no mixing-time or continuous-state guarantee.",
+      "symmetric_lumping": true,
+      "lumping": {
+        "transition_error": 1.1102230246251565e-16,
+        "exit_rate_relative_error": 2.220446049250313e-16,
+        "full_states": 49,
+        "solved_states": 28
+      },
+      "full_states": 49,
+      "full_residual": 1.7127683819839756e-16,
+      "full_rate_weighted_residual": 2.9826401765076227e-16,
+      "marginal_symmetry_l1": 0.0
+    },
+    "sale_time": {
+      "sale_stationary": [
+        0.004395860877843041,
+        0.04395860877843042,
+        0.17075500449202305,
+        0.2840693751573775,
+        0.29836843863024876,
+        0.1632838770147471,
+        0.03516883504933018
+      ],
+      "generated_quality": 0.5764304821875532,
+      "mean_reputation_at_sale": 0.5764304821875534,
+      "quality_reputation_difference": -2.220446049250313e-16,
+      "stationary_residual": 6.938893903907228e-17,
+      "stationary_verified": true,
+      "stability_l1": 4.2500725161431774e-17,
+      "row_sum_error": 2.220446049250313e-16,
+      "minimum_exit_rate": 0.65,
+      "method": "Sale-time embedded chain; independent positive GTH elimination in both state orders",
+      "scope": "Finite numerical kernel for own-reputation policies; final actual-game joint law is checked separately"
+    },
+    "certificate_seconds": 0.020638988993596286
+  },
+  "history": [
+    {
+      "stage": "pure improvement",
+      "regret": 0.012808097473082283,
+      "calls": 1
+    },
+    {
+      "stage": "pure improvement",
+      "regret": 0.0,
+      "calls": 2
+    }
+  ],
+  "search_calls": 2,
+  "seed": "p0_0p5/rho_0p6/n5_N2_marginal",
+  "checkpoint_sha256": "1265ea5580bd5b91ef141e6f5b6ae4dde82bd53084f7b5119c95777e1e4b3062",
+  "completed_utc": "2026-10-24T20:57:45.622853+00:00",
+  "elapsed_seconds": 0.10533869900973514,
+  "demand_diagnostics": {
+    "sellers": 2,
+    "p0": 0.5,
+    "order": 256,
+    "quadrature": "Positive truncated Gauss-Jacobi with doubled-order check",
+    "raw_partition_error": 5.10480546722647e-13,
+    "raw_relative_selected_mass_error": 5.190877760073885e-13,
+    "raw_permutation_error": 0.0,
+    "raw_diagonal_error": 2.0261570199409107e-14,
+    "raw_min": 0.017328581893998635,
+    "raw_max": 0.9020955704576838,
+    "order_doubling_max_abs": 4.917177776064818e-13,
+    "order_doubling_max_relative_tail": 7.75739265288767e-13,
+    "positive_tail_underflow_entries": 0,
+    "partition_error": 2.220446049250313e-16,
+    "relative_event_correction": 5.191445433086751e-13,
+    "min_positive_demand": 0.017328581893998614
+  },
+  "execution_phase": "parallel expanded marginal sweep"
+}

@@ -1,0 +1,19 @@
+Comparación con grilla común: modelo con opción externa fija p0=0.5
+Grilla presentada: 101; contraste de sensibilidad: 51→101.
+Cada curva utiliza su solución guardada en esa grilla; no se interpolan políticas.
+Uso/ventas: límite 5 puntos porcentuales. Beneficio/valor: límite relativo 5% simétrico.
+La estabilidad observada no demuestra convergencia al continuo ni unicidad.
+Rhos incluidos: [0.6, 0.7, 0.8, 0.9, 0.95, 0.97]
+Rhos excluidos: ['0.99']
+
+rho | estado | máximo cambio uso/ventas (pp) | máximo cambio beneficio/valor (%)
+0.6 | included | 0.49589 | 0.0994324
+0.7 | included | 0.872947 | 0.322679
+0.8 | included | 0.8894 | 0.506953
+0.9 | included | 2.24784 | 2.19246
+0.95 | included | 3.50916 | 1.12822
+0.97 | included | 3.03214 | 3.45582
+0.99 | grid_sensitive | 1.40359 | 100
+
+rho=0.99: [{"model": "monopoly", "metric": "profit_calendar", "change": 0.999999999999684, "limit": 0.05}, {"model": "competition", "metric": "profit_calendar", "change": 0.999999999999684, "limit": 0.05}]
+Diagnóstico adicional; no constituye una solución competitiva certificada: {"scope": "Monopoly-only n151, fresh independent demand audit and monopoly certificate; no competitive OE certificate for n151.", "status": "completed_monopoly_grid_sensitivity_diagnostic", "comparison": {"coarse_n": 101, "fine_n": 151, "product2_conditional_absolute_difference": 0.005323433442153858, "sale_rate_absolute_difference": 0.8088701166566703, "profit_calendar_relative_difference": 0.9999851077062477, "value_initial_relative_difference": 0.00984164441648917, "passed": false}}

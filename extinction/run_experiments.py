@@ -21,7 +21,7 @@ ROOT = Path(__file__).resolve().parent
 OUTPUTS = ROOT / "outputs"
 DATA = OUTPUTS / "data"
 FIGURES = OUTPUTS / "figures"
-PAPER_FIGURES = ROOT.parent / "discounted" / "OverleafPaper" / "figures"
+PAPER_FIGURES = ROOT.parent / "OverleafPaper" / "figures"
 
 
 def parse_args() -> argparse.Namespace:

@@ -1,0 +1,1383 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{microtype}
+\usepackage{setspace}
+% 9-inch text block / 21.76pt baseline: about 30 prose lines per page.
+% Extra room accommodates headings and displayed mathematics.
+\setstretch{1.6}
+\raggedbottom
+\usepackage[hidelinks]{hyperref}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Pb}{\mathbb P}
+\DeclareMathOperator{\Beta}{Beta}
+\DeclareMathOperator{\Var}{Var}
+\newcommand{\Bfun}{\mathrm{B}}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{conjecture}{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\allowdisplaybreaks[1]
+\title{Two Strategic Sellers under Forgetting:\\
+The Fluid Model}
+\author{Standalone theoretical note}
+\date{October 8, 2026}
+
+\begin{document}
+\maketitle
+
+Two sellers choose hidden product quality while a customer learns from
+sales outcomes and gradually forgets them. We study open-loop Nash
+equilibrium in a deterministic fluid approximation. The main result is an
+exact test for symmetric stationary equilibrium, conditional on
+log-concavity of marginal demand: reputation must be a fixed point of the
+frozen-payoff peak map, and holding must beat using the cheap product
+forever.
+
+Sections~\ref{sec:model}--\ref{sec:transformation} set up the game and
+transform its payoff. Section~\ref{sec:frozen-single-interval} gives the
+single-interval structure used in the stationary test of
+Section~\ref{sec:fluid-steady}. Section~\ref{sec:moving} treats candidate
+moving paths and their verification. All proofs and derivations are in the
+appendices. We prove the demand-shape conjecture for rivals with integer
+Beta shape parameters, real shapes in $[1,2]^2$, and nearby parameters.
+Its general form, equilibrium
+existence, and convergence remain open. Numerical checks in
+Appendix~\ref{app:demand-numerics} are exploratory, not proofs.
+
+\section{Model}\label{sec:model}
+
+\paragraph{Primitives.}
+Two symmetric sellers $j\in\{A,B\}$ each offer products $i\in\{1,2\}$. A
+product-$i$ sale succeeds with probability $p_i$ and costs the seller $c_i$,
+where $0<p_1<p_2<1$ and $0\leq c_1<c_2<R$, and $R$ is the revenue per sale.
+Write $\Delta p=p_2-p_1$ and $\Delta c=c_2-c_1$. The sellers discount by
+$\gamma\in(0,1)$ per period. The product used is never observed by the
+customer.
+
+The sellers observe both sellers' outcomes, but not the rival's product.
+The customer's information, and hence the reputation state, is public.
+
+\paragraph{Learning and forgetting.}
+For each seller, the customer maintains effective success and failure
+counts $(S,F)$, initially $(0,0)$, with posterior $\Beta(1+S,1+F)$.
+An observation updates the chosen seller's counts to $(\rho S+1,\rho F)$
+after success and $(\rho S,\rho F+1)$ after failure; the other seller's
+counts do not change. We assume $\rho\in(1/2,1)$ and set $n=(1-\rho)^{-1}$.
+
+After $k$ observations, the normalized total is
+$(1-\rho)(S+F)=1-\rho^k$. On its limiting unit segment, reputation is a
+success share $x\in[0,1]$, with posterior $\Beta(1+nx,1+n(1-x))$ and updates
+\begin{equation}\label{eq:share-maps}
+f_1(x)=\rho x+1-\rho,\qquad f_0(x)=\rho x.
+\end{equation}
+We work on the limiting state space $(x,y)\in[0,1]^2$, with $x$ for seller
+$A$ and $y$ for seller $B$. Appendix~\ref{app:model} justifies this state
+space and records the demand properties used below.
+
+\paragraph{Customer choice and demand.}
+In each period the customer draws independently
+$\widetilde\theta_A\sim\Beta(1+nx,1+n(1-x))$ and
+$\widetilde\theta_B\sim\Beta(1+ny,1+n(1-y))$ (Thompson sampling), and
+chooses the seller with the larger draw. Seller $A$'s demand is
+\begin{equation}\label{eq:boundary-demand}
+D_A(x,y)=\Pb\bigl(\widetilde\theta_A>\widetilde\theta_B\bigr),
+\qquad D_B(x,y)=1-D_A(x,y).
+\end{equation}
+Some seller is chosen in every period. By symmetry,
+$D_A(x,y)=1-D_A(y,x)$ and $D_A(x,x)=1/2$. Since both posteriors have full
+support, $D_A$ is smooth on $[0,1]^2$ with values in $(0,1)$.
+
+Demand $D_A$ increases with $x$ and decreases with $y$.
+
+\paragraph{Single-seller benchmark.}
+For comparison we use the model in which seller $A$ faces an outside option
+of known quality $p_0\in(0,1)$, so that demand is
+\begin{equation*}
+S_{p_0}(x)=\Pb\bigl(\Beta(1+nx,1+n(1-x))>p_0\bigr).
+\end{equation*}
+This is the case of a rival whose posterior is a point mass at $p_0$.
+
+\section{The fluid model}\label{sec:fluid-derivation}
+
+Let $\lambda=-\log\rho$, $\delta=-\log\gamma$, and let
+$u_j(t)\in[0,1]$ be seller $j$'s fraction of product~2. The fluid
+approximation replaces random reputation increments by their drift:
+\begin{equation}\label{eq:duopoly-fluid}
+\begin{aligned}
+\dot x&=\lambda D_A(x,y)\bigl(p_1+u_A\Delta p-x\bigr),\\
+\dot y&=\lambda D_B(x,y)\bigl(p_1+u_B\Delta p-y\bigr),
+\end{aligned}
+\end{equation}
+
+Seller $A$ maximizes
+\begin{equation}\label{eq:payoff}
+J_A(u_A,u_B;x_0,y_0)=\int_0^\infty e^{-\delta t}
+D_A(x(t),y(t))(R-c_1-u_A(t)\Delta c)\,dt,
+\end{equation}
+with the analogous objective for $B$. Controls are measurable time paths.
+Each pair induces a unique absolutely continuous trajectory that remains
+in $[0,1]^2$.
+
+The approximation is most natural when $\rho$ is close to one. Its formal
+embedding scales period payoffs by $dt$, discounting by $\gamma^{dt}$, and
+reputation updates by $\rho^{dt}$, while keeping demand's original $n$.
+It does not model the initial buildup of the effective counts.
+Appendix~\ref{app:fluid} gives the derivation.
+
+\section{Solution concepts}\label{sec:fluid-solution-concepts}
+
+Open-loop play commits each seller to a time path from a specified initial
+state, as in the ex ante sequence of choices in \cite{hu2026}.
+
+\begin{definition}[Open-loop Nash equilibrium]
+A pair of control paths $(u_A^*(\cdot),u_B^*(\cdot))$ is an open-loop Nash
+equilibrium from $(x_0,y_0)$ if $u_A^*$ maximizes
+$J_A(\cdot,u_B^*;x_0,y_0)$ and $u_B^*$ maximizes
+$J_B(u_A^*,\cdot\,;x_0,y_0)$.
+\end{definition}
+
+Fixing $u_B(\cdot)$ does not fix $y(\cdot)$: a deviation by $A$ changes
+$B$'s demand and thus its updating speed. The best-response problem has
+state $(x,y)$ even when the proposed equilibrium is symmetric. A unilateral
+deviation generally leaves the diagonal.
+
+\paragraph{The frozen-rival problem.}
+When the rival holds at $y\in[p_1,p_2]$ by committing to
+$u_B=(y-p_1)/\Delta p$, its reputation remains $y$ under every deviation.
+Seller $A$ then faces the one-dimensional problem
+\begin{equation}\label{eq:frozen-rival}
+\sup_{u(\cdot)}\int_0^\infty e^{-\delta t}D_A\bigl(x(t),y\bigr)
+\bigl(R-c_1-u(t)\Delta c\bigr)\,dt
+\quad\text{s.t.}\quad
+\dot x=\lambda D_A(x,y)\bigl(p_1+u\Delta p-x\bigr).
+\end{equation}
+
+This is the best-response problem for stationary open-loop play. For other
+fixed $y\in[0,1]$, it is an auxiliary problem of the same form as the
+single-seller benchmark.
+
+\paragraph{Feedback comparison.}
+A feedback Nash equilibrium instead specifies state-dependent controls
+that are mutual best responses from every state. It is the fluid analogue
+of Markov perfect equilibrium. Deviations can change the rival's action,
+so the stationary test below does not generally apply. The feedback HJB
+and the additional strategic term are recorded in
+Appendix~\ref{app:feedback}.
+
+Neither equilibrium's existence is automatic. In the open-loop problem,
+nonlinear state dynamics can make payoffs nonconcave in one's control and
+best-response sets nonconvex.
+
+\section{A payoff transformation}\label{sec:transformation}
+
+Define
+\begin{equation*}
+q=p_1+\frac{(R-c_1)\Delta p}{\Delta c}>p_2,
+\qquad
+F_A(x,y)=\frac{\Delta c}{\Delta p}D_A(x,y)(q-x)
+-\frac{\delta\Delta c}{\lambda\Delta p}x.
+\end{equation*}
+The discounted payoff has the equivalent representation
+\begin{equation}\label{eq:duopoly-transform}
+J_A(u_A,u_B;x_0,y_0)=\frac{\Delta c}{\lambda\Delta p}x_0
++\int_0^\infty e^{-\delta t}F_A(x(t),y(t))\,dt.
+\end{equation}
+The initial-state term is independent of the controls. Product choice
+therefore only steers the state in the transformed problem: the direct
+quality cost is absorbed by valuing each unit of reputation drift at
+$\Delta c/(\lambda\Delta p)$. With a holding rival, this leaves a
+one-dimensional payoff $F_A(\cdot,y)$ whose shape determines the best
+response. Appendix~\ref{app:transform} proves the identity.
+
+\section{Single-interval structure in the frozen-rival problem}
+\label{sec:frozen-single-interval}
+
+Fix the rival's reputation $y$ and write $D(x)=D_A(x,y)$ and
+$F(x)=F_A(x,y)$. The key condition concerns marginal demand.
+
+\begin{proposition}[Single interval under log-concave marginal demand]
+\label{prop:frozen-reduction}
+If $x\mapsto\partial_xD_A(x,y)$ is log-concave on $[0,1]$, then the
+frozen-rival problem \eqref{eq:frozen-rival} admits an optimal stationary
+policy that uses product~2 on at most one interval of $x$. The nonconstant
+patterns, in increasing order of $x$, are $1\to2$, $2\to1$, and
+$1\to2\to1$, with holding mixtures at attractive thresholds in
+$(p_1,p_2)$.
+\end{proposition}
+
+Under this hypothesis, $F$ is either nonincreasing or decreases, then
+increases, then decreases, with absent segments allowed. In particular,
+there is at most one interior local maximum. This shape reduces the
+stationary equilibrium test to a comparison between holding at the peak
+and descending toward $p_1$. The proof and the underlying control lemma
+are in Appendix~\ref{app:control}.
+
+\begin{corollary}[Single seller]\label{cor:single-seller}
+In the single-seller benchmark, the fluid problem admits an optimal
+stationary policy that uses product~2 on at most one interval of $x$.
+\end{corollary}
+
+The demand property can also be proved exactly for a class of uncertain
+rivals. The next result allows the sellers' posterior totals to differ.
+
+\begin{proposition}[Integer and real Beta shape parameters]\label{prop:integer-rival}
+Let $N>0$ and $\alpha,\beta\geq1$, and define
+\begin{equation*}
+\mathcal D(a)=\Pb\bigl(\Beta(a,N-a)>\Beta(\alpha,\beta)\bigr),
+\qquad 0<a<N,
+\end{equation*}
+with independent draws. Suppose either that both rival shapes are integers
+or that $1\leq\alpha,\beta\leq2$, with no integrality requirement in the
+second case. Then $\mathcal D'(a)>0$ and $a\mapsto\mathcal D'(a)$ is strictly
+log-concave on $(0,N)$ if $\alpha+\beta>2$. For the uniform rival,
+$\alpha=\beta=1$, it equals $1/N$. In the real-shape range $[1,2]^2$,
+$\mathcal D'$ is also concave.
+\end{proposition}
+
+In the common-$n$ model, this proves the conjectured shape for every
+integer $n=m\geq1$ and $y=k/m$, $k=0,\ldots,m$, uniformly over all
+$x\in[0,1]$. The economic restriction $\rho>1/2$ selects $m\geq3$.
+The real-shape case additionally covers $ny\leq1$ and $n(1-y)\leq1$:
+every $y$ if $0<n\leq1$, and $1-1/n\leq y\leq1/n$ if $1<n\leq2$.
+Although this explicit range lies outside the economic restriction $n>2$,
+strictness extends every proved parameter point to a neighborhood, as
+described in Corollary~\ref{cor:integer-neighborhood}. The stationary test
+is unconditional on demand shape wherever these results apply.
+Appendix~\ref{app:integer-rival} gives the polynomial proof for integer
+shapes and a Dirichlet-coupling proof for real shapes in $[1,2]^2$.
+Arbitrary real shapes above two remain open.
+
+\begin{conjecture}[Log-concave marginal demand in the duopoly]
+\label{conj:duopoly-logconcave}
+For every $n>0$ and $y\in[0,1]$, $x\mapsto\partial_xD_A(x,y)$ is
+log-concave on $[0,1]$.
+\end{conjecture}
+
+Appendix~\ref{app:demand} collects further supporting results. The condition
+also holds against a sufficiently concentrated rival
+(Proposition~\ref{prop:concentrated-rival}). A finite-observation analogue
+is also log-concave (Proposition~\ref{prop:discrete-jump-logconcave}), but
+this does not establish the infinitesimal claim. An exact representation
+reduces the conjecture to the variance inequality
+\eqref{eq:logconcavity-variance}; a large-$n$ approximation provides further
+heuristic support.
+
+The single-interval result concerns reputation in a frozen-rival problem.
+It does not bound the number of switches along a moving equilibrium path:
+applying the frozen policy at each current $y(t)$ need not be a best response.
+
+\section{Stationary open-loop Nash equilibrium}\label{sec:fluid-steady}
+
+A stationary profile starts at a rest point $(x^*,y^*)\in[p_1,p_2]^2$
+and uses constant holding controls
+$u_A=(x^*-p_1)/\Delta p$ and $u_B=(y^*-p_1)/\Delta p$.
+It is an open-loop equilibrium exactly when holding solves each seller's
+frozen-rival problem. This is an equilibrium from the rest point, not a
+claim about play from other initial states.
+
+Under Section~\ref{sec:frozen-single-interval}'s shape hypothesis, let
+$m(y)$ denote the interior peak of $F_A(\cdot,y)$ when it exists.
+For a proposed symmetric reputation $z$, define
+\begin{equation*}
+\dot X_1(t;z)=\lambda D_A(X_1(t;z),z)(p_1-X_1(t;z)),
+\qquad X_1(0;z)=z,
+\end{equation*}
+and the transformed value of using product~1 forever,
+\begin{equation}\label{eq:stationary-low-value}
+L_z(z)=\int_0^\infty e^{-\delta t}F_A(X_1(t;z),z)\,dt.
+\end{equation}
+
+\begin{proposition}[Symmetric interior stationary open-loop equilibrium]
+\label{prop:stationary-open-loop}
+Fix $z\in(p_1,p_2)$ and suppose $x\mapsto\partial_xD_A(x,z)$ is
+log-concave on $[0,1]$. The constant control paths
+\begin{equation*}
+u_A^*(t)=u_B^*(t)=\frac{z-p_1}{\Delta p},\qquad t\geq0,
+\end{equation*}
+form an open-loop Nash equilibrium from $(z,z)$ if and only if
+\begin{equation}\label{eq:stationary-exact-test}
+z=m(z)
+\qquad\text{and}\qquad
+\frac{F_A(z,z)}{\delta}\geq L_z(z).
+\end{equation}
+Equivalently, the peak condition is
+\begin{equation}\label{eq:stationary-peak-test}
+(q-z)\partial_xD_A(z,z)=\frac12+\frac{\delta}{\lambda},
+\qquad \partial_{xx}F_A(z,z)<0.
+\end{equation}
+The derivative in the second condition holds the rival's reputation fixed.
+\end{proposition}
+
+The proof is in Appendix~\ref{app:stationary}. To apply the test, solve
+\eqref{eq:stationary-peak-test} for interior peaks and retain those that
+pass \eqref{eq:stationary-exact-test}. The first-order equality alone is
+insufficient: it can select a valley or a peak where abandoning quality
+is preferable. The result is conditional on the demand-shape hypothesis
+at the candidate and does not guarantee existence or uniqueness.
+
+\paragraph{Boundary and asymmetric profiles.}
+Let $W^{\mathrm{fr}}(s;r)$ be the optimal transformed value from own
+reputation $s$ against a rival fixed at $r$. A holding profile at
+$(x^*,y^*)$ is an equilibrium exactly when
+\begin{equation}\label{eq:general-stationary-test}
+W^{\mathrm{fr}}(x^*;y^*)=\frac{F_A(x^*,y^*)}{\delta},
+\qquad
+W^{\mathrm{fr}}(y^*;x^*)=\frac{F_A(y^*,x^*)}{\delta}.
+\end{equation}
+This reduction needs no log-concavity. Under the shape hypothesis, each
+interior seller must be at its frozen-payoff peak and pass its product-1
+value comparison. The symmetric boundary candidates $(p_1,p_1)$ and
+$(p_2,p_2)$ instead require one-sided deviation tests. The value construction
+in Appendix~\ref{app:control} applies to these cases as well.
+
+\section{Moving open-loop paths}\label{sec:moving}
+
+Fix the rival's path $u_B^*(t)$ and abbreviate
+$D=D_A(x,y)$, $h_A=p_1+u_A\Delta p-x$, and
+$h_B=p_1+u_B^*(t)\Delta p-y$. Let $\xi$ and $\eta$ be the
+current-value costates of own and rival
+reputation in the transformed problem. Its Hamiltonian is
+\begin{equation*}
+\mathcal H_A=F_A+\lambda\xi D h_A+\lambda\eta(1-D)h_B.
+\end{equation*}
+Under the regularity and normality conditions for the infinite-horizon
+maximum principle, the adjoint equations are
+\begin{equation}\label{eq:transformed-adjoints}
+\begin{aligned}
+\dot\xi&=(\delta+\lambda D)\xi-\partial_xF_A
+ -\lambda\partial_xD\,(\xi h_A-\eta h_B),\\
+\dot\eta&=(\delta+\lambda(1-D))\eta-\partial_yF_A
+ -\lambda\partial_yD\,(\xi h_A-\eta h_B).
+\end{aligned}
+\end{equation}
+Hamiltonian maximization gives $u_A=1$ when $\xi>0$ and $u_A=0$ when
+$\xi<0$. On a singular interval, $\xi=\dot\xi=0$, hence
+\begin{equation}\label{eq:open-loop-singular}
+\partial_xF_A=\lambda\eta\,\partial_xD_A
+\bigl(p_1+u_B^*(t)\Delta p-y\bigr).
+\end{equation}
+This condition reduces to $\partial_xF_A=0$ when the rival holds.
+Otherwise the rival's drift and its shadow value enter, and singularity
+does not imply $\dot x=0$. Determining a singular control requires further
+conditions that keep \eqref{eq:open-loop-singular} satisfied, as well as
+feasibility and optimality checks. Seller $B$ has the corresponding
+equations with the roles of the sellers exchanged. Together these give
+candidate equilibrium paths, subject to appropriate conditions at infinity;
+they are not a sufficient equilibrium characterization.
+
+\paragraph{Global verification for a moving rival.}
+For a proposed rival path $u_B^*(t)$, suppose a bounded, continuously
+differentiable function $U_A(t,x,y)$ satisfies, for almost every $t$,
+\begin{equation}\label{eq:open-loop-verification}
+\begin{aligned}
+\delta U_A={}&\partial_tU_A+F_A
+ +\max_{u\in[0,1]}\{\lambda D_A(p_1+u\Delta p-x)\partial_xU_A\}\\
+&+\lambda D_B(p_1+u_B^*(t)\Delta p-y)\partial_yU_A.
+\end{aligned}
+\end{equation}
+If the proposed $u_A^*(t)$ attains the maximum along the proposed state
+path, it is a global best response from that initial state. Verification
+for both sellers establishes open-loop Nash equilibrium;
+Appendix~\ref{app:verification} gives the proof.
+This is a sufficient smooth verification test; no existence or smoothness
+of such functions is asserted. The maximizing rule away from the proposed
+path is only a device for evaluating deviations, not a commitment by the
+rival to a feedback strategy.
+
+\section{Open questions}
+
+\begin{enumerate}
+\item Extend Proposition~\ref{prop:integer-rival} beyond integer Beta shapes,
+the real-shape square $[1,2]^2$, and their neighborhoods to arbitrary real
+shapes in the common-$n$ model,
+or prove the weaker condition sufficient for the one-dimensional value
+comparison. Integer parameter points are not dense, so continuity alone
+does not complete the argument.
+\item Determine when the stationary test admits an equilibrium, whether
+it is unique, and whether asymmetric or boundary equilibria coexist.
+\item Establish existence and characterize moving open-loop paths,
+including singular arcs, switching patterns, and convergence. A rival
+that always uses product~1 provides an intermediate best-response problem.
+\item As a separate extension, determine how feedback responses alter
+investment incentives and equilibrium existence.
+\end{enumerate}
+
+\clearpage
+\appendix
+
+\section{Model and payoff derivations}\label{app:model}
+
+\subsection{State space and demand}
+
+We assume $\rho\in(1/2,1)$ throughout. Then $f_0([0,1])\cup f_1([0,1])
+=[0,\rho]\cup[1-\rho,1]=[0,1]$, so by induction, for every $k$, the images
+of $[0,1]$ under the $2^k$ compositions of $k$ maps cover $[0,1]$, and each
+image has length $\rho^k$. Every share in $[0,1]$ is therefore a limit of
+shares reached along outcome histories, and the long-run state space is the
+square of success shares $(x,y)\in[0,1]^2$, with $x$ for seller $A$ and $y$
+for seller $B$.
+
+\emph{Monotonicity.} For $x>x'$, the ratio of the $\Beta(1+nx,1+n(1-x))$
+and $\Beta(1+nx',1+n(1-x'))$ densities is proportional to
+$(\theta/(1-\theta))^{n(x-x')}$, which is increasing in $\theta$. The
+posterior at $x$ therefore dominates the posterior at $x'$ in the
+likelihood-ratio order, hence in the first-order stochastic order.
+Conditioning on $\widetilde\theta_B$ shows that $D_A$ is nondecreasing in
+$x$; the same argument shows that it is nonincreasing in $y$.
+
+\subsection{Fluid embedding and admissibility}\label{app:fluid}
+
+We embed the model in a family indexed by a period length $dt>0$. Each
+period lasts $dt$. A sale earns $(R-c_i)\,dt$, the discount factor per
+period is $\gamma^{dt}$, and an observation moves the chosen seller's share
+from $x$ to $\rho^{dt}x+1-\rho^{dt}$ after a success and to $\rho^{dt}x$
+after a failure. The demand \eqref{eq:boundary-demand} keeps the original
+$n$. Set
+\begin{equation*}
+\lambda=-\log\rho,\qquad\delta=-\log\gamma,
+\end{equation*}
+so that $\rho^{dt}=1-\lambda\,dt+o(dt)$ and $\gamma^{dt}=1-\delta\,dt+o(dt)$.
+We replace pure actions with relaxed controls $u_A,u_B\in[0,1]$, the
+fraction of product~2.
+
+If seller $A$ is chosen and uses $u_A$, its success probability is
+$p_1+u_A\Delta p$, and its share changes in expectation by
+\begin{equation*}
+(p_1+u_A\Delta p)\lambda(1-x)\,dt-(1-p_1-u_A\Delta p)\lambda x\,dt+o(dt)
+=\lambda(p_1+u_A\Delta p-x)\,dt+o(dt),
+\end{equation*}
+while seller $B$'s share does not move. The symmetric statement holds when
+$B$ is chosen. Replacing the random motion by its expectation gives the
+dynamics in \eqref{eq:duopoly-fluid}.
+
+For any measurable control pair, the vector field is measurable in time,
+uniformly Lipschitz in the state, and bounded on the square. At $x=0$ its
+first component is nonnegative, and at $x=1$ it is nonpositive; the same
+holds for $y$. Standard ODE existence and uniqueness and these inward
+boundary signs give a unique absolutely continuous trajectory in the square.
+
+\subsection{Payoff transformation}\label{app:transform}
+
+\begin{proof}[Derivation of \eqref{eq:duopoly-transform}]
+Since $R>c_2$, we have $q>p_1+\Delta p=p_2$. Using
+$\dot x=\lambda D_A(p_1+u_A\Delta p-x)$,
+\begin{align*}
+D_A\bigl(R-c_1-u_A\Delta c\bigr)+\frac{\Delta c}{\lambda\Delta p}\dot x
+&=D_A\Bigl[R-c_1-u_A\Delta c
++\frac{\Delta c}{\Delta p}\bigl(p_1+u_A\Delta p-x\bigr)\Bigr]\\
+&=\frac{\Delta c}{\Delta p}D_A(x,y)(q-x).
+\end{align*}
+The product choice cancels: choosing product~2 costs $D_A\Delta c$ in flow
+profit and raises the drift by $\lambda D_A\Delta p$, and the identity
+credits each unit of drift at the constant rate $\Delta c/(\lambda\Delta p)$.
+
+Along any trajectory with $x(0)=x_0$, integration by parts gives
+\begin{equation*}
+\int_0^T e^{-\delta t}\dot x\,dt
+=e^{-\delta T}x(T)-x_0+\delta\int_0^T e^{-\delta t}x\,dt,
+\end{equation*}
+and the boundary term vanishes as $T\to\infty$ because $x(T)\in[0,1]$.
+
+Substituting this identity into the discounted profit gives
+\eqref{eq:duopoly-transform}.
+\end{proof}
+
+\section{Demand properties}\label{app:demand}
+
+Unless explicitly stated otherwise, fix $n>0$ and $y\in[0,1]$, and write
+\begin{equation*}
+N=n+2,\qquad a=1+nx,\qquad \alpha=1+ny,\qquad \beta=1+n(1-y).
+\end{equation*}
+Seller $A$'s posterior is $\Beta(a,N-a)$ and the rival's is
+$\Beta(\alpha,\beta)$, with density $f_B$ and distribution function $F_B$.
+Since $\partial_x=n\partial_a$, log-concavity in $x$ and $a$ is equivalent.
+
+\subsection{Integer and real rival shapes}\label{app:integer-rival}
+
+\begin{proof}[Proof of Proposition~\ref{prop:integer-rival}: integer shapes]
+Set $M=\alpha+\beta-1$ and write $(v)_j=v(v+1)\cdots(v+j-1)$,
+with $(v)_0=1$. The integer-shape Beta distribution has CDF
+\begin{equation*}
+F_{\alpha,\beta}(p)=\sum_{j=\alpha}^{M}\binom{M}{j}
+p^j(1-p)^{M-j}.
+\end{equation*}
+Indeed, the sum is zero at $p=0$, and differentiating it telescopes to the
+$\Beta(\alpha,\beta)$ density. Taking the expectation under
+$\Beta(a,N-a)$ and evaluating its mixed moments yields
+\begin{equation}\label{eq:integer-demand-polynomial}
+P(a):=\mathcal D(a)=\frac{1}{(N)_M}
+\sum_{j=\alpha}^{M}\binom{M}{j}(a)_j(N-a)_{M-j}.
+\end{equation}
+The right-hand side is a polynomial of degree at most $M$. Similarly,
+\begin{equation*}
+1-P(a)=\frac{1}{(N)_M}
+\sum_{j=0}^{\alpha-1}\binom{M}{j}(a)_j(N-a)_{M-j}.
+\end{equation*}
+These identities initially hold on $(0,N)$ and hence hold as polynomial
+identities on the real line. The first shows that $(a)_\alpha$ divides
+$P(a)$; the second shows that $(N-a)_\beta$ divides $1-P(a)$.
+Consequently,
+\begin{equation*}
+P(0)=P(-1)=\cdots=P(1-\alpha)=0,
+\qquad
+P(N)=P(N+1)=\cdots=P(N+\beta-1)=1.
+\end{equation*}
+
+Rolle's theorem gives a zero $r_j$ of $P'$ in each $(-j,1-j)$,
+$j=1,\ldots,\alpha-1$, and a zero $s_j$ in each
+$(N+j-1,N+j)$, $j=1,\ldots,\beta-1$. These are $M-1$ distinct real
+zeros. Since $P'$ is nonzero and has degree at most $M-1$, they exhaust
+its zeros, which are all simple and outside $(0,N)$. In particular, $P'$
+has constant sign there; $P(N)-P(0)=1$ makes this sign positive.
+Factoring $P'$ now gives
+\begin{equation}\label{eq:integer-curvature}
+\frac{d^2}{da^2}\log\mathcal D'(a)
+=-\sum_{j=1}^{\alpha-1}\frac{1}{(a-r_j)^2}
+ -\sum_{j=1}^{\beta-1}\frac{1}{(s_j-a)^2}<0
+\end{equation}
+whenever $M>1$. If $M=1$, then $P(a)=a/N$ and $P'=1/N$.
+\end{proof}
+
+The root locations also give the explicit bound, for $\alpha+\beta>2$,
+\begin{equation}\label{eq:integer-curvature-bound}
+\frac{d^2}{da^2}\log\mathcal D'(a)
+< -\sum_{j=1}^{\alpha-1}\frac{1}{(a+j)^2}
+  -\sum_{j=1}^{\beta-1}\frac{1}{(N-a+j)^2}.
+\end{equation}
+Thus the result concerns every own reputation, not just integer values of
+$a$. Nor does it require $N=\alpha+\beta$. For example, against
+$\Beta(2,2)$ with $N=4$,
+\begin{equation*}
+\mathcal D(a)=\frac{a(a+1)(7-a)}{60},\qquad
+\mathcal D'(a)=\frac{-3a^2+12a+7}{60},
+\end{equation*}
+whose roots are $2\pm\sqrt{57}/3$, in $(-1,0)$ and $(4,5)$.
+
+\paragraph{A real-parameter extension.}
+The second part of Proposition~\ref{prop:integer-rival} follows from a
+shape-preservation argument that applies to any concave rival density.
+
+\begin{lemma}[Concave rival density]\label{lem:concave-rival-density}
+Let $N>0$ and let $F$ be a distribution function on $[0,1]$ with positive
+density $f\in C^2(0,1)$. If $f''\leq-c$ for a constant $c\geq0$, then
+\begin{equation*}
+H(a)=\E[F(X_a)],\qquad X_a\sim\Beta(a,N-a),\qquad 0<a<N,
+\end{equation*}
+satisfies
+\begin{equation}\label{eq:concave-density-bound}
+H'>0,\qquad H'''\leq-\frac{c}{N(N+1)(N+2)}.
+\end{equation}
+Thus $H'$ is concave and log-concave, with strictly negative log curvature
+if $c>0$.
+\end{lemma}
+
+\begin{proof}
+Fix $a\in(0,N)$, write $b=N-a$, and take $0<h<b/3$. Couple the four
+posterior laws by
+\begin{equation*}
+(U,V_1,V_2,V_3,W)\sim\operatorname{Dirichlet}(a,h,h,h,b-3h).
+\end{equation*}
+For every subset $A\subseteq\{1,2,3\}$, the variable
+$U+\sum_{i\in A}V_i$ has distribution $\Beta(a+|A|h,b-|A|h)$.
+Writing $\Delta_vF(u)=F(u+v)-F(u)$, it follows that
+\begin{align*}
+\Delta_h^3 H(a)
+&=\E[\Delta_{V_1}\Delta_{V_2}\Delta_{V_3}F(U)]\\*
+&=\E\left[\int_0^{V_1}\int_0^{V_2}\int_0^{V_3}
+f''(U+t_1+t_2+t_3)\,dt_3\,dt_2\,dt_1\right]\\*
+&\leq-c\,\E[V_1V_2V_3]
+=-\frac{ch^3}{N(N+1)(N+2)}.
+\end{align*}
+All integration intervals lie strictly inside $(0,1)$ almost surely.
+Also, $H$ is smooth in $a$: since $F$ is bounded, derivatives of its
+Beta integral are dominated on compact parameter intervals by integrable
+powers times logarithmic factors. Dividing by $h^3$ and letting
+$h\downarrow0$ gives the bound on $H'''$.
+Finally, $H'(a)>0$ follows by integrating the positive derivative
+\eqref{eq:dirichlet-derivative} against $f$ (that identity only needs
+$a,b>0$). Therefore
+\begin{equation*}
+(\log H')''=\frac{H'''}{H'}-\left(\frac{H''}{H'}\right)^2,
+\end{equation*}
+which proves both log-concavity claims.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{prop:integer-rival}: the real-shape range]
+Set $r=\alpha-1$ and $s=\beta-1$. For $r,s\in[0,1]$, the rival density
+satisfies
+\begin{equation*}
+\frac{f''(p)}{f(p)}
+=\frac{r(r-1)}{p^2}+\frac{s(s-1)}{(1-p)^2}
+ -\frac{2rs}{p(1-p)}\leq0.
+\end{equation*}
+Except for the three affine densities $(\alpha,\beta)=(1,1),(2,1),(1,2)$,
+we have the uniform bound $f''\leq-c<0$, where one may take
+\begin{equation*}
+c=\frac{1}{\Bfun(\alpha,\beta)}
+\begin{cases}
+2rs,&r,s>0,\\
+r(1-r),&s=0,\quad0<r<1,\\
+s(1-s),&r=0,\quad0<s<1.
+\end{cases}
+\end{equation*}
+For the first case use $p^{r-1}(1-p)^{s-1}\geq1$ in the cross term;
+the boundary cases use $p^{r-2}\geq1$ or $(1-p)^{s-2}\geq1$.
+Lemma~\ref{lem:concave-rival-density} therefore gives
+\begin{equation*}
+(\log\mathcal D')''\leq
+-\frac{c}{N(N+1)(N+2)\mathcal D'}
+-\left(\frac{\mathcal D''}{\mathcal D'}\right)^2<0.
+\end{equation*}
+For the two nonconstant affine densities, direct Beta moments give
+\begin{equation*}
+\mathcal D'_{2,1}(a)=\frac{2a+1}{N(N+1)},\qquad
+\mathcal D'_{1,2}(a)=\frac{2(N-a)+1}{N(N+1)},
+\end{equation*}
+whose logarithms have strictly negative second derivatives. For $(1,1)$,
+$\mathcal D(a)=a/N$ as before.
+\end{proof}
+
+\begin{corollary}[Neighborhoods of proved parameters]
+\label{cor:integer-neighborhood}
+Let $(n_0,y_0)\in(0,\infty)\times[0,1]$ have rival shapes that are either
+both integers or both in $[1,2]$. There is a relative neighborhood of
+$(n_0,y_0)$ in $(0,\infty)\times[0,1]$ on which
+$x\mapsto\partial_xD_A(x,y)$ is strictly log-concave on $[0,1]$.
+\end{corollary}
+
+\begin{proof}
+At $(n_0,y_0)$, the rival shapes sum to $n_0+2>2$.
+Proposition~\ref{prop:integer-rival} gives strictly negative log curvature
+for every $x\in[0,1]$, with $\partial_xD_A>0$. These quantities are
+continuous in $(n,y,x)$: on a compact parameter neighborhood the Beta
+integrals and their first three $x$-derivatives admit integrable bounds,
+including the logarithmic factors introduced by differentiation.
+Compactness of $[0,1]$ therefore gives a uniform negative curvature
+margin and a uniform positive lower bound on marginal demand. Both
+persist in a sufficiently small parameter neighborhood.
+\end{proof}
+
+The real-shape argument proves a continuous parameter range directly;
+it does not interpolate between integer points. It still does not settle
+the general conjecture: for shapes at least one, a Beta density ceases to
+be concave when either shape exceeds two. Integer shape pairs are not
+dense, and the continuity argument provides no lower bound on neighborhood
+sizes that would cover all remaining parameters.
+
+\subsection{Log-concave marginal demand against a known benchmark}
+
+\begin{lemma}[Single-seller marginal demand]
+\label{lem:single-seller-logconcave}
+Let $N>2$, $p\in(0,1)$, and $S(a;p)=\Pb(\Beta(a,N-a)>p)$ for $0<a<N$. Then
+\begin{equation}\label{eq:dirichlet-derivative}
+\partial_aS(a;p)=\frac{1}{\Bfun(a,N-a)}
+\int_0^p\int_0^{1-p}\frac{u^{a-1}w^{N-a-1}}{1-u-w}\,dw\,du>0,
+\end{equation}
+and $a\mapsto\partial_aS(a;p)$ is strictly log-concave on $[1,N-1]$. In
+particular, with $N=n+2$, $S_{p_0}'(x)=n\,\partial_aS(1+nx;p_0)$ is positive
+and strictly log-concave on $[0,1]$.
+\end{lemma}
+
+\begin{proof}
+Write $b=N-a$. For $0<h<b$, let $(U,Y,W)$ be Dirichlet with parameters
+$(a,h,b-h)$. Then $U\sim\Beta(a,b)$ and $U+Y=1-W\sim\Beta(a+h,b-h)$, and
+$U+Y\geq U$, so
+\begin{equation*}
+S(a+h;p)-S(a;p)=\Pb(U\leq p<U+Y)=\Pb(U<p,\ W<1-p).
+\end{equation*}
+Integrating the Dirichlet density over this rectangle, dividing by $h$, and
+letting $h\downarrow0$ (using $h\Gamma(h)\to1$) gives
+\eqref{eq:dirichlet-derivative}. Dominated convergence applies because the
+singularity of $(1-u-w)^{-1}$ at the corner $(p,1-p)$ is integrable in two
+dimensions.
+
+Expanding $(1-u-w)^{-1}=\sum_{m\geq0}(u+w)^m$ and integrating term by term
+(Tonelli),
+\begin{equation*}
+\partial_aS=\sum_{j,k\geq0}t_{jk}(a),\qquad
+t_{jk}(a)=\frac{p^a(1-p)^b}{\Bfun(a,b)}
+\binom{j+k}{j}\frac{p^j(1-p)^k}{(a+j)(b+k)}.
+\end{equation*}
+Differentiating in $a$ with $a+b=N$ fixed,
+\begin{align*}
+(\log t_{jk})'&=\log\tfrac{p}{1-p}-\psi(a)+\psi(b)
+-\tfrac1{a+j}+\tfrac1{b+k},\\
+(\log t_{jk})''&=-\psi_1(a)-\psi_1(b)+\tfrac1{(a+j)^2}+\tfrac1{(b+k)^2},
+\end{align*}
+where $\psi$ is the digamma function. For a positive sum, with expectations
+and variances taken under the weights $t_{jk}/\partial_aS$,
+\begin{equation*}
+(\log\partial_aS)''
+=\E\bigl[(\log t_{jk})''\bigr]+\Var\bigl((\log t_{jk})'\bigr).
+\end{equation*}
+Termwise differentiation is justified on compact subintervals of $(0,N)$,
+where the summands and their first two derivatives are bounded by a constant
+times the summands at a fixed interior parameter. The random part of
+$(\log t_{jk})'$ is $-1/(a+j)+1/(b+k)\in[-1/a,1/b]$, so its variance is at
+most $(1/a+1/b)^2/4$. Therefore
+\begin{equation*}
+(\log\partial_aS)''\leq-\psi_1(a)-\psi_1(b)+\frac1{a^2}+\frac1{b^2}
++\frac14\Bigl(\frac1a+\frac1b\Bigr)^2.
+\end{equation*}
+For $s>0$, $\psi_1(s)=\sum_{m\geq0}(s+m)^{-2}>1/s+1/(2s^2)$, by summing the
+strict trapezoidal inequality for the convex function $t\mapsto(s+t)^{-2}$
+over $[m,m+1]$. With $A=1/a$ and $B=1/b$, both in $(0,1]$ when
+$a,b\geq1$,
+\begin{equation*}
+(\log\partial_aS)''<-(A+B)+\tfrac34(A^2+B^2)+\tfrac12AB
+\leq-\tfrac14(A^2+B^2)+\tfrac12AB=-\tfrac14(A-B)^2\leq0,
+\end{equation*}
+where the second inequality uses $A+B\geq A^2+B^2$. The final statement
+follows from $S_{p_0}(x)=S(1+nx;p_0)$, since $a=1+nx$ and $b=1+n(1-x)$ are
+at least one on $[0,1]$.
+\end{proof}
+
+\subsection{An exact representation of marginal demand}
+
+\begin{lemma}[Marginal demand as a Beta smoothing]
+\label{lem:marginal-demand-representation}
+Define, for $\pi\in(0,1)$,
+\begin{equation*}
+k_y(\pi)=\int_0^1(1-h)^{N-1}\int_0^1
+f_B\bigl((1-h)\pi+ht\bigr)\,dt\,dh.
+\end{equation*}
+Then, with $\Pi_a\sim\Beta(a,N-a)$,
+\begin{equation}\label{eq:marginal-demand-representation}
+\partial_aD_A=\E\bigl[k_y(\Pi_a)\bigr]>0.
+\end{equation}
+Moreover, writing $T=\log\bigl(\Pi/(1-\Pi)\bigr)$, $P_a$ for the
+$\Beta(a,N-a)$ law, and $Q_a$ for the law with density proportional to
+$k_y$ with respect to $P_a$,
+\begin{equation}\label{eq:logconcavity-variance}
+\frac{d^2}{da^2}\log\partial_aD_A
+=\Var_{Q_a}(T)-\Var_{P_a}(T)
+=\Var_{Q_a}(T)-\bigl[\psi_1(a)+\psi_1(N-a)\bigr],
+\end{equation}
+where $\psi_1$ is the trigamma function.
+\end{lemma}
+
+\begin{proof}
+Let $S(a;p)=\Pb(\Beta(a,N-a)>p)$. By \eqref{eq:dirichlet-derivative} in
+Lemma~\ref{lem:single-seller-logconcave}, for $p\in(0,1)$,
+\begin{equation*}
+\partial_aS(a;p)=\frac{1}{\Bfun(a,N-a)}
+\int_0^p\int_0^{1-p}
+\frac{u^{a-1}w^{N-a-1}}{1-u-w}\,dw\,du.
+\end{equation*}
+Since $D_A=\int_0^1f_B(p)S(a;p)\,dp$, differentiating under the integral and
+applying Fubini's theorem give
+\begin{equation*}
+\partial_aD_A=\frac{1}{\Bfun(a,N-a)}
+\iint_{u,w>0,\,u+w<1}u^{a-1}w^{N-a-1}\,
+\frac{F_B(1-w)-F_B(u)}{1-u-w}\,du\,dw.
+\end{equation*}
+Change variables to $u=(1-h)\pi$ and $w=(1-h)(1-\pi)$, with
+$\pi,h\in(0,1)$ and Jacobian $1-h$. Then
+$u^{a-1}w^{N-a-1}\,du\,dw=(1-h)^{N-1}\pi^{a-1}(1-\pi)^{N-a-1}\,d\pi\,dh$,
+and since $1-w=(1-h)\pi+h$ and $1-u-w=h$,
+\begin{equation*}
+\frac{F_B(1-w)-F_B(u)}{1-u-w}
+=\frac1h\int_{(1-h)\pi}^{(1-h)\pi+h}f_B
+=\int_0^1f_B\bigl((1-h)\pi+ht\bigr)\,dt.
+\end{equation*}
+This proves \eqref{eq:marginal-demand-representation}. Positivity follows
+because $f_B>0$ on $(0,1)$.
+
+For the second claim, $\pi^{a-1}(1-\pi)^{N-a-1}=e^{aT}\pi^{-1}(1-\pi)^{N-1}$.
+Hence
+\begin{equation*}
+\log\partial_aD_A=\log\int_0^1 e^{aT}k_y(\pi)\pi^{-1}(1-\pi)^{N-1}\,d\pi
+-\log\Bfun(a,N-a).
+\end{equation*}
+The second derivative of the first term is the variance of $T$ under the
+tilted law $Q_a$. The second derivative of $\log\Bfun(a,N-a)$ is
+$\psi_1(a)+\psi_1(N-a)$, which is also $\Var_{P_a}(T)$, because
+$T=\log G_a-\log G_{N-a}$ for independent gamma variables
+$G_a\sim\mathrm{Gamma}(a)$ and $G_{N-a}\sim\mathrm{Gamma}(N-a)$.
+\end{proof}
+
+\paragraph{Reading of the lemma.}
+The function $k_y$ does not depend on $a$: it is a smoothing of the rival's
+density, evaluated along short random segments around $\pi$. Marginal
+demand is the expectation of $k_y$ under one's own posterior. By
+\eqref{eq:logconcavity-variance}, log-concavity of marginal demand is
+equivalent to the statement that \emph{reweighting one's own posterior by
+$k_y$ does not increase the variance of its logit}. Two boundary cases
+confirm the formula.
+\begin{itemize}
+\item \emph{Uninformative rival} ($f_B\equiv1$): $k_y\equiv1/N$, so
+$Q_a=P_a$ and the second derivative is zero. Indeed $D_A=a/N$ is linear.
+\item \emph{Point-mass rival} ($f_B=\delta_{p_0}$): $k_y$ localizes $\Pi$
+near $p_0$, and \eqref{eq:marginal-demand-representation} reduces to the
+single-seller marginal demand, which is strictly log-concave by
+Lemma~\ref{lem:single-seller-logconcave}.
+\end{itemize}
+Log-concave reweighting does not reduce variance in general, and a direct
+Pr\'ekopa argument fails: $k_y(0^+)>0$, so the joint density of
+$(a,\pi)$ is not log-concave near $\pi=0$. A proof must therefore use the
+specific structure of $k_y$.
+
+\paragraph{An obstruction to a generic preservation argument.}
+The smoothing kernel itself need not be log-concave, even at parameters
+covered by Proposition~\ref{prop:integer-rival}. For $N=4$ and a
+$\Beta(1,3)$ rival, evaluating its defining integral gives
+\begin{equation*}
+k_y(\pi)=\frac{(1-\pi)^2}{2}+\frac{1-\pi}{10}+\frac1{60},
+\qquad
+\left.\frac{d^2}{d\pi^2}\log k_y(\pi)\right|_{\pi=1}=24>0.
+\end{equation*}
+Thus log-concavity of the rival density does not imply log-concavity of
+$k_y$. The Beta-operator preservation result of \cite{badia2023}, which
+assumes a monotone log-concave input, cannot be applied directly to this
+kernel. The polynomial proof above avoids that requirement.
+
+\subsection{Exploratory numerical checks}\label{app:demand-numerics}
+
+For a fixed $(N,\alpha,\beta)$, the derivatives of demand can be evaluated
+without finite differences. Let $P\sim\Beta(a,b)$, $b=N-a$, and define
+\begin{equation*}
+Z=\log\frac{P}{1-P}-\psi(a)+\psi(b),\qquad
+v=\psi_1(a)+\psi_1(b),\qquad
+w=\psi_2(a)-\psi_2(b).
+\end{equation*}
+Differentiating the density under the integral gives
+\begin{equation*}
+\begin{aligned}
+\mathcal D'(a)&=\E[F_B(P)Z],\\
+\mathcal D''(a)&=\E[F_B(P)(Z^2-v)],\\
+\mathcal D'''(a)&=\E[F_B(P)(Z^3-3vZ-w)].
+\end{aligned}
+\end{equation*}
+The diagnostic is $\mathcal D'''/\mathcal D'-(\mathcal D''/\mathcal D')^2$,
+the curvature of $\log\mathcal D'$. In the common-$n$ model, its sign is
+the same as the curvature with respect to $x$, which is $n^2$ times larger.
+
+The accompanying scripts evaluate these integrals in logit coordinates,
+rescale their integrands to handle very small demand, and use symmetry to
+avoid computing derivatives from a demand close to one. An exploratory
+scan used
+\begin{equation*}
+\begin{aligned}
+n&\in\{0.01,0.1,0.5,1,2,3,5,10,20,50,100,300\},\\
+x,y&\in\{0,0.01,0.1,0.25,0.5,0.75,0.9,0.99,1\}.
+\end{aligned}
+\end{equation*}
+All $972$ computed curvatures were negative; the largest was approximately
+$-0.00165906$, at $n=300$ and $x=y=0$ (equivalently $x=y=1$).
+There are $567$ points with the economic restriction $n>2$; the other
+points test the broader mathematical conjecture.
+
+Independent checks compare the score integrals with the exact polynomial
+structure and with high-precision integration in the original probability
+coordinate. Additional checks for real shapes in $[1,2]^2$ compare the
+third-derivative score formula with centered differences of the original
+probability integral, including unequal posterior totals and the three
+affine-density exceptions. These are floating-point diagnostics, not interval certificates
+or a proof between grid points. The scripts and their outputs are in
+\texttt{Progress notes/demand\_shape/}.
+
+\subsection{The demand jump against a known benchmark}
+
+\begin{lemma}[Jump identity]\label{lem:jump-identity}
+For $a,b>0$ and $u\in(0,1)$,
+\begin{equation*}
+\Pb\bigl(\Beta(a+1,b)>u\bigr)-\Pb\bigl(\Beta(a,b+1)>u\bigr)
+=\frac{\Gamma(a+b+1)}{\Gamma(a+1)\Gamma(b+1)}u^a(1-u)^b
+=\frac{f_{a+1,b+1}(u)}{a+b+1},
+\end{equation*}
+where $f_{a+1,b+1}$ is the $\Beta(a+1,b+1)$ density.
+\end{lemma}
+
+\begin{proof}
+Let $I_u(a,b)=\Pb(\Beta(a,b)\leq u)$. Integration by parts in the defining
+integrals, together with $\Bfun(a+1,b)=a\Bfun(a,b)/(a+b)$ and
+$\Bfun(a,b+1)=b\Bfun(a,b)/(a+b)$, gives the contiguous relations
+\begin{equation*}
+I_u(a+1,b)=I_u(a,b)-\frac{u^a(1-u)^b}{a\Bfun(a,b)},
+\qquad
+I_u(a,b+1)=I_u(a,b)+\frac{u^a(1-u)^b}{b\Bfun(a,b)}.
+\end{equation*}
+The left-hand side of the lemma is $I_u(a,b+1)-I_u(a+1,b)
+=u^a(1-u)^b(a+b)/(ab\Bfun(a,b))$. Using
+$\Bfun(a,b)=\Gamma(a)\Gamma(b)/\Gamma(a+b)$ and $s\Gamma(s)=\Gamma(s+1)$
+gives both expressions.
+\end{proof}
+
+\subsection{The finite-observation analogue and concentrated rivals}
+
+For shape parameters $(a,b)$ of seller $A$'s posterior, write
+$D_A(a,b)=\Pb(\Beta(a,b)>\widetilde\theta_B)$.
+
+\begin{proposition}[The per-observation analogue is exactly log-concave]
+\label{prop:discrete-jump-logconcave}
+Fix a pre-update total $M>0$ and let seller $A$'s shape parameters be
+$(a,M-a)$, $a\in(0,M)$. The demand jump from a success instead of a failure,
+\begin{equation*}
+J(a)=D_A(a+1,M-a)-D_A(a,M-a+1),
+\end{equation*}
+is log-concave in $a$, strictly unless $\alpha=\beta=1$.
+\end{proposition}
+
+\begin{proof}
+Condition on the rival's draw $\widetilde\theta_B=u$ and apply
+Lemma~\ref{lem:jump-identity} with $b=M-a$. Integrating against $f_B$,
+\begin{equation*}
+J(a)=\frac{1}{M+1}\int_0^1f_{a+1,M-a+1}f_B
+=\frac{\Bfun(a+\alpha,M-a+\beta)}
+{(M+1)\,\Bfun(a+1,M-a+1)\,\Bfun(\alpha,\beta)},
+\end{equation*}
+where $f_{a+1,M-a+1}$ is the $\Beta(a+1,M-a+1)$ density. The terms
+$\Gamma(M+\alpha+\beta)$ and $\Gamma(M+2)$ do not depend on $a$, so
+\begin{equation*}
+\frac{d^2}{da^2}\log J
+=\bigl[\psi_1(a+\alpha)-\psi_1(a+1)\bigr]
++\bigl[\psi_1(M-a+\beta)-\psi_1(M-a+1)\bigr]\leq0,
+\end{equation*}
+since $\psi_1$ is strictly decreasing and $\alpha,\beta\geq1$. Equality
+requires $\alpha=\beta=1$.
+\end{proof}
+
+The jump $J(a)$ is the integral of the marginal demand
+$\partial_tD_A(t,M+1-t)$ over $t\in[a,a+1]$. It is the quantity that enters
+the Bellman equation of the discrete model, and its log-concavity is exact
+for every rival. Log-concavity of $\partial_aD_A$ implies log-concavity of
+these unit-window averages, but not conversely. The difficulty is therefore
+specific to the infinitesimal step of the fluid limit.
+
+\begin{proposition}[Concentrated rival]\label{prop:concentrated-rival}
+Fix $N$ and $p_0\in(0,1)$, and let the rival's posterior be any law $\mu$ on
+$[0,1]$. There is a weak neighborhood $\mathcal U$ of $\delta_{p_0}$ such
+that, for every $\mu\in\mathcal U$, $x\mapsto\partial_xD_A(x;\mu)$ is
+strictly log-concave on $[0,1]$. In particular, the conclusion of
+Proposition~\ref{prop:frozen-reduction} holds when the rival's reputation is
+known much more precisely than one's own, for example under asymmetric
+forgetting rates with $n_B\gg n_A$.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+Write $D(x;\mu)=\int S_p(x)\,\mu(dp)$. Since $a,N-a\geq1$, $S_p(x)$ and its
+first three $x$-derivatives are jointly continuous in $(x,p)\in[0,1]^2$:
+the $a$-derivatives of the incomplete beta integral only bring in factors
+$\log t$, which are integrable against $t^{a-1}$. By uniform continuity on a
+compact set, $\partial_x^jD(\cdot;\mu)\to\partial_x^jS_{p_0}$ uniformly on
+$[0,1]$ as $\mu\to\delta_{p_0}$ weakly, for $j\leq3$. By
+Lemma~\ref{lem:single-seller-logconcave}, $S_{p_0}'>0$ and
+$(\log S_{p_0}')''<0$ on $[0,1]$; by continuity and compactness,
+$S_{p_0}'\geq c>0$ and $(\log S_{p_0}')''\leq-\eta<0$. Since
+$(\log D')''=(D'D'''-(D'')^2)/(D')^2$ depends continuously on
+$(D',D'',D''')$ where $D'\geq c/2$, it stays below $-\eta/2$ for $\mu$ close
+enough to $\delta_{p_0}$.
+\end{proof}
+
+\subsection{Large-\texorpdfstring{$n$}{n} heuristics}
+
+\begin{remark}[Large-$n$ heuristic]\label{rem:large-n}
+For large $n$, each posterior has variance approximately $x(1-x)/n$, so
+$D(x)\approx\Phi(z)$ with $z=(x-y)\sqrt{n/M(x)}$ and
+$M(x)=x(1-x)+y(1-y)$. Then $\log D'\approx-\tfrac n2g(x)+O(\log n)$, where
+$g=(x-y)^2/M$, and the remaining term $\log\partial_xz$ has $O(1)$ second
+derivative. A direct calculation gives
+\begin{equation*}
+\tfrac12M^3g''=\bigl[M-(x-y)(1-2x)\bigr]^2+(x-y)^2M>0,
+\end{equation*}
+which is bounded below on $[0,1]$ for each $y\in(0,1)$, because
+$M\geq y(1-y)$. The leading term is therefore strictly concave with
+curvature of order $n$, and dominates for large $n$. This suggests that
+log-concavity holds for $n$ large, with a threshold that deteriorates as $y$
+approaches $0$ or $1$, where the approximation also breaks down. With
+$y(1-y)$ replaced by $0$, the same identity is the leading-order version of
+Lemma~\ref{lem:single-seller-logconcave}. This is a heuristic, not a proof.
+\end{remark}
+
+\paragraph{Heuristic scaling.}
+For large $n$, the normal approximation of Remark~\ref{rem:large-n} gives
+\begin{equation*}
+\partial_xD_A(x,x)\approx\sqrt{\frac{n}{4\pi x(1-x)}}.
+\end{equation*}
+Compare this with the single-seller benchmark:
+\begin{equation*}
+S_{p_0}'(x)\approx\sqrt{\frac{n}{x(1-x)}}\;
+\phi\!\left((x-p_0)\sqrt{\frac{n}{x(1-x)}}\right),
+\end{equation*}
+which is exponentially small in $n$ unless $x$ is within $O(n^{-1/2})$ of
+$p_0$. In the duopoly, the benchmark is the rival's reputation, which at a
+symmetric state sits where one's own does. Competition keeps the customer
+close to indifference, and the slope of demand is of order $\sqrt n$
+everywhere on the diagonal.
+
+As $\rho\uparrow1$, $\lambda\sim1-\rho$ and $n=(1-\rho)^{-1}$, so the
+left-hand side of \eqref{eq:stationary-peak-test} grows like $(1-\rho)^{-1/2}$
+and the right-hand side like $\delta/(1-\rho)$. The condition eventually
+fails, so interior steady states disappear under slow forgetting. However,
+the duopoly should sustain product~2 for a much wider range of forgetting
+rates than the single-seller benchmark. This is heuristic and is not yet
+supported by a proof or by computations.
+
+\section{Frozen-rival control and the single-interval result}\label{app:control}
+
+\subsection{One-dimensional control with a valley-peak payoff}
+
+Let $D$ be smooth and positive on $[0,1]$, let
+$b_i(x)=\lambda D(x)(p_i-x)$ for $i\in\{1,2\}$, and consider
+\begin{equation}\label{eq:1d-problem}
+W(x)=\sup\int_0^\infty e^{-\delta t}F(x(t))\,dt
+\quad\text{s.t.}\quad
+\dot x=(1-u)b_1(x)+ub_2(x),\ u(t)\in[0,1],\ x(0)=x.
+\end{equation}
+Note that $b_1<b_2$ everywhere; both are positive below $p_1$, $b_1<0<b_2$
+on $(p_1,p_2)$, and both are negative above $p_2$. Every state in
+$[p_1,p_2]$ can be held by the mixture $u=(x-p_1)/\Delta p$. The value
+satisfies the HJB equation $\delta W=F+\max_i b_iW'$, so product~2 is
+optimal where $W'>0$ and product~1 where $W'<0$.
+
+\begin{lemma}[At most one interval of product~2]\label{lem:control}
+Let $F\in C^2[0,1]$. Suppose that either $F$ is nonincreasing, or there are
+$0\leq a<m\leq1$ with $F'<0$ on $[0,a)\cup(m,1]$, $F'>0$ on $(a,m)$,
+$F''(a)>0$ if $a>0$, and $F''(m)<0$ if $m<1$. Then \eqref{eq:1d-problem}
+admits an optimal stationary policy that uses product~2 on at most one
+interval, with a holding mixture at $m$ if $m\in(p_1,p_2)$ is an attractive
+threshold.
+\end{lemma}
+
+\begin{proof}
+\emph{Step 0: monotone cases.} Let $x_i(t;x)$ be the trajectory under
+product $i$. By the comparison theorem for scalar ODEs, every admissible
+trajectory from $x$ satisfies $x_1(t;x)\leq x(t)\leq x_2(t;x)$. If $F$ is
+nonincreasing, product~1 therefore maximizes $F(x(t))$ at every $t$ and is
+optimal everywhere. If $F$ is nondecreasing ($a=0$, $m=1$), product~2 is
+optimal everywhere. Assume from now on that $0\leq a<m\leq1$ and the shape
+is not monotone.
+
+\emph{Step 1: switches outside $[p_1,p_2]$.} Let $g=\delta W-F
+=\max_ib_iW'$. Below $p_1$ both drifts are positive, so $g$ has the sign of
+$W'$, and product~2 is optimal where $g>0$. Above $p_2$ both are negative,
+so $g$ has the sign of $-W'$, and product~2 is optimal where $g<0$. On
+either region the HJB equation can be solved for $W'$ as
+$W'=\Phi(x,W)$ with $\Phi$ locally Lipschitz (the two branches
+$(\delta W-F)/b_i$ coincide where $\delta W=F$), so $W$ is $C^1$ there. On a
+branch with product $i$, differentiating $\delta W=F+b_iW'$ gives
+\begin{equation*}
+g'=\frac{\delta g}{b_i}-F'.
+\end{equation*}
+At a switch point $g=0$, so $g'=-F'$. When $F'\neq0$ this fixes the
+direction of the switch, in increasing $x$:
+\begin{equation*}\tag{$*$}
+\begin{array}{c|cc}
+ &F'<0&F'>0\\ \hline
+x<p_1&1\to2&2\to1\\
+x>p_2&2\to1&1\to2
+\end{array}
+\end{equation*}
+If $g=0$ at a zero of $F'$, then $g'=0$ and $g''=-F''\neq0$, so $g$ touches
+zero without changing sign and no switch occurs.
+
+\emph{Step 2: the comparison inside $[p_1,h]$.} Suppose $m>p_1$ and put
+$h=\min\{m,p_2\}$. Let $L(x)$ be the value of using product~1 forever, which
+drives the state down to $p_1$. Let $H(x)$ be the value of using product~2
+until reaching $h$ and then holding there, or, if $h=p_2$, of using
+product~2 forever. On $(p_1,h)$,
+\begin{equation*}
+\delta L=F+b_1L',\qquad \delta H=F+b_2H',
+\qquad L(p_1)=\frac{F(p_1)}{\delta},\qquad H(h)=\frac{F(h)}{\delta}.
+\end{equation*}
+\begin{enumerate}
+\item[(i)] $\delta\max\{L,H\}>F$ on $(p_1,h)$. If $x<a$, $F$ increases along
+the descending product-1 path, so $L(x)>F(x)/\delta$. If $x\geq a$, $F$
+increases along the ascending product-2 path to $h$, so $H(x)>F(x)/\delta$.
+\item[(ii)] Where $L>H$, $L'=(\delta L-F)/b_1<0$, so product~1 attains
+$\max_ib_iL'$. Where $H>L$, $H'=(\delta H-F)/b_2>0$, so product~2 attains
+$\max_ib_iH'$.
+\item[(iii)] At a crossing $L(x^*)=H(x^*)$,
+$(H-L)'(x^*)=(\delta L-F)(1/b_2-1/b_1)>0$. Every crossing has the same
+orientation, so there is at most one, with $L$ winning to its left and $H$
+to its right.
+\item[(iv)] $W=\max\{L,H\}$ on $[p_1,h]$. No trajectory starting in
+$[p_1,h]$ can go below $p_1$, since $b_1(p_1)=0$. If $h=m<p_2$, an
+excursion above $h$ can be replaced by holding at $h$ until the trajectory
+returns, which weakly increases the payoff because $F\leq F(h)$ on $[h,1]$.
+On $[p_1,h]$, $\widehat W=\max\{L,H\}$ satisfies
+$\tfrac{d}{dt}\widehat W(x(t))\leq\delta\widehat W-F$ along every admissible
+trajectory, for almost every $t$: by (ii) at points where $L\neq H$, and by
+(i) at times spent at the crossing or an endpoint. Integrating
+$\tfrac{d}{dt}[e^{-\delta t}\widehat W(x(t))]\leq-e^{-\delta t}F(x(t))$
+gives $W\leq\widehat W$. Conversely $W\geq L$ and $W\geq H$, because these
+values are attained by admissible policies.
+\end{enumerate}
+Hence, on $[p_1,h]$, any switch is $1\to2$ and occurs at most once, and
+following the winning branch keeps the state in the winning region.
+
+\emph{Step 3: assembly.}
+
+\emph{Case $m\leq p_1$.} From $x\geq m$, every trajectory stays in $[m,1]$,
+where $F$ is decreasing, so product~1 (the smallest trajectory) is optimal.
+Below $m$, table $(*)$ allows only a $1\to2$ switch on $[0,a)$ and only a
+$2\to1$ switch on $(a,m)$, with none at $a$. Hence product~2 is used on at
+most one interval.
+
+\emph{Case $p_1<m\leq p_2$.} Above $m$, product~1 is optimal: its trajectory
+is the smallest, so it reaches $m$ first while $F$ decreases above $m$, and
+it can hold at $m$ (with a mixture, or with product~2 if $m=p_2$) until any
+other trajectory arrives. On $[p_1,m]$, Step~2 gives at most one $1\to2$
+switch. Below $p_1$, product~2 cannot form a detached interval:
+\begin{itemize}
+\item If $a>p_1$, then $F'<0$ below $p_1$, and table $(*)$ allows only
+$1\to2$ switches there. If $L$ wins at $p_1$, then $g(p_1)=0$; product~2
+just left of $p_1$ would require $g>0$ with $g'=\delta g/b_2-F'>0$, which is
+incompatible with $g$ decreasing to $0$. So product~1 is used just left of
+$p_1$ and on all of $[0,p_1]$. If $H$ wins strictly at $p_1$, it wins on all
+of $[p_1,m)$ by (iii), so any product-2 region below $p_1$ attaches to it.
+\item If $a<p_1$, then for $x\in(a,p_1)$ the state moves up toward $p_1$
+under either product and $F$ increases, so $W>F/\delta$, $g>0$, and
+product~2 is used on $(a,p_1)$. Likewise $H(p_1)>F(p_1)/\delta=L(p_1)$, so
+$H$ wins on $[p_1,m)$. Below $a$, only a $1\to2$ switch is possible, so the
+product-2 region is a single interval ending at $m$.
+\item If $a=p_1$, then moving up strictly improves on holding at the valley,
+so $H$ wins at $p_1$ and the previous argument applies.
+\item If $L(p_1)=H(p_1)$, then $F'(p_1)<0$, $H'(p_1)=0$, and
+$L'(p_1)=F'(p_1)/(\delta+\lambda D(p_1))<0$, so $H$ wins just right of
+$p_1$, while the $g'$ argument above gives product~1 just left. This is a
+single $1\to2$ switch.
+\end{itemize}
+
+\emph{Case $m>p_2$.} Step~2 applies on $[p_1,p_2]$ with $h=p_2$, and the
+argument below $p_1$ is unchanged.
+\begin{itemize}
+\item If $a\geq p_2$, every trajectory starting at $x\leq a$ stays below
+$a$, where $F$ is decreasing, so product~1 is optimal there. Above $a$,
+table $(*)$ allows only a $1\to2$ switch on $(a,m)$ and only a $2\to1$
+switch on $(m,1]$.
+\item If $a<p_2$, then $F'>0$ on $(p_2,m)$, where table $(*)$ allows only
+$1\to2$ switches. If $H$ wins strictly at $p_2$, then $g(p_2)=0$; product~1
+just right of $p_2$ would require $g>0$ with $g'=\delta g/b_1-F'<0$, which
+is impossible starting from $g(p_2)=0$. So product~2 continues to the right
+of $p_2$ up to $m$, and beyond $m$ only one $2\to1$ switch is possible. If
+instead $L$ wins strictly at $p_2$, it wins on all of $[p_1,p_2]$ by (iii);
+then at most one $1\to2$ switch occurs on $(p_2,m)$ and at most one $2\to1$
+switch on $(m,1]$.
+\item If $L(p_2)=H(p_2)$, then $F'(p_2)>0$, $L'(p_2)=0$, and
+$H'(p_2)=F'(p_2)/(\delta+\lambda D(p_2))>0$, so $L$ wins just left of $p_2$,
+while the $g'$ argument gives product~2 just right. This is a single
+$1\to2$ switch.
+\end{itemize}
+In every case product~2 is used on at most one interval. At an attractive
+peak $m\in(p_1,p_2)$, holding uses the mixture $(m-p_1)/\Delta p$.
+\end{proof}
+
+\begin{lemma}[Holding points]\label{lem:holding}
+In problem \eqref{eq:1d-problem}, if $x^*\in(p_1,p_2)$ and holding at $x^*$
+forever is optimal from $x^*$, then $F'(x^*)=0$ and $F''(x^*)\leq0$.
+\end{lemma}
+
+\begin{proof}
+Holding yields $F(x^*)/\delta$. From $x^*$, both directions are available at
+positive speed, and every state near $x^*$ can again be held. If
+$F'(x^*)\neq0$, move for a short time $\tau$ in the direction in which $F$
+increases and hold thereafter. The payoff changes by
+$\int_0^\tau e^{-\delta t}[F(x(t))-F(x^*)]\,dt
++e^{-\delta\tau}[F(x(\tau))-F(x^*)]/\delta>0$, a contradiction. If
+$F'(x^*)=0$ and $F''(x^*)>0$, then $x^*$ is a strict local minimum of $F$,
+and the same deviation in either direction is profitable.
+\end{proof}
+
+\subsection{Proofs of the main single-interval statements}
+
+For the following proofs, fix $y$ and use $D(x)=D_A(x,y)$ and
+$F(x)=F_A(x,y)$.
+
+\begin{proof}[Proof of Proposition~\ref{prop:frozen-reduction}]
+Fix the rival's reputation $y$. The transformation
+\eqref{eq:duopoly-transform} gives running payoff $F$ and drift
+$\dot x=\lambda D(x)(p_1+u\Delta p-x)$. By
+Lemma~\ref{lem:control}, it suffices to show that $F$ is either
+nonincreasing, or decreases, then increases, then decreases (with absent
+segments allowed), with $F''\neq0$ at interior zeros of $F'$. Here
+$D\in(0,1)$ is smooth and $D'>0$ by
+Lemma~\ref{lem:marginal-demand-representation}.
+
+Let $r=D''/D'$, which is nonincreasing by assumption, and set
+$\varphi(x)=(q-x)r(x)$. Differentiating $F$,
+\begin{equation*}
+F'(x)=\frac{\Delta c}{\Delta p}\Bigl[(q-x)D'(x)-D(x)-\frac\delta\lambda\Bigr],
+\qquad
+F''(x)=\frac{\Delta c}{\Delta p}D'(x)\bigl[\varphi(x)-2\bigr].
+\end{equation*}
+On $[q,1]$ (if nonempty), $F'<0$ because $D>0$ and $D'>0$. On
+$[0,\min\{q,1\})$, the set where $r>0$ is an initial segment, because $r$ is
+nonincreasing. On it, $\varphi$ is strictly decreasing: if $u<v$ and
+$r(v)>0$, then $r(u)(q-u)\geq r(v)(q-u)>r(v)(q-v)$. Off it,
+$\varphi\leq0<2$. Hence $\varphi-2$ changes sign at most once, from positive
+to negative, and vanishes at most at one point $c$. Consequently, $F'$ is
+strictly increasing on $[0,c]$, strictly decreasing on $[c,\min\{q,1\}]$,
+and negative on $[q,1]$. The set $\{F'>0\}$ is therefore an interval $I$. If
+$I$ is empty, $F$ is nonincreasing. If $I$ is nonempty, then $F'(c)>0$, so
+neither endpoint of $I$ equals $c$, and $F''\neq0$ at both endpoints. This
+is the required shape.
+\end{proof}
+
+\begin{proof}[Proof of Corollary~\ref{cor:single-seller}]
+The proof of Proposition~\ref{prop:frozen-reduction} applies verbatim with
+$D=S_{p_0}$, which satisfies $S_{p_0}'>0$ and is strictly log-concave by
+Lemma~\ref{lem:single-seller-logconcave}.
+\end{proof}
+
+\begin{remark}[A weaker sufficient condition]
+The proof only needs $F''$ to change sign at most once, from positive to
+negative, on $[0,\min\{q,1\})$. Writing $\psi=(q-x)D''-2D'$, at any zero of
+$\psi$ we have $D''=2D'/(q-x)>0$ and $\psi'=(q-x)D'''-3D''$, so $\psi'<0$
+there exactly when $D'''<\tfrac32(D'')^2/D'$. Hence the condition
+\begin{equation*}
+D'D'''<\tfrac32\,(D'')^2\qquad\text{at points where }D''>0,
+\end{equation*}
+which says that $(D')^{-1/2}$ is convex where $D$ is convex, also suffices:
+a $C^1$ function whose zeros all have negative derivative crosses zero at
+most once, from above. Log-concavity is the stronger condition
+$D'D'''\leq(D'')^2$.
+\end{remark}
+
+\section{Equilibrium proofs}\label{app:equilibrium}
+
+\subsection{Stationary equilibrium}\label{app:stationary}
+
+\begin{proof}[Proof of Proposition~\ref{prop:stationary-open-loop}]
+Fix $u_B^*=(z-p_1)/\Delta p$. Starting from $y(0)=z$, the rival's dynamics
+are $\dot y=\lambda D_B(x,y)(z-y)$. Uniqueness gives $y(t)=z$ under every
+admissible deviation by $A$. Seller $A$ therefore faces exactly the
+frozen-rival problem. Symmetry gives the identical problem for seller $B$.
+
+By Proposition~\ref{prop:frozen-reduction}, the frozen transformed payoff
+is nonincreasing or has the valley-peak shape used in
+Lemma~\ref{lem:control}. The shape argument gives nondegenerate extrema
+whenever the increasing segment is nonempty. An interior holding point
+must consequently be the peak: a point with nonzero derivative admits a
+profitable small move, a valley admits a move in either direction, and an
+isolated horizontal point of a decreasing payoff admits a profitable move
+to the left. Thus holding can be optimal only if $z=m(z)$, equivalently
+\eqref{eq:stationary-peak-test}.
+
+Suppose now that $z=m(z)$. Apply Step~2 of the proof of
+Lemma~\ref{lem:control} with $h=m=z$ and the rival fixed at $z$. On
+$[p_1,z]$, the transformed value is $\max\{L_z,H_z\}$, where $L_z$ is
+the value of product~1 forever and $H_z$ is the value of product~2 until
+reaching $z$, followed by holding. Excursions above $z$ cannot improve
+the value because $F_A(x,z)\leq F_A(z,z)$ for every $x\geq z$.
+At the initial state $z$, $H_z(z)=F_A(z,z)/\delta$. Hence
+\begin{equation*}
+W_A^{\mathrm{fr}}(z;z)
+=\max\left\{L_z(z),\frac{F_A(z,z)}{\delta}\right\},
+\end{equation*}
+where $W_A^{\mathrm{fr}}$ denotes the optimal transformed frozen-rival
+value. Holding is a global best response exactly when the inequality in
+\eqref{eq:stationary-exact-test} holds. The payoff transformation adds
+the same constant to every deviation payoff, and symmetry completes the
+equilibrium argument.
+\end{proof}
+
+For the general holding test \eqref{eq:general-stationary-test}, the same
+argument freezes the rival under every unilateral deviation. The holding
+payoff is $F_A(x^*,y^*)/\delta$ for $A$ and $F_A(y^*,x^*)/\delta$ for $B$.
+Equality with each optimal frozen-rival value is therefore necessary and
+sufficient, including at boundary states. No shape restriction is needed
+for this equivalence.
+
+\subsection{Verification for a moving rival}\label{app:verification}
+
+\begin{proof}[Verification of \eqref{eq:open-loop-verification}]
+Along every admissible deviation against $u_B^*(t)$, the chain rule and
+\eqref{eq:open-loop-verification} give
+\begin{equation*}
+\frac{d}{dt}\bigl[e^{-\delta t}U_A(t,x(t),y(t))\bigr]
+\leq-e^{-\delta t}F_A(x(t),y(t)).
+\end{equation*}
+Integrating to $T$ and letting $T\to\infty$, boundedness of $U_A$ gives
+an upper bound $U_A(0,x_0,y_0)$ for the transformed payoff. Equality holds
+along a proposed path whose control attains the maximum almost everywhere.
+The constant in \eqref{eq:duopoly-transform} preserves the ranking of
+controls. Applying the same argument to $B$ proves mutual global best
+responses and hence open-loop Nash equilibrium from the initial state.
+\end{proof}
+
+\section{Feedback comparison}\label{app:feedback}
+
+This appendix records the feedback formulation for comparison with the
+open-loop problem studied in the main text.
+
+Given $B$'s Markov strategy $u_B(x,y)$, seller $A$'s value satisfies, over
+one period,
+\begin{align*}
+V_A(x,y)={}&D_A\max_{u}\Bigl\{(R-c_1-u\Delta c)dt
++\gamma^{dt}V_A\bigl(x+\lambda(p_1+u\Delta p-x)dt,\ y\bigr)\Bigr\}\\
+&+D_B\,\gamma^{dt}V_A\bigl(x,\ y+\lambda(p_1+u_B\Delta p-y)dt\bigr)+o(dt).
+\end{align*}
+A first-order Taylor expansion and $D_A+D_B=1$ give, after dividing by $dt$
+and letting $dt\to0$, the Hamilton--Jacobi--Bellman (HJB) equation
+\begin{equation}\label{eq:duopoly-HJB}
+\delta V_A=D_A\max_{u\in[0,1]}\Bigl\{R-c_1-u\Delta c
++\lambda(p_1+u\Delta p-x)\,\partial_xV_A\Bigr\}
++\lambda D_B\bigl(p_1+u_B(x,y)\Delta p-y\bigr)\partial_yV_A,
+\end{equation}
+together with the symmetric equation for $V_B$.
+
+\paragraph{Best response.}
+The expression inside the maximum is linear in $u$ with slope
+$D_A[-\Delta c+\lambda\Delta p\,\partial_xV_A]$. Wherever $V_A$ is
+differentiable, product~2 is therefore strictly preferred if and only if
+\begin{equation*}
+\partial_xV_A(x,y)>\frac{\Delta c}{\lambda\Delta p}.
+\end{equation*}
+Away from indifference, optimal controls are bang-bang. At indifference,
+mixtures may be optimal; they need not hold the state fixed. A holding
+mixture is feasible on $[p_1,p_2]$, where $u=(x-p_1)/\Delta p$ keeps $x$
+fixed, but its optimality requires a separate argument.
+
+\begin{definition}[Feedback Nash equilibrium]
+A pair of Markov strategies $u_A^*(x,y)$, $u_B^*(x,y)$, measurable from
+$[0,1]^2$ to $[0,1]$, is a feedback Nash equilibrium if, at every state,
+$u_A^*$ attains the maximum in \eqref{eq:duopoly-HJB} with $u_B=u_B^*$,
+where $V_A$ is seller $A$'s optimal value against $u_B^*$, and symmetrically
+for $B$. Where $V_A$ is not differentiable, \eqref{eq:duopoly-HJB} is
+understood in the viscosity sense.
+\end{definition}
+
+Two technical points arise. First, bang-bang feedback strategies make the
+drift discontinuous, so trajectories must be defined in the Filippov sense,
+or strategies restricted to finitely many switching curves on which sliding
+is resolved by holding mixtures. Second, existence of feedback equilibria in
+differential games is not available in general. An alternative route is to
+take fluid limits of Markov perfect equilibria of the discrete game.
+
+\paragraph{The strategic term.}
+Feedback and open-loop equilibria differ in one term. At points where $V_A$
+is twice differentiable and $u_B^*$ is differentiable in $x$,
+differentiating \eqref{eq:duopoly-HJB} with respect to $x$ produces
+\begin{equation*}
+\lambda D_B(x,y)\,\Delta p\,\partial_xu_B^*(x,y)\,\partial_yV_A(x,y),
+\end{equation*}
+which has no counterpart in the open-loop costate equation for $\xi$,
+where $u_B^*$ depends on time only. Since $D_A$ is nonincreasing in $y$, one
+expects $\partial_yV_A\leq0$. If the rival raises quality when $A$'s
+reputation improves ($\partial_xu_B^*>0$), this term lowers $A$'s marginal
+value of reputation and discourages product~2; if the rival backs off, it
+encourages product~2. With bang-bang strategies, $\partial_xu_B^*$ is
+concentrated on the rival's switching curve.
+
+\begin{thebibliography}{9}
+\bibitem{badia2023}
+F.~G.~Bad\'ia, H.~Lee, and C.~Sang\"uesa (2023).
+Log concavity preservation by beta operator based on probability tools.
+\emph{Journal of Mathematical Analysis and Applications} 525(1), 127122.
+\href{https://doi.org/10.1016/j.jmaa.2023.127122}{doi:10.1016/j.jmaa.2023.127122}.
+
+\bibitem{hu2026}
+X.~Hu, M.~Jagadeesan, M.~I.~Jordan, and J.~Steinhardt (2026).
+Incentivizing high-quality content in online recommender systems.
+In \emph{7th Symposium on Foundations of Responsible Computing (FORC
+2026)}, LIPIcs 368, 15:1--15:18.
+\end{thebibliography}
+
+\end{document}

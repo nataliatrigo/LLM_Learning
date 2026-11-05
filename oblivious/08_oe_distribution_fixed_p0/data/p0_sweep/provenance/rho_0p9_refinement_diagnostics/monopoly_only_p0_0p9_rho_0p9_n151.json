@@ -1,0 +1,125 @@
+{
+  "status": "verified_monopoly_unpublished_diagnostic",
+  "diagnostic_only": true,
+  "publishable_comparison": false,
+  "configuration": {
+    "p0": 0.9,
+    "rho": 0.9,
+    "n": 151,
+    "parameters": {
+      "R": 1.0,
+      "c1": 0.05,
+      "c2": 0.65,
+      "p1": 0.35,
+      "p2": 0.8,
+      "gamma": 0.98,
+      "rho": 0.9
+    },
+    "dp_tol": 1e-10
+  },
+  "monopoly": {
+    "grid": {
+      "__array__": "root/monopoly/grid"
+    },
+    "policy": {
+      "__array__": "root/monopoly/policy"
+    },
+    "value": {
+      "__array__": "root/monopoly/value"
+    },
+    "demand": {
+      "__array__": "root/monopoly/demand"
+    },
+    "advantage": {
+      "__array__": "root/monopoly/advantage"
+    },
+    "mu": {
+      "__array__": "root/monopoly/mu"
+    },
+    "sale_stationary": {
+      "__array__": "root/monopoly/sale_stationary"
+    },
+    "verified": true,
+    "diagnostics": {
+      "conditional_regret": 0.0,
+      "bellman_residual": 4.440892098500626e-16,
+      "original_value_max_difference": 1.1901590823981678e-13,
+      "original_bellman_residual": 5.240252676230739e-14,
+      "stationary_residual": 4.089922911701343e-17,
+      "independent_stationary_l1": 1.3686558980101804e-15,
+      "sale_law_l1": 7.67623721665747e-16,
+      "sale_time": {
+        "sale_stationary": {
+          "__array__": "root/monopoly/diagnostics/sale_time/sale_stationary"
+        },
+        "generated_quality": 0.35000009388093395,
+        "mean_reputation_at_sale": 0.3500000938809339,
+        "quality_reputation_difference": 5.551115123125783e-17,
+        "stationary_residual": 1.1072313201953577e-16,
+        "stationary_verified": true,
+        "stability_l1": 1.906445338854701e-16,
+        "row_sum_error": 2.220446049250313e-16,
+        "minimum_exit_rate": 0.35,
+        "method": "Sale-time embedded chain; independent positive GTH elimination in both state orders",
+        "scope": "Finite numerical kernel for own-reputation policies; final actual-game joint law is checked separately"
+      }
+    }
+  },
+  "outcomes": [
+    {
+      "p0": 0.9,
+      "rho": 0.9,
+      "n": 151,
+      "model": "monopoly",
+      "verified": true,
+      "sale_rate": 3.440280776480604e-08,
+      "outside_rate": 0.9999999655971923,
+      "product2_calendar": 7.177261601828565e-15,
+      "product2_conditional": 2.0862429749617355e-07,
+      "profit_calendar": 3.2682663070208785e-08,
+      "value_initial": 0.01410802454914574
+    }
+  ],
+  "grid_stability": [
+    {
+      "p0": 0.9,
+      "rho": 0.9,
+      "model": "monopoly",
+      "coarse_n": 101,
+      "fine_n": 151,
+      "passed": true,
+      "product2_conditional_absolute_change": 7.13157557040566e-08,
+      "product2_calendar_absolute_change": 2.0202139556952285e-15,
+      "sale_rate_absolute_change": 1.5476466244843326e-09,
+      "outside_rate_absolute_change": 1.5476465664576722e-09,
+      "profit_calendar_relative_change": 0.04498609866124056,
+      "value_initial_relative_change": 4.698086874985728e-05
+    }
+  ],
+  "numerical_sources": {
+    "oblivious/08_oe_distribution_fixed_p0/code/run_experiment.py": "c77347060319c79d93af049c3bf9310a413d0eef8b97c978aa140622c5f3c814",
+    "oblivious/08_oe_distribution_fixed_p0/code/model.py": "dec4058cdc1623608d560d75e64b84b1733d70a817d75b8195b352281db136e5",
+    "forgetting/Code/model.py": "8b1f948f1d9009a021d1836b4f683f6224c65f724677bce591218a930cd28f7d",
+    "oblivious/01_oe_distribution/code/model.py": "35155f12067386f8ce5812c94a8ba3d2f109a1aec71ef696fe0a4b2ea2863dcc",
+    "oblivious/03_oe_following_monopoly/code/event_chain.py": "e32ed9b6323ffe3ebf0448df96dfe4cd76765044339a9d90b4c0930813d08f3a",
+    "oblivious/02_oe_p0/code/primitives.py": "e8a07e00220ab000c945d5a37ee562b9283bff4ceca8d525600e935e68334e11",
+    "oblivious/02_oe_p0/code/policy.py": "b77a2e2ea39b9250f6c3d99477ab09282775c1616bbfe8402d4ecfa88ad235be",
+    "oblivious/02_oe_p0/code/game.py": "af7679fa58bd591f605d901de8e3f2c4044a73f476ec4339d9c5fe9e00fdb292",
+    "oblivious/02_oe_p0/code/core.py": "325c4bd21094eb33c284137503c5e397e6f1bdad4981e3f9282dc8a524c79a61",
+    "oblivious/02_oe_p0/code/positive_stationary.py": "886efe856552f90e702134b9695c623f4c71d26cfeda68655217ccd4f524cab1",
+    "oblivious/02_oe_p0/code/positive_stationary.cpp": "15d1761182e1fbfa2034d40d7d928ff21f12c52911f54d7fe3d08a5e65c6bf7a",
+    "oblivious/08_oe_distribution_fixed_p0/code/multi_p0_run.py": "38be71947e57aec5af1c020671def07afef6104e89862026965085500efee704",
+    "oblivious/08_oe_distribution_fixed_p0/code/conditional_model.py": "3620565f63b9974cdecde86bee6a4cf9a2882fea8d2dcf5548875c0a6dec8cc1",
+    "oblivious/08_oe_distribution_fixed_p0/code/refine_case.py": "6b1a8d5eda3919eb6b2bc6355272ff6744efb4fd179334c1e5b7be75ce3526fd",
+    "oblivious/04_oe_conditional_distribution/code/model.py": "14897718530563163206a990e57e73c11347a04baf0490d2cdd3b19afccac5bc",
+    "oblivious/02_oe_p0/code/run_experiment.py": "ba96b2dbb1c44bf847f579839f5a8c48b789a9050a061ef1299043aebf5f9999",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_sweep/provenance/rho_0p9_refinement_diagnostics/run_monopoly_diagnostics.py": "26f1c2ea51a5d75c26c8e498d9cc36fa92c0d082ea60204006ab932c6984b78a"
+  },
+  "reference_input_sha256": {
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_sweep/p0_0p9/rho_0p9/arrays/rho_0p9_n101_marginal.json": "455d3c9a000cd78936c9e03a68474b2293bba3e4caf1f7d231ea9f1c916ba922",
+    "oblivious/08_oe_distribution_fixed_p0/data/p0_sweep/p0_0p9/rho_0p9/arrays/rho_0p9_n101_marginal.npz": "837397f0f4cdf84ad5509ddb37564a7e216f1aae6692fc59b22186076d40239c"
+  },
+  "created_utc": "2026-10-23T18:20:09.830969+00:00",
+  "elapsed_seconds": 0.01854463100016801,
+  "scope": "Unpublished one-dimensional monopoly grid diagnostic only. No competitive equilibrium or conditional equilibrium is inferred. It does not certify any displayed comparison grid."
+}

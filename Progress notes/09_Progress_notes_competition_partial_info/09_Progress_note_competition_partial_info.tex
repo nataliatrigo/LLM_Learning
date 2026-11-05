@@ -1,0 +1,189 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Pb}{\mathbb P}
+\newcommand{\Ind}[1]{\mathbf 1\{#1\}}
+\newcommand{\K}{K_\rho}
+\newcommand{\xx}{\mathbf x}
+\allowdisplaybreaks[1]
+\title{Two-Seller Competition with Partial Information}
+\author{Progress note --- transcription of handwritten notes}
+\date{October 11, 2026}
+
+\begin{document}
+\maketitle
+
+This note transcribes the model in the handwritten notes. We use the
+coordinate order $(x_A,x_B)$ throughout and write seller-specific
+expressions with a consistent index $j\in\{A,B\}$. Questions in the
+notes about the boundary and the stationary distribution remain open.
+
+\section{Environment, information, and timing}
+
+Consider two sellers, indexed by $j\in\{A,B\}$, each with two products,
+$i\in\{1,2\}$. Product $i$ generates a successful outcome with
+probability $p_i$. The model incorporates forgetting with parameter
+$\rho\in(0,1)$. The state at time $t$ is
+\begin{equation}\label{eq:state}
+\xx_t=(x_{A,t},x_{B,t}),
+\end{equation}
+where $x_{j,t}$ summarizes seller $j$'s successes under forgetting.
+Each seller observes only its own outcomes and state $x_{j,t}$, not
+the other seller's state. Write $-j$ for seller $j$'s opponent.
+
+Following the restriction in the notes, we work with
+\begin{equation}\label{eq:state-space}
+\rho\in\left(\frac12,1\right),\qquad
+\K=[0,1],\qquad \xx_t\in\K^2.
+\end{equation}
+This restriction is intended to avoid the Cantor-set issue associated
+with smaller values of $\rho$. The notes ask whether the proposed
+state representation amounts to working on the boundary of the original
+forgetting model; this interpretation remains to be clarified.
+
+\paragraph{Timing.}
+Let $y_t\in\{A,B\}$ denote the customer's choice, $i_t\in\{1,2\}$ the
+selected seller's product, and $u_t\in\{0,1\}$ the realized outcome.
+Within each period:
+\begin{enumerate}
+\item The customer chooses a seller $j$.
+\item The selected seller chooses a product $i$.
+\item The outcome is realized, with success probability $p_i$, and
+the selected seller's state is updated.
+\end{enumerate}
+In particular,
+\begin{equation}\label{eq:outcome}
+\Pb(u_t=1\mid y_t=j,i_t=i,\xx_t)=p_i.
+\end{equation}
+
+\paragraph{Customer choice.}
+The selection probabilities are
+\begin{equation}\label{eq:demand}
+\Pb(y_t=j\mid\xx_t)=q_j(\xx_t)
+=\Lambda(x_{j,t}-x_{-j,t}),
+\end{equation}
+where $\Lambda:[-1,1]\to[0,1]$ is continuous and increasing, with
+\begin{equation}\label{eq:demand-symmetry}
+\Lambda(-z)=1-\Lambda(z).
+\end{equation}
+Consequently, $q_A(\xx)+q_B(\xx)=1$.
+
+\clearpage
+\section{Strategies and the joint transition kernel}
+
+\paragraph{State updates.}
+For a selected seller with current state $x$, define
+\begin{equation}\label{eq:scalar-transitions}
+T^s(x)=\rho x+(1-\rho),\qquad T^f(x)=\rho x,
+\end{equation}
+where $s$ and $f$ denote success and failure. The unselected seller's
+state remains unchanged.
+
+\paragraph{Strategies.}
+Fix a strategy profile $\sigma=(\sigma_A,\sigma_B)$, where
+\begin{equation}\label{eq:strategies}
+\sigma_j:\K\longrightarrow\Delta(\{1,2\}).
+\end{equation}
+Here $\Delta(\{1,2\})$ is the set of probability distributions over
+the two products, and $\sigma_j(i\mid x_j)$ is the probability that
+seller $j$ chooses product $i$ when selected at its own state $x_j$.
+The resulting average success probability is
+\begin{equation}\label{eq:average-success}
+\bar p_j(x_j)=\sum_{i=1}^2\sigma_j(i\mid x_j)p_i.
+\end{equation}
+
+From a joint state $\xx=(x_A,x_B)$, the four possible events have the
+following next states and probabilities:
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lll}
+\toprule
+Event & Next state & Probability \\
+\midrule
+$A$ selected, success & $(T^s(x_A),x_B)$
+  & $q_A(\xx)\bar p_A(x_A)$ \\
+$A$ selected, failure & $(T^f(x_A),x_B)$
+  & $q_A(\xx)(1-\bar p_A(x_A))$ \\
+$B$ selected, success & $(x_A,T^s(x_B))$
+  & $(1-q_A(\xx))\bar p_B(x_B)$ \\
+$B$ selected, failure & $(x_A,T^f(x_B))$
+  & $(1-q_A(\xx))(1-\bar p_B(x_B))$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Let $\delta_z$ denote the Dirac probability measure at $z$; for a
+measurable set $E$, $\delta_z(E)=\Ind{z\in E}$. The joint transition
+kernel, the continuous-state counterpart of a transition matrix, is
+\begin{equation}\label{eq:joint-kernel}
+\begin{aligned}
+P^\sigma(\xx,\cdot)
+={}&q_A(\xx)\Bigl[
+  \bar p_A(x_A)\delta_{(T^s(x_A),x_B)}
+ +(1-\bar p_A(x_A))\delta_{(T^f(x_A),x_B)}\Bigr]\\
+&+(1-q_A(\xx))\Bigl[
+  \bar p_B(x_B)\delta_{(x_A,T^s(x_B))}
+ +(1-\bar p_B(x_B))\delta_{(x_A,T^f(x_B))}\Bigr].
+\end{aligned}
+\end{equation}
+
+\section{Stationary distribution and expected demand}
+
+Let $\pi^\sigma$ be an invariant probability distribution for
+$P^\sigma$, satisfying
+\begin{equation}\label{eq:stationary-distribution}
+\pi^\sigma(E)=\int_{\K^2}P^\sigma(\xx,E)\,\pi^\sigma(d\xx)
+\qquad\text{for every measurable }E\subseteq\K^2.
+\end{equation}
+As in the notes, we assume that this distribution exists and is unique.
+The conditions that justify existence and uniqueness remain an open
+question.
+
+For seller $j$, define stationary expected demand conditional on its
+own state by
+\begin{equation}\label{eq:conditional-demand}
+\begin{aligned}
+\eta_j^\sigma(x)
+&:=\E^{\pi^\sigma}\!\left[q_j(\xx_t)\mid x_{j,t}=x\right]\\
+&=\int_{\K}\Lambda(x-x')\,
+  \pi^\sigma(dx'\mid x_j=x).
+\end{aligned}
+\end{equation}
+Here $\pi^\sigma(dx'\mid x_j=x)$ denotes the conditional distribution
+of the opponent's state $x_{-j}=x'$ under $\pi^\sigma$.
+Thus $\eta_j^\sigma(x)$ depends only on seller $j$'s own state: the
+opponent's unobserved state is averaged out using its conditional
+stationary distribution.
+
+\section{Transition law conditional on a seller's own state}
+
+Under this stationary demand, the one-period conditional distribution
+of seller $j$'s next state is
+\begin{equation}\label{eq:own-state-kernel}
+\begin{aligned}
+&\Pb^{\pi^\sigma}(x_{j,t+1}\in\cdot\mid x_{j,t}=x)\\
+&\qquad=\eta_j^\sigma(x)\Bigl[
+  \bar p_j(x)\delta_{T^s(x)}
+ +(1-\bar p_j(x))\delta_{T^f(x)}\Bigr]
+ +(1-\eta_j^\sigma(x))\delta_x.
+\end{aligned}
+\end{equation}
+With probability $\eta_j^\sigma(x)$, seller $j$ is selected and its
+state changes according to the outcome. Otherwise, its state remains
+at $x$. Every term in this expression depends on the seller's own
+state and the fixed strategy profile.
+
+\paragraph{Technical clarification (not in the handwritten notes).}
+Equation~\eqref{eq:own-state-kernel} is a one-period conditional law
+under the stationary joint distribution. By itself, it does not
+establish that a seller's own-state process is Markov with respect to
+its entire observed history. Using it as a complete dynamic model
+based only on $x$ would require a separate justification.
+
+\end{document}

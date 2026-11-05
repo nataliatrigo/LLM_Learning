@@ -1,0 +1,1954 @@
+[
+  {
+    "rho": 0.95,
+    "n": 51,
+    "candidate": 0,
+    "verified": true,
+    "periods": 100000,
+    "burn_in": 10000,
+    "trajectories": 4,
+    "seed": 20261021,
+    "estimates": {
+      "mean_ts": {
+        "mean": [
+          0.6752812406147536,
+          0.6755026751758639
+        ],
+        "se": [
+          0.0006278937183971116,
+          0.0004090895103179404
+        ],
+        "ci95": [
+          [
+            0.6732830025705299,
+            0.6772794786589773
+          ],
+          [
+            0.6742007697752223,
+            0.6768045805765056
+          ]
+        ]
+      },
+      "mean_posterior": {
+        "mean": [
+          0.6753038992847067,
+          0.675394367072981
+        ],
+        "se": [
+          0.0005482334140292954,
+          0.0002046978410656469
+        ],
+        "ci95": [
+          [
+            0.673559175881796,
+            0.6770486226876173
+          ],
+          [
+            0.6747429271849821,
+            0.6760458069609798
+          ]
+        ]
+      },
+      "ts_minus_posterior": {
+        "mean": [
+          -2.2658669961050025e-05,
+          0.00010830810288762433
+        ],
+        "se": [
+          9.299348169594574e-05,
+          0.0002346729743981591
+        ],
+        "ci95": [
+          [
+            -0.00031860543219978065,
+            0.0002732880922776806
+          ],
+          [
+            -0.0006385260374357352,
+            0.0008551422432109838
+          ]
+        ]
+      },
+      "market_shares": {
+        "mean": [
+          0.5001925,
+          0.4998075
+        ],
+        "se": [
+          0.002063941920209965,
+          0.0020639419202099526
+        ],
+        "ci95": [
+          [
+            0.49362411566170766,
+            0.5067608843382924
+          ],
+          [
+            0.4932391156617077,
+            0.5063758843382924
+          ]
+        ]
+      },
+      "product2_purchase_fraction": {
+        "mean": 0.781415,
+        "se": 0.001408216957716404,
+        "ci95": [
+          0.7769334251458775,
+          0.7858965748541225
+        ]
+      },
+      "mean_chosen_product2_probability": {
+        "mean": 0.781436276000933,
+        "se": 0.0012780571291146588,
+        "ci95": [
+          0.7773689278124406,
+          0.7855036241894254
+        ]
+      },
+      "product2_per_calendar_period": {
+        "mean": [
+          0.39134,
+          0.390075
+        ],
+        "se": [
+          0.0011463056602262097,
+          0.0012995159355185533
+        ],
+        "ci95": [
+          [
+            0.3876919437868873,
+            0.3949880562131127
+          ],
+          [
+            0.3859393603123517,
+            0.3942106396876483
+          ]
+        ]
+      },
+      "mean_profit_per_seller": {
+        "mean": [
+          0.2403788749999368,
+          0.2407721249999364
+        ],
+        "se": [
+          0.0015430984303077913,
+          0.0013078050373123546
+        ],
+        "ci95": [
+          [
+            0.23546804710171468,
+            0.2452897028981589
+          ],
+          [
+            0.23661010569091026,
+            0.24493414430896251
+          ]
+        ]
+      },
+      "mean_reputation": {
+        "mean": [
+          0.692834289213182,
+          0.6929338037802754
+        ],
+        "se": [
+          0.0006030567554324959,
+          0.00022516762517591586
+        ],
+        "ci95": [
+          [
+            0.6909150934699795,
+            0.6947534849563846
+          ],
+          [
+            0.6922172199034647,
+            0.693650387657086
+          ]
+        ]
+      },
+      "realized_success_fraction": {
+        "mean": 0.7014425,
+        "se": 0.0002504454365059725,
+        "ci95": [
+          0.7006454708459163,
+          0.7022395291540836
+        ]
+      },
+      "ts_b_minus_stationary_posterior_mean": {
+        "mean": 0.0031273571871529293,
+        "se": 0.00040908951031915397,
+        "ci95": [
+          0.0018254517865074166,
+          0.004429262587798442
+        ]
+      },
+      "posterior_b_minus_stationary_posterior_mean": {
+        "mean": 0.0030190490842653683,
+        "se": 0.000204697841068738,
+        "ci95": [
+          0.0023676091962566113,
+          0.0036704889722741253
+        ]
+      }
+    },
+    "initial_states": [
+      [
+        0.72,
+        0.72
+      ],
+      [
+        0.72,
+        0.68
+      ],
+      [
+        0.62,
+        0.74
+      ],
+      [
+        0.56,
+        0.64
+      ]
+    ],
+    "initialization": "Independent draws from the joint stationary nu, not product marginals",
+    "recorded_time": "Predecision states, both Beta draws and both posterior means every retained calendar period",
+    "policy_mode": "mixed",
+    "policy_extension": "Linear interpolation of alpha=P(product 2 | own reputation, selected); independent Bernoulli choice. This extension does not certify off-grid indifference or optimality.",
+    "product_choice": "Independent product uniform compared to own-state alpha; success uses the realized selected product",
+    "random_streams": "Five independent streams per path: joint initialization, TS A, TS B, product choice, success",
+    "customer_selection": "Independent actual Beta draws for A and B; exactly one seller selected",
+    "uncertainty": "95% Student-t intervals over independent path means, with paths-1 degrees of freedom; time observations are not treated as IID. Few independent paths give imprecise uncertainty estimates, especially with slow mixing.",
+    "interpretation": "Finite continuous-state paths, initialized independently from the joint grid stationary law. Grid marginals and continuous simulations may differ due to discretization, initialization and slow mixing; this is not a continuous-state equilibrium certificate.",
+    "ts_minus_posterior_B_ci_contains_zero": true,
+    "stationary_posterior_means": [
+      0.6723753179887104,
+      0.6723753179887104
+    ],
+    "ts_B_ci_contains_stationary_posterior_mean": false,
+    "posterior_B_ci_contains_stationary_posterior_mean": false,
+    "marginal_comparison": {
+      "deposition": "Linear mass deposition of continuous reputation states onto the numerical grid",
+      "l1": [
+        0.05314149537926482,
+        0.052313528639513864
+      ],
+      "maximum_cdf_gap": [
+        0.02393637913538384,
+        0.023694146702006938
+      ],
+      "wasserstein_grid": [
+        0.0034017357162161354,
+        0.0034742545418881303
+      ],
+      "interpretation": "Pooled finite-path diagnostics against the grid law, without an IID-time confidence claim"
+    },
+    "model": "ConditionalOE",
+    "decision_problem": "Saved own-state mixed policy optimized with conditional rival demand; both sellers follow that policy in the actual TS game."
+  },
+  {
+    "rho": 0.6,
+    "n": 51,
+    "candidate": 0,
+    "verified": true,
+    "periods": 100000,
+    "burn_in": 10000,
+    "trajectories": 4,
+    "seed": 20261017,
+    "estimates": {
+      "mean_ts": {
+        "mean": [
+          0.43406588073671726,
+          0.4338517207210324
+        ],
+        "se": [
+          0.0006862334369408241,
+          0.0006472701808349951
+        ],
+        "ci95": [
+          [
+            0.4318819796707628,
+            0.4362497818026717
+          ],
+          [
+            0.43179181812551376,
+            0.43591162331655103
+          ]
+        ]
+      },
+      "mean_posterior": {
+        "mean": [
+          0.4340083183803636,
+          0.43344986173776123
+        ],
+        "se": [
+          0.0003817164222584677,
+          0.0005794694965602662
+        ],
+        "ci95": [
+          [
+            0.432793526362681,
+            0.4352231103980462
+          ],
+          [
+            0.4316057311794084,
+            0.43529399229611404
+          ]
+        ]
+      },
+      "ts_minus_posterior": {
+        "mean": [
+          5.756235635050481e-05,
+          0.0004018589832717157
+        ],
+        "se": [
+          0.0003578955116709172,
+          0.0003410229448624133
+        ],
+        "ci95": [
+          [
+            -0.001081420892444228,
+            0.0011965456051452376
+          ],
+          [
+            -0.000683428227622641,
+            0.0014871461941660725
+          ]
+        ]
+      },
+      "market_shares": {
+        "mean": [
+          0.50018,
+          0.49982000000000004
+        ],
+        "se": [
+          0.0012456390595460014,
+          0.001245639059546004
+        ],
+        "ci95": [
+          [
+            0.49621582057723074,
+            0.5041441794227692
+          ],
+          [
+            0.49585582057723077,
+            0.5037841794227693
+          ]
+        ]
+      },
+      "product2_purchase_fraction": {
+        "mean": 0.19503749999999997,
+        "se": 0.0006839270794463426,
+        "ci95": [
+          0.19286093879293248,
+          0.19721406120706747
+        ]
+      },
+      "mean_chosen_product2_probability": {
+        "mean": 0.19512166337046688,
+        "se": 0.0006978738184748808,
+        "ci95": [
+          0.19290071741530726,
+          0.1973426093256265
+        ]
+      },
+      "product2_per_calendar_period": {
+        "mean": [
+          0.09742999999999999,
+          0.0976075
+        ],
+        "se": [
+          0.000513371210723781,
+          0.0004239177396618341
+        ],
+        "ci95": [
+          [
+            0.09579622368719307,
+            0.09906377631280691
+          ],
+          [
+            0.09625840455566897,
+            0.09895659544433102
+          ]
+        ]
+      },
+      "mean_profit_per_seller": {
+        "mean": [
+          0.4167129999998359,
+          0.4162644999998369
+        ],
+        "se": [
+          0.0009579950634844185,
+          0.0011544439317951577
+        ],
+        "ci95": [
+          [
+            0.4136642321495699,
+            0.41976176785010194
+          ],
+          [
+            0.4125905441744382,
+            0.4199384558252356
+          ]
+        ]
+      },
+      "mean_reputation": {
+        "mean": [
+          0.3812149730846611,
+          0.38020975112797567
+        ],
+        "se": [
+          0.0006870895600723586,
+          0.0010430450938071487
+        ],
+        "ci95": [
+          [
+            0.37902834745280983,
+            0.3834015987165124
+          ],
+          [
+            0.3768903161229448,
+            0.3835291861330065
+          ]
+        ]
+      },
+      "realized_success_fraction": {
+        "mean": 0.4394125,
+        "se": 0.0005547127635091905,
+        "ci95": [
+          0.43764715641527646,
+          0.4411778435847235
+        ]
+      },
+      "ts_b_minus_stationary_posterior_mean": {
+        "mean": 0.0006846671853479869,
+        "se": 0.0006472701808359598,
+        "ci95": [
+          -0.0013752354101737307,
+          0.0027445697808697045
+        ]
+      },
+      "posterior_b_minus_stationary_posterior_mean": {
+        "mean": 0.0002828082020762679,
+        "se": 0.0005794694965595425,
+        "ci95": [
+          -0.0015613223562742583,
+          0.002126938760426794
+        ]
+      }
+    },
+    "initial_states": [
+      [
+        0.3,
+        0.54
+      ],
+      [
+        0.54,
+        0.18
+      ],
+      [
+        0.3,
+        0.62
+      ],
+      [
+        0.24,
+        0.08
+      ]
+    ],
+    "initialization": "Independent draws from the joint stationary nu, not product marginals",
+    "recorded_time": "Predecision states, both Beta draws and both posterior means every retained calendar period",
+    "policy_mode": "mixed",
+    "policy_extension": "Linear interpolation of alpha=P(product 2 | own reputation, selected); independent Bernoulli choice. This extension does not certify off-grid indifference or optimality.",
+    "product_choice": "Independent product uniform compared to own-state alpha; success uses the realized selected product",
+    "random_streams": "Five independent streams per path: joint initialization, TS A, TS B, product choice, success",
+    "customer_selection": "Independent actual Beta draws for A and B; exactly one seller selected",
+    "uncertainty": "95% Student-t intervals over independent path means, with paths-1 degrees of freedom; time observations are not treated as IID. Few independent paths give imprecise uncertainty estimates, especially with slow mixing.",
+    "interpretation": "Finite continuous-state paths, initialized independently from the joint grid stationary law. Grid marginals and continuous simulations may differ due to discretization, initialization and slow mixing; this is not a continuous-state equilibrium certificate.",
+    "ts_minus_posterior_B_ci_contains_zero": true,
+    "stationary_posterior_means": [
+      0.43316705353568835,
+      0.43316705353568846
+    ],
+    "ts_B_ci_contains_stationary_posterior_mean": true,
+    "posterior_B_ci_contains_stationary_posterior_mean": true,
+    "marginal_comparison": {
+      "deposition": "Linear mass deposition of continuous reputation states onto the numerical grid",
+      "l1": [
+        0.04379696097527188,
+        0.04180519160288376
+      ],
+      "maximum_cdf_gap": [
+        0.0057510031407090045,
+        0.002976253557364644
+      ],
+      "wasserstein_grid": [
+        0.0015149840057073225,
+        0.000687251528156992
+      ],
+      "interpretation": "Pooled finite-path diagnostics against the grid law, without an IID-time confidence claim"
+    },
+    "model": "ConditionalOE",
+    "decision_problem": "Saved own-state mixed policy optimized with conditional rival demand; both sellers follow that policy in the actual TS game."
+  },
+  {
+    "rho": 0.7,
+    "n": 51,
+    "candidate": 0,
+    "verified": true,
+    "periods": 100000,
+    "burn_in": 10000,
+    "trajectories": 4,
+    "seed": 20261018,
+    "estimates": {
+      "mean_ts": {
+        "mean": [
+          0.46823962933212027,
+          0.4671953239247944
+        ],
+        "se": [
+          0.0004841394419784797,
+          0.0006061813669716501
+        ],
+        "ci95": [
+          [
+            0.4666988815537537,
+            0.4697803771104868
+          ],
+          [
+            0.46526618427314365,
+            0.46912446357644516
+          ]
+        ]
+      },
+      "mean_posterior": {
+        "mean": [
+          0.4677770056311657,
+          0.4673595807454538
+        ],
+        "se": [
+          0.000564076178602972,
+          0.00035788953289048935
+        ],
+        "ci95": [
+          [
+            0.4659818634806721,
+            0.4695721477816593
+          ],
+          [
+            0.46622061652380675,
+            0.46849854496710086
+          ]
+        ]
+      },
+      "ts_minus_posterior": {
+        "mean": [
+          0.0004626237009603159,
+          -0.0001642568206557263
+        ],
+        "se": [
+          0.0002448142963632014,
+          0.0003025112964175772
+        ],
+        "ci95": [
+          [
+            -0.00031648465198138496,
+            0.0012417320539020167
+          ],
+          [
+            -0.0011269827782464294,
+            0.0007984691369349768
+          ]
+        ]
+      },
+      "market_shares": {
+        "mean": [
+          0.5006499999999999,
+          0.49935
+        ],
+        "se": [
+          0.0012859626744194297,
+          0.0012859626744194362
+        ],
+        "ci95": [
+          [
+            0.49655749283806105,
+            0.5047425071619388
+          ],
+          [
+            0.49525749283806114,
+            0.503442507161939
+          ]
+        ]
+      },
+      "product2_purchase_fraction": {
+        "mean": 0.3104,
+        "se": 0.0008170067319184139,
+        "ci95": [
+          0.3077999199446143,
+          0.3130000800553857
+        ]
+      },
+      "mean_chosen_product2_probability": {
+        "mean": 0.3100522741486328,
+        "se": 0.0007726924886550399,
+        "ci95": [
+          0.3075932217929921,
+          0.3125113265042735
+        ]
+      },
+      "product2_per_calendar_period": {
+        "mean": [
+          0.15519750000000002,
+          0.1552025
+        ],
+        "se": [
+          0.0005072700628527839,
+          0.00046858608245088596
+        ],
+        "ci95": [
+          [
+            0.15358314026269315,
+            0.15681185973730688
+          ],
+          [
+            0.1537112499531968,
+            0.1566937500468032
+          ]
+        ]
+      },
+      "mean_profit_per_seller": {
+        "mean": [
+          0.3824989999998951,
+          0.3812609999998995
+        ],
+        "se": [
+          0.0011578505948490454,
+          0.001116538400589454
+        ],
+        "ci95": [
+          [
+            0.37881420265224724,
+            0.386183797347543
+          ],
+          [
+            0.3777076764922362,
+            0.3848143235075628
+          ]
+        ]
+      },
+      "mean_reputation": {
+        "mean": [
+          0.44844320900985246,
+          0.44777532919272284
+        ],
+        "se": [
+          0.0009025218857677196,
+          0.0005726232526317393
+        ],
+        "ci95": [
+          [
+            0.4455709815690533,
+            0.45131543645065164
+          ],
+          [
+            0.4459529864380654,
+            0.44959767194738026
+          ]
+        ]
+      },
+      "realized_success_fraction": {
+        "mean": 0.488655,
+        "se": 0.00038110584706439163,
+        "ci95": [
+          0.48744215110508793,
+          0.4898678488949121
+        ]
+      },
+      "ts_b_minus_stationary_posterior_mean": {
+        "mean": -0.0006534499192746568,
+        "se": 0.0006061813669716174,
+        "ci95": [
+          -0.002582589570925308,
+          0.0012756897323759945
+        ]
+      },
+      "posterior_b_minus_stationary_posterior_mean": {
+        "mean": -0.0004891930986189591,
+        "se": 0.0003578895328948697,
+        "ci95": [
+          -0.0016281573202799491,
+          0.0006497711230420309
+        ]
+      }
+    },
+    "initial_states": [
+      [
+        0.84,
+        0.32
+      ],
+      [
+        0.28,
+        0.36
+      ],
+      [
+        0.48,
+        0.32
+      ],
+      [
+        0.48,
+        0.48
+      ]
+    ],
+    "initialization": "Independent draws from the joint stationary nu, not product marginals",
+    "recorded_time": "Predecision states, both Beta draws and both posterior means every retained calendar period",
+    "policy_mode": "mixed",
+    "policy_extension": "Linear interpolation of alpha=P(product 2 | own reputation, selected); independent Bernoulli choice. This extension does not certify off-grid indifference or optimality.",
+    "product_choice": "Independent product uniform compared to own-state alpha; success uses the realized selected product",
+    "random_streams": "Five independent streams per path: joint initialization, TS A, TS B, product choice, success",
+    "customer_selection": "Independent actual Beta draws for A and B; exactly one seller selected",
+    "uncertainty": "95% Student-t intervals over independent path means, with paths-1 degrees of freedom; time observations are not treated as IID. Few independent paths give imprecise uncertainty estimates, especially with slow mixing.",
+    "interpretation": "Finite continuous-state paths, initialized independently from the joint grid stationary law. Grid marginals and continuous simulations may differ due to discretization, initialization and slow mixing; this is not a continuous-state equilibrium certificate.",
+    "ts_minus_posterior_B_ci_contains_zero": true,
+    "stationary_posterior_means": [
+      0.46784877384407236,
+      0.4678487738440723
+    ],
+    "ts_B_ci_contains_stationary_posterior_mean": true,
+    "posterior_B_ci_contains_stationary_posterior_mean": true,
+    "marginal_comparison": {
+      "deposition": "Linear mass deposition of continuous reputation states onto the numerical grid",
+      "l1": [
+        0.06011447820161624,
+        0.06173709497021608
+      ],
+      "maximum_cdf_gap": [
+        0.005850044458840513,
+        0.006059172199630523
+      ],
+      "wasserstein_grid": [
+        0.0007646251870469443,
+        0.0009468044880918053
+      ],
+      "interpretation": "Pooled finite-path diagnostics against the grid law, without an IID-time confidence claim"
+    },
+    "model": "ConditionalOE",
+    "decision_problem": "Saved own-state mixed policy optimized with conditional rival demand; both sellers follow that policy in the actual TS game."
+  },
+  {
+    "rho": 0.8,
+    "n": 51,
+    "candidate": 0,
+    "verified": true,
+    "periods": 100000,
+    "burn_in": 10000,
+    "trajectories": 4,
+    "seed": 20261019,
+    "estimates": {
+      "mean_ts": {
+        "mean": [
+          0.5145779241607986,
+          0.5148986210421209
+        ],
+        "se": [
+          0.0007074515698605467,
+          0.0003711431053634509
+        ],
+        "ci95": [
+          [
+            0.5123264975261288,
+            0.5168293507954684
+          ],
+          [
+            0.5137174780377255,
+            0.5160797640465163
+          ]
+        ]
+      },
+      "mean_posterior": {
+        "mean": [
+          0.5147511360302817,
+          0.5147660440727977
+        ],
+        "se": [
+          0.00036130189460450404,
+          0.00039975937911277234
+        ],
+        "ci95": [
+          [
+            0.5136013121507056,
+            0.5159009599098577
+          ],
+          [
+            0.5134938313137377,
+            0.5160382568318577
+          ]
+        ]
+      },
+      "ts_minus_posterior": {
+        "mean": [
+          -0.00017321186948821991,
+          0.0001325769693190812
+        ],
+        "se": [
+          0.0003554338273603829,
+          0.00015859705578800268
+        ],
+        "ci95": [
+          [
+            -0.0013043609401441176,
+            0.0009579372011676779
+          ],
+          [
+            -0.000372149644902322,
+            0.0006373035835404844
+          ]
+        ]
+      },
+      "market_shares": {
+        "mean": [
+          0.49939500000000003,
+          0.500605
+        ],
+        "se": [
+          0.0013784864888710408,
+          0.0013784864888710376
+        ],
+        "ci95": [
+          [
+            0.49500804076660887,
+            0.5037819592333912
+          ],
+          [
+            0.4962180407666088,
+            0.5049919592333911
+          ]
+        ]
+      },
+      "product2_purchase_fraction": {
+        "mean": 0.43478999999999995,
+        "se": 0.0010528611810997055,
+        "ci95": [
+          0.43143932582423256,
+          0.43814067417576735
+        ]
+      },
+      "mean_chosen_product2_probability": {
+        "mean": 0.4348498336118033,
+        "se": 0.001161732655049769,
+        "ci95": [
+          0.43115268181601274,
+          0.43854698540759385
+        ]
+      },
+      "product2_per_calendar_period": {
+        "mean": [
+          0.21745,
+          0.21734
+        ],
+        "se": [
+          0.000553112405694661,
+          0.0005639296646450417
+        ],
+        "ci95": [
+          [
+            0.21568974946809044,
+            0.21921025053190957
+          ],
+          [
+            0.2155453241223105,
+            0.2191346758776895
+          ]
+        ]
+      },
+      "mean_profit_per_seller": {
+        "mean": [
+          0.34395524999995924,
+          0.3451707499999567
+        ],
+        "se": [
+          0.001598743588724787,
+          0.0012115564627749268
+        ],
+        "ci95": [
+          [
+            0.33886733437292604,
+            0.34904316562699245
+          ],
+          [
+            0.34131503661135604,
+            0.3490264633885574
+          ]
+        ]
+      },
+      "mean_reputation": {
+        "mean": [
+          0.5206515904423988,
+          0.5206724617019146
+        ],
+        "se": [
+          0.0005058226524453042,
+          0.0005596631307624407
+        ],
+        "ci95": [
+          [
+            0.5190418370109955,
+            0.5222613438738022
+          ],
+          [
+            0.5188913638392162,
+            0.522453559564613
+          ]
+        ]
+      },
+      "realized_success_fraction": {
+        "mean": 0.5454950000000001,
+        "se": 0.0003473830738536416,
+        "ci95": [
+          0.5443894720200965,
+          0.5466005279799037
+        ]
+      },
+      "ts_b_minus_stationary_posterior_mean": {
+        "mean": 0.0004959508711928073,
+        "se": 0.00037114310536186083,
+        "ci95": [
+          -0.0006851921331975685,
+          0.0016770938755831832
+        ]
+      },
+      "posterior_b_minus_stationary_posterior_mean": {
+        "mean": 0.00036337390187371477,
+        "se": 0.0003997593791137116,
+        "ci95": [
+          -0.0009088388571892258,
+          0.0016355866609366553
+        ]
+      }
+    },
+    "initial_states": [
+      [
+        0.6,
+        0.46
+      ],
+      [
+        0.42,
+        0.66
+      ],
+      [
+        0.5,
+        0.48
+      ],
+      [
+        0.62,
+        0.52
+      ]
+    ],
+    "initialization": "Independent draws from the joint stationary nu, not product marginals",
+    "recorded_time": "Predecision states, both Beta draws and both posterior means every retained calendar period",
+    "policy_mode": "mixed",
+    "policy_extension": "Linear interpolation of alpha=P(product 2 | own reputation, selected); independent Bernoulli choice. This extension does not certify off-grid indifference or optimality.",
+    "product_choice": "Independent product uniform compared to own-state alpha; success uses the realized selected product",
+    "random_streams": "Five independent streams per path: joint initialization, TS A, TS B, product choice, success",
+    "customer_selection": "Independent actual Beta draws for A and B; exactly one seller selected",
+    "uncertainty": "95% Student-t intervals over independent path means, with paths-1 degrees of freedom; time observations are not treated as IID. Few independent paths give imprecise uncertainty estimates, especially with slow mixing.",
+    "interpretation": "Finite continuous-state paths, initialized independently from the joint grid stationary law. Grid marginals and continuous simulations may differ due to discretization, initialization and slow mixing; this is not a continuous-state equilibrium certificate.",
+    "ts_minus_posterior_B_ci_contains_zero": true,
+    "stationary_posterior_means": [
+      0.5144026701709271,
+      0.5144026701709272
+    ],
+    "ts_B_ci_contains_stationary_posterior_mean": true,
+    "posterior_B_ci_contains_stationary_posterior_mean": true,
+    "marginal_comparison": {
+      "deposition": "Linear mass deposition of continuous reputation states onto the numerical grid",
+      "l1": [
+        0.0737888279563677,
+        0.0759869769898623
+      ],
+      "maximum_cdf_gap": [
+        0.006747928760861114,
+        0.0073971509456694385
+      ],
+      "wasserstein_grid": [
+        0.0011256932458939305,
+        0.0012261376189470754
+      ],
+      "interpretation": "Pooled finite-path diagnostics against the grid law, without an IID-time confidence claim"
+    },
+    "model": "ConditionalOE",
+    "decision_problem": "Saved own-state mixed policy optimized with conditional rival demand; both sellers follow that policy in the actual TS game."
+  },
+  {
+    "rho": 0.9,
+    "n": 51,
+    "candidate": 0,
+    "verified": true,
+    "periods": 100000,
+    "burn_in": 10000,
+    "trajectories": 4,
+    "seed": 20261020,
+    "estimates": {
+      "mean_ts": {
+        "mean": [
+          0.6087404557254018,
+          0.6087036698063891
+        ],
+        "se": [
+          0.00024359067796391164,
+          0.0003768515234957994
+        ],
+        "ci95": [
+          [
+            0.607965241472314,
+            0.6095156699784896
+          ],
+          [
+            0.6075043600677994,
+            0.6099029795449789
+          ]
+        ]
+      },
+      "mean_posterior": {
+        "mean": [
+          0.6086308960591924,
+          0.6088716662732641
+        ],
+        "se": [
+          0.00028925408541192603,
+          0.00033994378566691444
+        ],
+        "ci95": [
+          [
+            0.607710360463785,
+            0.6095514316545998
+          ],
+          [
+            0.6077898134285642,
+            0.6099535191179639
+          ]
+        ]
+      },
+      "ts_minus_posterior": {
+        "mean": [
+          0.00010955966620151664,
+          -0.00016799646687526974
+        ],
+        "se": [
+          0.00012827379857530642,
+          0.0002603463763146945
+        ],
+        "ci95": [
+          [
+            -0.0002986648101391738,
+            0.0005177841425422071
+          ],
+          [
+            -0.000996534830271971,
+            0.0006605418965214317
+          ]
+        ]
+      },
+      "market_shares": {
+        "mean": [
+          0.49977750000000004,
+          0.5002225
+        ],
+        "se": [
+          0.0009037641192995716,
+          0.0009037641192995767
+        ],
+        "ci95": [
+          [
+            0.49690131921768715,
+            0.502653680782313
+          ],
+          [
+            0.49734631921768707,
+            0.5030986807823129
+          ]
+        ]
+      },
+      "product2_purchase_fraction": {
+        "mean": 0.6539674999999999,
+        "se": 0.0011892600991092444,
+        "ci95": [
+          0.6501827435915684,
+          0.6577522564084315
+        ]
+      },
+      "mean_chosen_product2_probability": {
+        "mean": 0.6537912300604646,
+        "se": 0.0011771713043302037,
+        "ci95": [
+          0.650044945592313,
+          0.6575375145286162
+        ]
+      },
+      "product2_per_calendar_period": {
+        "mean": [
+          0.327295,
+          0.3266725
+        ],
+        "se": [
+          0.000685109480302239,
+          0.0008777563728051164
+        ],
+        "ci95": [
+          [
+            0.3251146758656973,
+            0.3294753241343027
+          ],
+          [
+            0.3238790874744271,
+            0.32946591252557283
+          ]
+        ]
+      },
+      "mean_profit_per_seller": {
+        "mean": [
+          0.2784116249999375,
+          0.2792078749999345
+        ],
+        "se": [
+          0.0006436896371369836,
+          0.0012783116693344634
+        ],
+        "ci95": [
+          [
+            0.2763631172924815,
+            0.2804601327073935
+          ],
+          [
+            0.27513971675085996,
+            0.283276033249009
+          ]
+        ]
+      },
+      "mean_reputation": {
+        "mean": [
+          0.6303570752710304,
+          0.6306459995279109
+        ],
+        "se": [
+          0.00034710490249754197,
+          0.00040793254280441633
+        ],
+        "ci95": [
+          [
+            0.6292524325565312,
+            0.6314617179855295
+          ],
+          [
+            0.629347776114258,
+            0.6319442229415638
+          ]
+        ]
+      },
+      "realized_success_fraction": {
+        "mean": 0.64438,
+        "se": 0.00020956303745333903,
+        "ci95": [
+          0.6437130768857325,
+          0.6450469231142674
+        ]
+      },
+      "ts_b_minus_stationary_posterior_mean": {
+        "mean": 0.00026567326691231963,
+        "se": 0.000376851523493939,
+        "ci95": [
+          -0.0009336364716715029,
+          0.0014649830054961422
+        ]
+      },
+      "posterior_b_minus_stationary_posterior_mean": {
+        "mean": 0.00043366973378755613,
+        "se": 0.0003399437856682858,
+        "ci95": [
+          -0.0006481831109166366,
+          0.001515522578491749
+        ]
+      }
+    },
+    "initial_states": [
+      [
+        0.7000000000000001,
+        0.54
+      ],
+      [
+        0.66,
+        0.7000000000000001
+      ],
+      [
+        0.5,
+        0.54
+      ],
+      [
+        0.56,
+        0.62
+      ]
+    ],
+    "initialization": "Independent draws from the joint stationary nu, not product marginals",
+    "recorded_time": "Predecision states, both Beta draws and both posterior means every retained calendar period",
+    "policy_mode": "mixed",
+    "policy_extension": "Linear interpolation of alpha=P(product 2 | own reputation, selected); independent Bernoulli choice. This extension does not certify off-grid indifference or optimality.",
+    "product_choice": "Independent product uniform compared to own-state alpha; success uses the realized selected product",
+    "random_streams": "Five independent streams per path: joint initialization, TS A, TS B, product choice, success",
+    "customer_selection": "Independent actual Beta draws for A and B; exactly one seller selected",
+    "uncertainty": "95% Student-t intervals over independent path means, with paths-1 degrees of freedom; time observations are not treated as IID. Few independent paths give imprecise uncertainty estimates, especially with slow mixing.",
+    "interpretation": "Finite continuous-state paths, initialized independently from the joint grid stationary law. Grid marginals and continuous simulations may differ due to discretization, initialization and slow mixing; this is not a continuous-state equilibrium certificate.",
+    "ts_minus_posterior_B_ci_contains_zero": true,
+    "stationary_posterior_means": [
+      0.6084379965394788,
+      0.6084379965394788
+    ],
+    "ts_B_ci_contains_stationary_posterior_mean": true,
+    "posterior_B_ci_contains_stationary_posterior_mean": true,
+    "marginal_comparison": {
+      "deposition": "Linear mass deposition of continuous reputation states onto the numerical grid",
+      "l1": [
+        0.03548602243333044,
+        0.0292793472162633
+      ],
+      "maximum_cdf_gap": [
+        0.0040437546953608836,
+        0.005643256005970829
+      ],
+      "wasserstein_grid": [
+        0.0006169462493641701,
+        0.0007197038757628558
+      ],
+      "interpretation": "Pooled finite-path diagnostics against the grid law, without an IID-time confidence claim"
+    },
+    "model": "ConditionalOE",
+    "decision_problem": "Saved own-state mixed policy optimized with conditional rival demand; both sellers follow that policy in the actual TS game."
+  },
+  {
+    "rho": 0.97,
+    "n": 51,
+    "candidate": 0,
+    "verified": true,
+    "periods": 100000,
+    "burn_in": 10000,
+    "trajectories": 4,
+    "seed": 20261022,
+    "estimates": {
+      "mean_ts": {
+        "mean": [
+          0.5750428005715824,
+          0.663270842958203
+        ],
+        "se": [
+          0.08701105526182917,
+          0.0009060915585991177
+        ],
+        "ci95": [
+          [
+            0.29813478923473763,
+            0.8519508119084271
+          ],
+          [
+            0.6603872552252905,
+            0.6661544306911156
+          ]
+        ]
+      },
+      "mean_posterior": {
+        "mean": [
+          0.5750720530657294,
+          0.6630924490789465
+        ],
+        "se": [
+          0.08690313259917001,
+          0.0008260899670407179
+        ],
+        "ci95": [
+          [
+            0.29850749980792063,
+            0.8516366063235381
+          ],
+          [
+            0.6604634621155058,
+            0.6657214360423872
+          ]
+        ]
+      },
+      "ts_minus_posterior": {
+        "mean": [
+          -2.9252494147138475e-05,
+          0.00017839387925362048
+        ],
+        "se": [
+          0.0001205492352271943,
+          9.036195212863225e-05
+        ],
+        "ci95": [
+          [
+            -0.00041289396240069956,
+            0.0003543889741064226
+          ],
+          [
+            -0.00010917818143636851,
+            0.0004659659399436095
+          ]
+        ]
+      },
+      "market_shares": {
+        "mean": [
+          0.37409,
+          0.62591
+        ],
+        "se": [
+          0.12386889783153801,
+          0.12386889783153801
+        ],
+        "ci95": [
+          [
+            -0.02011611624354326,
+            0.7682961162435432
+          ],
+          [
+            0.23170388375645673,
+            1.0201161162435433
+          ]
+        ]
+      },
+      "product2_purchase_fraction": {
+        "mean": 0.7256799999999999,
+        "se": 0.001174343788391354,
+        "ci95": [
+          0.7219427139495009,
+          0.7294172860504988
+        ]
+      },
+      "mean_chosen_product2_probability": {
+        "mean": 0.7257936090968276,
+        "se": 0.0012672610103738754,
+        "ci95": [
+          0.7217606189765331,
+          0.729826599217122
+        ]
+      },
+      "product2_per_calendar_period": {
+        "mean": [
+          0.27102,
+          0.45466
+        ],
+        "se": [
+          0.09034058731636997,
+          0.09067830574803067
+        ],
+        "ci95": [
+          [
+            -0.01648406832214183,
+            0.5585240683221417
+          ],
+          [
+            0.1660811609027934,
+            0.7432388390972067
+          ]
+        ]
+      },
+      "mean_profit_per_seller": {
+        "mean": [
+          0.19277349999994942,
+          0.3218184999997325
+        ],
+        "se": [
+          0.06347150741177383,
+          0.06327388882153608
+        ],
+        "ci95": [
+          [
+            -0.009221164253437691,
+            0.3947681642533365
+          ],
+          [
+            0.12045274629870292,
+            0.523184253700762
+          ]
+        ]
+      },
+      "mean_reputation": {
+        "mean": [
+          0.5795763762496708,
+          0.6728779960236886
+        ],
+        "se": [
+          0.0921173205551259,
+          0.00087565536505892
+        ],
+        "ci95": [
+          [
+            0.28641794979637547,
+            0.8727348027029662
+          ],
+          [
+            0.6700912698424549,
+            0.6756647222049222
+          ]
+        ]
+      },
+      "realized_success_fraction": {
+        "mean": 0.6755999999999999,
+        "se": 0.0003424178733652817,
+        "ci95": [
+          0.6745102735040455,
+          0.6766897264959543
+        ]
+      },
+      "ts_b_minus_stationary_posterior_mean": {
+        "mean": 0.03965453828451926,
+        "se": 0.0009060915586011353,
+        "ci95": [
+          0.03677095055160032,
+          0.0425381260174382
+        ]
+      },
+      "posterior_b_minus_stationary_posterior_mean": {
+        "mean": 0.0394761444052657,
+        "se": 0.0008260899670386094,
+        "ci95": [
+          0.036847157441831736,
+          0.042105131368699665
+        ]
+      }
+    },
+    "initial_states": [
+      [
+        0.32,
+        0.66
+      ],
+      [
+        0.56,
+        0.62
+      ],
+      [
+        0.7000000000000001,
+        0.68
+      ],
+      [
+        0.66,
+        0.62
+      ]
+    ],
+    "initialization": "Independent draws from the joint stationary nu, not product marginals",
+    "recorded_time": "Predecision states, both Beta draws and both posterior means every retained calendar period",
+    "policy_mode": "mixed",
+    "policy_extension": "Linear interpolation of alpha=P(product 2 | own reputation, selected); independent Bernoulli choice. This extension does not certify off-grid indifference or optimality.",
+    "product_choice": "Independent product uniform compared to own-state alpha; success uses the realized selected product",
+    "random_streams": "Five independent streams per path: joint initialization, TS A, TS B, product choice, success",
+    "customer_selection": "Independent actual Beta draws for A and B; exactly one seller selected",
+    "uncertainty": "95% Student-t intervals over independent path means, with paths-1 degrees of freedom; time observations are not treated as IID. Few independent paths give imprecise uncertainty estimates, especially with slow mixing.",
+    "interpretation": "Finite continuous-state paths, initialized independently from the joint grid stationary law. Grid marginals and continuous simulations may differ due to discretization, initialization and slow mixing; this is not a continuous-state equilibrium certificate.",
+    "ts_minus_posterior_B_ci_contains_zero": true,
+    "stationary_posterior_means": [
+      0.6236163046736826,
+      0.6236163046736825
+    ],
+    "ts_B_ci_contains_stationary_posterior_mean": false,
+    "posterior_B_ci_contains_stationary_posterior_mean": false,
+    "marginal_comparison": {
+      "deposition": "Linear mass deposition of continuous reputation states onto the numerical grid",
+      "l1": [
+        0.45045777452886154,
+        0.26043272230474024
+      ],
+      "maximum_cdf_gap": [
+        0.16680001333639424,
+        0.12218108945665394
+      ],
+      "wasserstein_grid": [
+        0.06216251410043996,
+        0.04246331565436404
+      ],
+      "interpretation": "Pooled finite-path diagnostics against the grid law, without an IID-time confidence claim"
+    },
+    "model": "ConditionalOE",
+    "decision_problem": "Saved own-state mixed policy optimized with conditional rival demand; both sellers follow that policy in the actual TS game."
+  },
+  {
+    "rho": 0.99,
+    "n": 51,
+    "candidate": 0,
+    "verified": true,
+    "periods": 100000,
+    "burn_in": 10000,
+    "trajectories": 4,
+    "seed": 20261023,
+    "estimates": {
+      "mean_ts": {
+        "mean": [
+          0.3938433969181412,
+          0.4325533013702274
+        ],
+        "se": [
+          0.10841263468197508,
+          0.0695889494174102
+        ],
+        "ci95": [
+          [
+            0.048826008228417206,
+            0.7388607856078652
+          ],
+          [
+            0.2110902064082155,
+            0.6540163963322393
+          ]
+        ]
+      },
+      "mean_posterior": {
+        "mean": [
+          0.3938602510080006,
+          0.4325716232136989
+        ],
+        "se": [
+          0.10841156270958277,
+          0.06961114384325937
+        ],
+        "ci95": [
+          [
+            0.048846273812855945,
+            0.7388742282031453
+          ],
+          [
+            0.21103789568314543,
+            0.6541053507442524
+          ]
+        ]
+      },
+      "ts_minus_posterior": {
+        "mean": [
+          -1.6854089822744123e-05,
+          -1.832184358940084e-05
+        ],
+        "se": [
+          4.605130454446601e-05,
+          0.0001423289044062266
+        ],
+        "ci95": [
+          [
+            -0.00016340989382377478,
+            0.00012970171417828655
+          ],
+          [
+            -0.0004712759395520747,
+            0.00043463225237327306
+          ]
+        ]
+      },
+      "market_shares": {
+        "mean": [
+          0.50064,
+          0.49936
+        ],
+        "se": [
+          0.20412472710739057,
+          0.20412472710739055
+        ],
+        "ci95": [
+          [
+            -0.14897598359996023,
+            1.1502559835999602
+          ],
+          [
+            -0.15025598359996017,
+            1.1489759835999602
+          ]
+        ]
+      },
+      "product2_purchase_fraction": {
+        "mean": 0.339975,
+        "se": 0.0022902456200154684,
+        "ci95": [
+          0.33268641628838963,
+          0.3472635837116104
+        ]
+      },
+      "mean_chosen_product2_probability": {
+        "mean": 0.33856839839043773,
+        "se": 0.0022035534012799446,
+        "ci95": [
+          0.33155570801003903,
+          0.34558108877083643
+        ]
+      },
+      "product2_per_calendar_period": {
+        "mean": [
+          0.17003,
+          0.16994499999999998
+        ],
+        "se": [
+          0.0686273824115904,
+          0.06877598109078488
+        ],
+        "ci95": [
+          [
+            -0.04837295959705801,
+            0.388432959597058
+          ],
+          [
+            -0.0489308669146305,
+            0.38882086691463047
+          ]
+        ]
+      },
+      "mean_profit_per_seller": {
+        "mean": [
+          0.37358999999971193,
+          0.37242499999971046
+        ],
+        "se": [
+          0.15274854438579932,
+          0.15266120065026237
+        ],
+        "ci95": [
+          [
+            -0.11252404071833955,
+            0.8597040407177634
+          ],
+          [
+            -0.11341107396989175,
+            0.8582610739693126
+          ]
+        ]
+      },
+      "mean_reputation": {
+        "mean": [
+          0.39173745602814614,
+          0.43122305567804525
+        ],
+        "se": [
+          0.11057979396378352,
+          0.07100336672004587
+        ],
+        "ci95": [
+          [
+            0.03982319928906963,
+            0.7436517127672226
+          ],
+          [
+            0.2052586535971311,
+            0.6571874577589594
+          ]
+        ]
+      },
+      "realized_success_fraction": {
+        "mean": 0.5032175,
+        "se": 0.00011520814496667995,
+        "ci95": [
+          0.5028508562647122,
+          0.5035841437352878
+        ]
+      },
+      "ts_b_minus_stationary_posterior_mean": {
+        "mean": 0.011361048744890294,
+        "se": 0.06958894941740959,
+        "ci95": [
+          -0.21010204621711967,
+          0.23282414370690027
+        ]
+      },
+      "posterior_b_minus_stationary_posterior_mean": {
+        "mean": 0.011379370588479702,
+        "se": 0.06961114384313756,
+        "ci95": [
+          -0.21015435694168613,
+          0.23291309811864555
+        ]
+      }
+    },
+    "initial_states": [
+      [
+        0.46,
+        0.48
+      ],
+      [
+        0.06,
+        0.5
+      ],
+      [
+        0.5,
+        0.52
+      ],
+      [
+        0.54,
+        0.22
+      ]
+    ],
+    "initialization": "Independent draws from the joint stationary nu, not product marginals",
+    "recorded_time": "Predecision states, both Beta draws and both posterior means every retained calendar period",
+    "policy_mode": "mixed",
+    "policy_extension": "Linear interpolation of alpha=P(product 2 | own reputation, selected); independent Bernoulli choice. This extension does not certify off-grid indifference or optimality.",
+    "product_choice": "Independent product uniform compared to own-state alpha; success uses the realized selected product",
+    "random_streams": "Five independent streams per path: joint initialization, TS A, TS B, product choice, success",
+    "customer_selection": "Independent actual Beta draws for A and B; exactly one seller selected",
+    "uncertainty": "95% Student-t intervals over independent path means, with paths-1 degrees of freedom; time observations are not treated as IID. Few independent paths give imprecise uncertainty estimates, especially with slow mixing.",
+    "interpretation": "Finite continuous-state paths, initialized independently from the joint grid stationary law. Grid marginals and continuous simulations may differ due to discretization, initialization and slow mixing; this is not a continuous-state equilibrium certificate.",
+    "ts_minus_posterior_B_ci_contains_zero": true,
+    "stationary_posterior_means": [
+      0.4211922526253369,
+      0.4211922526253368
+    ],
+    "ts_B_ci_contains_stationary_posterior_mean": true,
+    "posterior_B_ci_contains_stationary_posterior_mean": true,
+    "marginal_comparison": {
+      "deposition": "Linear mass deposition of continuous reputation states onto the numerical grid",
+      "l1": [
+        0.9200989105326131,
+        0.8484843904330797
+      ],
+      "maximum_cdf_gap": [
+        0.23551747592164402,
+        0.1845995232798495
+      ],
+      "wasserstein_grid": [
+        0.0360423974649008,
+        0.02575380032886305
+      ],
+      "interpretation": "Pooled finite-path diagnostics against the grid law, without an IID-time confidence claim"
+    },
+    "model": "ConditionalOE",
+    "decision_problem": "Saved own-state mixed policy optimized with conditional rival demand; both sellers follow that policy in the actual TS game."
+  },
+  {
+    "rho": 0.999,
+    "n": 51,
+    "candidate": 0,
+    "verified": true,
+    "periods": 100000,
+    "burn_in": 10000,
+    "trajectories": 4,
+    "seed": 20261024,
+    "estimates": {
+      "mean_ts": {
+        "mean": [
+          0.1757723752148011,
+          0.1754652704667482
+        ],
+        "se": [
+          0.1009090105899918,
+          0.10072979006384547
+        ],
+        "ci95": [
+          [
+            -0.14536513270715284,
+            0.49690988313675505
+          ],
+          [
+            -0.14510187775394034,
+            0.49603241868743675
+          ]
+        ]
+      },
+      "mean_posterior": {
+        "mean": [
+          0.17578335990210228,
+          0.17545315653221116
+        ],
+        "se": [
+          0.10091354390344173,
+          0.1007227901332852
+        ],
+        "ci95": [
+          [
+            -0.14536857504649112,
+            0.49693529485069565
+          ],
+          [
+            -0.14509171478532862,
+            0.49599802784975094
+          ]
+        ]
+      },
+      "ts_minus_posterior": {
+        "mean": [
+          -1.0984687302861351e-05,
+          1.2113934533307865e-05
+        ],
+        "se": [
+          7.125100957657182e-06,
+          1.2694331345281313e-05
+        ],
+        "ci95": [
+          [
+            -3.365993852033086e-05,
+            1.1690563914608157e-05
+          ],
+          [
+            -2.8285093354529806e-05,
+            5.251296242114554e-05
+          ]
+        ]
+      },
+      "market_shares": {
+        "mean": [
+          0.5,
+          0.5
+        ],
+        "se": [
+          0.28867513459481287,
+          0.28867513459481287
+        ],
+        "ci95": [
+          [
+            -0.41869311551853927,
+            1.4186931155185394
+          ],
+          [
+            -0.41869311551853927,
+            1.4186931155185394
+          ]
+        ]
+      },
+      "product2_purchase_fraction": {
+        "mean": 0.0,
+        "se": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_chosen_product2_probability": {
+        "mean": 0.0,
+        "se": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "product2_per_calendar_period": {
+        "mean": [
+          0.0,
+          0.0
+        ],
+        "se": [
+          0.0,
+          0.0
+        ],
+        "ci95": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ]
+      },
+      "mean_profit_per_seller": {
+        "mean": [
+          0.47499999999913534,
+          0.47499999999913534
+        ],
+        "se": [
+          0.27424137786457303,
+          0.27424137786457303
+        ],
+        "ci95": [
+          [
+            -0.3977584597418883,
+            1.347758459740159
+          ],
+          [
+            -0.3977584597418883,
+            1.347758459740159
+          ]
+        ]
+      },
+      "mean_reputation": {
+        "mean": [
+          0.1751349266219081,
+          0.17480406284527866
+        ],
+        "se": [
+          0.10111537099124839,
+          0.10092423571355236
+        ],
+        "ci95": [
+          [
+            -0.14665931219658174,
+            0.49692916544039795
+          ],
+          [
+            -0.14638189821489805,
+            0.4959900239054554
+          ]
+        ]
+      },
+      "realized_success_fraction": {
+        "mean": 0.3499775,
+        "se": 0.0007921108403079338,
+        "ci95": [
+          0.3474566497828868,
+          0.3524983502171132
+        ]
+      },
+      "ts_b_minus_stationary_posterior_mean": {
+        "mean": -0.00018358713797086285,
+        "se": 0.10072979006384523,
+        "ci95": [
+          -0.32075073535865867,
+          0.320383561082717
+        ]
+      },
+      "posterior_b_minus_stationary_posterior_mean": {
+        "mean": -0.0001957010725041758,
+        "se": 0.10072279013328592,
+        "ci95": [
+          -0.3207405723900462,
+          0.3203491702450379
+        ]
+      }
+    },
+    "initial_states": [
+      [
+        0.36,
+        0.0
+      ],
+      [
+        0.0,
+        0.36
+      ],
+      [
+        0.26,
+        0.0
+      ],
+      [
+        0.0,
+        0.36
+      ]
+    ],
+    "initialization": "Independent draws from the joint stationary nu, not product marginals",
+    "recorded_time": "Predecision states, both Beta draws and both posterior means every retained calendar period",
+    "policy_mode": "mixed",
+    "policy_extension": "Linear interpolation of alpha=P(product 2 | own reputation, selected); independent Bernoulli choice. This extension does not certify off-grid indifference or optimality.",
+    "product_choice": "Independent product uniform compared to own-state alpha; success uses the realized selected product",
+    "random_streams": "Five independent streams per path: joint initialization, TS A, TS B, product choice, success",
+    "customer_selection": "Independent actual Beta draws for A and B; exactly one seller selected",
+    "uncertainty": "95% Student-t intervals over independent path means, with paths-1 degrees of freedom; time observations are not treated as IID. Few independent paths give imprecise uncertainty estimates, especially with slow mixing.",
+    "interpretation": "Finite continuous-state paths, initialized independently from the joint grid stationary law. Grid marginals and continuous simulations may differ due to discretization, initialization and slow mixing; this is not a continuous-state equilibrium certificate.",
+    "ts_minus_posterior_B_ci_contains_zero": true,
+    "stationary_posterior_means": [
+      0.17564885760471863,
+      0.17564885760471863
+    ],
+    "ts_B_ci_contains_stationary_posterior_mean": true,
+    "posterior_B_ci_contains_stationary_posterior_mean": true,
+    "marginal_comparison": {
+      "deposition": "Linear mass deposition of continuous reputation states onto the numerical grid",
+      "l1": [
+        0.6629729311375915,
+        0.6567023652087289
+      ],
+      "maximum_cdf_gap": [
+        0.16937524032203866,
+        0.16427162795762304
+      ],
+      "wasserstein_grid": [
+        0.021161904813819268,
+        0.020982394646922677
+      ],
+      "interpretation": "Pooled finite-path diagnostics against the grid law, without an IID-time confidence claim"
+    },
+    "model": "ConditionalOE",
+    "decision_problem": "Saved own-state mixed policy optimized with conditional rival demand; both sellers follow that policy in the actual TS game."
+  }
+]

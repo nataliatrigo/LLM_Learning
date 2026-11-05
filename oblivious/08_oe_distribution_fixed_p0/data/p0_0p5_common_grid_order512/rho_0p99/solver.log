@@ -1,0 +1,25 @@
+[2026-10-22T21:36:13.961533+00:00] refine rho=0.99, n=101, previous n=51
+  auditing demand
+  solving/certifying monopoly
+  competition start=verified_grid_51
+    local exact complementarity, residual=0
+  CERTIFIED in 6.9s; monopoly: P2=0.439573, profit=8.3052e-06; competition: P2=0.439573, profit=8.3051e-06
+  refinement comparison: [{"rho": 0.99, "model": "monopoly", "coarse_n": 51, "fine_n": 101, "passed": false, "product2_conditional_absolute_difference": 0.014035933374272003, "product2_calendar_absolute_difference": 5.319786571035592e-06, "sale_rate_absolute_difference": 1.2102178127360927e-05, "outside_rate_absolute_difference": 1.2102178127415542e-05, "profit_calendar_relative_difference": 0.999999999999684, "value_initial_relative_difference": 0.03490637317816973}, {"rho": 0.99, "model": "competition", "coarse_n": 51, "fine_n": 101, "passed": false, "product2_conditional_absolute_difference": 0.014035933374271503, "product2_calendar_absolute_difference": 5.319724421101869e-06, "sale_rate_absolute_difference": 1.210203674019088e-05, "outside_rate_absolute_difference": 2.42040734804716e-05, "profit_calendar_relative_difference": 0.999999999999684, "value_initial_relative_difference": 0.003505998995326382}]
+[2026-10-22T21:36:20.926971+00:00] refine rho=0.99, n=151, previous n=101
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/natalia/Projects/LLM_Learning/oblivious/08_oe_distribution_fixed_p0/code/refine_case.py", line 194, in <module>
+    main()
+  File "/home/natalia/Projects/LLM_Learning/oblivious/08_oe_distribution_fixed_p0/code/refine_case.py", line 138, in main
+    experiment = FixedOutsideMarginalExperiment(n=n, params=params, p0=args.p0,
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/oblivious/08_oe_distribution_fixed_p0/code/model.py", line 316, in __init__
+    self.game = OutsideOptionGame(self.grid, params, self.p0, order=order)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/oblivious/08_oe_distribution_fixed_p0/code/model.py", line 188, in __init__
+    self.D, self.demand_diagnostics = outside_demand_matrix(
+                                      ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/oblivious/08_oe_distribution_fixed_p0/code/model.py", line 132, in outside_demand_matrix
+    raise ArithmeticError(f"Outside-option demand quadrature failed; increase order: {diagnostics}")
+ArithmeticError: Outside-option demand quadrature failed; increase order: {'order': 512, 'p0': 0.5, 'quadrature': 'Truncated positive log-domain Gauss--Legendre', 'raw_partition_error': 1.1141368272404861e-07, 'raw_relative_selected_mass_error': 1.1141368272404861e-07, 'raw_diagonal_error': 5.5706841362024306e-08, 'raw_monopoly_bound_violation': 5.570686645306466e-08, 'raw_min': 1.4651311612042482e-60, 'raw_max': 1.0000000557068665, 'order_doubling_max_abs': 5.0181802546678256e-08, 'order_doubling_max_relative_tail': 1.597586106365724e-07, 'positive_tail_underflow_entries': 0, 'min_monopoly_sale_probability': 3.944304526105292e-31}

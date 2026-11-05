@@ -1,0 +1,158 @@
+{
+  "campaign": "capacity_sweep_1_to_30",
+  "summary": {
+    "capacity": 24,
+    "effective_rho": 0.9583333333333334,
+    "p0": 0.1,
+    "sellers": 2,
+    "closure": "marginal",
+    "verified": true,
+    "product2_conditional": 0.6275100339891378,
+    "sale_rate": 0.4999999996799702,
+    "outside_rate": 6.400596358948356e-10,
+    "product2_calendar": 0.313755016793747,
+    "profit_calendar": 0.2867469896197235,
+    "value_initial": 12.610232785040337,
+    "perceived_value_initial": 9.80235806310165,
+    "count_states": 25,
+    "joint_states": 325
+  },
+  "configuration": {
+    "capacity": 24,
+    "effective_rho": 0.9583333333333334,
+    "sellers": 2,
+    "closure": "marginal",
+    "p0": 0.1,
+    "primitives": {
+      "p0": 0.1,
+      "p1": 0.35,
+      "p2": 0.8,
+      "c1": 0.05,
+      "c2": 0.65,
+      "revenue": 1.0,
+      "gamma": 0.98
+    },
+    "count_states": 25,
+    "joint_states": 325,
+    "tolerance": 1e-07,
+    "state": "Mature memory: retained successes S=0,...,capacity",
+    "replacement": "Uniform old slot independent of new outcome; only selected seller updates",
+    "posterior": "Beta(1+S,1+capacity-S)",
+    "joint_representation": "Exact seller-permutation quotient; correlated rival law preserved",
+    "initial_state": "Independent equal mixture of floor(capacity/2),ceil(capacity/2) for odd capacity; exact midpoint for even capacity",
+    "actual_value": "Mean seller discounted payoff; equals each seller at exchangeable initialization",
+    "scope": "Finite exact-count symmetric oblivious equilibrium; no full-state MPE or uniqueness claim"
+  },
+  "diagnostics": {
+    "conditional_regret": 0.0,
+    "bellman_residual": 3.552713678800501e-15,
+    "optimal_value_difference": 0.0,
+    "actual_value_residual": 7.105427357601002e-15,
+    "actual_value_error_bound": 3.552713678800498e-13,
+    "sale_law_l1": 7.401458612946414e-16,
+    "market_partition_error": 0.0,
+    "stationary": {
+      "verified": true,
+      "methods": [
+        "Subtraction-free sparse positive GTH",
+        "Subtraction-free sparse positive GTH, reversed elimination order"
+      ],
+      "probability_sum": 0.9999999999999999,
+      "minimum_probability": 1.86207891729768e-20,
+      "minimum_exit_rate": 0.04844903781586763,
+      "maximum_exit_rate": 0.65,
+      "stability_l1": 1.7481655877488861e-16,
+      "conditional_demand_stability": 3.3306690738754696e-16,
+      "rate_weighted_residual": 1.4860136204097154e-16,
+      "residual": 1.1457789807979602e-16,
+      "row_sum_error": 2.220446049250313e-16,
+      "solved_states": 325,
+      "elapsed_seconds": 0.0052513740010908805,
+      "scope": "Independent finite-chain numerical stability; no mixing-time or uniqueness proof"
+    },
+    "demand": {
+      "capacity": 24,
+      "sellers": 2,
+      "p0": 0.1,
+      "order": 128,
+      "full_states": 625,
+      "quotient_states": 325,
+      "representation": "Exact seller-permutation quotient with correlated joint rival beliefs",
+      "quadrature": "Positive truncated Gauss-Jacobi; independently doubled order",
+      "raw_partition_error": 5.03375119365046e-13,
+      "raw_relative_selected_mass_error": 5.03375119365046e-13,
+      "order_doubling_max_abs": 6.108447081487611e-13,
+      "order_doubling_max_relative_tail": 1.2945539584707403e-12,
+      "positive_tail_underflow_entries": 0,
+      "partition_error": 4.440892098500626e-16,
+      "relative_event_correction": 5.033751193647926e-13,
+      "min_positive_demand": 7.91072860244741e-15
+    },
+    "certificate_seconds": 0.014340960005938541
+  },
+  "search_history": [
+    {
+      "stage": "pure improvement",
+      "regret": 0.06589079736461304,
+      "calls": 1
+    },
+    {
+      "stage": "pure improvement",
+      "regret": 0.03543128982487442,
+      "calls": 2
+    },
+    {
+      "stage": "pure improvement",
+      "regret": 0.08286608711074317,
+      "calls": 3
+    },
+    {
+      "stage": "pure improvement",
+      "regret": 0.4449518849793933,
+      "calls": 4
+    },
+    {
+      "stage": "pure improvement",
+      "regret": 0.43261391565474694,
+      "calls": 5
+    },
+    {
+      "stage": "pure improvement",
+      "regret": 0.5974418032644866,
+      "calls": 6
+    },
+    {
+      "stage": "pure improvement",
+      "regret": 0.545121928613358,
+      "calls": 7
+    },
+    {
+      "stage": "pure improvement",
+      "regret": 0.19721960416838064,
+      "calls": 8
+    },
+    {
+      "stage": "pure improvement",
+      "regret": 0.0,
+      "calls": 9
+    }
+  ],
+  "search_calls": 9,
+  "seed": {
+    "case": "capacity_023_p0_0p1_N2_marginal",
+    "method": "Linear interpolation of previous capacity policy for search only"
+  },
+  "sources": {
+    "forgetting_random_replacement/oblivious/code/model.py": "2683955612fbd85076cb87c2ad2b3dbb775e583bb293fc4f415002af05c434ac",
+    "forgetting_random_replacement/oblivious/code/kernel.py": "44ec6cdfd73c0142c2c82c4f9408aa68fb145d79dcbdef48d4b7d04f38578f91",
+    "forgetting_random_replacement/oblivious/code/config.json": "f7f57fc7e446e1d632b42712b040efe9a2bf386aa9851e49d336bb8dc48cab72",
+    "forgetting_random_replacement/code/model.py": "10578739f00eb266e5a5dce171e3eef054d844f771f336413d25fd055b4dc395",
+    "forgetting/Code/model.py": "8b1f948f1d9009a021d1836b4f683f6224c65f724677bce591218a930cd28f7d",
+    "oblivious/02_oe_p0/code/positive_stationary.py": "886efe856552f90e702134b9695c623f4c71d26cfeda68655217ccd4f524cab1",
+    "oblivious/02_oe_p0/code/positive_stationary.cpp": "15d1761182e1fbfa2034d40d7d928ff21f12c52911f54d7fe3d08a5e65c6bf7a"
+  },
+  "solver_sources": {},
+  "elapsed_seconds": 0.19042094200267456,
+  "completed_utc": "2026-11-04T07:28:34.910424+00:00",
+  "checkpoint_sha256": "729d5bb25339103ab5226e4978b31f0be73f73237d53c49f777e1ff353697999"
+}

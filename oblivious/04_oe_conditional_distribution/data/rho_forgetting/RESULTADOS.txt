@@ -1,0 +1,40 @@
+Conditional OE
+
+Optimización: mismo Bellman individual de Distribution OE, con demanda condicionada en el estado propio.
+Consistencia: mu(y|x)=nu(x,y)/mu_A(x); d(x)=sum_y mu(y|x)D(x,y), en tiempo calendario.
+Filas de masa exactamente cero: conjetura fuera de la trayectoria igual a la marginal incondicional del rival; se reportan explícitamente.
+La mezcla interior exige indiferencia. Los extremos 0 y 1 siguen permitidos.
+Verificado significa verificado en la grilla; no demuestra precisión del modelo continuo ni MPE.
+La búsqueda con varios inicios no demuestra unicidad ni exhaustividad.
+
+rho | puntos por vendedor | candidatos verificados | estado | error condicional | error Bellman | error estacionario
+0.6 | 21 | 1 | VERIFICADO | 0 | 7.10542736e-15 | 2.07048734e-16
+0.6 | 31 | 1 | VERIFICADO | 0 | 7.10542736e-15 | 2.20352577e-16
+0.6 | 51 | 1 | VERIFICADO | 0 | 7.10542736e-15 | 3.26549177e-16
+0.7 | 21 | 1 | VERIFICADO | 0 | 3.55271368e-15 | 1.41374617e-16
+0.7 | 31 | 1 | VERIFICADO | 0 | 7.10542736e-15 | 2.17063453e-16
+0.7 | 51 | 1 | VERIFICADO | 0 | 7.10542736e-15 | 2.67217721e-16
+0.8 | 21 | 1 | VERIFICADO | 0 | 3.55271368e-15 | 1.57326238e-16
+0.8 | 31 | 1 | VERIFICADO | 0 | 7.10542736e-15 | 1.56783424e-16
+0.8 | 51 | 1 | VERIFICADO | 0 | 7.10542736e-15 | 2.42088623e-16
+0.9 | 21 | 1 | VERIFICADO | 0 | 3.55271368e-15 | 2.05530335e-16
+0.9 | 31 | 1 | VERIFICADO | 0 | 3.55271368e-15 | 1.68687799e-16
+0.9 | 51 | 1 | VERIFICADO | 0 | 5.32907052e-15 | 1.92150847e-16
+0.95 | 21 | 1 | VERIFICADO | 0 | 3.55271368e-15 | 7.1051577e-17
+0.95 | 31 | 1 | VERIFICADO | 0 | 3.55271368e-15 | 8.86879603e-17
+0.95 | 51 | 1 | VERIFICADO | 0 | 7.10542736e-15 | 1.76761904e-16
+0.97 | 21 | 0 | NO CONVERGIO | 0 | 0.0807760627 | 8.74207013e-17
+0.97 | 31 | 1 | VERIFICADO | 0 | 1.0002189e-12 | 1.14264615e-16
+0.97 | 51 | 1 | VERIFICADO | 0 | 3.55271368e-15 | 1.10430461e-16
+0.99 | 21 | 1 | VERIFICADO | 0 | 7.10542736e-15 | 8.83822252e-17
+0.99 | 31 | 1 | VERIFICADO | 0 | 7.17980731e-15 | 7.18553259e-17
+0.99 | 51 | 1 | VERIFICADO | 0 | 7.10542736e-15 | 1.03922651e-16
+0.999 | 21 | 1 | VERIFICADO | 0 | 1.42108547e-14 | 4.44793974e-17
+0.999 | 31 | 1 | VERIFICADO | 0 | 7.10542736e-15 | 7.03208879e-17
+0.999 | 51 | 1 | VERIFICADO | 0 | 7.10542736e-15 | 7.32529082e-17
+
+Las conjeturas condicionales se obtienen de la conjunta en cada evaluación.
+Por eso el error condicional puede ser cero por construcción; además debe pasar la optimalidad y la verificación estacionaria.
+Un intento sin optimalidad verificada se conserva como diagnóstico, no como equilibrio.
+Consulte candidates.csv para todas las soluciones y initializations.csv para todos los intentos.
+Las simulaciones interpolan la política entre nodos y no certifican optimalidad fuera de ellos.

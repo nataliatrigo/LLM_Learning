@@ -1,0 +1,32 @@
+{
+  "parameters": {
+    "R": 1.0,
+    "c1": 0.05,
+    "c2": 0.65,
+    "p1": 0.35,
+    "p2": 0.8,
+    "gamma": 0.98
+  },
+  "cases": [
+    {"p0": 0.8, "rho": 0.9},
+    {"p0": 0.9, "rho": 0.7},
+    {"p0": 0.9, "rho": 0.8},
+    {"p0": 0.7, "rho": 0.9}
+  ],
+  "grids": [4001, 8001, 16001],
+  "quadrature_order": 128,
+  "validation_quadrature_order": 256,
+  "boundary_refinement_absolute": 0.002,
+  "quadrature_demand_absolute": 1e-9,
+  "long_horizon": 1000000,
+  "trajectories": {
+    "horizon": 3000,
+    "samples": 1501,
+    "bin_width": 25,
+    "rtol": 1e-9,
+    "atol": 1e-11,
+    "max_step": 10
+  },
+  "experiment": "A responds to fixed p2; B responds to fixed p1; both start at the same x0",
+  "scope": "Targeted cases with uncovered common initial states in experiment 11; not a new rho sweep"
+}

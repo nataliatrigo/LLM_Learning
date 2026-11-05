@@ -1,0 +1,57 @@
+[2026-10-22T21:36:40.949888+00:00] refine rho=0.99, n=101, previous n=51
+  auditing demand
+  solving/certifying monopoly
+  competition start=verified_grid_51
+    local exact complementarity, residual=0
+  CERTIFIED in 29.5s; monopoly: P2=0.439573, profit=8.3052e-06; competition: P2=0.439573, profit=8.3051e-06
+  refinement comparison: [{"rho": 0.99, "model": "monopoly", "coarse_n": 51, "fine_n": 101, "passed": false, "product2_conditional_absolute_difference": 0.014035933374272003, "product2_calendar_absolute_difference": 5.319786571035592e-06, "sale_rate_absolute_difference": 1.2102178127360927e-05, "outside_rate_absolute_difference": 1.2102178127415542e-05, "profit_calendar_relative_difference": 0.999999999999684, "value_initial_relative_difference": 0.03490637317816973}, {"rho": 0.99, "model": "competition", "coarse_n": 51, "fine_n": 101, "passed": false, "product2_conditional_absolute_difference": 0.014035933374271448, "product2_calendar_absolute_difference": 5.31972442107729e-06, "sale_rate_absolute_difference": 1.2102036740134962e-05, "outside_rate_absolute_difference": 2.4204073480249555e-05, "profit_calendar_relative_difference": 0.999999999999684, "value_initial_relative_difference": 0.003505998995331204}]
+[2026-10-22T21:37:10.488087+00:00] refine rho=0.99, n=151, previous n=101
+  auditing demand
+  solving/certifying monopoly
+  competition start=verified_grid_101
+Traceback (most recent call last):
+  File "/home/natalia/Projects/LLM_Learning/oblivious/02_oe_p0/code/core.py", line 123, in checked_joint_stationary
+    raise ArithmeticError(f"Sparse stability discrepancy={discrepancy:g}, residual={residual:g}.")
+ArithmeticError: Sparse stability discrepancy=0.438756, residual=1.43816e-16.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/natalia/Projects/LLM_Learning/oblivious/08_oe_distribution_fixed_p0/code/refine_case.py", line 194, in <module>
+    main()
+  File "/home/natalia/Projects/LLM_Learning/oblivious/08_oe_distribution_fixed_p0/code/refine_case.py", line 146, in main
+    competition = solve_competition(experiment, monopoly,
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/oblivious/08_oe_distribution_fixed_p0/code/run_experiment.py", line 145, in solve_competition
+    candidate = experiment.solve(initial_policy=policy,
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/oblivious/08_oe_distribution_fixed_p0/code/model.py", line 342, in solve
+    return self._solve_prefer_local(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/oblivious/01_oe_distribution/code/model.py", line 263, in _solve_prefer_local
+    result = root(equations, alpha, jac=jacobian, method="hybr",
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/.venv/lib/python3.12/site-packages/scipy/optimize/_root.py", line 254, in root
+    sol = _root_hybr(_wrapped_fun, x0, args=args, jac=jac, **options)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/.venv/lib/python3.12/site-packages/scipy/optimize/_minpack_py.py", line 256, in _root_hybr
+    retval = _minpack._hybrj(func, Dfun, x0, args, 1,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/.venv/lib/python3.12/site-packages/scipy/optimize/_root.py", line 216, in _wrapped_fun
+    return fun(*fargs)
+           ^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/oblivious/01_oe_distribution/code/model.py", line 228, in equations
+    data = engine.calculate(raw)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/oblivious/08_oe_distribution_fixed_p0/code/model.py", line 267, in calculate
+    invariant = checked_joint_stationary(e.game, full, force_positive=False)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/oblivious/02_oe_p0/code/core.py", line 138, in checked_joint_stationary
+    first = _positive_invariant(jump, rates)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/natalia/Projects/LLM_Learning/oblivious/02_oe_p0/code/positive_stationary.py", line 122, in positive_invariant
+    status = function(n, np.ascontiguousarray(reduced.indptr, dtype=np.int64),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

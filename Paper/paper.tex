@@ -1,0 +1,105 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{bbm}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\Pb}{\mathbb P}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Ind}[1]{\mathbbm{1}\{#1\}}
+\newcommand{\Bfun}{\mathcal{B}}
+\DeclareMathOperator{\Beta}{Beta}
+\DeclareMathOperator{\BR}{BR}
+\allowdisplaybreaks[1]
+\title{Competition with a Fixed Outside Option}
+\author{Progress note --- transcription of handwritten notes}
+\date{\today}
+
+\begin{document}
+
+\section{Model}
+We consider a user who needs to solve a task, for example the user could be a student trying to solver a math problem. In order to do so, she can choose between using an AI provider to solve it for her or solving it by herself. We will refer to these options as provider $AI$ and option $O$, respectively. In each period $t \in \mathbb{N}$ the user selects the alternative $y_t \in \{AI, O\}$ and receives a binary utility $u_t$ which takes value $1$ if the task was solved correctly or $0$ if not. 
+
+We assume that the user has knowledge of what the quality would be if she completes the task by herself. We measure this quality as the probability of completing the task succesfully and refer to this probability as $p_0\in [0,1]$. On the other hand, the quality (probability of success) of the AI provider is not known to the user, but she has a prior of it that in every interaction she can update depending on the outcome. 
+
+The AI provider holds two different AI models. We can think about these models as a low quality model that has a lower probability of success $p_L$, and a high quality model that has a higher probability of success $p_H$. For simplicity of the wording we will refer to these AI models as products, not to be confused with the mathematical model of this paper. When the AI provider is chosen by the user the provider chooses the product to solve the task $i_t \in \{L,H\}$ and faces an internal cost of $c_{i_t}$. We will assume that 
+
+$$
+0<p_L<p_H<1, \qquad 0<c_L<c_H<1 
+$$
+
+We consider that the provider's choice of product remains hidden all the time to the user. That is, every time the AI is chosen, the user has no knowledge of the exact model that is being used to solve the task and she treats the quality of the provider as if it came from a single model, which she holds a prior for.  
+
+Everytime the AI provider is chosen, he earns a revenue $R>c_H$. We consider this revenue as a fixed parameter in our model and it is not decided over time by the seller. We interpret this parameter as the   
+gains that the provider has when a person interacts with its models, which can be for example, information to train them. If the provider is not chosen, the revenue is zero and it does not incur in any cost. 
+ 
+\subsection{User Learning}
+
+As we stated before, we consider that when the user selects the AI provider, she only observes the binary outcome $u_t$ of the task, not the product $i_t$ that generated said outcome. In particular, she assumes that the provider has a unique probability of success $\theta$ and given a history of outcomes forms a belief about said probability. 
+
+We summarize the history of past outcomes in the count of success and failures received every time the provider is chosen. Let $S_t$ and $F_t$ denote these cumulative counts before period $t$:
+\begin{align*}
+    S_t &= \sum_{\tau=1}^{t-1}\Ind{y_\tau=AI,u_\tau=1}\\
+    F_t &= \sum_{\tau=1}^{t-1}\Ind{y_\tau=AI,u_\tau=0}. 
+\end{align*}
+
+Starting from a uniform prior $\theta\sim\operatorname{Beta}(1,1)$, the posterior corresponds to 
+\begin{equation*}
+    \theta\mid S_t,F_t \sim \operatorname{Beta}(1+S_t,1+F_t).
+\end{equation*}
+The customer translates this posterior belief into a provider choice through Thompson sampling. Specifically, at the beginning of period $t$, the customer draws
+\begin{equation*}
+    \widetilde{\theta}_t \sim \operatorname{Beta}(1+S_t,1+F_t)
+\end{equation*}
+and selects provider~$A$ if and only if $\widetilde{\theta}_t\geq p_0$. This rule can be interpreted as probability matching, where the customer chooses the AI provider with a probability equal to their perceived likelihood that the provider is the better alternative, determined by its posterior belief. For example, if the user beliefs there is a $70\%$ chance that the AI outperforms her own quality, she is going to choose the AI provider $70\%$ of the times. 
+
+
+At state $(S,F)$, the probability that provider is selected is given by the following function, $D(\cdot,\cdot)$, which we refer to as demand:
+\begin{equation}
+\begin{aligned}
+    D(S,F)
+    &\triangleq
+    \Pb(\widetilde{\theta}_t\geq p_0\mid S_t=S,F_t=F) =
+    \int_{p_0}^{1}
+    \frac{\theta^S(1-\theta)^F}{\Bfun(1+S,1+F)}\,d\theta,
+\end{aligned}
+\label{eq:demand-probability}
+\end{equation}
+where $\Bfun(\cdot,\cdot)$ is the Beta function.
+
+
+The demand determines how often the provider earns revenue and generates an outcome that updates the customer's posterior belief about its perceived success probability $\theta$. Note that the provider observes the customer's choices and the realized outcomes; thus, $(S,F)$ is both the customer's posterior state and the provider's dynamic state. Next we describe the AI provider's problem. 
+
+\subsection{Provider's problem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

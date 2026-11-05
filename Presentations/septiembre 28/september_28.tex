@@ -1,0 +1,92 @@
+\documentclass{beamer}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{booktabs}
+
+
+\title{Weekly report}
+\author{Natalia Trigo Tomasevich}
+\date{\today}
+
+\begin{document}
+
+
+\frame{\titlepage}
+
+\begin{frame}{From last week}
+    \begin{itemize}
+        \item Try to prove that the solution was a threshold policy
+        \item The fluid model
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{The base case}
+    \centering
+    \includegraphics[width=\textwidth,height=0.82\textheight,keepaspectratio]{../../forgetting/outputs/advantage_by_p0_and_rho/p0_0.5/figures/advantage_by_rho_overlay.pdf}
+\end{frame}
+
+\begin{frame}{No unimodality}
+    \centering
+    \includegraphics[width=\textwidth,height=0.82\textheight,keepaspectratio]{../../forgetting/outputs/numerical_validations/discrete_gap_counterexample/counterexample.png}
+\end{frame}
+
+\begin{frame}{A weird case}
+    \centering
+    \includegraphics[width=\textwidth,height=0.82\textheight,keepaspectratio]{../../forgetting/outputs/threshold_parameter_map/figures/05_a_rho_one_lower_case.pdf}
+\end{frame}
+
+\begin{frame}
+    \centering
+    \includegraphics[width=\textwidth,height=0.94\textheight,keepaspectratio]{../../forgetting/outputs/threshold_parameter_map/figures/01_policy_phase_maps.pdf}
+\end{frame}
+
+\begin{frame}{About the thresholds}
+    \begin{itemize}
+        \item We don't always have thresholds. It depends on the parameters of the problem 
+        \item For some parameters we do have thresholds
+        \item We could have up to 2 threholds. 
+        \item They are always the same patterns $$1\rightarrow2 , \qquad 1\rightarrow2\rightarrow1, \qquad 2\rightarrow1$$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{We don't always have thresholds}
+    If we have $$\mathcal A^1_\rho =\max_{z\in\mathcal K_\rho}
+    \left\{-\Delta c+\gamma\Delta p \left[U_\rho^1(T_\rho^s z)-U_\rho^1(T_\rho^f z)\right]\right\} <0$$
+    Then for all $z$ we have that to use product 1 is optimal.  \\
+    If we have   $$\mathcal A^2_\rho =\min_{z\in\mathcal K_\rho}
+    \left\{-\Delta c+\gamma\Delta p \left[U_\rho^2(T_\rho^s z)-U_\rho^2(T_\rho^f z)\right]\right\} >0$$ Then for all $z$ we have that to use product 2 is optimal. 
+\end{frame}
+
+\begin{frame}{We have thresholds}
+    We have $$\mathcal A^1_\rho =\max_{z\in\mathcal K_\rho}
+    \left\{-\Delta c+\gamma\Delta p \left[U_\rho^1(T_\rho^s z)-U_\rho^1(T_\rho^f z)\right]\right\} \mathrel{\textcolor{red}{>}}0$$
+    $$\iff$$
+    $$\mathcal A_\rho = \max_{z\in\mathcal K_\rho}
+    \underbrace{\left\{-\Delta c+\gamma\Delta p \left[V_\rho(T_\rho^s z)-V_\rho(T_\rho^f z)\right]\right\}}_{a_\rho(z)} >0$$
+\end{frame}
+
+\begin{frame}{We have thresholds}
+    I proved that
+    $$\mathcal A^2_\rho =\min_{z\in\mathcal K_\rho}
+    \left\{-\Delta c+\gamma\Delta p \left[U_\rho^2(T_\rho^s z)-U_\rho^2(T_\rho^f z)\right]\right\} \mathrel{\textcolor{red}{<}}0$$
+    $$\iff$$
+    $$\mathcal A'_\rho = \min_{z\in\mathcal K_\rho}
+    \left\{-\Delta c+\gamma\Delta p \left[V_\rho(T_\rho^s z)-V_\rho(T_\rho^f z)\right]\right\} <0$$ 
+\end{frame}
+
+\begin{frame}{Threshold area}
+    If $\mathcal A^1_\rho>0$ and $\mathcal A^2_\rho<0$ we have at least one threshold,because that condition means that $\exists z_1,z_2\in \mathcal K_\rho$ such that $a_\rho(z_2)<0<a_\rho(z_1)$. Which means, by continuity and intermediate value that $\exists z^*\in (min\{z_1,z_2\},max\{z_1,z_2\})$ such that $a_\rho(z^*)=0.$
+\end{frame}
+
+\begin{frame}{Conditions over $c_2$}
+    \begin{itemize}
+        \item If we fix all the parameters except for $c_2$, with the conditions $\mathcal A^1_\rho>0$ and $\mathcal A^2_\rho<0$ we can find an upper bound and lower bound for $c_2$ where we can find thresholds. 
+        \item The proof is not revised yet.  
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{The fluid model}
+    Proceed to progress note...
+\end{frame}
+
+\end{document}

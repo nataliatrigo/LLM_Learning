@@ -1,0 +1,192 @@
+\documentclass[10pt]{beamer}
+\usepackage[utf8]{inputenc}
+
+\usetheme{Madrid}
+\usecolortheme{default}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{amsmath,amssymb,amsthm,microtype}
+\usepackage{tikz}
+\graphicspath{{../OverleafPaper/figures/}{OverleafPaper/figures/}{../forgetting/outputs/test/monte_carlo/figures/}{forgetting/outputs/test/monte_carlo/figures/}{../forgetting/outputs/test/first_2000/figures/individual_states/p0_0.5/}{forgetting/outputs/test/first_2000/figures/individual_states/p0_0.5/}{../forgetting/outputs/test/first_2000/figures/state_distributions/p0_0.5/}{forgetting/outputs/test/first_2000/figures/state_distributions/p0_0.5/}}
+
+\title{Weekly report}
+\author{Natalia Trigo Tomasevich}
+\date{October 26, 2026}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}{This week}
+    \begin{itemize}[<+->]
+        \item Competition model with $p_0$
+        \item Oblivious equilibrium 
+        \item Simulations 
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Elements of the model}
+    \begin{itemize}
+        \item Two symmetric providers, indexed by $j\in\{A,B\}$
+        \item Two products, indexed by $i\in\{1,2\}$
+        \item Success probabilities: $0<p_1<p_2<1$
+        \item Costs: $c_1<c_2$
+        \item Revenue: $R>c_2$
+        \item $p_0$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Customer's beliefs}
+    For the competition model, the customer observes the state $x_A,x_B$, where $x_j$ is the fraction of successes over the interactions with provider $j$. The customer has a belied about each provider $j$
+    \begin{align}
+        \theta_A\mid x_A&\sim\operatorname{Beta}(1+\frac{x_A}{1-\rho},1+\frac{1-x_A}{1-\rho}),\\
+        \theta_B\mid x_B&\sim\operatorname{Beta}(1+\frac{x_B}{1-\rho},1+\frac{1-x_B}{1-\rho})
+    \end{align}
+\end{frame}
+
+\begin{frame}{Customer's choice}
+    The customer uses Thompson sampling (TS), drawing independently from the
+    two belief distributions and choosing
+    \begin{equation}
+        y_t=
+        \begin{cases}
+            A,&\widetilde\theta_A>\max\{\widetilde\theta_B,p_0\},\\
+            B,&\widetilde\theta_B>\max\{\widetilde\theta_A,p_0\},\\
+            0,&p_0>\max\{\widetilde\theta_A,\widetilde\theta_B\}.
+        \end{cases}
+    \end{equation}
+    Here $0$ denotes the outside option of fixed quality $p_0$.
+    Ties have probability zero. The selection probabilities are
+    \begin{equation}
+        \begin{aligned}
+            D_A(x_A,x_B;p_0)&=\mathbb{P}(\widetilde\theta_A>\max\{\widetilde\theta_B,p_0\}\mid x_A,x_B),\\
+            D_B(x_A,x_B;p_0)&=\mathbb{P}(\widetilde\theta_B>\max\{\widetilde\theta_A,p_0\}\mid x_A,x_B),\\
+            D_0(x_A,x_B;p_0)&=\mathbb{P}(\widetilde\theta_A<p_0\mid x_A)
+                \mathbb{P}(\widetilde\theta_B<p_0\mid x_B).
+        \end{aligned}
+    \end{equation}
+    Hence $D_A+D_B+D_0=1$.
+\end{frame}
+
+\begin{frame}{State transitions}
+    Superscripts $s$ and $f$ denote success and failure,
+    respectively. The state transitions are
+    \begin{equation}
+        \begin{aligned}
+            T_A^s(x)&=(\rho x_A+1-\rho,x_B),\\
+            T_A^f(x)&=(\rho x_A,x_B),\\
+            T_B^s(x)&=(x_A,\rho x_B+1-\rho),\\
+            T_B^f(x)&=(x_A,\rho x_B).
+        \end{aligned}
+    \end{equation}
+\end{frame}
+
+\begin{frame}{Strategies}
+    We consider stationary mixed strategies that depend only
+    on the seller's own reputation. For each seller $j\in\{A,B\}$,
+    a strategy is a mapping
+    \begin{equation}
+        \sigma_j:[0,1]\rightarrow\Delta(\{1,2\}),
+    \end{equation}
+    where $\sigma_j(i\mid x_j)$ denotes the probability that
+    seller $j$ chooses product $i$ when selected at reputation
+    $x_j$.
+\end{frame}
+
+\begin{frame}{Distribution-Based Oblivious Equilibrium}
+    For fixed $p_0$, seller $A$ conjectures a stationary distribution
+    $\mu_B$ for its competitor's reputation before customer selection.
+    Its expected demand is
+    \begin{equation}
+        d_A(x_A;\mu_B,p_0) =\int_0^1 D_A(x_A,y;p_0)\,\mu_B(dy).
+    \end{equation}
+    The seller's problem becomes 
+    \begin{equation}
+        \begin{aligned}
+            U_A(x_A) ={}& \gamma[1-d_A(x_A;\mu_B,p_0)]U_A(x_A)\\ &+ d_A(x_A;\mu_B,p_0)
+            \max_{i\in\{1,2\}}\Big\{ R-c_i\\
+            &\qquad+\gamma\left[ p_i U_A(T_\rho^s(x_A)) + (1-p_i)U_A(T_\rho^f(x_A))
+            \right] \Big\}.
+        \end{aligned}
+    \end{equation}
+    The term $1-d_A$ includes choosing $B$ or the outside option.
+\end{frame}
+
+\begin{frame}{Distribution-Based Oblivious Equilibrium}
+    \begin{itemize}
+        \item Given the conjectured distribution $\mu_B$, each seller solves its Bellman equation and obtains an optimal strategy $\sigma$.
+        \item We require this distribution to be consistent with the reputations generated when both sellers follow $\sigma$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Joint transition probability kernel}
+    For fixed $p_0$, define the joint transition kernel
+    (with $p_0$ implicit in $P^\sigma$) as
+    \[
+        P^\sigma(x,C)=\mathbb{P}(x_{t+1}\in C\mid x_t=x,\sigma),
+    \]
+    which is equivalent to
+    \begin{equation}
+        \begin{aligned}
+            P^\sigma(x,C)
+            ={}&D_0(x_A,x_B;p_0)\mathbf{1}\{x\in C\}\\
+            &+D_A(x_A,x_B;p_0)\Big[
+                p_{\sigma_A}(x_A)\mathbf{1}\{T_A^s(x)\in C\}\\
+            &\qquad +(1-p_{\sigma_A}(x_A))\mathbf{1}\{T_A^f(x)\in C\}\Big]\\
+            &+D_B(x_A,x_B;p_0)\Big[
+                p_{\sigma_B}(x_B)\mathbf{1}\{T_B^s(x)\in C\}\\
+            &\qquad +(1-p_{\sigma_B}(x_B))\mathbf{1}\{T_B^f(x)\in C\}\Big].
+        \end{aligned}
+    \end{equation}
+    If the outside option is chosen, both reputations remain unchanged.
+\end{frame}
+
+\begin{frame}{Distribution-Based Oblivious Equilibrium}
+    A symmetric oblivious equilibrium is a triple
+    $(\sigma^*,\mu^*,\nu^*)$ satisfying:
+
+    \medskip
+    \textbf{1. Optimality}
+        \begin{equation*}
+            \begin{aligned}
+            \operatorname{supp}\sigma^*(\cdot\mid x)
+            \subseteq
+            \arg\max_{i\in\{1,2\}}
+            \Big\{
+            R-c_i+\gamma\big[
+            &p_iU_{\mu^*}(T_\rho^s(x))\\
+            &+(1-p_i)U_{\mu^*}(T_\rho^f(x))
+            \big]
+            \Big\},
+            \quad \forall x\in[0,1].
+            \end{aligned}
+        \end{equation*}
+
+    \medskip
+    \textbf{2. Consistency}
+        \begin{equation*}
+            \begin{aligned}
+            \nu^*&=\nu^*P^{\sigma^*},\\
+            \mu^*(C)&=\nu^*(C\times[0,1])
+            =\nu^*([0,1]\times C),
+            \quad \forall C\subseteq[0,1]\text{ measurable}.
+            \end{aligned}
+        \end{equation*}
+\end{frame}
+
+\begin{frame}
+    \frametitle{What did we find in this model}
+    \begin{itemize}
+        \item For small $p_0$, in particular $p_0<p_1$, we have that the fraction of use of product 2 among the sales of a seller is larger than the monopoly seller
+        \item For larger $p_0$, for example $p_0=p_2$ we find a case where this fraction is larger for the monopoly 
+        \item Why? 
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Simulations}
+    go to vscode, there are too many plots 
+\end{frame}
+
+\end{document}

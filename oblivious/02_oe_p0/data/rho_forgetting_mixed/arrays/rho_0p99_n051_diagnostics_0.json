@@ -1,0 +1,970 @@
+{
+  "rho": 0.99,
+  "n": 51,
+  "p0": 0.43427131328566043,
+  "mixed_nodes": 1,
+  "fixed_point_verified": true,
+  "simulation": {
+    "arrays": {
+      "states": {
+        "__array__": "root/simulation/arrays/states"
+      },
+      "theta": {
+        "__array__": "root/simulation/arrays/theta"
+      },
+      "posterior_mean": {
+        "__array__": "root/simulation/arrays/posterior_mean"
+      },
+      "selected": {
+        "__array__": "root/simulation/arrays/selected"
+      },
+      "product": {
+        "__array__": "root/simulation/arrays/product"
+      },
+      "success": {
+        "__array__": "root/simulation/arrays/success"
+      },
+      "profit": {
+        "__array__": "root/simulation/arrays/profit"
+      },
+      "chosen_probability": {
+        "__array__": "root/simulation/arrays/chosen_probability"
+      },
+      "product_uniform": {
+        "__array__": "root/simulation/arrays/product_uniform"
+      },
+      "success_uniform": {
+        "__array__": "root/simulation/arrays/success_uniform"
+      },
+      "initial_state": {
+        "__array__": "root/simulation/arrays/initial_state"
+      },
+      "final_state": {
+        "__array__": "root/simulation/arrays/final_state"
+      },
+      "empirical_mass": {
+        "__array__": "root/simulation/arrays/empirical_mass"
+      },
+      "running_periods": {
+        "__array__": "root/simulation/arrays/running_periods"
+      },
+      "running_ts_b": {
+        "__array__": "root/simulation/arrays/running_ts_b"
+      },
+      "running_posterior_b": {
+        "__array__": "root/simulation/arrays/running_posterior_b"
+      }
+    },
+    "summary": {
+      "periods": 100000,
+      "burn_in": 10000,
+      "trajectories": 4,
+      "seed": 20261023,
+      "estimates": {
+        "mean_ts": {
+          "mean": [
+            0.37433721859451263,
+            0.47683080515227705
+          ],
+          "se": [
+            0.10190981277039324,
+            0.00030856382604996084
+          ],
+          "ci95": [
+            [
+              0.050014711471220274,
+              0.698659725717805
+            ],
+            [
+              0.47584881734412016,
+              0.47781279296043394
+            ]
+          ]
+        },
+        "mean_posterior": {
+          "mean": [
+            0.3743993167174349,
+            0.4768002136465487
+          ],
+          "se": [
+            0.10192395610198517,
+            0.00034071356399165294
+          ],
+          "ci95": [
+            [
+              0.05003179920077344,
+              0.6987668342340965
+            ],
+            [
+              0.4757159110236634,
+              0.47788451626943396
+            ]
+          ]
+        },
+        "ts_minus_posterior": {
+          "mean": [
+            -6.209812288701265e-05,
+            3.059150573309963e-05
+          ],
+          "se": [
+            5.31229332631818e-05,
+            3.660992605040957e-05
+          ],
+          "ci95": [
+            [
+              -0.00023115900557625854,
+              0.00010696275980223325
+            ],
+            [
+              -8.591761816273606e-05,
+              0.00014710062962893533
+            ]
+          ]
+        },
+        "ts_b_minus_stationary_F": {
+          "mean": 0.04255949186661731,
+          "se": 0.00030856382604965173,
+          "ci95": [
+            0.04157750405846139,
+            0.04354147967477323
+          ]
+        },
+        "posterior_b_minus_stationary_F": {
+          "mean": 0.042528900360884206,
+          "se": 0.00034071356399369607,
+          "ci95": [
+            0.041444597737992424,
+            0.04361320298377599
+          ]
+        },
+        "market_shares": {
+          "mean": [
+            0.374035,
+            0.625965
+          ],
+          "se": [
+            0.12467846569609899,
+            0.12467846569609899
+          ],
+          "ci95": [
+            [
+              -0.022747522502991724,
+              0.7708175225029917
+            ],
+            [
+              0.22918247749700826,
+              1.0227475225029918
+            ]
+          ]
+        },
+        "product2_purchase_fraction": {
+          "mean": 0.28196,
+          "se": 0.0015811915338334822,
+          "ci95": [
+            0.2769279428452057,
+            0.28699205715479426
+          ]
+        },
+        "mean_chosen_product2_probability": {
+          "mean": 0.2803584569134227,
+          "se": 0.002001598124275917,
+          "ci95": [
+            0.27398847835815804,
+            0.28672843546868737
+          ]
+        },
+        "product2_per_calendar_period": {
+          "mean": [
+            0.10542750000000001,
+            0.1765325
+          ],
+          "se": [
+            0.03514366476218248,
+            0.03412481095796235
+          ],
+          "ci95": [
+            [
+              -0.006415326076536859,
+              0.21727032607653687
+            ],
+            [
+              0.06793212144832775,
+              0.28513287855167224
+            ]
+          ]
+        },
+        "mean_profit_per_seller": {
+          "mean": [
+            0.29207674999991556,
+            0.48874724999965224
+          ],
+          "se": [
+            0.09735908029565271,
+            0.09797919522008627
+          ],
+          "ci95": [
+            [
+              -0.017763295372804244,
+              0.6019167953726354
+            ],
+            [
+              0.17693372217681758,
+              0.8005607778224869
+            ]
+          ]
+        },
+        "mean_reputation": {
+          "mean": [
+            0.3718873030517772,
+            0.4763362179194788
+          ],
+          "se": [
+            0.10396243522403667,
+            0.0003475278352726375
+          ],
+          "ci95": [
+            [
+              0.04103243518474492,
+              0.7027421709188095
+            ],
+            [
+              0.4752302292441321,
+              0.47744220659482545
+            ]
+          ]
+        },
+        "realized_success_fraction": {
+          "mean": 0.4770875,
+          "se": 0.00010522792721832954,
+          "ci95": [
+            0.4767526177718114,
+            0.4774223822281886
+          ]
+        }
+      },
+      "p0": 0.43427131328566043,
+      "stationary_F": 0.4342713132856606,
+      "initial_states": [
+        [
+          0.46,
+          0.46
+        ],
+        [
+          0.06,
+          0.48
+        ],
+        [
+          0.48,
+          0.48
+        ],
+        [
+          0.52,
+          0.44
+        ]
+      ],
+      "initialization": "Independent draws from the joint stationary nu, not product marginals",
+      "recorded_time": "Predecision states, both Beta draws and both posterior means every retained calendar period",
+      "policy_mode": "mixed",
+      "policy_extension": "Linear interpolation of alpha=P(product 2 | own reputation, selected); independent Bernoulli choice. This extension does not certify off-grid indifference or optimality.",
+      "product_choice": "Independent product uniform compared to own-state alpha; success uses the realized selected product",
+      "random_streams": "Five independent streams per path: joint initialization, TS A, TS B, product choice, success",
+      "customer_selection": "Independent actual Beta draws for A and B; exactly one seller selected",
+      "uncertainty": "95% Student-t intervals over independent path means, with paths-1 degrees of freedom; time observations are not treated as IID. Few independent paths give imprecise uncertainty estimates, especially with slow mixing.",
+      "interpretation": "Finite-path evidence, not a proof of ergodicity or off-grid optimality. Grid stationary F and continuous simulation may differ because of discretization, initialization or slow mixing.",
+      "ts_minus_posterior_B_ci_contains_zero": true,
+      "ts_B_ci_contains_stationary_F": false,
+      "posterior_B_ci_contains_stationary_F": false
+    },
+    "path_rows": [
+      {
+        "mean_ts": [
+          0.4762446148552903,
+          0.4763994727354924
+        ],
+        "mean_posterior": [
+          0.4762998739198919,
+          0.47633190205522297
+        ],
+        "ts_minus_posterior": [
+          -5.5259064601703904e-05,
+          6.75706802657682e-05
+        ],
+        "ts_b_minus_stationary_F": 0.04212815944983245,
+        "posterior_b_minus_stationary_F": 0.04206058876956664,
+        "market_shares": [
+          0.49916,
+          0.50084
+        ],
+        "product2_purchase_fraction": 0.28605,
+        "mean_chosen_product2_probability": 0.28503453763339,
+        "product2_per_calendar_period": [
+          0.14125,
+          0.1448
+        ],
+        "mean_profit_per_seller": [
+          0.3894519999998873,
+          0.38891799999988785
+        ],
+        "mean_reputation": [
+          0.47582587139829396,
+          0.47585854009633394
+        ],
+        "realized_success_fraction": 0.47688
+      },
+      {
+        "mean_ts": [
+          0.06860780427123901,
+          0.47774618116697726
+        ],
+        "mean_posterior": [
+          0.06862745098052586,
+          0.4778086158745949
+        ],
+        "ts_minus_posterior": [
+          -1.9646709153233726e-05,
+          -6.243470762100321e-05
+        ],
+        "ts_b_minus_stationary_F": 0.04347486788131649,
+        "posterior_b_minus_stationary_F": 0.04353730258893751,
+        "market_shares": [
+          0.0,
+          1.0
+        ],
+        "product2_purchase_fraction": 0.27887,
+        "mean_chosen_product2_probability": 0.2755699794647185,
+        "product2_per_calendar_period": [
+          0.0,
+          0.27887
+        ],
+        "mean_profit_per_seller": [
+          0.0,
+          0.7826779999989625
+        ],
+        "mean_reputation": [
+          0.060000000000094575,
+          0.4773647881920901
+        ],
+        "realized_success_fraction": 0.47737
+      },
+      {
+        "mean_ts": [
+          0.4763470914764837,
+          0.4765620474920108
+        ],
+        "mean_posterior": [
+          0.4763097363223023,
+          0.4764560432844461
+        ],
+        "ts_minus_posterior": [
+          3.7355154188119646e-05,
+          0.00010600420758322574
+        ],
+        "ts_b_minus_stationary_F": 0.04229073420635132,
+        "posterior_b_minus_stationary_F": 0.042184729998768045,
+        "market_shares": [
+          0.49827,
+          0.50173
+        ],
+        "product2_purchase_fraction": 0.28273,
+        "mean_chosen_product2_probability": 0.2816943382316014,
+        "product2_per_calendar_period": [
+          0.14061,
+          0.14212
+        ],
+        "mean_profit_per_seller": [
+          0.3889904999998867,
+          0.39137149999988136
+        ],
+        "mean_reputation": [
+          0.475835931048747,
+          0.47598516415012293
+        ],
+        "realized_success_fraction": 0.47699
+      },
+      {
+        "mean_ts": [
+          0.47614936377503764,
+          0.4766155192146277
+        ],
+        "mean_posterior": [
+          0.4763602056470196,
+          0.4766042933719309
+        ],
+        "ts_minus_posterior": [
+          -0.00021084187198123258,
+          1.1225842704407778e-05
+        ],
+        "ts_b_minus_stationary_F": 0.04234420592896898,
+        "posterior_b_minus_stationary_F": 0.04233298008626463,
+        "market_shares": [
+          0.49871,
+          0.50129
+        ],
+        "product2_purchase_fraction": 0.28019,
+        "mean_chosen_product2_probability": 0.27913497232398105,
+        "product2_per_calendar_period": [
+          0.13985,
+          0.14034
+        ],
+        "mean_profit_per_seller": [
+          0.38986449999988826,
+          0.3920214999998773
+        ],
+        "mean_reputation": [
+          0.4758874097599733,
+          0.4761363792393682
+        ],
+        "realized_success_fraction": 0.47711
+      }
+    ]
+  },
+  "demand": {
+    "arrays": {
+      "grid": {
+        "__array__": "root/demand/arrays/grid"
+      },
+      "d_fixed": {
+        "__array__": "root/demand/arrays/d_fixed"
+      },
+      "d_marginal": {
+        "__array__": "root/demand/arrays/d_marginal"
+      },
+      "d_conditional": {
+        "__array__": "root/demand/arrays/d_conditional"
+      },
+      "conditional_defined": {
+        "__array__": "root/demand/arrays/conditional_defined"
+      },
+      "mu_a": {
+        "__array__": "root/demand/arrays/mu_a"
+      },
+      "mu_b": {
+        "__array__": "root/demand/arrays/mu_b"
+      },
+      "error_fixed_minus_marginal": {
+        "__array__": "root/demand/arrays/error_fixed_minus_marginal"
+      },
+      "error_fixed_minus_conditional": {
+        "__array__": "root/demand/arrays/error_fixed_minus_conditional"
+      },
+      "error_marginal_minus_conditional": {
+        "__array__": "root/demand/arrays/error_marginal_minus_conditional"
+      }
+    },
+    "summary": {
+      "conditional_mass_floor": 1e-15,
+      "conditional_undefined_nodes": 5,
+      "conditional_omitted_own_mass": 4.0344355321172984e-16,
+      "actual_stationary_market_share_A": 0.4999999999999999,
+      "independent_marginal_market_share_A": 0.49999999999999994,
+      "weighted_fixed_demand": 0.6810204038138014,
+      "errors": {
+        "fixed_minus_marginal": {
+          "max_absolute": 0.25075900257915573,
+          "stationary_weighted_absolute": 0.199108130145497,
+          "stationary_weighted_rmse": 0.21003730970622497,
+          "stationary_weighted_signed": 0.1810204038138015,
+          "included_stationary_mass": 0.9999999999999999
+        },
+        "fixed_minus_conditional": {
+          "max_absolute": 0.23186460966584188,
+          "stationary_weighted_absolute": 0.1810390513690945,
+          "stationary_weighted_rmse": 0.19726629164090412,
+          "stationary_weighted_signed": 0.1810204038138016,
+          "included_stationary_mass": 0.9999999999999993
+        },
+        "marginal_minus_conditional": {
+          "max_absolute": 0.12897343053618368,
+          "stationary_weighted_absolute": 0.028130943300189164,
+          "stationary_weighted_rmse": 0.03665071610950948,
+          "stationary_weighted_signed": -3.012625925892502e-17,
+          "included_stationary_mass": 0.9999999999999993
+        }
+      }
+    }
+  },
+  "deviations": {
+    "arrays": {
+      "values": {
+        "__array__": "root/deviations/arrays/values"
+      },
+      "br_values": {
+        "__array__": "root/deviations/arrays/br_values"
+      },
+      "br_policies": {
+        "__array__": "root/deviations/arrays/br_policies"
+      },
+      "regrets": {
+        "__array__": "root/deviations/arrays/regrets"
+      },
+      "advantages": {
+        "__array__": "root/deviations/arrays/advantages"
+      }
+    },
+    "summary": {
+      "max_regret": [
+        17.779374753635,
+        17.779374753638045
+      ],
+      "mean_regret": [
+        1.4210635105958536,
+        1.4210635105971852
+      ],
+      "weighted_regret": [
+        1.507259134643472,
+        1.507259134644999
+      ],
+      "min_regret": [
+        1.757624651790356e-13,
+        1.7576253275805395e-13
+      ],
+      "policy_residuals": [
+        1.2363443602225743e-12,
+        1.3864465131518955e-12
+      ],
+      "br_residuals": [
+        9.935519074133481e-11,
+        9.935519074133481e-11
+      ],
+      "regret_error_bounds": [
+        5.029576755077865e-09,
+        5.037081862724331e-09
+      ],
+      "max_regret_upper_bounds": [
+        17.779374758664577,
+        17.779374758675125
+      ],
+      "policy_evaluation_iterations": 63,
+      "policy_evaluation_method": "checked BiCGSTAB",
+      "br_iterations": [
+        1070,
+        1070
+      ],
+      "tolerance": 1e-10,
+      "residual_bound_scope": "Finite numerical MDP only; excludes grid and quadrature error",
+      "interpretation": "Scalar self-consistency does not establish MPE. These are unrestricted 2D unilateral discounted gains against the original scalar policy, weighted by its joint stationary law."
+    }
+  },
+  "comparisons": {
+    "arrays": {
+      "grid": {
+        "__array__": "root/comparisons/arrays/grid"
+      },
+      "scalar_policy": {
+        "__array__": "root/comparisons/arrays/scalar_policy"
+      },
+      "scalar_nu": {
+        "__array__": "root/comparisons/arrays/scalar_nu"
+      },
+      "scalar_mu_a": {
+        "__array__": "root/comparisons/arrays/scalar_mu_a"
+      },
+      "scalar_mu_b": {
+        "__array__": "root/comparisons/arrays/scalar_mu_b"
+      },
+      "reference_000_native_grid": {
+        "__array__": "root/comparisons/arrays/reference_000_native_grid"
+      },
+      "reference_000_native_policy": {
+        "__array__": "root/comparisons/arrays/reference_000_native_policy"
+      },
+      "reference_000_native_mu": {
+        "__array__": "root/comparisons/arrays/reference_000_native_mu"
+      },
+      "reference_000_native_demand": {
+        "__array__": "root/comparisons/arrays/reference_000_native_demand"
+      },
+      "reference_000_native_nu": {
+        "__array__": "root/comparisons/arrays/reference_000_native_nu"
+      },
+      "reference_000_native_mu_a": {
+        "__array__": "root/comparisons/arrays/reference_000_native_mu_a"
+      },
+      "reference_000_native_mu_b": {
+        "__array__": "root/comparisons/arrays/reference_000_native_mu_b"
+      },
+      "reference_000_sigma_a": {
+        "__array__": "root/comparisons/arrays/reference_000_sigma_a"
+      },
+      "reference_000_sigma_b": {
+        "__array__": "root/comparisons/arrays/reference_000_sigma_b"
+      },
+      "reference_000_nu": {
+        "__array__": "root/comparisons/arrays/reference_000_nu"
+      },
+      "reference_000_mu_a": {
+        "__array__": "root/comparisons/arrays/reference_000_mu_a"
+      },
+      "reference_000_mu_b": {
+        "__array__": "root/comparisons/arrays/reference_000_mu_b"
+      },
+      "reference_000_d_marginal": {
+        "__array__": "root/comparisons/arrays/reference_000_d_marginal"
+      },
+      "reference_000_d_conditional": {
+        "__array__": "root/comparisons/arrays/reference_000_d_conditional"
+      }
+    },
+    "summary": {
+      "scalar_statistics": {
+        "market_shares": [
+          0.4999999999999999,
+          0.49999999999999994
+        ],
+        "product2_purchase_fraction": 0.3021087236269737,
+        "product2_per_calendar_period": [
+          0.15105436181348686,
+          0.15105436181348686
+        ],
+        "product2_conditional_on_selection": [
+          0.3021087236269738,
+          0.3021087236269738
+        ],
+        "mean_profit_per_seller": [
+          0.38436738291190786,
+          0.38436738291190786
+        ],
+        "mean_reputation": [
+          0.43295673955137354,
+          0.4329567395513736
+        ],
+        "mean_posterior": [
+          0.4342713132856604,
+          0.43427131328566043
+        ]
+      },
+      "scalar_product2_regions": {
+        "definition": "Endpoints bound contiguous sampled grid nodes only; full alpha arrays are saved. Alpha>=0.5 describes probability, not strict optimality or the whole support of product 2.",
+        "boundary_tolerance": 1e-08,
+        "probability_at_least_half": [
+          [
+            0.36,
+            0.46
+          ]
+        ],
+        "positive_product2_support": [
+          [
+            0.34,
+            0.46
+          ]
+        ],
+        "strictly_mixed_support": [
+          [
+            0.34,
+            0.34
+          ]
+        ],
+        "product2_probability_one": [
+          [
+            0.36,
+            0.46
+          ]
+        ]
+      },
+      "references": [
+        {
+          "key": "reference_000",
+          "label": "OE with real marginal",
+          "model": "OE_REAL_MARGINAL",
+          "source": "oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p99_n051.npz",
+          "source_grid": 51,
+          "evaluation_grid": 51,
+          "source_quadrature_order": 128,
+          "evaluation_quadrature_order": 128,
+          "native_certificate_verified": true,
+          "symmetry_error": 0.0,
+          "evaluation_profile": "Native probability policy on the same grid and demand quadrature",
+          "policy_difference_max": [
+            1.0,
+            1.0
+          ],
+          "policy_difference_weighted_by_scalar_nu": [
+            0.3444736913618701,
+            0.3444736913618702
+          ],
+          "product2_regions": {
+            "definition": "Endpoints bound contiguous sampled grid nodes only; full alpha arrays are saved. Alpha>=0.5 describes probability, not strict optimality or the whole support of product 2.",
+            "boundary_tolerance": 1e-08,
+            "probability_at_least_half": [
+              [
+                0.28,
+                0.28
+              ]
+            ],
+            "positive_product2_support": [
+              [
+                0.28,
+                0.28
+              ]
+            ],
+            "strictly_mixed_support": [
+              [
+                0.28,
+                0.28
+              ]
+            ],
+            "product2_probability_one": []
+          },
+          "native_summary": {
+            "rho": 0.99,
+            "n": 51,
+            "verified": true,
+            "candidate_verified": true,
+            "marginal_l1": 0.0,
+            "marginal_residual": 0.0,
+            "stationary_residual": 8.135134603933479e-17,
+            "mixed_nodes": 1,
+            "mixed_indices": [
+              14
+            ],
+            "mixed_reputations": [
+              0.28
+            ],
+            "mixed_probabilities": [
+              0.7018848639318203
+            ],
+            "mean_reputation": 0.3015510209999753,
+            "mean_posterior": 0.3054421774509562,
+            "dp": {
+              "verified": true,
+              "bellman_residual": 4.863018895736624e-13,
+              "policy_evaluation_residual": 1.4210854715202004e-14,
+              "conditional_regret": 1.1714172977029909e-12,
+              "complementarity_residual": 3.9294123510558165e-12,
+              "mixed_indifference_residual": 3.9294123510558165e-12,
+              "best_response_gain_upper_bound": 9.993648765565775e-11,
+              "best_response_numerical_error_bound": 9.993648765565775e-11,
+              "iterations": 1
+            },
+            "stationary": {
+              "verified": true,
+              "residual": 8.135134603933479e-17,
+              "row_sum_error": 3.3306690738754696e-16,
+              "probability_sum": 1.0,
+              "minimum_probability": 1.798890430648759e-55,
+              "stability_l1": 2.806964902686765e-11,
+              "stability_tolerance": 1e-07,
+              "methods": [
+                "sparse jump-chain, middle normalization",
+                "sparse jump-chain, reversed order and edge normalization",
+                "independent positive GTH elimination"
+              ],
+              "preliminary_failures": [],
+              "symmetric_lumping": true,
+              "lumping_error": 2.220446049250313e-16,
+              "solved_states": 1326,
+              "full_states": 2601,
+              "selection": "symmetric invariant law",
+              "communicating_components": 1,
+              "reduced_communicating_components": 1,
+              "minimum_exit_rate": 0.17500000000000016,
+              "exploratory": false,
+              "marginal_symmetry_l1": 1.6491110338339247e-16,
+              "scope": "Finite numerical kernel; no mixing-time or continuous-state guarantee"
+            }
+          },
+          "status": "evaluated",
+          "statistics": {
+            "market_shares": [
+              0.5000000000000001,
+              0.5
+            ],
+            "product2_purchase_fraction": 0.029911802658996463,
+            "product2_per_calendar_period": [
+              0.014955901329498231,
+              0.014955901329498233
+            ],
+            "product2_conditional_on_selection": [
+              0.029911802658996456,
+              0.029911802658996466
+            ],
+            "mean_profit_per_seller": [
+              0.4660264592023011,
+              0.46602645920230107
+            ],
+            "mean_reputation": [
+              0.3015510209999753,
+              0.3015510209999753
+            ],
+            "mean_posterior": [
+              0.3054421774509562,
+              0.3054421774509562
+            ]
+          },
+          "stationary_diagnostics": {
+            "summary": {
+              "verified": true,
+              "residual": 8.135134603933479e-17,
+              "row_sum_error": 3.3306690738754696e-16,
+              "probability_sum": 1.0,
+              "minimum_probability": 1.798890430648759e-55,
+              "stability_l1": 2.806964902686765e-11,
+              "stability_tolerance": 1e-07,
+              "methods": [
+                "sparse jump-chain, middle normalization",
+                "sparse jump-chain, reversed order and edge normalization",
+                "independent positive GTH elimination"
+              ],
+              "preliminary_failures": [],
+              "symmetric_lumping": true,
+              "lumping_error": 2.220446049250313e-16,
+              "solved_states": 1326,
+              "full_states": 2601,
+              "selection": "symmetric invariant law",
+              "communicating_components": 1,
+              "reduced_communicating_components": 1,
+              "minimum_exit_rate": 0.17500000000000016,
+              "exploratory": false,
+              "marginal_symmetry_l1": 1.6491110338339247e-16,
+              "scope": "Finite numerical kernel; no mixing-time or continuous-state guarantee"
+            }
+          },
+          "demand_errors_against_scalar_fixed": {
+            "fixed_minus_marginal": {
+              "max_absolute": 0.6119921509125716,
+              "stationary_weighted_absolute": 0.40236145779221244,
+              "stationary_weighted_rmse": 0.44331445014233944,
+              "stationary_weighted_signed": -0.4023532938541869,
+              "included_stationary_mass": 1.0
+            },
+            "fixed_minus_conditional": {
+              "max_absolute": 0.7197032867264375,
+              "stationary_weighted_absolute": 0.402353294197828,
+              "stationary_weighted_rmse": 0.48015160869581375,
+              "stationary_weighted_signed": -0.402353293854187,
+              "included_stationary_mass": 0.9999999999999997
+            },
+            "marginal_minus_conditional": {
+              "max_absolute": 0.15879249492748265,
+              "stationary_weighted_absolute": 0.08530324923204254,
+              "stationary_weighted_rmse": 0.09510483500860194,
+              "stationary_weighted_signed": 4.1507609079991685e-17,
+              "included_stationary_mass": 0.9999999999999997
+            }
+          },
+          "marginal_l1_to_scalar": [
+            1.5542806881304072,
+            1.5542806881304072
+          ]
+        }
+      ],
+      "excluded": [
+        {
+          "source": "oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p6_n021.json",
+          "reason": "Case parameters or rho do not match"
+        },
+        {
+          "source": "oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p6_n031.json",
+          "reason": "Case parameters or rho do not match"
+        },
+        {
+          "source": "oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p6_n051.json",
+          "reason": "Case parameters or rho do not match"
+        },
+        {
+          "source": "oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p7_n021.json",
+          "reason": "Case parameters or rho do not match"
+        },
+        {
+          "source": "oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p7_n031.json",
+          "reason": "Case parameters or rho do not match"
+        },
+        {
+          "source": "oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p7_n051.json",
+          "reason": "Case parameters or rho do not match"
+        },
+        {
+          "source": "oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p8_n021.json",
+          "reason": "Case parameters or rho do not match"
+        },
+        {
+          "source": "oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p8_n031.json",
+          "reason": "Case parameters or rho do not match"
+        },
+        {
+          "source": "oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p8_n051.json",
+          "reason": "Case parameters or rho do not match"
+        },
+        {
+          "source": "oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p95_n021.json",
+          "reason": "Case parameters or rho do not match"
+        },
+        {
+          "source": "oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p95_n031.json",
+          "reason": "Case parameters or rho do not match"
+        },
+        {
+          "source": "oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p95_n051.json",
+          "reason": "Case parameters or rho do not match"
+        },
+        {
+          "source": "oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p97_n021.json",
+          "reason": "Case parameters or rho do not match"
+        },
+        {
+          "source": "oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p97_n031.json",
+          "reason": "Case parameters or rho do not match"
+        },
+        {
+          "source": "oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p97_n051.json",
+          "reason": "Case parameters or rho do not match"
+        },
+        {
+          "source": "oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p999_n021.json",
+          "reason": "Case parameters or rho do not match"
+        },
+        {
+          "source": "oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p999_n031.json",
+          "reason": "Case parameters or rho do not match"
+        },
+        {
+          "source": "oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p999_n051.json",
+          "reason": "Case parameters or rho do not match"
+        },
+        {
+          "source": "oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p9_n021.json",
+          "reason": "Case parameters or rho do not match"
+        },
+        {
+          "source": "oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p9_n031.json",
+          "reason": "Case parameters or rho do not match"
+        },
+        {
+          "source": "oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p9_n051.json",
+          "reason": "Case parameters or rho do not match"
+        }
+      ],
+      "catalog": [
+        {
+          "source": "oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p99_n021.npz",
+          "grid_points": 21,
+          "source_order": 128,
+          "included": false
+        },
+        {
+          "source": "oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p99_n031.npz",
+          "grid_points": 31,
+          "source_order": 128,
+          "included": false
+        },
+        {
+          "source": "oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p99_n051.npz",
+          "grid_points": 51,
+          "source_order": 128,
+          "included": true
+        }
+      ],
+      "selection_rule": "Active OE with real marginal only: matching economic parameters and rho; prefer the comparison grid, otherwise the finest verified grid; prefer matching demand quadrature among ties. Native certification concerns the saved grid and quadrature.",
+      "interpretation": "Same economic parameters and numerical game for performance. OE with real marginal retains verification for its native grid and demand quadrature. Stationary comparison does not rerun equilibrium solvers."
+    },
+    "provenance": {
+      "oblivious_real_marginal/data/rho_forgetting/manifest.json": "cf134fe8c6be946f8faaff28c1c136cb55b5c1d384c04f81dc1cbf70fc736576",
+      "oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p99_n021.json": "1ccc97a4ab2675947b97d90280d51d073c7cc8b3b202cbc956302820cd3b9e8b",
+      "oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p99_n021.npz": "2ff22b29c8298fcfbe221676ef1f3f1140c615aac0c9f48fdae37008667a0453",
+      "oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p99_n031.json": "ce6bdf7518b496e6d8b6aafdb624aa9a4d8f93e95008396ff56f7ce123a5fedd",
+      "oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p99_n031.npz": "268862eddb6ec974029c3e8c10ba50a94aa9bcf65bc38f4159f011440ca7279d",
+      "oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p99_n051.json": "97e2b171f02ac08c4ce63e606e2d7e4e9de936a57ef92a383ef2f0bbab5f8221",
+      "oblivious_real_marginal/data/rho_forgetting/arrays/rho_0p99_n051.npz": "6f1098a0662cfef3eb7f8b36a8d5954d1126421388ce4f213b6efc2c6ffefc03"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+OE quality: calidad media entre las ventas del rival
+
+El vendedor resuelve el problema de monopolio original de forgetting para un p0 fijo.
+Los dos vendedores juegan después con demanda TS real e independiente.
+Consistencia: p0 = suma(nu_ij D_B(i,j) q(x_B)) / suma(nu_ij D_B(i,j)).
+q(x)=p1+(p2-p1)alpha(x); se promedia sobre ventas, no sobre todos los períodos.
+La verificación final usa la conjunta real, optimalidad mixta y el Bellman de forgetting.
+La búsqueda rápida usa una cadena exacta en tiempos de venta; no reemplaza la verificación conjunta.
+El equilibrio permite alpha(x) entre 0 y 1; una mezcla interior exige indiferencia verificada.
+Selección como en OE p0: se prefiere un candidato interior verificado; entre alternativas, menor p0.
+Las políticas puras son extremos admisibles del mismo espacio de estrategias mixtas.
+La actualización con selector puro es un diagnóstico auxiliar y no selecciona el equilibrio mixto.
+Sus ciclos no describen una iteración del equilibrio mixto ni demuestran que este no exista.
+Candidatos verificados en la grilla; no se demuestra unicidad, exhaustividad, MPE ni convergencia continua.
+
+rho | n | p0 | error | candidatos | diagnóstico con selector puro
+0.6 | 51 | 0.613181374 | 1.11e-16 | 3 | converged
+0.7 | 51 | 0.674021393 | 0 | 3 | converged
+0.8 | 51 | 0.723826527 | 1.11e-16 | 3 | converged
+0.9 | 51 | 0.764254955 | 5.55e-16 | 1 | cycle detected
+0.95 | 51 | 0.728599245 | 3.28e-14 | 1 | cycle detected
+0.97 | 51 | 0.695664875 | 1.93e-14 | 1 | cycle detected
+0.99 | 51 | 0.570317019 | 1.11e-16 | 3 | cycle detected
+0.999 | 51 | 0.350000000 | 5.55e-17 | 1 | converged
+
+Simulaciones: 20 trayectorias independientes, 100000 períodos retenidos y 10000 de burn-in, inicio (0.5,0.5).
+Los intervalos MC no incluyen sesgo de inicialización; rho altos pueden mezclar lentamente.
+Los experimentos existentes conservan sus resultados.

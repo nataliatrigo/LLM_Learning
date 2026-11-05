@@ -1,0 +1,2575 @@
+{
+  "rho": 0.97,
+  "n": 21,
+  "configuration": {
+    "n": 21,
+    "parameters": {
+      "R": 1.0,
+      "c1": 0.05,
+      "c2": 0.65,
+      "p1": 0.35,
+      "p2": 0.8,
+      "gamma": 0.98,
+      "rho": 0.97
+    },
+    "order": 128,
+    "tolerance": 1e-07,
+    "dp_tolerance": 1e-10,
+    "stationary_tolerance": 1e-11,
+    "stationary_stability_tolerance": 1e-07,
+    "closure": "Conditional rival distribution from actual joint calendar-time invariant law",
+    "strategy": "Symmetric mixed own-reputation policy",
+    "model": "Conditional OE",
+    "conditional_formula": "mu_i(j)=nu(i,j)/mu_A(i); d_i=sum_j D(i,j)*mu_i(j)",
+    "positive_mass_floor": 0.0,
+    "zero_mass_convention": "Unconditional rival marginal on exactly zero own-mass rows",
+    "damping": 0.35,
+    "picard_iterations": 20,
+    "max_evaluations": 1500
+  },
+  "status": "not_converged",
+  "initializations": [
+    {
+      "name": "product_1",
+      "policy": {
+        "__array__": "root/initializations/0/policy"
+      }
+    },
+    {
+      "name": "half",
+      "policy": {
+        "__array__": "root/initializations/1/policy"
+      }
+    },
+    {
+      "name": "product_2",
+      "policy": {
+        "__array__": "root/initializations/2/policy"
+      }
+    }
+  ],
+  "attempts": [
+    {
+      "start": "product_1",
+      "candidate": {
+        "grid": {
+          "__array__": "root/attempts/0/candidate/grid"
+        },
+        "policy": {
+          "__array__": "root/attempts/0/candidate/policy"
+        },
+        "value": {
+          "__array__": "root/attempts/0/candidate/value"
+        },
+        "advantage": {
+          "__array__": "root/attempts/0/candidate/advantage"
+        },
+        "nu": {
+          "__array__": "root/attempts/0/candidate/nu"
+        },
+        "mu_a": {
+          "__array__": "root/attempts/0/candidate/mu_a"
+        },
+        "mu_b": {
+          "__array__": "root/attempts/0/candidate/mu_b"
+        },
+        "mu": {
+          "__array__": "root/attempts/0/candidate/mu"
+        },
+        "demand": {
+          "__array__": "root/attempts/0/candidate/demand"
+        },
+        "conditional_mu": {
+          "__array__": "root/attempts/0/candidate/conditional_mu"
+        },
+        "actual_conditional_mu": {
+          "__array__": "root/attempts/0/candidate/actual_conditional_mu"
+        },
+        "conditional_demand": {
+          "__array__": "root/attempts/0/candidate/conditional_demand"
+        },
+        "actual_conditional_demand": {
+          "__array__": "root/attempts/0/candidate/actual_conditional_demand"
+        },
+        "conditioning_zero_rows": [],
+        "conditional_diagnostics": {
+          "verified": true,
+          "closure_weighted_l1": 0.0,
+          "closure_supported_row_l1_max": 0.0,
+          "closure_unsupported_row_l1_max": 0.0,
+          "row_normalization_error": 4.440892098500626e-16,
+          "integrated_rival_marginal_l1": 8.71969597221467e-17,
+          "demand_consistency_max": 0.0,
+          "positive_rows": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "zero_rows": [],
+          "minimum_positive_own_mass": 3.0172194970651845e-07,
+          "off_path_convention": "Unconditional rival marginal on exactly zero own-mass rows",
+          "positive_mass_floor": 0.0,
+          "supplied_conjecture": false,
+          "independent_order_verified": true,
+          "independent_order_supported_row_l1_max": 3.829699337115535e-16,
+          "independent_order_demand_max": 2.220446049250313e-16,
+          "independent_order_support_agrees": true,
+          "independent_order_joint_l1": 3.26874608042088e-16,
+          "independent_order_method": "Reversed symmetric joint jump-chain positive GTH; conditional comparison on every positive row",
+          "certification": "Independent actual joint invariant law; rowwise conditional closure on every positive-mass row"
+        },
+        "conditional_residual": 0.0,
+        "marginal_residual": 8.71969597221467e-17,
+        "verified": false,
+        "candidate_verified": false,
+        "status": "unresolved",
+        "failure_reasons": [
+          "Own-state Bellman/complementarity certificate failed"
+        ],
+        "summary": {
+          "rho": 0.97,
+          "n": 21,
+          "model": "Conditional OE",
+          "verified": false,
+          "candidate_verified": false,
+          "marginal_l1": 8.71969597221467e-17,
+          "marginal_residual": 8.71969597221467e-17,
+          "conditional_residual": 0.0,
+          "conditional_weighted_l1": 0.0,
+          "stationary_residual": 8.742070134095945e-17,
+          "mixed_nodes": 0,
+          "mixed_indices": [],
+          "mixed_reputations": [],
+          "mixed_probabilities": [],
+          "mean_reputation": 0.4865315536663731,
+          "mean_posterior": 0.48729391855318227,
+          "dp": {
+            "verified": false,
+            "bellman_residual": 0.08077606269918833,
+            "policy_evaluation_residual": 3.552713678800501e-15,
+            "conditional_regret": 0.09648248848125018,
+            "complementarity_residual": 0.09648248848125018,
+            "mixed_indifference_residual": 0.0,
+            "best_response_gain_upper_bound": 1.2157868653137314,
+            "best_response_numerical_error_bound": 3.552713678800498e-13,
+            "iterations": 3
+          },
+          "stationary": {
+            "verified": true,
+            "residual": 8.742070134095945e-17,
+            "row_sum_error": 3.3306690738754696e-16,
+            "probability_sum": 1.0,
+            "minimum_probability": 1.3616198277632544e-16,
+            "stability_l1": 1.4281004371079743e-11,
+            "stability_tolerance": 1e-07,
+            "methods": [
+              "sparse jump-chain, middle normalization",
+              "sparse jump-chain, reversed order and edge normalization",
+              "independent positive GTH elimination"
+            ],
+            "preliminary_failures": [],
+            "symmetric_lumping": true,
+            "lumping_error": 1.1102230246251565e-16,
+            "solved_states": 231,
+            "full_states": 441,
+            "selection": "symmetric invariant law",
+            "communicating_components": 1,
+            "reduced_communicating_components": 1,
+            "minimum_exit_rate": 0.2100000000000002,
+            "exploratory": false,
+            "marginal_symmetry_l1": 5.334449389174053e-17,
+            "scope": "Finite numerical kernel; no mixing-time or continuous-state guarantee"
+          },
+          "conditional": {
+            "verified": true,
+            "closure_weighted_l1": 0.0,
+            "closure_supported_row_l1_max": 0.0,
+            "closure_unsupported_row_l1_max": 0.0,
+            "row_normalization_error": 4.440892098500626e-16,
+            "integrated_rival_marginal_l1": 8.71969597221467e-17,
+            "demand_consistency_max": 0.0,
+            "positive_rows": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20
+            ],
+            "zero_rows": [],
+            "minimum_positive_own_mass": 3.0172194970651845e-07,
+            "off_path_convention": "Unconditional rival marginal on exactly zero own-mass rows",
+            "positive_mass_floor": 0.0,
+            "supplied_conjecture": false,
+            "independent_order_verified": true,
+            "independent_order_supported_row_l1_max": 3.829699337115535e-16,
+            "independent_order_demand_max": 2.220446049250313e-16,
+            "independent_order_support_agrees": true,
+            "independent_order_joint_l1": 3.26874608042088e-16,
+            "independent_order_method": "Reversed symmetric joint jump-chain positive GTH; conditional comparison on every positive row",
+            "certification": "Independent actual joint invariant law; rowwise conditional closure on every positive-mass row"
+          }
+        },
+        "dp_diagnostics": {
+          "verified": false,
+          "bellman_residual": 0.08077606269918833,
+          "policy_evaluation_residual": 3.552713678800501e-15,
+          "conditional_regret": 0.09648248848125018,
+          "complementarity_residual": 0.09648248848125018,
+          "mixed_indifference_residual": 0.0,
+          "best_response_gain_upper_bound": 1.2157868653137314,
+          "best_response_numerical_error_bound": 3.552713678800498e-13,
+          "iterations": 3
+        },
+        "stationary_diagnostics": {
+          "verified": true,
+          "residual": 8.742070134095945e-17,
+          "row_sum_error": 3.3306690738754696e-16,
+          "probability_sum": 1.0,
+          "minimum_probability": 1.3616198277632544e-16,
+          "stability_l1": 1.4281004371079743e-11,
+          "stability_tolerance": 1e-07,
+          "methods": [
+            "sparse jump-chain, middle normalization",
+            "sparse jump-chain, reversed order and edge normalization",
+            "independent positive GTH elimination"
+          ],
+          "preliminary_failures": [],
+          "symmetric_lumping": true,
+          "lumping_error": 1.1102230246251565e-16,
+          "solved_states": 231,
+          "full_states": 441,
+          "selection": "symmetric invariant law",
+          "communicating_components": 1,
+          "reduced_communicating_components": 1,
+          "minimum_exit_rate": 0.2100000000000002,
+          "exploratory": false,
+          "marginal_symmetry_l1": 5.334449389174053e-17,
+          "scope": "Finite numerical kernel; no mixing-time or continuous-state guarantee"
+        },
+        "mixed_nodes": 0,
+        "mixed_indices": [],
+        "mixed_probabilities": [],
+        "history": [
+          {
+            "stage": "damped conditional best response",
+            "iteration": 0,
+            "damping": 0.35,
+            "conditional_regret": 1.3589167853707478,
+            "policy_change_max": 0.35,
+            "stationary_residual": 8.589250184326346e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 1,
+            "damping": 0.35,
+            "conditional_regret": 0.6441194002411645,
+            "policy_change_max": 0.35,
+            "stationary_residual": 8.367227895254672e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 2,
+            "damping": 0.35,
+            "conditional_regret": 0.3213758598947754,
+            "policy_change_max": 0.35,
+            "stationary_residual": 3.5185814780080055e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 3,
+            "damping": 0.35,
+            "conditional_regret": 0.21064874890392443,
+            "policy_change_max": 0.35,
+            "stationary_residual": 3.6044995897988543e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 4,
+            "damping": 0.35,
+            "conditional_regret": 0.21182116149376143,
+            "policy_change_max": 0.2875228125,
+            "stationary_residual": 5.022413555398231e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 5,
+            "damping": 0.35,
+            "conditional_regret": 0.15798873318631482,
+            "policy_change_max": 0.35,
+            "stationary_residual": 8.430448776638472e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 6,
+            "damping": 0.35,
+            "conditional_regret": 0.1509237378664413,
+            "policy_change_max": 0.3236033882812499,
+            "stationary_residual": 2.6896008159569603e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 7,
+            "damping": 0.35,
+            "conditional_regret": 0.14024228752161075,
+            "policy_change_max": 0.21034220238281248,
+            "stationary_residual": 7.525187158868805e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 8,
+            "damping": 0.35,
+            "conditional_regret": 0.11874003602283854,
+            "policy_change_max": 0.13672243154882813,
+            "stationary_residual": 4.497126509850838e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 9,
+            "damping": 0.35,
+            "conditional_regret": 0.08744848043057643,
+            "policy_change_max": 0.35,
+            "stationary_residual": 3.5289908146352206e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 10,
+            "damping": 0.35,
+            "conditional_regret": 0.11451327151286192,
+            "policy_change_max": 0.34528803982937983,
+            "stationary_residual": 9.051115173071838e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 11,
+            "damping": 0.35,
+            "conditional_regret": 0.10039758006350867,
+            "policy_change_max": 0.22443722588909693,
+            "stationary_residual": 5.70590596331538e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 12,
+            "damping": 0.35,
+            "conditional_regret": 0.07763122074956964,
+            "policy_change_max": 0.14588419682791298,
+            "stationary_residual": 3.531283190437661e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 13,
+            "damping": 0.35,
+            "conditional_regret": 0.05581754242571943,
+            "policy_change_max": 0.09482472793814345,
+            "stationary_residual": 7.422712386544739e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 14,
+            "damping": 0.35,
+            "conditional_regret": 0.0385261756570806,
+            "policy_change_max": 0.06163607315979325,
+            "stationary_residual": 3.2542925178605167e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 15,
+            "damping": 0.35,
+            "conditional_regret": 0.02597347001680326,
+            "policy_change_max": 0.04006344755386562,
+            "stationary_residual": 3.4277276182530314e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 16,
+            "damping": 0.35,
+            "conditional_regret": 0.01726916283173977,
+            "policy_change_max": 0.02604124091001265,
+            "stationary_residual": 9.833569383696594e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 17,
+            "damping": 0.35,
+            "conditional_regret": 0.011385760214594386,
+            "policy_change_max": 0.01692680659150822,
+            "stationary_residual": 7.076255703576215e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 18,
+            "damping": 0.35,
+            "conditional_regret": 0.007467915448634417,
+            "policy_change_max": 0.011002424284480346,
+            "stationary_residual": 4.1397394472529973e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 19,
+            "damping": 0.35,
+            "conditional_regret": 0.004882296054377791,
+            "policy_change_max": 0.007151575784912226,
+            "stationary_residual": 4.901315975911244e-16,
+            "evaluations": 1
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.3,
+            "equation_error": 4.096556427413134e-12,
+            "evaluations": 14,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.1,
+            "equation_error": 4.468470038432315e-11,
+            "evaluations": 16,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.03,
+            "equation_error": 4.306949241694724e-11,
+            "evaluations": 18,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.01,
+            "equation_error": 0.00911370044933657,
+            "evaluations": 56,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.003,
+            "equation_error": 0.014216499969400047,
+            "evaluations": 60,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.001,
+            "equation_error": 0.010520534271953864,
+            "evaluations": 38,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.0003,
+            "equation_error": 0.005355887963887946,
+            "evaluations": 66,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.0001,
+            "equation_error": 0.0030762111994992463,
+            "evaluations": 50,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.0,
+            "equation_error": 7.857451337123234e-05,
+            "evaluations": 47,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last ten iterations."
+          },
+          {
+            "attempt": 1,
+            "temperature": 0.3,
+            "equation_error": 7.905426313570274e-12,
+            "evaluations": 19,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 1,
+            "temperature": 0.1,
+            "equation_error": 4.581712786944081e-11,
+            "evaluations": 18,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 1,
+            "temperature": 0.03,
+            "equation_error": 6.228366433713717e-11,
+            "evaluations": 17,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 1,
+            "temperature": 0.02,
+            "equation_error": 9.682661616938759e-11,
+            "evaluations": 9,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 1,
+            "temperature": 0.01,
+            "equation_error": 0.008928425411290242,
+            "evaluations": 53,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+          },
+          {
+            "attempt": 1,
+            "temperature": 0.007,
+            "equation_error": 0.013974519720256318,
+            "evaluations": 47,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last ten iterations."
+          },
+          {
+            "attempt": 1,
+            "temperature": 0.003,
+            "equation_error": 0.015629451800469263,
+            "evaluations": 52,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+          },
+          {
+            "attempt": 1,
+            "temperature": 0.002,
+            "equation_error": 0.0127586829151536,
+            "evaluations": 44,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+          },
+          {
+            "attempt": 1,
+            "temperature": 0.001,
+            "equation_error": 0.009461638941579488,
+            "evaluations": 54,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+          },
+          {
+            "attempt": 1,
+            "temperature": 0.0005,
+            "equation_error": 0.005832384254335707,
+            "evaluations": 51,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+          },
+          {
+            "attempt": 1,
+            "temperature": 0.0002,
+            "equation_error": 0.003503224207542214,
+            "evaluations": 45,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+          },
+          {
+            "attempt": 1,
+            "temperature": 0.0001,
+            "equation_error": 0.0025359850313144733,
+            "evaluations": 35,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last ten iterations."
+          },
+          {
+            "attempt": 1,
+            "temperature": 0.0,
+            "equation_error": 7.855661750588716e-05,
+            "evaluations": 52,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+          }
+        ],
+        "search_metadata": {
+          "evaluations": 911,
+          "exploratory_evaluations": 911,
+          "strong_polish_evaluations": 0,
+          "max_evaluations": 1500,
+          "attempts": 2,
+          "exploratory_signed_roundoff_calls": 309,
+          "exploratory_positive_fallback_calls": 0,
+          "exploratory_stationary_note": "Signed roundoff may be used only during root search when row conditioning is valid; final certificates use positive stationary laws and independent conditional-order checks",
+          "budget_interpretation": "Soft exploratory-call budget; root callbacks, final certification and up to 60 strong-polish evaluations may exceed it",
+          "method": "Damped conditional policy iteration followed by analytic conditional complementarity continuation",
+          "damping": 0.35,
+          "picard_iterations": 20,
+          "exhaustive": false,
+          "unique": false,
+          "scope": "Finite grid and numerical demand matrix; no continuous-state or MPE claim"
+        },
+        "converged": false
+      }
+    },
+    {
+      "start": "half",
+      "candidate": {
+        "grid": {
+          "__array__": "root/attempts/1/candidate/grid"
+        },
+        "policy": {
+          "__array__": "root/attempts/1/candidate/policy"
+        },
+        "value": {
+          "__array__": "root/attempts/1/candidate/value"
+        },
+        "advantage": {
+          "__array__": "root/attempts/1/candidate/advantage"
+        },
+        "nu": {
+          "__array__": "root/attempts/1/candidate/nu"
+        },
+        "mu_a": {
+          "__array__": "root/attempts/1/candidate/mu_a"
+        },
+        "mu_b": {
+          "__array__": "root/attempts/1/candidate/mu_b"
+        },
+        "mu": {
+          "__array__": "root/attempts/1/candidate/mu"
+        },
+        "demand": {
+          "__array__": "root/attempts/1/candidate/demand"
+        },
+        "conditional_mu": {
+          "__array__": "root/attempts/1/candidate/conditional_mu"
+        },
+        "actual_conditional_mu": {
+          "__array__": "root/attempts/1/candidate/actual_conditional_mu"
+        },
+        "conditional_demand": {
+          "__array__": "root/attempts/1/candidate/conditional_demand"
+        },
+        "actual_conditional_demand": {
+          "__array__": "root/attempts/1/candidate/actual_conditional_demand"
+        },
+        "conditioning_zero_rows": [],
+        "conditional_diagnostics": {
+          "verified": true,
+          "closure_weighted_l1": 0.0,
+          "closure_supported_row_l1_max": 0.0,
+          "closure_unsupported_row_l1_max": 0.0,
+          "row_normalization_error": 4.440892098500626e-16,
+          "integrated_rival_marginal_l1": 8.71969597221467e-17,
+          "demand_consistency_max": 0.0,
+          "positive_rows": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "zero_rows": [],
+          "minimum_positive_own_mass": 3.0172194970651845e-07,
+          "off_path_convention": "Unconditional rival marginal on exactly zero own-mass rows",
+          "positive_mass_floor": 0.0,
+          "supplied_conjecture": false,
+          "independent_order_verified": true,
+          "independent_order_supported_row_l1_max": 3.829699337115535e-16,
+          "independent_order_demand_max": 2.220446049250313e-16,
+          "independent_order_support_agrees": true,
+          "independent_order_joint_l1": 3.26874608042088e-16,
+          "independent_order_method": "Reversed symmetric joint jump-chain positive GTH; conditional comparison on every positive row",
+          "certification": "Independent actual joint invariant law; rowwise conditional closure on every positive-mass row"
+        },
+        "conditional_residual": 0.0,
+        "marginal_residual": 8.71969597221467e-17,
+        "verified": false,
+        "candidate_verified": false,
+        "status": "unresolved",
+        "failure_reasons": [
+          "Own-state Bellman/complementarity certificate failed"
+        ],
+        "summary": {
+          "rho": 0.97,
+          "n": 21,
+          "model": "Conditional OE",
+          "verified": false,
+          "candidate_verified": false,
+          "marginal_l1": 8.71969597221467e-17,
+          "marginal_residual": 8.71969597221467e-17,
+          "conditional_residual": 0.0,
+          "conditional_weighted_l1": 0.0,
+          "stationary_residual": 8.742070134095945e-17,
+          "mixed_nodes": 0,
+          "mixed_indices": [],
+          "mixed_reputations": [],
+          "mixed_probabilities": [],
+          "mean_reputation": 0.4865315536663731,
+          "mean_posterior": 0.48729391855318227,
+          "dp": {
+            "verified": false,
+            "bellman_residual": 0.08077606269918833,
+            "policy_evaluation_residual": 3.552713678800501e-15,
+            "conditional_regret": 0.09648248848125018,
+            "complementarity_residual": 0.09648248848125018,
+            "mixed_indifference_residual": 0.0,
+            "best_response_gain_upper_bound": 1.2157868653137314,
+            "best_response_numerical_error_bound": 3.552713678800498e-13,
+            "iterations": 3
+          },
+          "stationary": {
+            "verified": true,
+            "residual": 8.742070134095945e-17,
+            "row_sum_error": 3.3306690738754696e-16,
+            "probability_sum": 1.0,
+            "minimum_probability": 1.3616198277632544e-16,
+            "stability_l1": 1.4281004371079743e-11,
+            "stability_tolerance": 1e-07,
+            "methods": [
+              "sparse jump-chain, middle normalization",
+              "sparse jump-chain, reversed order and edge normalization",
+              "independent positive GTH elimination"
+            ],
+            "preliminary_failures": [],
+            "symmetric_lumping": true,
+            "lumping_error": 1.1102230246251565e-16,
+            "solved_states": 231,
+            "full_states": 441,
+            "selection": "symmetric invariant law",
+            "communicating_components": 1,
+            "reduced_communicating_components": 1,
+            "minimum_exit_rate": 0.2100000000000002,
+            "exploratory": false,
+            "marginal_symmetry_l1": 5.334449389174053e-17,
+            "scope": "Finite numerical kernel; no mixing-time or continuous-state guarantee"
+          },
+          "conditional": {
+            "verified": true,
+            "closure_weighted_l1": 0.0,
+            "closure_supported_row_l1_max": 0.0,
+            "closure_unsupported_row_l1_max": 0.0,
+            "row_normalization_error": 4.440892098500626e-16,
+            "integrated_rival_marginal_l1": 8.71969597221467e-17,
+            "demand_consistency_max": 0.0,
+            "positive_rows": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20
+            ],
+            "zero_rows": [],
+            "minimum_positive_own_mass": 3.0172194970651845e-07,
+            "off_path_convention": "Unconditional rival marginal on exactly zero own-mass rows",
+            "positive_mass_floor": 0.0,
+            "supplied_conjecture": false,
+            "independent_order_verified": true,
+            "independent_order_supported_row_l1_max": 3.829699337115535e-16,
+            "independent_order_demand_max": 2.220446049250313e-16,
+            "independent_order_support_agrees": true,
+            "independent_order_joint_l1": 3.26874608042088e-16,
+            "independent_order_method": "Reversed symmetric joint jump-chain positive GTH; conditional comparison on every positive row",
+            "certification": "Independent actual joint invariant law; rowwise conditional closure on every positive-mass row"
+          }
+        },
+        "dp_diagnostics": {
+          "verified": false,
+          "bellman_residual": 0.08077606269918833,
+          "policy_evaluation_residual": 3.552713678800501e-15,
+          "conditional_regret": 0.09648248848125018,
+          "complementarity_residual": 0.09648248848125018,
+          "mixed_indifference_residual": 0.0,
+          "best_response_gain_upper_bound": 1.2157868653137314,
+          "best_response_numerical_error_bound": 3.552713678800498e-13,
+          "iterations": 3
+        },
+        "stationary_diagnostics": {
+          "verified": true,
+          "residual": 8.742070134095945e-17,
+          "row_sum_error": 3.3306690738754696e-16,
+          "probability_sum": 1.0,
+          "minimum_probability": 1.3616198277632544e-16,
+          "stability_l1": 1.4281004371079743e-11,
+          "stability_tolerance": 1e-07,
+          "methods": [
+            "sparse jump-chain, middle normalization",
+            "sparse jump-chain, reversed order and edge normalization",
+            "independent positive GTH elimination"
+          ],
+          "preliminary_failures": [],
+          "symmetric_lumping": true,
+          "lumping_error": 1.1102230246251565e-16,
+          "solved_states": 231,
+          "full_states": 441,
+          "selection": "symmetric invariant law",
+          "communicating_components": 1,
+          "reduced_communicating_components": 1,
+          "minimum_exit_rate": 0.2100000000000002,
+          "exploratory": false,
+          "marginal_symmetry_l1": 5.334449389174053e-17,
+          "scope": "Finite numerical kernel; no mixing-time or continuous-state guarantee"
+        },
+        "mixed_nodes": 0,
+        "mixed_indices": [],
+        "mixed_probabilities": [],
+        "history": [
+          {
+            "stage": "damped conditional best response",
+            "iteration": 0,
+            "damping": 0.35,
+            "conditional_regret": 0.299387335278767,
+            "policy_change_max": 0.17500000000000004,
+            "stationary_residual": 5.533920059427635e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 1,
+            "damping": 0.35,
+            "conditional_regret": 0.19485365565739476,
+            "policy_change_max": 0.23625000000000002,
+            "stationary_residual": 2.954594537170475e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 2,
+            "damping": 0.35,
+            "conditional_regret": 0.1403077892171556,
+            "policy_change_max": 0.1535625,
+            "stationary_residual": 4.905462864624068e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 3,
+            "damping": 0.35,
+            "conditional_regret": 0.10251675483071411,
+            "policy_change_max": 0.30194062499999996,
+            "stationary_residual": 3.9511971244270765e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 4,
+            "damping": 0.35,
+            "conditional_regret": 0.13694706602716797,
+            "policy_change_max": 0.31876140625000005,
+            "stationary_residual": 3.998489755363896e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 5,
+            "damping": 0.35,
+            "conditional_regret": 0.10997998379233227,
+            "policy_change_max": 0.2071949140625,
+            "stationary_residual": 6.799573545217688e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 6,
+            "damping": 0.35,
+            "conditional_regret": 0.07986694012836046,
+            "policy_change_max": 0.134676694140625,
+            "stationary_residual": 6.727922689290542e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 7,
+            "damping": 0.35,
+            "conditional_regret": 0.05520095134147784,
+            "policy_change_max": 0.08753985119140625,
+            "stationary_residual": 4.789943092401174e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 8,
+            "damping": 0.35,
+            "conditional_regret": 0.03716839080797184,
+            "policy_change_max": 0.056900903274414064,
+            "stationary_residual": 3.1886658529235823e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 9,
+            "damping": 0.35,
+            "conditional_regret": 0.024667872793812537,
+            "policy_change_max": 0.036985587128369135,
+            "stationary_residual": 5.724783113949596e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 10,
+            "damping": 0.35,
+            "conditional_regret": 0.01623732649263457,
+            "policy_change_max": 0.024040631633439946,
+            "stationary_residual": 4.853069754086595e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 11,
+            "damping": 0.35,
+            "conditional_regret": 0.010636549742282874,
+            "policy_change_max": 0.015626410561735964,
+            "stationary_residual": 5.932244298148321e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 12,
+            "damping": 0.35,
+            "conditional_regret": 0.006947466773526545,
+            "policy_change_max": 0.010157166865128377,
+            "stationary_residual": 1.0321398225806704e-15,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 13,
+            "damping": 0.35,
+            "conditional_regret": 0.0045297904430022925,
+            "policy_change_max": 0.006602158462333444,
+            "stationary_residual": 1.135846280811468e-15,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 14,
+            "damping": 0.35,
+            "conditional_regret": 0.002950165569851406,
+            "policy_change_max": 0.004291403000516739,
+            "stationary_residual": 5.714734975417464e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 15,
+            "damping": 0.35,
+            "conditional_regret": 0.0019200345659102403,
+            "policy_change_max": 0.0027894119503358806,
+            "stationary_residual": 3.4130931910898757e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 16,
+            "damping": 0.35,
+            "conditional_regret": 0.0012490410827786726,
+            "policy_change_max": 0.0018131177677183224,
+            "stationary_residual": 2.4466170108987357e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 17,
+            "damping": 0.35,
+            "conditional_regret": 0.0008123051922265128,
+            "policy_change_max": 0.0011785265490169097,
+            "stationary_residual": 4.453903997296775e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 18,
+            "damping": 0.35,
+            "conditional_regret": 0.0005281788925226515,
+            "policy_change_max": 0.0007660422568609914,
+            "stationary_residual": 5.791448889845443e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 19,
+            "damping": 0.35,
+            "conditional_regret": 0.00034339240620803073,
+            "policy_change_max": 0.0004979274669596444,
+            "stationary_residual": 3.0881696028537035e-16,
+            "evaluations": 1
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.3,
+            "equation_error": 3.343575416536737e-12,
+            "evaluations": 20,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.1,
+            "equation_error": 5.709177575141666e-11,
+            "evaluations": 14,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.03,
+            "equation_error": 8.092218561905895e-11,
+            "evaluations": 14,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.01,
+            "equation_error": 0.009113700410896763,
+            "evaluations": 56,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.003,
+            "equation_error": 0.014211907781629398,
+            "evaluations": 60,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.001,
+            "equation_error": 0.010519310130915536,
+            "evaluations": 38,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.0003,
+            "equation_error": 0.005337129968558893,
+            "evaluations": 78,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last ten iterations."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.0001,
+            "equation_error": 0.00291245733617674,
+            "evaluations": 43,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.0,
+            "equation_error": 7.853700047644185e-05,
+            "evaluations": 51,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last ten iterations."
+          },
+          {
+            "attempt": 1,
+            "temperature": 0.3,
+            "equation_error": 7.905426313570274e-12,
+            "evaluations": 19,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 1,
+            "temperature": 0.1,
+            "equation_error": 4.581712786944081e-11,
+            "evaluations": 18,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 1,
+            "temperature": 0.03,
+            "equation_error": 6.228366433713717e-11,
+            "evaluations": 17,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 1,
+            "temperature": 0.02,
+            "equation_error": 9.682661616938759e-11,
+            "evaluations": 9,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 1,
+            "temperature": 0.01,
+            "equation_error": 0.008928425411290242,
+            "evaluations": 53,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+          },
+          {
+            "attempt": 1,
+            "temperature": 0.007,
+            "equation_error": 0.013974519720256318,
+            "evaluations": 47,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last ten iterations."
+          },
+          {
+            "attempt": 1,
+            "temperature": 0.003,
+            "equation_error": 0.015629451800469263,
+            "evaluations": 52,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+          },
+          {
+            "attempt": 1,
+            "temperature": 0.002,
+            "equation_error": 0.0127586829151536,
+            "evaluations": 44,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+          },
+          {
+            "attempt": 1,
+            "temperature": 0.001,
+            "equation_error": 0.009461638941579488,
+            "evaluations": 54,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+          },
+          {
+            "attempt": 1,
+            "temperature": 0.0005,
+            "equation_error": 0.005832384254335707,
+            "evaluations": 51,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+          },
+          {
+            "attempt": 1,
+            "temperature": 0.0002,
+            "equation_error": 0.003503224207542214,
+            "evaluations": 45,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+          },
+          {
+            "attempt": 1,
+            "temperature": 0.0001,
+            "equation_error": 0.0025359850313144733,
+            "evaluations": 35,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last ten iterations."
+          },
+          {
+            "attempt": 1,
+            "temperature": 0.0,
+            "equation_error": 7.855661750588716e-05,
+            "evaluations": 52,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+          }
+        ],
+        "search_metadata": {
+          "evaluations": 921,
+          "exploratory_evaluations": 921,
+          "strong_polish_evaluations": 0,
+          "max_evaluations": 1500,
+          "attempts": 2,
+          "exploratory_signed_roundoff_calls": 328,
+          "exploratory_positive_fallback_calls": 0,
+          "exploratory_stationary_note": "Signed roundoff may be used only during root search when row conditioning is valid; final certificates use positive stationary laws and independent conditional-order checks",
+          "budget_interpretation": "Soft exploratory-call budget; root callbacks, final certification and up to 60 strong-polish evaluations may exceed it",
+          "method": "Damped conditional policy iteration followed by analytic conditional complementarity continuation",
+          "damping": 0.35,
+          "picard_iterations": 20,
+          "exhaustive": false,
+          "unique": false,
+          "scope": "Finite grid and numerical demand matrix; no continuous-state or MPE claim"
+        },
+        "converged": false
+      }
+    },
+    {
+      "start": "product_2",
+      "candidate": {
+        "grid": {
+          "__array__": "root/attempts/2/candidate/grid"
+        },
+        "policy": {
+          "__array__": "root/attempts/2/candidate/policy"
+        },
+        "value": {
+          "__array__": "root/attempts/2/candidate/value"
+        },
+        "advantage": {
+          "__array__": "root/attempts/2/candidate/advantage"
+        },
+        "nu": {
+          "__array__": "root/attempts/2/candidate/nu"
+        },
+        "mu_a": {
+          "__array__": "root/attempts/2/candidate/mu_a"
+        },
+        "mu_b": {
+          "__array__": "root/attempts/2/candidate/mu_b"
+        },
+        "mu": {
+          "__array__": "root/attempts/2/candidate/mu"
+        },
+        "demand": {
+          "__array__": "root/attempts/2/candidate/demand"
+        },
+        "conditional_mu": {
+          "__array__": "root/attempts/2/candidate/conditional_mu"
+        },
+        "actual_conditional_mu": {
+          "__array__": "root/attempts/2/candidate/actual_conditional_mu"
+        },
+        "conditional_demand": {
+          "__array__": "root/attempts/2/candidate/conditional_demand"
+        },
+        "actual_conditional_demand": {
+          "__array__": "root/attempts/2/candidate/actual_conditional_demand"
+        },
+        "conditioning_zero_rows": [],
+        "conditional_diagnostics": {
+          "verified": true,
+          "closure_weighted_l1": 0.0,
+          "closure_supported_row_l1_max": 0.0,
+          "closure_unsupported_row_l1_max": 0.0,
+          "row_normalization_error": 4.440892098500626e-16,
+          "integrated_rival_marginal_l1": 8.71969597221467e-17,
+          "demand_consistency_max": 0.0,
+          "positive_rows": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "zero_rows": [],
+          "minimum_positive_own_mass": 3.0172194970651845e-07,
+          "off_path_convention": "Unconditional rival marginal on exactly zero own-mass rows",
+          "positive_mass_floor": 0.0,
+          "supplied_conjecture": false,
+          "independent_order_verified": true,
+          "independent_order_supported_row_l1_max": 3.829699337115535e-16,
+          "independent_order_demand_max": 2.220446049250313e-16,
+          "independent_order_support_agrees": true,
+          "independent_order_joint_l1": 3.26874608042088e-16,
+          "independent_order_method": "Reversed symmetric joint jump-chain positive GTH; conditional comparison on every positive row",
+          "certification": "Independent actual joint invariant law; rowwise conditional closure on every positive-mass row"
+        },
+        "conditional_residual": 0.0,
+        "marginal_residual": 8.71969597221467e-17,
+        "verified": false,
+        "candidate_verified": false,
+        "status": "unresolved",
+        "failure_reasons": [
+          "Own-state Bellman/complementarity certificate failed"
+        ],
+        "summary": {
+          "rho": 0.97,
+          "n": 21,
+          "model": "Conditional OE",
+          "verified": false,
+          "candidate_verified": false,
+          "marginal_l1": 8.71969597221467e-17,
+          "marginal_residual": 8.71969597221467e-17,
+          "conditional_residual": 0.0,
+          "conditional_weighted_l1": 0.0,
+          "stationary_residual": 8.742070134095945e-17,
+          "mixed_nodes": 0,
+          "mixed_indices": [],
+          "mixed_reputations": [],
+          "mixed_probabilities": [],
+          "mean_reputation": 0.4865315536663731,
+          "mean_posterior": 0.48729391855318227,
+          "dp": {
+            "verified": false,
+            "bellman_residual": 0.08077606269918833,
+            "policy_evaluation_residual": 3.552713678800501e-15,
+            "conditional_regret": 0.09648248848125018,
+            "complementarity_residual": 0.09648248848125018,
+            "mixed_indifference_residual": 0.0,
+            "best_response_gain_upper_bound": 1.2157868653137314,
+            "best_response_numerical_error_bound": 3.552713678800498e-13,
+            "iterations": 3
+          },
+          "stationary": {
+            "verified": true,
+            "residual": 8.742070134095945e-17,
+            "row_sum_error": 3.3306690738754696e-16,
+            "probability_sum": 1.0,
+            "minimum_probability": 1.3616198277632544e-16,
+            "stability_l1": 1.4281004371079743e-11,
+            "stability_tolerance": 1e-07,
+            "methods": [
+              "sparse jump-chain, middle normalization",
+              "sparse jump-chain, reversed order and edge normalization",
+              "independent positive GTH elimination"
+            ],
+            "preliminary_failures": [],
+            "symmetric_lumping": true,
+            "lumping_error": 1.1102230246251565e-16,
+            "solved_states": 231,
+            "full_states": 441,
+            "selection": "symmetric invariant law",
+            "communicating_components": 1,
+            "reduced_communicating_components": 1,
+            "minimum_exit_rate": 0.2100000000000002,
+            "exploratory": false,
+            "marginal_symmetry_l1": 5.334449389174053e-17,
+            "scope": "Finite numerical kernel; no mixing-time or continuous-state guarantee"
+          },
+          "conditional": {
+            "verified": true,
+            "closure_weighted_l1": 0.0,
+            "closure_supported_row_l1_max": 0.0,
+            "closure_unsupported_row_l1_max": 0.0,
+            "row_normalization_error": 4.440892098500626e-16,
+            "integrated_rival_marginal_l1": 8.71969597221467e-17,
+            "demand_consistency_max": 0.0,
+            "positive_rows": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20
+            ],
+            "zero_rows": [],
+            "minimum_positive_own_mass": 3.0172194970651845e-07,
+            "off_path_convention": "Unconditional rival marginal on exactly zero own-mass rows",
+            "positive_mass_floor": 0.0,
+            "supplied_conjecture": false,
+            "independent_order_verified": true,
+            "independent_order_supported_row_l1_max": 3.829699337115535e-16,
+            "independent_order_demand_max": 2.220446049250313e-16,
+            "independent_order_support_agrees": true,
+            "independent_order_joint_l1": 3.26874608042088e-16,
+            "independent_order_method": "Reversed symmetric joint jump-chain positive GTH; conditional comparison on every positive row",
+            "certification": "Independent actual joint invariant law; rowwise conditional closure on every positive-mass row"
+          }
+        },
+        "dp_diagnostics": {
+          "verified": false,
+          "bellman_residual": 0.08077606269918833,
+          "policy_evaluation_residual": 3.552713678800501e-15,
+          "conditional_regret": 0.09648248848125018,
+          "complementarity_residual": 0.09648248848125018,
+          "mixed_indifference_residual": 0.0,
+          "best_response_gain_upper_bound": 1.2157868653137314,
+          "best_response_numerical_error_bound": 3.552713678800498e-13,
+          "iterations": 3
+        },
+        "stationary_diagnostics": {
+          "verified": true,
+          "residual": 8.742070134095945e-17,
+          "row_sum_error": 3.3306690738754696e-16,
+          "probability_sum": 1.0,
+          "minimum_probability": 1.3616198277632544e-16,
+          "stability_l1": 1.4281004371079743e-11,
+          "stability_tolerance": 1e-07,
+          "methods": [
+            "sparse jump-chain, middle normalization",
+            "sparse jump-chain, reversed order and edge normalization",
+            "independent positive GTH elimination"
+          ],
+          "preliminary_failures": [],
+          "symmetric_lumping": true,
+          "lumping_error": 1.1102230246251565e-16,
+          "solved_states": 231,
+          "full_states": 441,
+          "selection": "symmetric invariant law",
+          "communicating_components": 1,
+          "reduced_communicating_components": 1,
+          "minimum_exit_rate": 0.2100000000000002,
+          "exploratory": false,
+          "marginal_symmetry_l1": 5.334449389174053e-17,
+          "scope": "Finite numerical kernel; no mixing-time or continuous-state guarantee"
+        },
+        "mixed_nodes": 0,
+        "mixed_indices": [],
+        "mixed_probabilities": [],
+        "history": [
+          {
+            "stage": "damped conditional best response",
+            "iteration": 0,
+            "damping": 0.35,
+            "conditional_regret": 0.5999994198406252,
+            "policy_change_max": 0.35,
+            "stationary_residual": 2.2056475135792912e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 1,
+            "damping": 0.35,
+            "conditional_regret": 0.3899661449699173,
+            "policy_change_max": 0.35,
+            "stationary_residual": 5.077532324690382e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 2,
+            "damping": 0.35,
+            "conditional_regret": 0.2534247894982227,
+            "policy_change_max": 0.35,
+            "stationary_residual": 3.6647497126750197e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 3,
+            "damping": 0.35,
+            "conditional_regret": 0.16469143990661025,
+            "policy_change_max": 0.25388125,
+            "stationary_residual": 4.061872547147117e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 4,
+            "damping": 0.35,
+            "conditional_regret": 0.10706602504901241,
+            "policy_change_max": 0.16502281249999995,
+            "stationary_residual": 4.831416918871027e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 5,
+            "damping": 0.35,
+            "conditional_regret": 0.06959890903349991,
+            "policy_change_max": 0.10726482812500004,
+            "stationary_residual": 3.109324185992166e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 6,
+            "damping": 0.35,
+            "conditional_regret": 0.04524149148129932,
+            "policy_change_max": 0.06972213828124996,
+            "stationary_residual": 1.7122550373311882e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 7,
+            "damping": 0.35,
+            "conditional_regret": 0.029407808665181563,
+            "policy_change_max": 0.04531938988281248,
+            "stationary_residual": 4.824298250685726e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 8,
+            "damping": 0.35,
+            "conditional_regret": 0.01911540585677615,
+            "policy_change_max": 0.029457603423828083,
+            "stationary_residual": 6.531501336511119e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 9,
+            "damping": 0.35,
+            "conditional_regret": 0.012425146760216773,
+            "policy_change_max": 0.019147442225488254,
+            "stationary_residual": 8.671331678688449e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 10,
+            "damping": 0.35,
+            "conditional_regret": 0.008076399785958255,
+            "policy_change_max": 0.012445837446567354,
+            "stationary_residual": 9.335447235202852e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 11,
+            "damping": 0.35,
+            "conditional_regret": 0.005249682356431159,
+            "policy_change_max": 0.008089794340268797,
+            "stationary_residual": 5.260085313142558e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 12,
+            "damping": 0.35,
+            "conditional_regret": 0.0034123029036117487,
+            "policy_change_max": 0.005258366321174712,
+            "stationary_residual": 7.26468266717795e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 13,
+            "damping": 0.35,
+            "conditional_regret": 0.00221800081075175,
+            "policy_change_max": 0.003417938108763563,
+            "stationary_residual": 5.796871988756233e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 14,
+            "damping": 0.35,
+            "conditional_regret": 0.0014417021746995983,
+            "policy_change_max": 0.002221659770696327,
+            "stationary_residual": 5.0828453591638315e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 15,
+            "damping": 0.35,
+            "conditional_regret": 0.0009371071069906856,
+            "policy_change_max": 0.001444078850952657,
+            "stationary_residual": 7.253414620848025e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 16,
+            "damping": 0.35,
+            "conditional_regret": 0.0006091199117739152,
+            "policy_change_max": 0.0009386512531192048,
+            "stationary_residual": 4.523999681238509e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 17,
+            "damping": 0.35,
+            "conditional_regret": 0.0003959280659152973,
+            "policy_change_max": 0.0006101233145274776,
+            "stationary_residual": 7.261462894146308e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 18,
+            "damping": 0.35,
+            "conditional_regret": 0.0002573532948669816,
+            "policy_change_max": 0.00039658015444288264,
+            "stationary_residual": 6.924552252650433e-16,
+            "evaluations": 1
+          },
+          {
+            "stage": "damped conditional best response",
+            "iteration": 19,
+            "damping": 0.35,
+            "conditional_regret": 0.00016727966362740704,
+            "policy_change_max": 0.00025777710038787927,
+            "stationary_residual": 4.2944493707934414e-16,
+            "evaluations": 1
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.3,
+            "equation_error": 7.779554778153397e-12,
+            "evaluations": 14,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.1,
+            "equation_error": 2.1187385179644025e-11,
+            "evaluations": 15,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.03,
+            "equation_error": 2.5239185741376957e-11,
+            "evaluations": 19,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.01,
+            "equation_error": 0.009113700575831052,
+            "evaluations": 56,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.003,
+            "equation_error": 0.014217826070888307,
+            "evaluations": 60,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.001,
+            "equation_error": 0.010520893025684359,
+            "evaluations": 38,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.0003,
+            "equation_error": 0.005345295009265848,
+            "evaluations": 74,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.0001,
+            "equation_error": 0.0029493929276252105,
+            "evaluations": 40,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+          },
+          {
+            "attempt": 0,
+            "temperature": 0.0,
+            "equation_error": 7.857606086969504e-05,
+            "evaluations": 50,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+          },
+          {
+            "attempt": 1,
+            "temperature": 0.3,
+            "equation_error": 7.905426313570274e-12,
+            "evaluations": 19,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 1,
+            "temperature": 0.1,
+            "equation_error": 4.581712786944081e-11,
+            "evaluations": 18,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 1,
+            "temperature": 0.03,
+            "equation_error": 6.228366433713717e-11,
+            "evaluations": 17,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 1,
+            "temperature": 0.02,
+            "equation_error": 9.682661616938759e-11,
+            "evaluations": 9,
+            "solver_success": true,
+            "solver_message": "The solution converged."
+          },
+          {
+            "attempt": 1,
+            "temperature": 0.01,
+            "equation_error": 0.008928425411290242,
+            "evaluations": 53,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+          },
+          {
+            "attempt": 1,
+            "temperature": 0.007,
+            "equation_error": 0.013974519720256318,
+            "evaluations": 47,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last ten iterations."
+          },
+          {
+            "attempt": 1,
+            "temperature": 0.003,
+            "equation_error": 0.015629451800469263,
+            "evaluations": 52,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+          },
+          {
+            "attempt": 1,
+            "temperature": 0.002,
+            "equation_error": 0.0127586829151536,
+            "evaluations": 44,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+          },
+          {
+            "attempt": 1,
+            "temperature": 0.001,
+            "equation_error": 0.009461638941579488,
+            "evaluations": 54,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+          },
+          {
+            "attempt": 1,
+            "temperature": 0.0005,
+            "equation_error": 0.005832384254335707,
+            "evaluations": 51,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+          },
+          {
+            "attempt": 1,
+            "temperature": 0.0002,
+            "equation_error": 0.003503224207542214,
+            "evaluations": 45,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+          },
+          {
+            "attempt": 1,
+            "temperature": 0.0001,
+            "equation_error": 0.0025359850313144733,
+            "evaluations": 35,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last ten iterations."
+          },
+          {
+            "attempt": 1,
+            "temperature": 0.0,
+            "equation_error": 7.855661750588716e-05,
+            "evaluations": 52,
+            "solver_success": false,
+            "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+          }
+        ],
+        "search_metadata": {
+          "evaluations": 912,
+          "exploratory_evaluations": 912,
+          "strong_polish_evaluations": 0,
+          "max_evaluations": 1500,
+          "attempts": 2,
+          "exploratory_signed_roundoff_calls": 303,
+          "exploratory_positive_fallback_calls": 0,
+          "exploratory_stationary_note": "Signed roundoff may be used only during root search when row conditioning is valid; final certificates use positive stationary laws and independent conditional-order checks",
+          "budget_interpretation": "Soft exploratory-call budget; root callbacks, final certification and up to 60 strong-polish evaluations may exceed it",
+          "method": "Damped conditional policy iteration followed by analytic conditional complementarity continuation",
+          "damping": 0.35,
+          "picard_iterations": 20,
+          "exhaustive": false,
+          "unique": false,
+          "scope": "Finite grid and numerical demand matrix; no continuous-state or MPE claim"
+        },
+        "converged": false
+      }
+    }
+  ],
+  "candidates": [],
+  "selected": {
+    "grid": {
+      "__array__": "root/selected/grid"
+    },
+    "policy": {
+      "__array__": "root/selected/policy"
+    },
+    "value": {
+      "__array__": "root/selected/value"
+    },
+    "advantage": {
+      "__array__": "root/selected/advantage"
+    },
+    "nu": {
+      "__array__": "root/selected/nu"
+    },
+    "mu_a": {
+      "__array__": "root/selected/mu_a"
+    },
+    "mu_b": {
+      "__array__": "root/selected/mu_b"
+    },
+    "mu": {
+      "__array__": "root/selected/mu"
+    },
+    "demand": {
+      "__array__": "root/selected/demand"
+    },
+    "conditional_mu": {
+      "__array__": "root/selected/conditional_mu"
+    },
+    "actual_conditional_mu": {
+      "__array__": "root/selected/actual_conditional_mu"
+    },
+    "conditional_demand": {
+      "__array__": "root/selected/conditional_demand"
+    },
+    "actual_conditional_demand": {
+      "__array__": "root/selected/actual_conditional_demand"
+    },
+    "conditioning_zero_rows": [],
+    "conditional_diagnostics": {
+      "verified": true,
+      "closure_weighted_l1": 0.0,
+      "closure_supported_row_l1_max": 0.0,
+      "closure_unsupported_row_l1_max": 0.0,
+      "row_normalization_error": 4.440892098500626e-16,
+      "integrated_rival_marginal_l1": 8.71969597221467e-17,
+      "demand_consistency_max": 0.0,
+      "positive_rows": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "zero_rows": [],
+      "minimum_positive_own_mass": 3.0172194970651845e-07,
+      "off_path_convention": "Unconditional rival marginal on exactly zero own-mass rows",
+      "positive_mass_floor": 0.0,
+      "supplied_conjecture": false,
+      "independent_order_verified": true,
+      "independent_order_supported_row_l1_max": 3.829699337115535e-16,
+      "independent_order_demand_max": 2.220446049250313e-16,
+      "independent_order_support_agrees": true,
+      "independent_order_joint_l1": 3.26874608042088e-16,
+      "independent_order_method": "Reversed symmetric joint jump-chain positive GTH; conditional comparison on every positive row",
+      "certification": "Independent actual joint invariant law; rowwise conditional closure on every positive-mass row"
+    },
+    "conditional_residual": 0.0,
+    "marginal_residual": 8.71969597221467e-17,
+    "verified": false,
+    "candidate_verified": false,
+    "status": "unresolved",
+    "failure_reasons": [
+      "Own-state Bellman/complementarity certificate failed"
+    ],
+    "summary": {
+      "rho": 0.97,
+      "n": 21,
+      "model": "Conditional OE",
+      "verified": false,
+      "candidate_verified": false,
+      "marginal_l1": 8.71969597221467e-17,
+      "marginal_residual": 8.71969597221467e-17,
+      "conditional_residual": 0.0,
+      "conditional_weighted_l1": 0.0,
+      "stationary_residual": 8.742070134095945e-17,
+      "mixed_nodes": 0,
+      "mixed_indices": [],
+      "mixed_reputations": [],
+      "mixed_probabilities": [],
+      "mean_reputation": 0.4865315536663731,
+      "mean_posterior": 0.48729391855318227,
+      "dp": {
+        "verified": false,
+        "bellman_residual": 0.08077606269918833,
+        "policy_evaluation_residual": 3.552713678800501e-15,
+        "conditional_regret": 0.09648248848125018,
+        "complementarity_residual": 0.09648248848125018,
+        "mixed_indifference_residual": 0.0,
+        "best_response_gain_upper_bound": 1.2157868653137314,
+        "best_response_numerical_error_bound": 3.552713678800498e-13,
+        "iterations": 3
+      },
+      "stationary": {
+        "verified": true,
+        "residual": 8.742070134095945e-17,
+        "row_sum_error": 3.3306690738754696e-16,
+        "probability_sum": 1.0,
+        "minimum_probability": 1.3616198277632544e-16,
+        "stability_l1": 1.4281004371079743e-11,
+        "stability_tolerance": 1e-07,
+        "methods": [
+          "sparse jump-chain, middle normalization",
+          "sparse jump-chain, reversed order and edge normalization",
+          "independent positive GTH elimination"
+        ],
+        "preliminary_failures": [],
+        "symmetric_lumping": true,
+        "lumping_error": 1.1102230246251565e-16,
+        "solved_states": 231,
+        "full_states": 441,
+        "selection": "symmetric invariant law",
+        "communicating_components": 1,
+        "reduced_communicating_components": 1,
+        "minimum_exit_rate": 0.2100000000000002,
+        "exploratory": false,
+        "marginal_symmetry_l1": 5.334449389174053e-17,
+        "scope": "Finite numerical kernel; no mixing-time or continuous-state guarantee"
+      },
+      "conditional": {
+        "verified": true,
+        "closure_weighted_l1": 0.0,
+        "closure_supported_row_l1_max": 0.0,
+        "closure_unsupported_row_l1_max": 0.0,
+        "row_normalization_error": 4.440892098500626e-16,
+        "integrated_rival_marginal_l1": 8.71969597221467e-17,
+        "demand_consistency_max": 0.0,
+        "positive_rows": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20
+        ],
+        "zero_rows": [],
+        "minimum_positive_own_mass": 3.0172194970651845e-07,
+        "off_path_convention": "Unconditional rival marginal on exactly zero own-mass rows",
+        "positive_mass_floor": 0.0,
+        "supplied_conjecture": false,
+        "independent_order_verified": true,
+        "independent_order_supported_row_l1_max": 3.829699337115535e-16,
+        "independent_order_demand_max": 2.220446049250313e-16,
+        "independent_order_support_agrees": true,
+        "independent_order_joint_l1": 3.26874608042088e-16,
+        "independent_order_method": "Reversed symmetric joint jump-chain positive GTH; conditional comparison on every positive row",
+        "certification": "Independent actual joint invariant law; rowwise conditional closure on every positive-mass row"
+      }
+    },
+    "dp_diagnostics": {
+      "verified": false,
+      "bellman_residual": 0.08077606269918833,
+      "policy_evaluation_residual": 3.552713678800501e-15,
+      "conditional_regret": 0.09648248848125018,
+      "complementarity_residual": 0.09648248848125018,
+      "mixed_indifference_residual": 0.0,
+      "best_response_gain_upper_bound": 1.2157868653137314,
+      "best_response_numerical_error_bound": 3.552713678800498e-13,
+      "iterations": 3
+    },
+    "stationary_diagnostics": {
+      "verified": true,
+      "residual": 8.742070134095945e-17,
+      "row_sum_error": 3.3306690738754696e-16,
+      "probability_sum": 1.0,
+      "minimum_probability": 1.3616198277632544e-16,
+      "stability_l1": 1.4281004371079743e-11,
+      "stability_tolerance": 1e-07,
+      "methods": [
+        "sparse jump-chain, middle normalization",
+        "sparse jump-chain, reversed order and edge normalization",
+        "independent positive GTH elimination"
+      ],
+      "preliminary_failures": [],
+      "symmetric_lumping": true,
+      "lumping_error": 1.1102230246251565e-16,
+      "solved_states": 231,
+      "full_states": 441,
+      "selection": "symmetric invariant law",
+      "communicating_components": 1,
+      "reduced_communicating_components": 1,
+      "minimum_exit_rate": 0.2100000000000002,
+      "exploratory": false,
+      "marginal_symmetry_l1": 5.334449389174053e-17,
+      "scope": "Finite numerical kernel; no mixing-time or continuous-state guarantee"
+    },
+    "mixed_nodes": 0,
+    "mixed_indices": [],
+    "mixed_probabilities": [],
+    "history": [
+      {
+        "stage": "damped conditional best response",
+        "iteration": 0,
+        "damping": 0.35,
+        "conditional_regret": 1.3589167853707478,
+        "policy_change_max": 0.35,
+        "stationary_residual": 8.589250184326346e-16,
+        "evaluations": 1
+      },
+      {
+        "stage": "damped conditional best response",
+        "iteration": 1,
+        "damping": 0.35,
+        "conditional_regret": 0.6441194002411645,
+        "policy_change_max": 0.35,
+        "stationary_residual": 8.367227895254672e-16,
+        "evaluations": 1
+      },
+      {
+        "stage": "damped conditional best response",
+        "iteration": 2,
+        "damping": 0.35,
+        "conditional_regret": 0.3213758598947754,
+        "policy_change_max": 0.35,
+        "stationary_residual": 3.5185814780080055e-16,
+        "evaluations": 1
+      },
+      {
+        "stage": "damped conditional best response",
+        "iteration": 3,
+        "damping": 0.35,
+        "conditional_regret": 0.21064874890392443,
+        "policy_change_max": 0.35,
+        "stationary_residual": 3.6044995897988543e-16,
+        "evaluations": 1
+      },
+      {
+        "stage": "damped conditional best response",
+        "iteration": 4,
+        "damping": 0.35,
+        "conditional_regret": 0.21182116149376143,
+        "policy_change_max": 0.2875228125,
+        "stationary_residual": 5.022413555398231e-16,
+        "evaluations": 1
+      },
+      {
+        "stage": "damped conditional best response",
+        "iteration": 5,
+        "damping": 0.35,
+        "conditional_regret": 0.15798873318631482,
+        "policy_change_max": 0.35,
+        "stationary_residual": 8.430448776638472e-16,
+        "evaluations": 1
+      },
+      {
+        "stage": "damped conditional best response",
+        "iteration": 6,
+        "damping": 0.35,
+        "conditional_regret": 0.1509237378664413,
+        "policy_change_max": 0.3236033882812499,
+        "stationary_residual": 2.6896008159569603e-16,
+        "evaluations": 1
+      },
+      {
+        "stage": "damped conditional best response",
+        "iteration": 7,
+        "damping": 0.35,
+        "conditional_regret": 0.14024228752161075,
+        "policy_change_max": 0.21034220238281248,
+        "stationary_residual": 7.525187158868805e-16,
+        "evaluations": 1
+      },
+      {
+        "stage": "damped conditional best response",
+        "iteration": 8,
+        "damping": 0.35,
+        "conditional_regret": 0.11874003602283854,
+        "policy_change_max": 0.13672243154882813,
+        "stationary_residual": 4.497126509850838e-16,
+        "evaluations": 1
+      },
+      {
+        "stage": "damped conditional best response",
+        "iteration": 9,
+        "damping": 0.35,
+        "conditional_regret": 0.08744848043057643,
+        "policy_change_max": 0.35,
+        "stationary_residual": 3.5289908146352206e-16,
+        "evaluations": 1
+      },
+      {
+        "stage": "damped conditional best response",
+        "iteration": 10,
+        "damping": 0.35,
+        "conditional_regret": 0.11451327151286192,
+        "policy_change_max": 0.34528803982937983,
+        "stationary_residual": 9.051115173071838e-16,
+        "evaluations": 1
+      },
+      {
+        "stage": "damped conditional best response",
+        "iteration": 11,
+        "damping": 0.35,
+        "conditional_regret": 0.10039758006350867,
+        "policy_change_max": 0.22443722588909693,
+        "stationary_residual": 5.70590596331538e-16,
+        "evaluations": 1
+      },
+      {
+        "stage": "damped conditional best response",
+        "iteration": 12,
+        "damping": 0.35,
+        "conditional_regret": 0.07763122074956964,
+        "policy_change_max": 0.14588419682791298,
+        "stationary_residual": 3.531283190437661e-16,
+        "evaluations": 1
+      },
+      {
+        "stage": "damped conditional best response",
+        "iteration": 13,
+        "damping": 0.35,
+        "conditional_regret": 0.05581754242571943,
+        "policy_change_max": 0.09482472793814345,
+        "stationary_residual": 7.422712386544739e-16,
+        "evaluations": 1
+      },
+      {
+        "stage": "damped conditional best response",
+        "iteration": 14,
+        "damping": 0.35,
+        "conditional_regret": 0.0385261756570806,
+        "policy_change_max": 0.06163607315979325,
+        "stationary_residual": 3.2542925178605167e-16,
+        "evaluations": 1
+      },
+      {
+        "stage": "damped conditional best response",
+        "iteration": 15,
+        "damping": 0.35,
+        "conditional_regret": 0.02597347001680326,
+        "policy_change_max": 0.04006344755386562,
+        "stationary_residual": 3.4277276182530314e-16,
+        "evaluations": 1
+      },
+      {
+        "stage": "damped conditional best response",
+        "iteration": 16,
+        "damping": 0.35,
+        "conditional_regret": 0.01726916283173977,
+        "policy_change_max": 0.02604124091001265,
+        "stationary_residual": 9.833569383696594e-16,
+        "evaluations": 1
+      },
+      {
+        "stage": "damped conditional best response",
+        "iteration": 17,
+        "damping": 0.35,
+        "conditional_regret": 0.011385760214594386,
+        "policy_change_max": 0.01692680659150822,
+        "stationary_residual": 7.076255703576215e-16,
+        "evaluations": 1
+      },
+      {
+        "stage": "damped conditional best response",
+        "iteration": 18,
+        "damping": 0.35,
+        "conditional_regret": 0.007467915448634417,
+        "policy_change_max": 0.011002424284480346,
+        "stationary_residual": 4.1397394472529973e-16,
+        "evaluations": 1
+      },
+      {
+        "stage": "damped conditional best response",
+        "iteration": 19,
+        "damping": 0.35,
+        "conditional_regret": 0.004882296054377791,
+        "policy_change_max": 0.007151575784912226,
+        "stationary_residual": 4.901315975911244e-16,
+        "evaluations": 1
+      },
+      {
+        "attempt": 0,
+        "temperature": 0.3,
+        "equation_error": 4.096556427413134e-12,
+        "evaluations": 14,
+        "solver_success": true,
+        "solver_message": "The solution converged."
+      },
+      {
+        "attempt": 0,
+        "temperature": 0.1,
+        "equation_error": 4.468470038432315e-11,
+        "evaluations": 16,
+        "solver_success": true,
+        "solver_message": "The solution converged."
+      },
+      {
+        "attempt": 0,
+        "temperature": 0.03,
+        "equation_error": 4.306949241694724e-11,
+        "evaluations": 18,
+        "solver_success": true,
+        "solver_message": "The solution converged."
+      },
+      {
+        "attempt": 0,
+        "temperature": 0.01,
+        "equation_error": 0.00911370044933657,
+        "evaluations": 56,
+        "solver_success": false,
+        "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+      },
+      {
+        "attempt": 0,
+        "temperature": 0.003,
+        "equation_error": 0.014216499969400047,
+        "evaluations": 60,
+        "solver_success": false,
+        "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+      },
+      {
+        "attempt": 0,
+        "temperature": 0.001,
+        "equation_error": 0.010520534271953864,
+        "evaluations": 38,
+        "solver_success": false,
+        "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+      },
+      {
+        "attempt": 0,
+        "temperature": 0.0003,
+        "equation_error": 0.005355887963887946,
+        "evaluations": 66,
+        "solver_success": false,
+        "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+      },
+      {
+        "attempt": 0,
+        "temperature": 0.0001,
+        "equation_error": 0.0030762111994992463,
+        "evaluations": 50,
+        "solver_success": false,
+        "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+      },
+      {
+        "attempt": 0,
+        "temperature": 0.0,
+        "equation_error": 7.857451337123234e-05,
+        "evaluations": 47,
+        "solver_success": false,
+        "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last ten iterations."
+      },
+      {
+        "attempt": 1,
+        "temperature": 0.3,
+        "equation_error": 7.905426313570274e-12,
+        "evaluations": 19,
+        "solver_success": true,
+        "solver_message": "The solution converged."
+      },
+      {
+        "attempt": 1,
+        "temperature": 0.1,
+        "equation_error": 4.581712786944081e-11,
+        "evaluations": 18,
+        "solver_success": true,
+        "solver_message": "The solution converged."
+      },
+      {
+        "attempt": 1,
+        "temperature": 0.03,
+        "equation_error": 6.228366433713717e-11,
+        "evaluations": 17,
+        "solver_success": true,
+        "solver_message": "The solution converged."
+      },
+      {
+        "attempt": 1,
+        "temperature": 0.02,
+        "equation_error": 9.682661616938759e-11,
+        "evaluations": 9,
+        "solver_success": true,
+        "solver_message": "The solution converged."
+      },
+      {
+        "attempt": 1,
+        "temperature": 0.01,
+        "equation_error": 0.008928425411290242,
+        "evaluations": 53,
+        "solver_success": false,
+        "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+      },
+      {
+        "attempt": 1,
+        "temperature": 0.007,
+        "equation_error": 0.013974519720256318,
+        "evaluations": 47,
+        "solver_success": false,
+        "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last ten iterations."
+      },
+      {
+        "attempt": 1,
+        "temperature": 0.003,
+        "equation_error": 0.015629451800469263,
+        "evaluations": 52,
+        "solver_success": false,
+        "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+      },
+      {
+        "attempt": 1,
+        "temperature": 0.002,
+        "equation_error": 0.0127586829151536,
+        "evaluations": 44,
+        "solver_success": false,
+        "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+      },
+      {
+        "attempt": 1,
+        "temperature": 0.001,
+        "equation_error": 0.009461638941579488,
+        "evaluations": 54,
+        "solver_success": false,
+        "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+      },
+      {
+        "attempt": 1,
+        "temperature": 0.0005,
+        "equation_error": 0.005832384254335707,
+        "evaluations": 51,
+        "solver_success": false,
+        "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+      },
+      {
+        "attempt": 1,
+        "temperature": 0.0002,
+        "equation_error": 0.003503224207542214,
+        "evaluations": 45,
+        "solver_success": false,
+        "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+      },
+      {
+        "attempt": 1,
+        "temperature": 0.0001,
+        "equation_error": 0.0025359850313144733,
+        "evaluations": 35,
+        "solver_success": false,
+        "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last ten iterations."
+      },
+      {
+        "attempt": 1,
+        "temperature": 0.0,
+        "equation_error": 7.855661750588716e-05,
+        "evaluations": 52,
+        "solver_success": false,
+        "solver_message": "The iteration is not making good progress, as measured by the \n improvement from the last five Jacobian evaluations."
+      }
+    ],
+    "search_metadata": {
+      "evaluations": 911,
+      "exploratory_evaluations": 911,
+      "strong_polish_evaluations": 0,
+      "max_evaluations": 1500,
+      "attempts": 2,
+      "exploratory_signed_roundoff_calls": 309,
+      "exploratory_positive_fallback_calls": 0,
+      "exploratory_stationary_note": "Signed roundoff may be used only during root search when row conditioning is valid; final certificates use positive stationary laws and independent conditional-order checks",
+      "budget_interpretation": "Soft exploratory-call budget; root callbacks, final certification and up to 60 strong-polish evaluations may exceed it",
+      "method": "Damped conditional policy iteration followed by analytic conditional complementarity continuation",
+      "damping": 0.35,
+      "picard_iterations": 20,
+      "exhaustive": false,
+      "unique": false,
+      "scope": "Finite grid and numerical demand matrix; no continuous-state or MPE claim"
+    },
+    "converged": false
+  },
+  "selected_start": "product_1",
+  "demand_audit": {
+    "verified": true,
+    "tolerance": 1e-06,
+    "maximum_error": 2.5116853041851073e-12,
+    "doubled_order": 256,
+    "doubled_order_max_difference": 2.5116853041851073e-12,
+    "original_raw": {
+      "order": 128,
+      "raw_diagonal_error": 8.903988657493755e-14,
+      "raw_symmetry_error": 2.4980018054066022e-12,
+      "raw_min": 2.2247830431718168e-20,
+      "raw_max": 1.0
+    },
+    "doubled_raw": {
+      "order": 256,
+      "raw_diagonal_error": 1.7774670624248756e-13,
+      "raw_symmetry_error": 3.554934124849751e-13,
+      "raw_min": 2.2247830431706552e-20,
+      "raw_max": 1.0
+    },
+    "independent_checks": [
+      {
+        "x": 0.0,
+        "y": 1.0,
+        "matrix_probability": 2.2247830431718168e-20,
+        "direct_probability": 2.22478304317116e-20,
+        "reverse_probability": 0.9999999999999998,
+        "matrix_error": 6.569226669683337e-33,
+        "independent_symmetry_error": 2.220446049250313e-16,
+        "independent_diagonal_error": null
+      },
+      {
+        "x": 0.25,
+        "y": 0.75,
+        "matrix_probability": 2.0361267532975137e-05,
+        "direct_probability": 2.036126753297523e-05,
+        "reverse_probability": 0.9999796387324678,
+        "matrix_error": 9.147955830346444e-20,
+        "independent_symmetry_error": 6.661338147750939e-16,
+        "independent_diagonal_error": null
+      },
+      {
+        "x": 0.45,
+        "y": 0.55,
+        "matrix_probability": 0.21067879277440077,
+        "direct_probability": 0.21067879277440082,
+        "reverse_probability": 0.7893212072255987,
+        "matrix_error": 5.551115123125783e-17,
+        "independent_symmetry_error": 4.440892098500626e-16,
+        "independent_diagonal_error": null
+      },
+      {
+        "x": 0.8,
+        "y": 0.4,
+        "matrix_probability": 0.9995637391496957,
+        "direct_probability": 0.9995637391496952,
+        "reverse_probability": 0.0004362608503043235,
+        "matrix_error": 4.440892098500626e-16,
+        "independent_symmetry_error": 4.440892098500626e-16,
+        "independent_diagonal_error": null
+      },
+      {
+        "x": 0.5,
+        "y": 0.5,
+        "matrix_probability": 0.5,
+        "direct_probability": 0.4999999999999998,
+        "reverse_probability": 0.4999999999999998,
+        "matrix_error": 2.220446049250313e-16,
+        "independent_symmetry_error": 4.440892098500626e-16,
+        "independent_diagonal_error": 2.220446049250313e-16
+      }
+    ],
+    "independent_method": "Adaptive quadrature with stable scipy.stats.beta.pdf"
+  },
+  "elapsed_seconds": 24.8488132579987
+}

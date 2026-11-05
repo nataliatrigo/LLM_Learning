@@ -1,0 +1,113 @@
+{
+  "campaign": "capacity_sweep_1_to_30",
+  "summary": {
+    "capacity": 9,
+    "effective_rho": 0.8888888888888888,
+    "p0": 0.3,
+    "sellers": 1,
+    "closure": "monopoly",
+    "verified": true,
+    "product2_conditional": 0.25288806099146616,
+    "sale_rate": 0.7949136307680235,
+    "outside_rate": 0.20508636923197662,
+    "product2_calendar": 0.20102416674061171,
+    "profit_calendar": 0.6345534491852552,
+    "value_initial": 32.55524091575594,
+    "perceived_value_initial": 32.55524091575606,
+    "count_states": 10,
+    "joint_states": 10
+  },
+  "configuration": {
+    "capacity": 9,
+    "effective_rho": 0.8888888888888888,
+    "sellers": 1,
+    "closure": "monopoly",
+    "p0": 0.3,
+    "primitives": {
+      "p0": 0.3,
+      "p1": 0.35,
+      "p2": 0.8,
+      "c1": 0.05,
+      "c2": 0.65,
+      "revenue": 1.0,
+      "gamma": 0.98
+    },
+    "count_states": 10,
+    "joint_states": 10,
+    "tolerance": 1e-07,
+    "state": "Mature memory: retained successes S=0,...,capacity",
+    "replacement": "Uniform old slot independent of new outcome; only selected seller updates",
+    "posterior": "Beta(1+S,1+capacity-S)",
+    "joint_representation": "Exact seller-permutation quotient; correlated rival law preserved",
+    "initial_state": "Independent equal mixture of floor(capacity/2),ceil(capacity/2) for odd capacity; exact midpoint for even capacity",
+    "actual_value": "Mean seller discounted payoff; equals each seller at exchangeable initialization",
+    "scope": "Finite exact-count symmetric oblivious equilibrium; no full-state MPE or uniqueness claim"
+  },
+  "diagnostics": {
+    "conditional_regret": 0.0,
+    "bellman_residual": 7.105427357601002e-15,
+    "optimal_value_difference": 0.0,
+    "actual_value_residual": 7.105427357601002e-15,
+    "actual_value_error_bound": 3.552713678800498e-13,
+    "sale_law_l1": 1.0247743409061427e-15,
+    "market_partition_error": 0.0,
+    "stationary": {
+      "verified": true,
+      "methods": [
+        "Subtraction-free sparse positive GTH",
+        "Subtraction-free sparse positive GTH, reversed elimination order"
+      ],
+      "probability_sum": 0.9999999999999999,
+      "minimum_probability": 0.00011968137356181644,
+      "minimum_exit_rate": 0.022598019920000004,
+      "maximum_exit_rate": 0.6499961618150001,
+      "stability_l1": 1.1537266367961374e-16,
+      "conditional_demand_stability": 0.0,
+      "rate_weighted_residual": 1.0107474752996115e-16,
+      "residual": 8.721390038109178e-17,
+      "row_sum_error": 2.220446049250313e-16,
+      "solved_states": 10,
+      "elapsed_seconds": 0.0015164939977694303,
+      "scope": "Independent finite-chain numerical stability; no mixing-time or uniqueness proof"
+    },
+    "demand": {
+      "capacity": 9,
+      "sellers": 1,
+      "p0": 0.3,
+      "order": 128,
+      "full_states": 10,
+      "quotient_states": 10,
+      "representation": "Exact seller-permutation quotient with correlated joint rival beliefs",
+      "quadrature": "Positive truncated Gauss-Jacobi; independently doubled order",
+      "raw_partition_error": 5.5289106626332796e-14,
+      "raw_relative_selected_mass_error": 8.469166710432456e-14,
+      "order_doubling_max_abs": 2.651212582804874e-13,
+      "order_doubling_max_relative_tail": 3.120058583807176e-13,
+      "positive_tail_underflow_entries": 0,
+      "partition_error": 2.220446049250313e-16,
+      "relative_event_correction": 8.454664712641335e-14,
+      "min_positive_demand": 0.028247524900000005
+    },
+    "certificate_seconds": 0.008078494000073988,
+    "independent_monopoly_value_difference": 3.832276718185312e-09
+  },
+  "search_history": [],
+  "search_calls": 0,
+  "seed": {
+    "case": "capacity_008_p0_0p3_N1_monopoly",
+    "method": "Linear interpolation of previous capacity policy for search only"
+  },
+  "sources": {
+    "forgetting_random_replacement/oblivious/code/model.py": "2683955612fbd85076cb87c2ad2b3dbb775e583bb293fc4f415002af05c434ac",
+    "forgetting_random_replacement/oblivious/code/kernel.py": "44ec6cdfd73c0142c2c82c4f9408aa68fb145d79dcbdef48d4b7d04f38578f91",
+    "forgetting_random_replacement/oblivious/code/config.json": "f7f57fc7e446e1d632b42712b040efe9a2bf386aa9851e49d336bb8dc48cab72",
+    "forgetting_random_replacement/code/model.py": "10578739f00eb266e5a5dce171e3eef054d844f771f336413d25fd055b4dc395",
+    "forgetting/Code/model.py": "8b1f948f1d9009a021d1836b4f683f6224c65f724677bce591218a930cd28f7d",
+    "oblivious/02_oe_p0/code/positive_stationary.py": "886efe856552f90e702134b9695c623f4c71d26cfeda68655217ccd4f524cab1",
+    "oblivious/02_oe_p0/code/positive_stationary.cpp": "15d1761182e1fbfa2034d40d7d928ff21f12c52911f54d7fe3d08a5e65c6bf7a"
+  },
+  "solver_sources": {},
+  "elapsed_seconds": 0.08286703999328893,
+  "completed_utc": "2026-11-04T07:28:30.414333+00:00",
+  "checkpoint_sha256": "cc622ba38e2bdc544f41f4a3bdc9b7df7c9609db327c7b43caf70e8d2cea768c"
+}

@@ -10,7 +10,43 @@ __pycache__/
 
 # Reproducible experiment results
 extinction/outputs/
-forgetting/outputs/
+oblivious/06_equilibrium_comparison/data/*/raw/
+forgetting/outputs/**
+!forgetting/outputs/**/
+!forgetting/outputs/**/README.md
+
+# Large numerical arrays and intermediate solver checkpoints
+/Fluid base model/outputs/**/*.npz
+/oblivious/**/data/**/*.npz
+/oblivious/**/data/**/search_checkpoints/
+!/oblivious/**/data/**/provenance/**/*.npz
+
+# Local simulation arrays; keep source snapshots used for provenance
+/forgettin_fixed/**/data/**/*.npy
+/forgettin_fixed/**/data/**/*.npz
+/forgetting_random_replacement/**/data/**/*.npy
+/forgetting_random_replacement/**/data/**/*.npz
+!/forgettin_fixed/**/data/**/provenance/**/*.npz
+!/forgetting_random_replacement/**/data/**/provenance/**/*.npz
+
+# Raw trajectory exports and transient experiment locks
+/**/data/**/trajectories.csv
+/**/data/**/monopoly_trajectories.csv
+/**/data/**/*.lock
+/Fluid base model/outputs/**/run.log
+
+# LaTeX build byproducts
+*.aux
+*.fdb_latexmk
+*.fls
+*.nav
+*.out
+*.snm
+*.synctex.gz
+*.toc
+/Presentations/**/*.log
+/Progress notes/**/*.log
+/Paper/*.log
 
 # Independent manuscript repository synchronized with GitHub/Overleaf
-discounted/OverleafPaper/
+/OverleafPaper/

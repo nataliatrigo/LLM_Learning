@@ -1,0 +1,245 @@
+\documentclass[10pt]{beamer}
+\usepackage[utf8]{inputenc}
+
+\usetheme{Madrid}
+\usecolortheme{default}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{amsmath,amssymb,amsthm,microtype}
+\usepackage{tikz}
+\graphicspath{{../OverleafPaper/figures/}{OverleafPaper/figures/}{../forgetting/outputs/test/monte_carlo/figures/}{forgetting/outputs/test/monte_carlo/figures/}{../forgetting/outputs/test/first_2000/figures/individual_states/p0_0.5/}{forgetting/outputs/test/first_2000/figures/individual_states/p0_0.5/}{../forgetting/outputs/test/first_2000/figures/state_distributions/p0_0.5/}{forgetting/outputs/test/first_2000/figures/state_distributions/p0_0.5/}}
+
+\title{Weekly report}
+\author{Natalia Trigo Tomasevich}
+\date{October 11, 2026}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}{This week}
+    \begin{itemize}[<+->]
+        \item Consolidated results for the forgetting model
+        \item Competition: Discussion of modeling choices 
+    \end{itemize}
+\end{frame}
+
+% Source for all numbered results:
+% Progress notes/08_Final_note_intermediate_forgetting/08_final_note_intermediate_forgetting.tex
+% The first five results concern the discrete model; the last three concern
+% the fluid model and its demand assumptions. Numbering follows the source.
+
+\begin{frame}{Positive advantage: a fixed-policy test}
+    Results from \emph{Final note: Intermediate forgetting} on Overleaf.
+
+    \medskip
+    Let $U_\rho^i$ be the value of always
+    choosing product $i$. On the invariant limit set $\mathcal K_\rho$, define
+    \begin{align}
+        a_\rho(z)&=-\Delta c+\gamma\Delta p
+        [V_\rho(T_\rho^s z)-V_\rho(T_\rho^f z)],\\
+        \mathcal A_\rho&=\max_{z\in\mathcal K_\rho}a_\rho(z).
+    \end{align}
+    
+    \begin{block}{Proposition 1: Characterization of positive advantage}
+        For $\rho\in(0,1)$,
+        \[
+        \mathcal A_\rho>0
+        \quad\Longleftrightarrow\quad
+        \max_{z\in\mathcal K_\rho}
+        [U_\rho^1(T_\rho^s z)-U_\rho^1(T_\rho^f z)]
+        >\frac{\Delta c}{\gamma\Delta p}.
+        \]
+    \end{block}
+\end{frame}
+
+\begin{frame}{Persistent use of product 2}
+    \begin{block}{Proposition 2}
+        Fix $\rho\in(0,1)$. If $\mathcal A_\rho>0$, there exists
+        $\eta>0$ such that, from every initial state and under any
+        optimal policy,
+        \[
+        \liminf_{N\to\infty}\frac{1}{N}
+        \sum_{n=1}^{N}\mathbf 1\{i_n=2\}
+        \ge\eta
+        \qquad\text{almost surely}.
+        \]
+        Here $i_n$ is the product chosen at the $n$th interaction
+        with provider A.
+    \end{block}
+
+    \medskip
+    Product 2 has a positive lower asymptotic frequency of use.
+    In particular, the provider uses it infinitely often.
+\end{frame}
+
+\begin{frame}{State-dependent choices and indifference}
+    Define the fixed-policy advantages
+    \[
+    \begin{aligned}
+        a_\rho^i(z)&=-\Delta c+\gamma\Delta p
+        [U_\rho^i(T_\rho^s z)-U_\rho^i(T_\rho^f z)],\quad i=1,2,\\
+        \mathcal A_\rho^1&=\max_{z\in\mathcal K_\rho}a_\rho^1(z),
+        \qquad
+        \mathcal A_\rho^2=\min_{z\in\mathcal K_\rho}a_\rho^2(z).
+    \end{aligned}
+    \]
+
+    \begin{block}{Lemma 1}
+        If $\rho\in(1/2,1)$, $\mathcal A_\rho^1>0$, and
+        $\mathcal A_\rho^2<0$, each product is strictly optimal at some
+        states in $\mathcal K_\rho$. Moreover,
+        \[
+        \exists\,x^*\in(0,1):\qquad a_\rho(x^*,1-x^*)=0.
+        \]
+    \end{block}
+
+    \begin{itemize}
+        \item Connectedness and continuity guarantee a zero; an interval
+        of indifference is also possible.
+        \item A threshold structure needs further restrictions on the sign
+        pattern: the number, order, and direction of switches remain
+        undetermined.
+    \end{itemize}
+    % Both signs occur, but a zero need not be an isolated crossing:
+    % an interval of indifference may separate the strict preference regions.
+    % Uniqueness of the zero is sufficient, but is not necessary for a
+    % threshold selection. No pointwise equality of fixed-policy and
+    % optimal-policy advantages is asserted.
+\end{frame}
+
+\begin{frame}{Persistent use of both products}
+    \begin{block}{Corollary 1}
+        Fix $\rho\in(0,1)$. If $\mathcal A_\rho^1>0$ and
+        $\mathcal A_\rho^2<0$, there exist $\eta_1,\eta_2>0$ such that,
+        from every initial state and under any optimal policy,
+        \[
+        \liminf_{N\to\infty}\frac{1}{N}
+        \sum_{n=1}^{N}\mathbf 1\{i_n=j\}
+        \ge\eta_j
+        \quad\text{almost surely},\qquad j=1,2.
+        \]
+    \end{block}
+
+    \begin{itemize}
+        \item Both products are used infinitely often, each with a positive
+        lower asymptotic frequency.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\large Cost region with both products strictly optimal at some states}
+    \footnotesize
+    \setlength{\abovedisplayskip}{4pt}
+    \setlength{\belowdisplayskip}{4pt}
+    \setlength{\abovedisplayshortskip}{2pt}
+    \setlength{\belowdisplayshortskip}{2pt}
+    \setlength{\jot}{2pt}
+    For $i\in\{1,2\}$, let
+    \[
+    H_\rho^i(z)
+    =\mathbb E_z^i\left[\sum_{t=1}^{\infty}\gamma^{t-1}\mathbf 1\{y_t=A\}\right]
+    \]
+    be the expected discounted number of purchases from seller~$A$ when
+    product~$i$ is always used. Here $t$ counts calendar periods, and
+    $\mathbb E_z^i$ denotes expectation starting from $z$ under this fixed policy.
+
+    \begin{block}{Proposition 3}
+        Fix $\rho\in(1/2,1)$, $\gamma\in(0,1)$, $p_0\in(0,1)$,
+        $0<p_1<p_2<1$, and $0\leq c_1<R$. Define
+        \begin{align*}
+        \underline c_2
+        &=\frac{
+         c_1+\gamma\Delta p\,R
+         \displaystyle\min_{z\in\mathcal K_\rho}
+         \left[H_\rho^2(T_\rho^s z)-H_\rho^2(T_\rho^f z)\right]
+        }{
+         1+\gamma\Delta p
+         \displaystyle\min_{z\in\mathcal K_\rho}
+         \left[H_\rho^2(T_\rho^s z)-H_\rho^2(T_\rho^f z)\right]
+        },\\[1ex]
+        \overline c_2
+        &=c_1+\gamma\Delta p\,(R-c_1)
+        \max_{z\in\mathcal K_\rho}
+        \left[H_\rho^1(T_\rho^s z)-H_\rho^1(T_\rho^f z)\right].
+        \end{align*}
+        These bounds do not depend on $c_2$. For any $c_2\in(c_1,R)$,
+        \begin{equation*}
+        \mathcal A_\rho^1>0\ \text{and}\ \mathcal A_\rho^2<0
+        \quad\Longleftrightarrow\quad
+        \underline c_2<c_2<\overline c_2.
+        \end{equation*}
+        Thus $(\underline c_2,\overline c_2)\cap(c_1,R)$ is exactly the cost
+        region where each product is strictly optimal at some state in
+        $\mathcal K_\rho$. For every cost in this region, there exists
+        $x^*\in(0,1)$ such that $a_\rho(x^*,1-x^*)=0$.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Fluid model: the transformed payoff}
+
+    \begin{block}{Proposition 4: Shape of the transformed payoff}
+        Assume $D'(x)>0$ and $D'$ is log-concave on $[0,1]$. Then the set $\{x\in[0,1]:F'(x)>0\}$ is an interval, possibly empty or meeting a boundary. If nonempty, $F$ decreases before this interval, increases within it, and decreases after it, with absent segments omitted.
+        If it is empty, product 1 is optimal everywhere.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Fluid model: a single interval of product 2}
+
+    \begin{block}{Theorem 1}
+        Suppose, for some $0\le a<m\le1$,
+        \[
+        F'<0\ \text{on }(0,a)\cup(m,1),
+        \qquad F'>0\ \text{on }(a,m),
+        \]
+        and every interior zero of $F'$ is simple.
+
+        \medskip
+        An optimal policy can be selected that uses product 2 on
+        at most one interval and product 1 outside it.
+        As $x$ increases, the possible nonconstant patterns are
+        \[
+        1\to2,\qquad 2\to1,\qquad 1\to2\to1.
+        \]
+    \end{block}
+
+    % At an attractive threshold $x^*\in(p_1,p_2)$, an optimal holding
+    % mixture may use product 2 with fraction $(x^*-p_1)/(p_2-p_1)$.
+
+    \medskip
+    If $F$ is nonincreasing, product 1 is optimal everywhere;
+    if $F$ is nondecreasing, product 2 is optimal everywhere.
+\end{frame}
+
+\begin{frame}{Existence of a nonconstant threshold policy}
+    \begin{block}{Corollary 2}
+        Under the assumptions of Theorem 1, if in addition we have 
+        \begin{align*}
+        \max_{x\in[0,1]}\{-\Delta c+\lambda\Delta p(U^1_\rho)'(x)\}&>0,\\
+        \min_{x\in[0,1]}\{-\Delta c+\lambda\Delta p(U^2_\rho)'(x)\}&<0.
+        \end{align*}
+        then there is an optimal policy with either one or two interior thresholds, with one of the three patterns in
+        Theorem~1.
+    \end{block}
+\end{frame}
+
+\begin{frame}[plain,s]
+    \setbeamertemplate{navigation symbols}{}
+    \vfill
+    \centering
+    {\usebeamerfont{title}\usebeamercolor[fg]{structure}\LARGE
+    Competition model\par}
+    \vfill
+\end{frame}
+
+\begin{frame}{Competition model}
+    \begin{itemize}[<+->]
+        \item If we consider the model without forgetting with both sellers knowing all the information is not tractable. 
+        \item Because it has no forgetting, the state growns infinitely, and since the state now has 4 simensions, the problem becomes impossible to solve unless we truncate the state space. 
+        \item The forgetting model gives us the advantage of finite state space.
+        \item How much information we want the sellers to know? 
+        \item Go to Francisco's proposal 
+    \end{itemize}
+    
+\end{frame}
+\end{document}

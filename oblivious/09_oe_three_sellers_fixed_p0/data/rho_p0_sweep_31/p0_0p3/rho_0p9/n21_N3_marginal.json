@@ -1,0 +1,173 @@
+{
+  "configuration": {
+    "n": 21,
+    "sellers": 3,
+    "closure": "marginal",
+    "p0": 0.3,
+    "parameters": {
+      "R": 1.0,
+      "c1": 0.05,
+      "c2": 0.65,
+      "p1": 0.35,
+      "p2": 0.8,
+      "gamma": 0.98,
+      "rho": 0.9
+    },
+    "order": 256,
+    "tolerance": 1e-07,
+    "strategy": "Symmetric mixed own-reputation policy; action after selection",
+    "marginal_belief": "Joint calendar-time distribution of all rivals, independent of focal state",
+    "conditional_belief": "Actual joint rival distribution conditional on own calendar-time state",
+    "outside_event": "No seller sells; all reputations freeze",
+    "forgetting_clock": "Own observations only",
+    "initial_reputations": 0.5,
+    "scope": "Finite-grid oblivious equilibrium; not full-state MPE or uniqueness proof"
+  },
+  "summary": {
+    "p0": 0.3,
+    "rho": 0.9,
+    "n": 21,
+    "sellers": 3,
+    "closure": "marginal",
+    "verified": true,
+    "product2_conditional": 0.8065593252046181,
+    "sale_rate": 0.333331890253146,
+    "outside_rate": 4.3292405620952314e-06,
+    "product2_calendar": 0.2688519444717573,
+    "profit_calendar": 0.15535412905743434,
+    "value_initial": 7.1182837209863745,
+    "perceived_value_initial": 4.788736992226619
+  },
+  "diagnostics": {
+    "conditional_regret": 0.0,
+    "bellman_residual": 1.7763568394002505e-15,
+    "optimal_value_difference": 0.0,
+    "actual_value_residual": 9.798384326131782e-12,
+    "actual_value_error_bound": 4.899192163065887e-10,
+    "actual_value_iterations": 1215,
+    "sale_law_l1": 2.34542741497891e-16,
+    "market_partition_error": 2.220446049250313e-16,
+    "seller_sale_rate_symmetry": 5.551115123125783e-17,
+    "stationary": {
+      "verified": true,
+      "probability_sum": 1.0,
+      "minimum_probability": 1.7060584158340187e-17,
+      "minimum_exit_rate": 0.020354105439200673,
+      "maximum_exit_rate": 0.9995213332797889,
+      "exit_rate_dynamic_range": 49.10662059138086,
+      "residual": 2.601778975067234e-16,
+      "rate_weighted_residual": 4.141723318514503e-16,
+      "row_sum_error": 4.440892098500626e-16,
+      "stability_l1": 1.1917069036315957e-14,
+      "independent_calendar_l1": 1.1507880119586946e-14,
+      "independent_jump_l1": 1.1917069036315957e-14,
+      "tolerance": 1e-11,
+      "stability_tolerance": 1e-07,
+      "methods": [
+        "sparse jump solve, original order and middle anchor",
+        "sparse jump solve, reversed order and edge anchor",
+        "positive GTH",
+        "positive GTH, reversed order"
+      ],
+      "preliminary_failures": [],
+      "positive_iteration": null,
+      "solved_states": 1771,
+      "communicating_components": 1,
+      "elapsed_seconds": 0.236785860004602,
+      "scope": "Finite numerical kernel and independent numerical stability checks; no mixing-time or continuous-state guarantee.",
+      "symmetric_lumping": true,
+      "lumping": {
+        "transition_error": 3.3306690738754696e-16,
+        "exit_rate_relative_error": 6.661338147750939e-16,
+        "full_states": 9261,
+        "solved_states": 1771
+      },
+      "full_states": 9261,
+      "full_residual": 2.5478891835809345e-16,
+      "full_rate_weighted_residual": 4.551044821414827e-16,
+      "marginal_symmetry_l1": 4.0302844069896315e-16
+    },
+    "sale_time": {
+      "sale_stationary": [
+        5.399054850343285e-08,
+        2.9071833809540773e-07,
+        9.280623869968793e-07,
+        2.135374933071597e-06,
+        3.8739949805160985e-06,
+        5.7817387747174635e-06,
+        2.36428959754958e-05,
+        0.00014232943618551578,
+        0.0007589329728785707,
+        0.003562808016596559,
+        0.01158794172099388,
+        0.03270436723695254,
+        0.0753626142683084,
+        0.141243692615736,
+        0.2497916826071279,
+        0.2913813134338634,
+        0.15800960247345916,
+        0.030431392891861427,
+        0.00450180570495092,
+        0.0004600385391920652,
+        2.4771305956495298e-05
+      ],
+      "generated_quality": 0.7129516963420784,
+      "mean_reputation_at_sale": 0.7129516963420786,
+      "quality_reputation_difference": -1.1102230246251565e-16,
+      "stationary_residual": 8.524888982258021e-17,
+      "stationary_verified": true,
+      "stability_l1": 4.565013924311107e-16,
+      "row_sum_error": 1.1102230246251565e-16,
+      "minimum_exit_rate": 0.35,
+      "method": "Sale-time embedded chain; independent positive GTH elimination in both state orders",
+      "scope": "Finite numerical kernel for own-reputation policies; final actual-game joint law is checked separately"
+    },
+    "certificate_seconds": 0.42841477000911254
+  },
+  "history": [
+    {
+      "stage": "pure improvement",
+      "regret": 0.549575194209833,
+      "calls": 1
+    },
+    {
+      "stage": "pure improvement",
+      "regret": 0.3821104997637492,
+      "calls": 2
+    },
+    {
+      "stage": "pure improvement",
+      "regret": 0.17371807246544813,
+      "calls": 3
+    },
+    {
+      "stage": "pure improvement",
+      "regret": 0.0,
+      "calls": 4
+    }
+  ],
+  "search_calls": 4,
+  "seed": "p0_0p3/rho_0p9/n21_N2_marginal",
+  "checkpoint_sha256": "9256782cbf81ca78a8420f1cdd21eae2919565a0e1b1d0138f70438152212f89",
+  "completed_utc": "2026-10-24T21:18:09.822897+00:00",
+  "elapsed_seconds": 1.2376315309957135,
+  "demand_diagnostics": {
+    "sellers": 3,
+    "p0": 0.3,
+    "order": 256,
+    "quadrature": "Positive truncated Gauss-Jacobi with doubled-order check",
+    "raw_partition_error": 1.8104184817957503e-11,
+    "raw_relative_selected_mass_error": 1.8104184817957506e-11,
+    "raw_permutation_error": 3.3306690738754696e-16,
+    "raw_diagonal_error": 3.0503377601576176e-13,
+    "raw_min": 5.166962740255659e-09,
+    "raw_max": 0.9999955063316363,
+    "order_doubling_max_abs": 1.734146160004002e-11,
+    "order_doubling_max_relative_tail": 3.428072488504108e-11,
+    "positive_tail_underflow_entries": 0,
+    "partition_error": 8.881784197001252e-16,
+    "relative_event_correction": 1.81042732710725e-11,
+    "min_positive_demand": 5.166962740254999e-09
+  },
+  "execution_phase": "parallel expanded marginal sweep"
+}

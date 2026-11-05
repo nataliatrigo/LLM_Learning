@@ -1,0 +1,192 @@
+{
+  "campaign": "seller_count_extension",
+  "summary": {
+    "capacity": 1,
+    "effective_rho": 0.0,
+    "p0": 0.5,
+    "sellers": 81,
+    "closure": "marginal",
+    "verified": true,
+    "product2_conditional": 0.0,
+    "sale_rate": 0.012345679012173049,
+    "outside_rate": 1.3982878438836176e-11,
+    "product2_calendar": 0.0,
+    "profit_calendar": 0.011728395061564397,
+    "value_initial": 0.5864197530846109,
+    "perceived_value_initial": 1.1160936001415047,
+    "count_states": 2,
+    "joint_states": 82
+  },
+  "configuration": {
+    "capacity": 1,
+    "effective_rho": 0.0,
+    "sellers": 81,
+    "closure": "marginal",
+    "p0": 0.5,
+    "primitives": {
+      "p0": 0.5,
+      "p1": 0.35,
+      "p2": 0.8,
+      "c1": 0.05,
+      "c2": 0.65,
+      "revenue": 1.0,
+      "gamma": 0.98
+    },
+    "count_states": 2,
+    "joint_states": 82,
+    "tolerance": 1e-07,
+    "state": "Mature memory: retained successes S=0,...,capacity",
+    "replacement": "Uniform old slot independent of new outcome; only selected seller updates",
+    "posterior": "Beta(1+S,1+capacity-S)",
+    "joint_representation": "Exact seller-permutation quotient; correlated rival law preserved",
+    "initial_state": "Independent equal mixture of floor(capacity/2),ceil(capacity/2) for odd capacity; exact midpoint for even capacity",
+    "actual_value": "Mean seller discounted payoff; equals each seller at exchangeable initialization",
+    "scope": "Finite exact-count symmetric oblivious equilibrium; no full-state MPE or uniqueness claim",
+    "large_joint_solver": {
+      "method": "Matrix-free exact normalized GMRES with bounded-fill shifted ILU/Sherman-Morrison preconditioning",
+      "normalization": "(I-J.T+u 1.T)w=u; u=.99*uniform+.01*reference-state mass",
+      "gmres_relative_tolerance": 1e-12,
+      "gmres_absolute_tolerance": 1e-14,
+      "gmres_restart": 100,
+      "gmres_max_restart_cycles": 1000,
+      "true_residual_safety_factor": 2.0,
+      "true_backward_error_tolerance": 1e-12,
+      "positive_initial_iterations": 100,
+      "derivative_gauge": "Pinned zero derivative at largest positive jump-mass state",
+      "failure_policy": "Explicit failure; no clipping, tolerance relaxation or residual-only stationary acceptance",
+      "positivity_recovery": "Exact lazy Markov propagation of an algebraic candidate until strictly positive; no beliefs before positivity, no clipping or flooring",
+      "positivity_max_iterations": 1000000,
+      "positivity_time_limit": 240.0,
+      "preconditioning": "Shifted sparse M-matrix inverse and exact rank-one Sherman-Morrison correction; shift changes only the preconditioner",
+      "ilu_shifts": [
+        1e-05,
+        0.0001,
+        0.001
+      ],
+      "ilu_drop_tolerance": 0.0001,
+      "ilu_fill_factor": 5.0,
+      "positive_search_warm_iterations": 10,
+      "derivative_scaling": "Unit-norm right-hand side, then exact rescaling and unchanged pinned backward-error check"
+    },
+    "independent_stationary_checks": {
+      "invariant_tolerance": 1e-11,
+      "stability_tolerance": 1e-07,
+      "positive_max_iterations": 1000000,
+      "positive_time_limit": 240,
+      "failure_policy": "Explicit failure; no tolerance relaxation or residual-only acceptance",
+      "sparse_linear_solver": {
+        "method": "Matrix-free normalized GMRES; positive lazy warmup for signed rare tails; no large LU",
+        "normalization": "(I-J.T+u 1.T)w=u; u=.99*uniform+.01*reference-state mass",
+        "gmres_relative_tolerance": 1e-12,
+        "gmres_absolute_tolerance": 1e-14,
+        "gmres_restart": 100,
+        "gmres_max_restart_cycles": 1000,
+        "true_residual_safety_factor": 2.0,
+        "true_backward_error_tolerance": 1e-12,
+        "positive_initial_iterations": 1000,
+        "derivative_gauge": "Pinned zero derivative at largest positive jump-mass state",
+        "failure_policy": "Explicit failure; no clipping, tolerance relaxation or residual-only stationary acceptance",
+        "positivity_recovery": "Continue the positive initial lazy Markov iterate until the same normalized-system true residual target, then rerun unchanged GMRES; no clipping or flooring",
+        "positivity_max_iterations": 1000000,
+        "positivity_time_limit": 240.0
+      }
+    },
+    "direct_state_limit": 2000,
+    "actual_value_method": "Positive calendar Bellman contraction, unchanged discount",
+    "seller_limit": "No fixed seller-count limit; explicit exact-quotient state budget",
+    "state_budget": 250000,
+    "initial_evaluation": "Exact binomial mixture over permutation orbits, O(N)"
+  },
+  "diagnostics": {
+    "conditional_regret": 0.0,
+    "bellman_residual": 0.0,
+    "optimal_value_difference": 0.0,
+    "actual_value_residual": 4.440892098500626e-16,
+    "actual_value_error_bound": 2.2204460492503112e-14,
+    "sale_law_l1": 4.996003610813204e-16,
+    "market_partition_error": 1.1102230246251565e-16,
+    "stationary": {
+      "verified": true,
+      "methods": [
+        "Subtraction-free sparse positive GTH",
+        "Subtraction-free sparse positive GTH, reversed elimination order"
+      ],
+      "probability_sum": 1.0,
+      "minimum_probability": 2.512565776150467e-173,
+      "minimum_exit_rate": 0.3499999999734526,
+      "maximum_exit_rate": 0.6499999999999991,
+      "stability_l1": 1.144956735869754e-16,
+      "conditional_demand_stability": 2.7755575615628914e-17,
+      "rate_weighted_residual": 4.8599415762277437e-17,
+      "residual": 6.99737394229726e-17,
+      "row_sum_error": 2.220446049250313e-16,
+      "solved_states": 82,
+      "elapsed_seconds": 0.0011114420049125329,
+      "scope": "Independent finite-chain numerical stability; no mixing-time or uniqueness proof"
+    },
+    "demand": {
+      "capacity": 1,
+      "sellers": 81,
+      "p0": 0.5,
+      "order": 128,
+      "full_states": 2417851639229258349412352,
+      "quotient_states": 82,
+      "representation": "Exact seller-permutation quotient with correlated joint rival beliefs",
+      "quadrature": "Positive truncated Gauss-Jacobi; independently doubled order",
+      "raw_partition_error": 9.330314298949816e-13,
+      "raw_relative_selected_mass_error": 9.330314298949816e-13,
+      "order_doubling_max_abs": 1.5959455978986625e-15,
+      "order_doubling_max_relative_tail": 1.2322955156286466e-13,
+      "positive_tail_underflow_entries": 0,
+      "partition_error": 4.440892098500626e-16,
+      "relative_event_correction": 9.330036743184953e-13,
+      "min_positive_demand": 7.668123610145667e-05,
+      "requested_order": 128,
+      "polynomial_degree_bound": 161,
+      "state_budget": 250000,
+      "indexing": "Exact colex rank; only the used bounded combinatorial band is stored",
+      "orbit_cardinality": "Log cardinalities; displayed float sizes never enter economic calculations"
+    },
+    "certificate_seconds": 0.004903900990029797
+  },
+  "search_history": [
+    {
+      "stage": "Certified previous-seller-count policy",
+      "regret": 0.0,
+      "calls": 1
+    }
+  ],
+  "search_calls": 1,
+  "search_attempts": [
+    {
+      "method": "Direct natural-map warm search",
+      "verified": true
+    }
+  ],
+  "seed": {
+    "case": "capacity_001_p0_0p5_N80_marginal",
+    "checkpoint_sha256": "dd5347ec3b9b72c2324f99e1b2e09afab9a2d5a23a3547451a3c85a4a5c93a8a",
+    "method": "Same-capacity verified policy from the previous seller count"
+  },
+  "sources": {
+    "forgetting_random_replacement/oblivious/code/model.py": "2683955612fbd85076cb87c2ad2b3dbb775e583bb293fc4f415002af05c434ac",
+    "forgetting_random_replacement/oblivious/code/kernel.py": "44ec6cdfd73c0142c2c82c4f9408aa68fb145d79dcbdef48d4b7d04f38578f91",
+    "forgetting_random_replacement/oblivious/code/config.json": "f7f57fc7e446e1d632b42712b040efe9a2bf386aa9851e49d336bb8dc48cab72",
+    "forgetting_random_replacement/code/model.py": "10578739f00eb266e5a5dce171e3eef054d844f771f336413d25fd055b4dc395",
+    "forgetting/Code/model.py": "8b1f948f1d9009a021d1836b4f683f6224c65f724677bce591218a930cd28f7d",
+    "oblivious/02_oe_p0/code/positive_stationary.py": "886efe856552f90e702134b9695c623f4c71d26cfeda68655217ccd4f524cab1",
+    "oblivious/02_oe_p0/code/positive_stationary.cpp": "15d1761182e1fbfa2034d40d7d928ff21f12c52911f54d7fe3d08a5e65c6bf7a"
+  },
+  "extension_sources": {
+    "forgetting_random_replacement/oblivious/code/seller_count_model.py": "7a2fefb20b90f12de7a6d1bf12bc71dd55124f05ab3bd840b1727273d6c99fc8",
+    "forgetting_random_replacement/oblivious/code/large_count_model.py": "9640b9030eb862c23a6b5dd4616f9f1c3a55fcb342f3dbb28729db1039b9aecc",
+    "oblivious/09_oe_three_sellers_fixed_p0/code/five_seller_model.py": "14f73ec23a816d327641ad1804d512ec6c6d9e7ca2249af2d9e055b825b9bd47",
+    "oblivious/09_oe_three_sellers_fixed_p0/code/four_seller_iterative.py": "2120be4ff6774e75ce76a3203122d1b928ace5ee4a22687b1ed00abec3913bf1",
+    "oblivious/09_oe_three_sellers_fixed_p0/code/stationary.py": "9744bb1033a8fe5bcc1fe569fda36f92d9605ec6eabed59f051ec81ac91803e6",
+    "oblivious/09_oe_three_sellers_fixed_p0/code/model.py": "fc78fcff202754b253447f14a8aba31531a42a02b6bdd84ce5107a0c292866b3",
+    "oblivious/09_oe_three_sellers_fixed_p0/code/search_only.py": "8455ba8207e869036d14cf6a9635b819a3bc7aa463db51e71009da867c2dd6e6"
+  },
+  "elapsed_seconds": 0.08600310799374711,
+  "completed_utc": "2026-11-04T17:36:18.976275+00:00",
+  "checkpoint_sha256": "b254d6826f588525aee9684a23df9c99f14d6ad74fef3c0b9fb8bc94b9f301db"
+}

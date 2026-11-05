@@ -1,0 +1,55 @@
+{
+  "parameters": {
+    "R": 1.0,
+    "c1": 0.05,
+    "c2": 0.65,
+    "p1": 0.35,
+    "p2": 0.8,
+    "gamma": 0.98
+  },
+  "p0s": [
+    0.1,
+    0.3,
+    0.5,
+    0.7,
+    0.8,
+    0.9
+  ],
+  "rhos": [
+    0.6,
+    0.7,
+    0.8,
+    0.9
+  ],
+  "grids": [
+    1001,
+    2001,
+    4001
+  ],
+  "quadrature_order": 128,
+  "search_points": 121,
+  "search_refinement_points": 241,
+  "refinement": {
+    "equilibrium_reputation_absolute": 0.002,
+    "equilibrium_fraction_absolute": 0.005,
+    "market_share_absolute": 0.002,
+    "policy_disagreement_measure": 0.005
+  },
+  "trajectories": {
+    "initial": [
+      0.5,
+      0.5
+    ],
+    "horizon": 3000,
+    "samples": 3001,
+    "bin_width": 25,
+    "rtol": 1e-09,
+    "atol": 1e-11,
+    "max_step": 10
+  },
+  "workers": 2,
+  "comparison_models": [
+    "fluid_monopoly",
+    "fluid_competition"
+  ]
+}
